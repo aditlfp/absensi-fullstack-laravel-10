@@ -42,4 +42,10 @@ class Absensi extends Model
         return $this->belongsTo(TipeAbsensi::class, 'tipe_id', 'id');
     }
 
+    
+    public function Perlengkapan()
+    {
+        return $this->belongsToMany(Perlengkapan::class, 'absensi_perlengkapan');
+    }
+
 }

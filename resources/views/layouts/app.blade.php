@@ -28,7 +28,7 @@
 
 </head>
 
-<body class="font-sans antialiased bg-slate-700">
+<body class="font-sans antialiased bg-slate-400">
 	<div class="min-h-screen">
 		@include('layouts.navbar')
 

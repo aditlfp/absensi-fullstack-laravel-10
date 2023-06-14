@@ -14,6 +14,17 @@ export default {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
+            keyframes: {
+                shadow: {
+                    '0%': { width: '27%', },
+                    '25%': { width: '30%' },
+                    '50%': { width: '60%' },
+                    '100%': { width: '27%' },
+                },
+            },
+            animation: {
+                shadow:'shadow 5s ease infinite',
+            }
         },
     },
 

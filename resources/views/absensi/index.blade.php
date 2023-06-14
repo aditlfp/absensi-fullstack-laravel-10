@@ -5,7 +5,7 @@
                 @method('POST')
                 @csrf
                 <div class="sm:flex sm:justify-center sm:gap-3 sm:mb-3">
-                    <div id="my_camera" class=" bg-slate-200 rounded"></div>
+                    <div id="my_camera" class="bg-slate-200  rounded"></div>
                     <div id="results" class=" mt-1 sm:mt-0  rounded"></div>
                 </div>
                 <div class="flex justify-center">
@@ -39,27 +39,34 @@
                         </select>
                     </div>
                     <div>
+                        <form action="{{ url('absensi/'.  Auth::user()->id .'/equipt') }}" method="POST">
+                            @method('POST')
+                            @csrf
                         <div>
                             <label>Perlengkapan: </label>
                         </div>
-                        @foreach ($dev as $arr)
-                        @if (Auth::user()->devisi_id == $arr->id )
-                            @foreach ($arr->perlengkapan as $i)
-                                <input type="checkbox" name="perlengkapan[]" id="perlengkapan" value="{{ $i->name }}">
-                                <label for="perlengkapan">{{ $i->name }}</label>
-                            @endforeach 
-                        @else
-                            
-                        @endif
-                        @endforeach
+                        <div class="p-2 bg-white rounded grid grid-col-5">
+                            <div>
+                                @foreach ($dev as $arr)
+                            @if (Auth::user()->devisi_id == $arr->id )
+                                @foreach ($arr->perlengkapan as $i)
+                                    <input type="checkbox" name="perlengkapan[]" id="perlengkapan" value="{{ $i->name }}">
+                                    <label for="perlengkapan">{{ $i->name }}</label>
+                                @endforeach 
+                            @else
+                                
+                            @endif
+                            @endforeach
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <label>Deskripsi: </label>
                         <textarea name="deskripsi" id="deskripsi" value="" class="w-full textarea textarea-bordered"></textarea>
                     </div>
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col">
                         <label>Keterangan: </label>
-                        <div>
+                        <div class="flex justify-end">
                             <input name="keterangan" type="radio" value="masuk"
                                 class="radio cursor-pointer checked:bg-blue-500"><span
                                 class="mx-2">Masuk</span>
@@ -95,6 +102,7 @@
                 <input class="hidden" id="thisTime" value="{{ $mytime }}">
                 <input class="hidden" id="thisTime2" value="{{ $mytime2 }}">
                 <input class="hidden" id="isi" name="absensi_type_pulang" value="okok">
+                </form>
             </form>
         </div>
     </x-main-div>

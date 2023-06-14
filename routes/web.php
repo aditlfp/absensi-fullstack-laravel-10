@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'apdt')->group(function () {
     Route::put('/data/{id}/updatePulang', [AbsensiController::class, 'updatePulang'])->name('data.update');
     Route::post('/data/{id}/updateAbsenPulang', [AbsensiController::class, 'updateAbsenPulang'])->name('data-telat.update');
     Route::resource('/dashboard', DashboardController::class);
@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth', 'admin')->group(function () {
+Route::middleware('auth', 'admin', 'apdt')->group(function () {
     Route::get('/admin/data-absen', [AdminController::class, 'absen'])->name('admin.absen');
     Route::get('/admin/data-izin', [AdminController::class, 'izin'])->name('admin.izin');
     Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');

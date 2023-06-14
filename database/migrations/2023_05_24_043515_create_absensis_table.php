@@ -21,8 +21,9 @@ return new class extends Migration
             $table->foreignIdFor(Kerjasama::class, 'kerjasama_id');
             $table->foreignIdFor(Shift::class, 'shift_id');
             $table->foreignIdFor(TipeAbsensi::class, 'tipe_id')->nullable();
-            $table->string('perlengkapan');
+            $table->string('perlengkapan')->nullable();
             $table->string('keterangan');
+            $table->string('deskripsi');
             $table->string('absensi_type_masuk');//pulang/masuk
             $table->string('absensi_type_pulang')->nullable();//pulang/masuk
             $table->string('image');//foto

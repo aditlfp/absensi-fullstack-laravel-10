@@ -17,7 +17,7 @@
             @if (Route::has('login'))
                 @auth
                     <div>
-                        <p class="font-semibold text-sm line-clamp-1 break-words">{{ Auth::user()->name }}</p>
+                        <p class="font-semibold text-white text-sm line-clamp-1 break-words">{{ Auth::user()->name }}</p>
                     </div>
                 @else
                 <div>

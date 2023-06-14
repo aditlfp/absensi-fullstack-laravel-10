@@ -37,7 +37,7 @@
         </div>
 
         <div class="flex items-center justify-center mt-4">
-            <button type="submit" class="btn btn-wide btn-success hover:btn-info">Log In</button>
+            <button type="submit" class="bg-teal-400 hover:bg-teal-500 rounded-lg py-2 px-10 shadow">Log In</button>
         </div>
     </form>
 </div>

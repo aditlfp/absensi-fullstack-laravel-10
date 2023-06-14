@@ -1,5 +1,5 @@
 <div>
-    <ul class="menu menu-horizontal bg-slate-300 rounded-box">
+    <ul class="menu menu-horizontal bg-slate-200 rounded-box">
         <li>  
           <a href="">
             <i class="ri-account-circle-line text-xl text-blue-500"></i>

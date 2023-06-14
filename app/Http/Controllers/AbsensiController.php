@@ -30,7 +30,7 @@ class AbsensiController extends Controller
 
     public function store(AbsensiRequest $request)
     {
-        // Get Data Image With base64{{  }}
+        // Get Data Image With base64
             $img = $request->image;
             $folderPath = "public/images/";
             $image_parts = explode(";base64,", $img);
@@ -48,7 +48,7 @@ class AbsensiController extends Controller
             $user_id = $request->user_id;
             $kerjasama_id = $request->kerjasama_id;
             $shift_id = $request->shift_id;
-            $perlengkapan = $request->perlengkapan;
+            $perlengkapan = json_encode($request->perlengkapan);
             $keterangan = $request->keterangan;
             $absensi_type_masuk = $request->absensi_type_masuk;
             $deskripsi = $request->deskripsi;
