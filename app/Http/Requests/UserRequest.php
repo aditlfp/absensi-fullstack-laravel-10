@@ -28,7 +28,6 @@ class UserRequest extends FormRequest
             'email'     => 'email:rfc',
             'password'  => 'required',
             'image'     => 'required|image|mimes:jpg,jpeg,png,svg|max:2048',
-            'deskripsi' => 'nullable'
         ];
     }
 }
