@@ -63,6 +63,7 @@ class AbsensiController extends Controller
             'perlengkapan' => $perlengkapan,
             'keterangan' => $keterangan,
             'absensi_type_masuk' => Carbon::now()->format('H:i:s'),
+            'tanggal_absen' => Carbon::now()->format('Y-m-d'),
             'image' => $fileName,
             'deskripsi' => $deskripsi,
         ];
@@ -102,4 +103,15 @@ class AbsensiController extends Controller
         //     $absensi->save();
         // }
     }
+
+    public function historyAbsensi()
+    {
+        $abs = Absensi::all();
+        $absen = Absensi::paginate(10);
+        return view('absensi.history', [
+            'absen' => $absen,
+            'abs' => $abs,
+        ]);
+    }
+
 }

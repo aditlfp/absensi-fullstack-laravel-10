@@ -1,7 +1,8 @@
 <x-app-layout>
-    <p class="text-2xl text-center font-bold uppercase mb-10">Perlengkapan</p>
+    <x-main-div>
+    <p class="text-2xl text-center font-bold uppercase my-10">Perlengkapan</p>
 
-    <div class="flex justify-center ">
+    <div class="flex justify-center mb-10 ">
         <form action="{{ url('divisi/'.$data->id.'/add-equipment')}}" method="POST">
         @csrf
 		{{-- @method("PATCH") --}}
@@ -19,9 +20,13 @@
             </div>
             <div class="flex justify-between gap-2 mx-2">
                 <button type="button" id="btnAdd" class="btn btn-warning w-fit">Add Input</button>
-                <button type="submit" class="btn btn-info w-fit">Save</button>
+                <div>
+                    <button type="submit" class="btn btn-info w-fit">Save</button>
+                    <button class="btn btn-error"><a href="{{ route('devisi.index') }}">Back</a></button>
+                </div>
             </div>
         </div>
         </form>
     </div>
+</x-main-div>
 </x-app-layout>

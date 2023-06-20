@@ -16,6 +16,7 @@ class Absensi extends Model
         'perlengkapan',
         'keterangan',
         'absensi_type_masuk',
+        'tanggal_absen',
         'absensi_type_pulang',
         'image',
         'deskripsi'

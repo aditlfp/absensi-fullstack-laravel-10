@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +15,6 @@
 		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 	<!-- Scripts -->
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
-
 	<!-- Webcam CDN -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
 
@@ -69,20 +69,21 @@
 				$('#mobile-menu').toggle();
 			});
 		});
-
 		//input ++
 
-		$(document).ready(function(){
+		$(document).ready(function() {
 			var count = 1
 			$('#add').click(function() {
-				var input = $('<input class="input input-bordered my-2" placeholder="Add Name ...." name="name[]" type="text"/>');
+				var input = $(
+					'<input class="input input-bordered my-2" placeholder="Add Name ...." name="name[]" type="text"/>'
+				);
 				$('#inputContainer').append(input);
 
 				count++
 			});
 		});
 
-		$(document).ready(function(){
+		$(document).ready(function() {
 			var count = 1
 			$('#btnAdd').click(function() {
 				var ElementAsli = $('#inputContainer').html();
@@ -92,7 +93,7 @@
 			});
 		});
 
-		 //End input ++ 
+		//End input ++ 
 
 		// Preview Script
 		$(document).ready(function() {
@@ -120,6 +121,9 @@
 					});
 				});
 			});
+
+			var btnAbsensi = $("#btnAbsensi");
+
 			var table = $("#table");
 			var table2 = $("#table2");
 			var btn2 = $('#btnShow2');
@@ -134,6 +138,17 @@
 			var absen = $('#absen');
 			var iPulang = $('.iPulang');
 			var iAbsensi = $('.iAbsensi');
+
+			btnAbsensi.click(function() {
+				$('#isiAbsen').toggle();
+				$('#ngabsen').toggle();
+				$('#ngeLembur').toggle();
+			});
+
+			// $('#isiAbsen').click(function() {
+			// 	table.toggle();
+			// 	table.addClass('my-0 sm:my-5 mx-5 shadow-md');
+			// });
 
 			$('#btnShow').click(function() {
 				$('#pag-1').toggle();

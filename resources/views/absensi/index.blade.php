@@ -30,7 +30,7 @@
                     <div class="flex flex-col  justify-between">
                         <label>Shift: </label>
                         <select name="shift_id" id="shift_id" class="select select-bordered font-thin">
-                            <option>-- Select Shift --</option disabled selected>
+                            <option>-- Pilih Shift --</option disabled selected>
                             @forelse ( $shift as $i )
                                 <option value="{{ $i->id }}">{{ $i->shift_name }} | {{ $i->jam_start }}</option>
                             @empty
@@ -45,12 +45,12 @@
                         <div>
                             <label>Perlengkapan: </label>
                         </div>
-                        <div class="p-2 bg-white rounded grid grid-col-5">
-                            <div>
+                        <div class="p-2 bg-white rounded-lg grid grid-cols-1">
+                            <div class="">
                                 @foreach ($dev as $arr)
                             @if (Auth::user()->devisi_id == $arr->id )
                                 @foreach ($arr->perlengkapan as $i)
-                                    <input type="checkbox" name="perlengkapan[]" id="perlengkapan" value="{{ $i->name }}">
+                                    <input type="checkbox" name="perlengkapan[]" id="perlengkapan" value="{{ $i->name }}" class="checkbox checkbox-sm m-2">
                                     <label for="perlengkapan">{{ $i->name }}</label>
                                 @endforeach 
                             @else
@@ -62,11 +62,11 @@
                     </div>
                     <div>
                         <label>Deskripsi: </label>
-                        <textarea name="deskripsi" id="deskripsi" value="" class="w-full textarea textarea-bordered"></textarea>
+                        <textarea name="deskripsi" id="deskripsi" value="" placeholder="deskripsi..." class="w-full textarea textarea-bordered"></textarea>
                     </div>
                     <div class="flex flex-col">
                         <label>Keterangan: </label>
-                        <div class="flex justify-end">
+                        <div class="flex justify-end mt-1">
                             <input name="keterangan" type="radio" value="masuk"
                                 class="radio cursor-pointer checked:bg-blue-500"><span
                                 class="mx-2">Masuk</span>
@@ -86,10 +86,9 @@
                     <input type="text" id="image" name="image" class="image-tag" hidden>
                     <h2 class="hidden">{{ $user->ip }} || {{ $user->city }}</h2>
                 </div>
-                <div class="flex justify-end gap-3">
+                <div class="flex justify-end gap-3 mt-2">
                     <button type="submit"
-                        class="p-2 my-2 px-4 text-white bg-blue-400 hover:bg-blue-500 rounded transition-all ease-linear .2s">Save
-                        Data</button>
+                        class="p-2 my-2 px-4 text-white bg-blue-400 hover:bg-blue-500 rounded transition-all ease-linear .2s">Absen</button>
                     <a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-400 hover:bg-red-500 rounded transition-all ease-linear .2s">
                         Back
                     </a>

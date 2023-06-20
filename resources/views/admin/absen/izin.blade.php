@@ -1,9 +1,13 @@
 <x-app-layout>
     <x-main-div>
-        <p class="text-center text-2xl font-bold py-5 uppercase">Table Izin</p>
+        <p class="text-center text-2xl font-bold py-5 uppercase">absensi izin</p>
         <div class="flex justify-end mx-10 mb-2 "><a href="{{ route('admin.export-izin') }}" class="bg-yellow-400 px-4 py-2 shadow rounded-md text-2xl"><i class="ri-file-download-line"></i></a></div>
+        <div class="flex justify-between my-5 mx-10">
+            <a href="{{ route('admin.index') }}" class="btn btn-error">Back</a>
+            <x-search/>
+        </div>
         <div class="flex items-center justify-center flex-col mx-10 pb-10">
-            <table class="table w-full">
+            <table class="table w-full" id="searchTable">
             <thead>
                 <tr>
                     <th>#</th>

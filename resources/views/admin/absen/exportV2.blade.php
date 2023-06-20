@@ -68,12 +68,12 @@
 				@php
 					$previousUser = null;
 				@endphp
-				@forelse ($dataAbsen as $data)
+				@forelse ($expPDF as $data)
 					@if ($previousUser != $data['user']->name)
 						<tr>
 							@php
 								$previousUser = $data['user']->name;
-								$userAbsensi = collect($dataAbsen)->where('user', $data['user']);
+								$userAbsensi = collect($expPDF)->where('user', $data['user']);
 							@endphp
 							<td>{{ $data['user']->name }}</td>
 							@for ($i = 1; $i <= $totalHari; $i++)
@@ -93,35 +93,32 @@
 									<td>-</td>
 								@endif
 							@endfor
-							{{-- @php
-							
-							$startDate = $user->min('created_at')->startOfMonth();
-							$endDate = $user->max('created_at')->endOfMonth();
-							
-							$period = Carbon\CarbonPeriod::create($startDate, $endDate);
-							$numberOfDays = $period->count();
-							
-							$m = $i->absensi->where('keterangan', 'masuk')->count();
-							$z = $i->absensi->where('keterangan', 'izin')->count();
-							$t = $i->absensi->where('keterangan', 'telat')->count();
-							
-							$total = $m + $z + $t;
-							
-							if ($total != 0) {
-							    $total = round($m / $total, 2) * 100;
-							} else {
-							    $total = '0';
-							}
-							
-						@endphp
-						@for ($i = 1; $i <= $totalHari - $t - $m - $z; $i++)
-							<td>-</td>
-						@endfor
+							@php
+								
+								$startDate = $user->min('created_at')->startOfMonth();
+								$endDate = $user->max('created_at')->endOfMonth();
+								
+								$period = Carbon\CarbonPeriod::create($startDate, $endDate);
+								$numberOfDays = $period->count();
+								
+								$m = $data->where('keterangan', 'masuk')->count();
+								$z = $data->where('keterangan', 'izin')->count();
+								$t = $data->where('keterangan', 'telat')->count();
+								
+								$total = $m + $z + $t;
+								
+								if ($total != 0) {
+								    $total = round($m / $total, 2) * 100;
+								} else {
+								    $total = '0';
+								}
+								
+							@endphp
 
-						<td id="masuk">{{ $m }}</td>
-						<td id="izin">{{ $z }}</td>
-						<td id="telat">{{ $t }}</td>
-						<td id="persen">{{ $total }}%</td> --}}
+							<td id="masuk">{{ $m }}</td>
+							<td id="izin">{{ $z }}</td>
+							<td id="telat">{{ $t }}</td>
+							<td id="persen">{{ $total }}%</td>
 
 						</tr>
 					@endif

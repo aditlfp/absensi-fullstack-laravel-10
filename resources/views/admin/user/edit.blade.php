@@ -2,8 +2,8 @@
     <form action="{{ url('users/'.$user->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
-    <p class="text-center text-2xl font-bold my-10">Edit User</p>
     <div class="bg-slate-500 mx-10 rounded">
+		<p class="text-center text-2xl font-bold my-10">Edit User</p>
         <div class="mx-10 my-10">
 
         <!-- Name -->
@@ -52,7 +52,7 @@
 				<x-input-error class="mt-2" :messages="$errors->get('img')" />
 			</div>
 			<div class="flex justify-end mt-10 gap-2">
-				<button type="submit" class="btn">Save</button>
+				<button type="submit" class="btn btn-primary">Save</button>
 				<a href="{{ route('admin.index')}}" class="btn btn-error transition-all ease-linear .2s">
 					Back
 				</a>

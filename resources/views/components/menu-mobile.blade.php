@@ -1,4 +1,4 @@
-<div>
+<div class="block md:hidden">
     <ul class="menu menu-horizontal bg-slate-200 rounded-box">
         <li>  
           <a href="">

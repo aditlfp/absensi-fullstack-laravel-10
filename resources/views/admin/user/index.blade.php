@@ -19,12 +19,12 @@
 				</form>
 			</div>
 			<div class="input flex items-center input-bordered">
-				<x-search/>
+				<x-search />
 			</div>
 		</div>
 
 		<div class="overflow-x-auto mx-10 my-10">
-			<table class="table w-full" id="searchTable">
+			<table class="table table-zebra w-full" id="searchTable">
 				<!-- head -->
 				<thead>
 					<tr>
@@ -49,7 +49,9 @@
 							<tr>
 								<td>{{ $no++ }}</td>
 								@if ($i->image == 'no-image.jpg')
-									<td><x-no-img /></td>
+									<td>
+										<x-no-img />
+									</td>
 								@else
 									<td><img src="{{ asset('storage/images/' . $i->image) }}" alt="" srcset="" width="120px"></td>
 								@endif
@@ -57,12 +59,13 @@
 								<td>{{ $i->email }}</td>
 								<td>Client Saat Ini Kosong</td>
 								<td>
-								<form action="{{ url('users/'. $i->id) }}" method="DELETE">
-								@csrf
-								@method('DESTROY')
-									<x-btn-submit />
-									<x-btn-edit>{{ url('users/'. $i->id.'/edit') }}</x-btn-edit>
-								</form></td>
+									<form action="{{ url('users/' . $i->id) }}" method="DELETE">
+										@csrf
+										@method('DESTROY')
+										<x-btn-submit />
+										<x-btn-edit>{{ url('users/' . $i->id . '/edit') }}</x-btn-edit>
+									</form>
+								</td>
 							</tr>
 						@endforeach
 					@else
@@ -70,20 +73,23 @@
 							<tr>
 								<td>{{ $no++ }}</td>
 								@if ($i->image == 'no-image.jpg')
-									<td><x-no-img /></td>
+									<td>
+										<x-no-img />
+									</td>
 								@else
 									<td><img src="{{ asset('storage/images/' . $i->image) }}" alt="" srcset="" width="120px"></td>
 								@endif
 								<td>{{ $i->name }}</td>
 								<td>{{ $i->email }}</td>
-								<td>{{ $i->kerjasama->client->name}}</td>
+								<td>{{ $i->kerjasama->client->name }}</td>
 								<td>
-								<form action="{{ url('users/'. $i->id) }}" method="DELETE">
-								@csrf
-								@method('DESTROY')
-									<x-btn-submit />
-									<x-btn-edit>{{ url('users/'. $i->id.'/edit') }}</x-btn-edit>
-								</form></td>
+									<form action="{{ url('users/' . $i->id) }}" method="DELETE">
+										@csrf
+										@method('DESTROY')
+										<x-btn-submit />
+										<x-btn-edit>{{ url('users/' . $i->id . '/edit') }}</x-btn-edit>
+									</form>
+								</td>
 							</tr>
 						@empty
 							<tr>
@@ -97,10 +103,9 @@
 			</div>
 			@endif
 		</div>
-		<div class="flex justify-end mx-16 py-3">
-			<x-nav-link class="px-3 py-1" :href="route('users.create')" :active="true">
-				{{ __('Create') }}
-			</x-nav-link>
+		<div class="flex justify-end gap-2 mx-16 py-3 mb-10">
+			<a href="{{ route('admin.index') }}" class="btn btn-error">Back</a>
+			<button><a href="{{ route('users.create') }}" class="btn btn-primary">+ User</a></button>
 		</div>
 
 </x-app-layout>
