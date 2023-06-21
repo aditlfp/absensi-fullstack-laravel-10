@@ -19,8 +19,8 @@
 			width: 100%;
 		}
 
-		table,
-		th,
+		{{ }} {{ }} table,
+		{{ }} th,
 		td {
 			border: 1px solid black;
 		}
@@ -93,35 +93,28 @@
 									<td>-</td>
 								@endif
 							@endfor
-							{{-- @php
-							
-							$startDate = $user->min('created_at')->startOfMonth();
-							$endDate = $user->max('created_at')->endOfMonth();
-							
-							$period = Carbon\CarbonPeriod::create($startDate, $endDate);
-							$numberOfDays = $period->count();
-							
-							$m = $i->absensi->where('keterangan', 'masuk')->count();
-							$z = $i->absensi->where('keterangan', 'izin')->count();
-							$t = $i->absensi->where('keterangan', 'telat')->count();
-							
-							$total = $m + $z + $t;
-							
-							if ($total != 0) {
-							    $total = round($m / $total, 2) * 100;
-							} else {
-							    $total = '0';
-							}
-							
-						@endphp
-						@for ($i = 1; $i <= $totalHari - $t - $m - $z; $i++)
-							<td>-</td>
-						@endfor
-
-						<td id="masuk">{{ $m }}</td>
-						<td id="izin">{{ $z }}</td>
-						<td id="telat">{{ $t }}</td>
-						<td id="persen">{{ $total }}%</td> --}}
+							@php
+								$startDate = $user->min('created_at')->startOfMonth();
+								$endDate = $user->max('created_at')->endOfMonth();
+								
+								$period = Carbon\CarbonPeriod::create($startDate, $endDate);
+								$numberOfDays = $period->count();
+								$m = $data['user']->absensi->where('keterangan', 'masuk')->count();
+								$z = $data['user']->absensi->where('keterangan', 'izin')->count();
+								$t = $data['user']->absensi->where('keterangan', 'telat')->count();
+								$total = $m + $z + $t;
+								
+								if ($total != 0) {
+								    $total = round($m / $total, 2) * 100;
+								} else {
+								    $total = '0';
+								}
+								
+							@endphp
+							<td id="masuk">{{ $m }}</td>
+							<td id="izin">{{ $z }}</td>
+							<td id="telat">{{ $t }}</td>
+							<td id="persen">{{ $total }}%</td>
 
 						</tr>
 					@endif

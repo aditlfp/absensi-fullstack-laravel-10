@@ -84,7 +84,8 @@ class AdminController extends Controller
     {
         $tanggalSekarang = Carbon::now();
         $totalHari = $tanggalSekarang->daysInMonth;
-        
+        $dataUser = User::all();
+
         $expPDF = Absensi::whereBetween('tanggal_absen',[$startDate, $endDate])->whereMonth('tanggal_absen', $tanggalSekarang->month)->get();
         $user = Absensi::all();
         $path = 'logo/sac.png';
@@ -98,7 +99,7 @@ class AdminController extends Controller
         $options->set('defaultFont', 'Arial');
 
         $pdf = new Dompdf($options);
-        $html = view('admin.absen.exportV2', compact('expPDF', 'base64', 'totalHari', 'user'))->render();
+        $html = view('admin.absen.exportV2', compact('expPDF', 'base64', 'totalHari', 'user', 'dataUser'))->render();
         $pdf->loadHtml($html);
 
         $pdf->setPaper('A4', 'landscape');

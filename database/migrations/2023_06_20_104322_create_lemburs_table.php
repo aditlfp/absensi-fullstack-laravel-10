@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('keterangan');
             $table->string('deskripsi');
             $table->string('jam_mulai');
-            $table->string('jam_selesai');
+            $table->string('jam_selesai')->nullable();
             $table->string('image');
             $table->timestamps();
         });

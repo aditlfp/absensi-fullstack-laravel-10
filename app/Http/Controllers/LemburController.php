@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LemburRequest;
+use App\Models\Divisi;
+use App\Models\Kerjasama;
 use App\Models\Lembur;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,7 +15,10 @@ class LemburController extends Controller
 {
     public function index()
     {
-
+        $user = User::all();
+        $dev = Divisi::all();
+        $kerjasama = Kerjasama::all();
+        return view('lembur.index', compact('user', 'kerjasama', 'dev'));
     } 
 
     public function store(LemburRequest $request)
@@ -37,7 +44,6 @@ class LemburController extends Controller
         $keterangan = $request->keterangan;
         $deskripsi = $request->deskripsi;
         $jam_mulai = $request->jam_mulai;
-        $jam_selesai = $request->jam_selesai;
     // end Sementara
 
     $lembur = new lembur();
@@ -50,13 +56,28 @@ class LemburController extends Controller
         'image' => $fileName,
         'deskripsi' => $deskripsi,
         'jam_mulai' => $jam_mulai,
-        'jam_selesai' => $jam_selesai,
     ];
 
     Lembur::create($lembur);
-    toastr()->success('Berhasil Absen Hari Ini', 'succes');
-    // return redirect()->to(route());
+    toastr()->success('Berhasil Absen Lembur', 'succes');
+    return redirect()->to(route('dashboard.index'));
 
+    }
+
+    public function update(Request $request, $id)
+    {
+        $lembur = Lembur::find($id);
+
+        if ($lembur) {
+            $lembur->jam_selesai = Carbon::now()->format('H:i:s');
+            $lembur->save();
+
+            toastr()->success('Berhasil Absen Pulang Hari Ini', 'succes');
+            return redirect()->to(route('dashboard.index'));
+        } else {
+            toastr()->success('Gagal Absen Pulang', 'errorr');
+            return redirect()->back();
+        }
     }
 
     public function delete($id)
@@ -72,6 +93,11 @@ class LemburController extends Controller
         }
         toastr()->warning('Data Berhasil Dihapus !', 'warning');
         return redirect()->back();
+    }
+
+    public function lemburIndexAdmin(){
+        $lembur = Lembur::all();
+        return view('admin.lembur.index', ['lembur' => $lembur]);
     }
 
 

@@ -97,6 +97,18 @@
 					</div>
 				</div>
 				{{-- End Menu --}}
+				{{-- Menu Lembur --}}
+				<div class="flex justify-center px-2 menu7">
+					<button id="menuLembur" class="btn btn-warning w-full mt-5">Menu Lembur</button>
+				</div>
+				<div id="lembur" class="hidden">
+					<div class="flex justify-center gap-x-2 mx-2">
+						<a href="{{ route('lemburList') }}"
+							class="btn-warning hover:bg-yellow-500 hover:text-white w-full shadow-md hover:shadow-none text-center uppercase font-semibold text-sm rounded-md px-4 py-2 mt-5 transition-all ease-linear .2s">Index
+							Lembur</a>
+					</div>
+				</div>
+				{{-- End Menu --}}
 			</div>
 		</div>
 

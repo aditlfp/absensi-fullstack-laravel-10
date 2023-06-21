@@ -37,7 +37,7 @@ Route::middleware('auth', 'apdt')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('/lembur', LemburController::class)->only('index', 'store');
+    Route::resource('/lembur', LemburController::class)->only('index', 'store', 'update');
 });
 
 Route::middleware('auth', 'admin', 'apdt')->group(function () {
@@ -55,6 +55,7 @@ Route::middleware('auth', 'admin', 'apdt')->group(function () {
     Route::get('/divisi/{divisiId}/add-equipment', [DivisiController::class, 'editEquipment'])->name('editRquipment');
     Route::post('/divisi/{divisiId}/add-equipment', [DivisiController::class,'addEquipment'])->name('addEquipment');
     Route::resource('/data-lembur', LemburController::class);
+    Route::get('/data-lembur-saat-ini', [LemburController::class, 'lemburIndexAdmin'])->name('lemburList');
 });
 
 

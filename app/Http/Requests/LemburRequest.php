@@ -28,8 +28,8 @@ class LemburRequest extends FormRequest
             'keteragan' => 'required',
             'deskripsi' => 'nullable',
             'jam_mulai' => 'required',
-            'jam_selesai' => 'required',
-            'image' => 'required|image|mimes:jpg|png|gif|svg|jpeg|max:2048'
+            'jam_selesai' => 'nullable',
+            'image' => 'required'
         ];
     }
 }

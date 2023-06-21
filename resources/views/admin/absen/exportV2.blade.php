@@ -30,7 +30,7 @@
 		}
 
 		th {
-			background-color: rgb(19, 110, 170);
+			background{{ -col }}or: rgb(19, 110, 170);
 			color: white;
 		}
 
@@ -94,16 +94,9 @@
 								@endif
 							@endfor
 							@php
-								
-								$startDate = $user->min('created_at')->startOfMonth();
-								$endDate = $user->max('created_at')->endOfMonth();
-								
-								$period = Carbon\CarbonPeriod::create($startDate, $endDate);
-								$numberOfDays = $period->count();
-								
-								$m = $data->where('keterangan', 'masuk')->count();
-								$z = $data->where('keterangan', 'izin')->count();
-								$t = $data->where('keterangan', 'telat')->count();
+								$m = $data['user']->absensi->where('keterangan', 'masuk')->count();
+								$z = $data['user']->absensi->where('keterangan', 'izin')->count();
+								$t = $data['user']->absensi->where('keterangan', 'telat')->count();
 								
 								$total = $m + $z + $t;
 								
@@ -114,12 +107,10 @@
 								}
 								
 							@endphp
-
 							<td id="masuk">{{ $m }}</td>
 							<td id="izin">{{ $z }}</td>
 							<td id="telat">{{ $t }}</td>
 							<td id="persen">{{ $total }}%</td>
-
 						</tr>
 					@endif
 				@empty

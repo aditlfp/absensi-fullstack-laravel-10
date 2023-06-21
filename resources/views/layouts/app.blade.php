@@ -135,6 +135,7 @@
 			var menu4 = $('.menu4');
 			var menu5 = $('.menu5');
 			var menu6 = $('.menu6');
+			var menu7 = $('.menu7');
 			var absen = $('#absen');
 			var iPulang = $('.iPulang');
 			var iAbsensi = $('.iAbsensi');
@@ -190,6 +191,7 @@
 				menu4.toggle();
 				// menu5.toggle();
 				menu6.toggle();
+				menu7.toggle();
 
 			});
 
@@ -200,6 +202,7 @@
 				menu3.toggle();
 				// menu5.toggle();
 				menu6.toggle();
+				menu7.toggle();
 			});
 			$('#menuDevisi').click(function() {
 				$('#devisi').toggle();
@@ -214,7 +217,14 @@
 				// menu2.toggle();
 				menu3.toggle();
 				menu4.toggle();
+				menu7.toggle();
 			});
+			$('#menuLembur').click(function() {
+				$('#lembur').toggle();
+				menu3.toggle();
+				menu4.toggle();
+				menu6.toggle();
+			})
 		});
 	</script>
 </body>
