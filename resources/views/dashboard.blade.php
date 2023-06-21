@@ -246,5 +246,4 @@
         </div>
 
     </x-main-div>
-
 </x-app-layout>
