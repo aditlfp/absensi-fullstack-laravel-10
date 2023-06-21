@@ -19,8 +19,8 @@
 			width: 100%;
 		}
 
-		{{ }} {{ }} table,
-		{{ }} th,
+		 table,
+		 th,
 		td {
 			border: 1px solid black;
 		}
@@ -140,6 +140,7 @@
 		<span style="right: 0; top: 100px; left: 60px; position:absolute;">TTD</span>
 	</div>
 	<span style="right: 0; bottom: 150px; position:absolute;">PT. Surya Amanah Cendekia</span>
+	
 </main>
 </body>
 

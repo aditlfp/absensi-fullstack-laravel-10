@@ -57,7 +57,7 @@
 					<button id="menuKerjasama" class="btn btn-warning w-full mt-5">Menu Kerjasama</button>
 				</div>
 				<div id="kerjasama" class="hidden">
-					<div class="flex justify-center gap-x-2 mx-2">
+					<div class="flex justify-center gap-x-2 mx-2 pb-[148px]">
 						<a href="{{ route('kerjasamas.index') }}"
 							class="btn-warning hover:bg-yellow-500 hover:text-white w-full shadow-md hover:shadow-none text-center uppercase font-semibold text-sm rounded-md px-4 py-2 mt-5 transition-all ease-linear .2s">Index
 							Kerjasama</a>
@@ -72,7 +72,7 @@
 					<button id="menuAbsen" class="btn btn-warning w-full mt-5">Menu Absensi</button>
 				</div>
 				<div id="absen" class="hidden">
-					<div class="flex justify-center gap-x-2 mx-2">
+					<div class="flex justify-center gap-x-2 mx-2 pb-[148px] ">
 						<a href="{{ route('admin.absen') }}"
 							class="btn-warning hover:bg-yellow-500 hover:text-white w-full shadow-md hover:shadow-none text-center uppercase font-semibold text-sm rounded-md px-4 py-2 mt-5 transition-all ease-linear .2s">Data
 							Absensi</a>
@@ -87,12 +87,12 @@
 					<button id="menuPerlengkapan" class="btn btn-warning w-full mt-5">Menu Perlengkapan</button>
 				</div>
 				<div id="perlengkapan" class="hidden">
-					<div class="flex justify-center gap-x-2 mx-2">
+					<div class="flex justify-center gap-x-2 mx-2 pb-[148px]">
 						<a href="{{ route('perlengkapan.index') }}"
 							class="btn-warning hover:bg-yellow-500 hover:text-white w-full shadow-md hover:shadow-none text-center uppercase font-semibold text-sm rounded-md px-4 py-2 mt-5 transition-all ease-linear .2s">Index
 							Perlengkapan</a>
 						<a href="{{ route('perlengkapan.create') }}"
-							class="btn-warning hover:bg-yellow-500 hover:text-white w-full shadow-md hover:shadow-none text-center uppercase font-semibold text-sm rounded-md px-4 py-2 mt-5 transition-all ease-linear .2s">Tambah
+							class="btn-warning hover:bg-yellow-500  hover:text-white w-full shadow-md hover:shadow-none text-center uppercase font-semibold text-sm rounded-md px-4 py-2 mt-5 transition-all ease-linear .2s">Tambah
 							Perlengkapan</a>
 					</div>
 				</div>
@@ -102,7 +102,7 @@
 					<button id="menuLembur" class="btn btn-warning w-full mt-5">Menu Lembur</button>
 				</div>
 				<div id="lembur" class="hidden">
-					<div class="flex justify-center gap-x-2 mx-2">
+					<div class="flex justify-center gap-x-2 mx-2 pb-[148px] ">
 						<a href="{{ route('lemburList') }}"
 							class="btn-warning hover:bg-yellow-500 hover:text-white w-full shadow-md hover:shadow-none text-center uppercase font-semibold text-sm rounded-md px-4 py-2 mt-5 transition-all ease-linear .2s">Index
 							Lembur</a>

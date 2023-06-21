@@ -14,7 +14,7 @@
 				</div>
 				<input type="text" id="image" name="image" class="image-tag" hidden>
 				<div>
-					<label for="name">Name</label>
+					<label for="name">Nama</label>
 					<input type="text" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
 				</div>
 				<div>

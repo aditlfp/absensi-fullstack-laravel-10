@@ -24,7 +24,7 @@
 				<img src="{{ URL::asset('/logo/sac.png') }}" class="w-20 sm:relative -right-2 bg-white p-3 rounded-full shadow"
 					alt="...">
 				<p
-					class="text-slate-800 font-black text-lg p-2 rounded-md sm:rounded-r-full sm:pl-4 text-center sm:pr-2 z-[10] bg-white shadow">
+					class="text-slate-800 font-black text-lg p-2 rounded-md sm:rounded-r-full sm:pl-4 text-center sm:pr-2  bg-white shadow">
 					PT. Surya Amanah Cendikia</p>
 			</div>
 		</div>

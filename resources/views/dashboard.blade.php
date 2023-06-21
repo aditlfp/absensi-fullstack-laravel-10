@@ -34,7 +34,7 @@
 <div class="flex justify-end w-full mx-10">
 
 	<div
-		class="text-center flex justify-end items-end rounded-tr-lg rounded-bl-lg mb-5 w-fit text-md sm:text-xl font-semibold text-slate-300 bg-red-500 py-2 px-4 shadow-md ml-10 ">
+		class="text-center md:flex hidden justify-end items-end rounded-tr-lg rounded-bl-lg mb-5 w-fit text-md sm:text-xl font-semibold text-slate-300 bg-red-500 py-2 px-4 shadow-md ml-10 ">
 		<span>{{ Carbon\Carbon::now()->format('d-m-Y') }}</span>
 	</div>
 </div>
