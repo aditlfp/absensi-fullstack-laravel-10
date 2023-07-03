@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         $dev = Divisi::all();
         $data = Kerjasama::all();
-        return view('admin.user.create', compact('data', 'dev'));
+        return view('admin.user.create', compact('data', 'dev')); 
     }
 
     /**
