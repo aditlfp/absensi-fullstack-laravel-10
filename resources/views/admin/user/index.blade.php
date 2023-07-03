@@ -61,7 +61,7 @@
 								<td>
 									<form action="{{ url('users/' . $i->id) }}" method="DELETE">
 										@csrf
-										@method('DESTROY')
+										@method('DELETE')
 										<x-btn-submit />
 										<x-btn-edit>{{ url('users/' . $i->id . '/edit') }}</x-btn-edit>
 									</form>
@@ -83,9 +83,9 @@
 								<td>{{ $i->email }}</td>
 								<td>{{ $i->kerjasama->client->name }}</td>
 								<td>
-									<form action="{{ url('users/' . $i->id) }}" method="DELETE">
+									<form action="{{ url('users/' . $i->id) }}" method="POST">
 										@csrf
-										@method('DESTROY')
+										@method('DELETE')
 										<x-btn-submit />
 										<x-btn-edit>{{ url('users/' . $i->id . '/edit') }}</x-btn-edit>
 									</form>

@@ -4,11 +4,11 @@
     @csrf
     <div class="bg-slate-500 mx-10 rounded">
 		<p class="text-center text-2xl font-bold my-10">Edit User</p>
-        <div class="mx-10 my-10">
+        <div class="mx-10 my-10 bg-slate-100 px-10 py-5 rounded shadow">
 
         <!-- Name -->
 			<div>
-				<x-input-label for="name" :value="__('Name')" />
+				<x-input-label for="name" :value="__('Nama')" />
 				<x-text-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $user->name }}" required
 					autofocus autocomplete="name" />
 				<x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -53,7 +53,7 @@
 			</div>
 			<div class="flex justify-end mt-10 gap-2">
 				<button type="submit" class="btn btn-primary">Save</button>
-				<a href="{{ route('admin.index')}}" class="btn btn-error transition-all ease-linear .2s">
+				<a href="{{ route('users.index')}}" class="btn btn-error transition-all ease-linear .2s">
 					Back
 				</a>
 			</div>

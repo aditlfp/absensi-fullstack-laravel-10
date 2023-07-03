@@ -21,6 +21,7 @@
 							<th>VALUE</th>
 							<th>EXPERIED</th>
 							<th>APPROVED 1</th>
+							<th>AKSI</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,6 +35,14 @@
 								<td>{{ toRupiah($i->value) }}</td>
 								<td>{{ $i->experied }}</td>
 								<td>{{ $i->approve1 }}</td>
+								<td>
+									<form action="{{ url('kerjasamas/' . $i->id) }}" method="POST">
+										@csrf
+										@method('DELETE')
+										<x-btn-submit />
+										<x-btn-edit>{{ url('kerjasamas/' . $i->id . '/edit') }}</x-btn-edit>
+									</form>
+								</td>
 							</tr>
 						@empty
 							<tr>
@@ -44,8 +53,8 @@
 				</table>
 			</div>
 			<div class="flex justify-end gap-2 mx-16 py-3">
-				<a href="{{ route('kerjasamas.create') }}" class="btn btn-primary">+ Kerjasama</a>
 				<a href="{{ route('admin.index') }}" class="btn btn-error">Back</a>
+				<a href="{{ route('kerjasamas.create') }}" class="btn btn-primary">+ Kerjasama</a>
 			</div>
 	</x-main-div>
 

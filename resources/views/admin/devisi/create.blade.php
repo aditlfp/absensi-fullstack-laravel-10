@@ -1,6 +1,6 @@
 <x-app-layout>
 	<div class="bg-slate-500 p-4 mx-36 shadow-md rounded-md">
-		<p class="text-center text-2xl font-bold">Tambah Divisi</p>
+		<p class="text-center text-2xl uppercase font-bold">Tambah Divisi</p>
 		<form method="POST" action="{{ route('devisi.store') }}" class="mx-[25%] my-10" id="form">
 			@csrf
 			<div class="bg-slate-100 px-10 py-5 rounded shadow">

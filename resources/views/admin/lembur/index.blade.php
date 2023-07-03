@@ -14,17 +14,35 @@
 				<tbody>
 					@php
 						$no = 1;
+						$prevUser = null;
 					@endphp
 					@forelse ($lembur as $i)
+					@if ($prevUser != $i->user->name)
 						<tr>
 							<td class="py-1">{{ $no++ }}</td>
-							<td class="py-1">{{ $lembur->user->name }}</td>
-							@if ($lembur->jam_selesai == null)
+							
+							<td class="py-1">{{ $i->user->name }}</td>
+							@if ($i->jam_selesai == null)
 								<td class="py-1">Belum Selesai Lembur</td>
 							@else
-								<td class="py-1">{{ $lembur->jam_mulai + $lembur->jam_selesai }}</td>
+							@php
+								$masuk = strtotime($i->jam_mulai);
+								$keluar = strtotime($i->jam_selesai);
+
+								$msk = date('H', $masuk);
+								$klr = date('H' ,$keluar);
+								
+								
+								
+								$tot =  $klr - $msk;
+
+							@endphp
+
+								<td class="py-1">{{ $tot . ' Jam'  }}</td>
 							@endif
 						</tr>
+					@endif
+
 					@empty
 						<tr>
 							<td colspan="3" class="text-center py-1">Kosong</td>
@@ -32,6 +50,12 @@
 					@endforelse
 				</tbody>
 			</table>
+			<div id="pag-1" class=" mb-5 mx-5">
+				{{ $lembur->links() }}
+			</div>
+		</div>
+		<div class="flex justify-end py-5 mx-5 sm:pb-10">
+			<a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>
 		</div>
 	</x-main-div>
 </x-app-layout>

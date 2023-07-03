@@ -7,6 +7,7 @@ use App\Models\Divisi;
 use App\Models\Kerjasama;
 use App\Models\Lembur;
 use App\Models\User;
+use App\Models\Absensi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,9 @@ class LemburController extends Controller
         $user = User::all();
         $dev = Divisi::all();
         $kerjasama = Kerjasama::all();
-        return view('lembur.index', compact('user', 'kerjasama', 'dev'));
+        $lembur = Lembur::all();
+        $absensi = Absensi::all();
+        return view('lembur.index', compact('user', 'kerjasama', 'dev', 'lembur', 'absensi'));
     } 
 
     public function store(LemburRequest $request)
@@ -53,11 +56,12 @@ class LemburController extends Controller
         'kerjasama_id' => $kerjasama_id,
         'perlengkapan' => $perlengkapan,
         'keterangan' => $keterangan,
-        'image' => $fileName,
         'deskripsi' => $deskripsi,
         'jam_mulai' => $jam_mulai,
+        'image' => $fileName,
     ];
 
+    // dd($lembur);
     Lembur::create($lembur);
     toastr()->success('Berhasil Absen Lembur', 'succes');
     return redirect()->to(route('dashboard.index'));
@@ -72,7 +76,7 @@ class LemburController extends Controller
             $lembur->jam_selesai = Carbon::now()->format('H:i:s');
             $lembur->save();
 
-            toastr()->success('Berhasil Absen Pulang Hari Ini', 'succes');
+            toastr()->success('Berhasil Mengakhiri Lembur', 'succes');
             return redirect()->to(route('dashboard.index'));
         } else {
             toastr()->success('Gagal Absen Pulang', 'errorr');
@@ -96,8 +100,13 @@ class LemburController extends Controller
     }
 
     public function lemburIndexAdmin(){
-        $lembur = Lembur::all();
+        $lembur = Lembur::paginate(25);
         return view('admin.lembur.index', ['lembur' => $lembur]);
+    }
+
+    public function lemburIndexUser(){
+        $lembur = Lembur::paginate(25);
+        return view('lembur.history', ['lembur' => $lembur]);
     }
 
 

@@ -18,6 +18,7 @@
 						<tr>
 							<th>#</th>
 							<th>Nama Perlengkapan</th>
+							<th>AKSI</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -28,6 +29,13 @@
 							<tr>
 								<td class="py-1">{{ $no++ }}</td>
 								<td class="py-1">{{ $i->name }}</td>
+								<td class="py-1">
+									<form action="{{ url('perlengkapan/' . $i->id) }}" method="post">
+										@csrf
+										@method('DELETE')
+										<x-btn-submit />
+									</form>
+								</td>
 							</tr>
 						@empty
 							<tr>
@@ -38,8 +46,8 @@
 				</table>
 			</div>
 			<div class="flex justify-end gap-2 mx-16 py-3">
-				<a href="{{ route('perlengkapan.create') }}" class="btn btn-primary">+ Perlengkapan</a>
 				<a href="{{ route('admin.index') }}" class="btn btn-error">Back</a>
+				<a href="{{ route('perlengkapan.create') }}" class="btn btn-primary">+ Perlengkapan</a>
 			</div>
 		</x-main-div>
 	</div>

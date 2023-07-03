@@ -55,7 +55,6 @@
 		</div>
 	</div>
 	<script src="{{ URL::asset('src/js/jquery-min.js') }}"></script>
-
 	<script>
 		$(document).ready(function() {
 			$("#searchInput").on("keyup", function() {
@@ -91,6 +90,8 @@
 				$('#inputContainer').append(input);
 				count++
 			});
+		
+		
 		});
 
 		//End input ++ 
@@ -114,6 +115,8 @@
 					reader.readAsDataURL(input.files[0]);
 				}
 
+				// handle rate
+
 				$("#searchInput").on("keyup", function() {
 					let value = $(this).val().toLowerCase();
 					$("#searchTable tbody tr").filter(function() {
@@ -123,6 +126,7 @@
 			});
 
 			var btnAbsensi = $("#btnAbsensi");
+			var btnRating = $("#btnRating");
 
 			var table = $("#table");
 			var table2 = $("#table2");
@@ -141,9 +145,16 @@
 			var iAbsensi = $('.iAbsensi');
 
 			btnAbsensi.click(function() {
+				btnRating.toggle();
 				$('#isiAbsen').toggle();
 				$('#ngabsen').toggle();
 				$('#ngeLembur').toggle();
+				$('#isiLembur').toggle();
+			});
+
+			btnRating.click(function() {
+				$('#cekMe').toggle();
+				$('#cekRate').toggle();
 			});
 
 			// $('#isiAbsen').click(function() {

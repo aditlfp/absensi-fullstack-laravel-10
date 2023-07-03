@@ -5,12 +5,21 @@
 			<form method="POST" action="{{ route('users.store') }}" class=" my-10" id="form" enctype="multipart/form-data">
 				@csrf
 				<div class="bg-slate-100 px-10 py-5 rounded shadow">
+					
 					<!-- Name -->
 					<div>
-						<x-input-label for="name" :value="__('Name')" />
+						<x-input-label for="name" :value="__('Nama')" />
 						<x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
 							autofocus autocomplete="name" />
 						<x-input-error :messages="$errors->get('name')" class="mt-2" />
+					</div>
+
+					<!-- Name Lengkap -->
+					<div>
+						<x-input-label for="nama_lengkap" :value="__('Nama Lengkap')" />
+						<x-text-input id="nama_lengkap" class="block mt-1 w-full" type="text" name="nama_lengkap" :value="old('nama_lengkap')" required
+							autofocus autocomplete="nama_lengkap" />
+						<x-input-error :messages="$errors->get('nama_lengkap')" class="mt-2" />
 					</div>
 
 					<!-- Email Address -->
@@ -70,10 +79,10 @@
 						<x-input-error class="mt-2" :messages="$errors->get('img')" />
 					</div>
 					<div class="flex justify-end mt-10 gap-2">
-						<button type="submit" class="btn btn-primary">Save</button>
-						<a href="{{ route('admin.index') }}" class="btn btn-error transition-all ease-linear .2s">
+						<a href="{{ route('users.index') }}" class="btn btn-error hover:bg-red-500 transition-all ease-linear .2s">
 							Back
 						</a>
+						<button type="submit" class="btn btn-primary">Save</button>
 					</div>
 				</div>
 			</form>

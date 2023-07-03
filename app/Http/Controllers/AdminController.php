@@ -45,6 +45,9 @@ class AdminController extends Controller
         $tanggalSekarang = Carbon::now();
         $totalHari = $tanggalSekarang->daysInMonth;
 
+        // $minggu = Carbon::now()->isSunday();
+        // $setu = Carbon::now()->isSaturday();
+
         $dataAbsen = Absensi::whereMonth('tanggal_absen', $tanggalSekarang->month)->get();
         $dataUser = User::all();
         $all = Absensi::all();

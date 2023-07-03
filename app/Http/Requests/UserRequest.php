@@ -25,6 +25,7 @@ class UserRequest extends FormRequest
             'kerjasama_id' => 'required',
             'devisi_id' => 'required',
             'name'      => 'required',
+            'nama_lengkap' => 'required',
             'email'     => 'email:rfc',
             'password'  => 'required',
             'image'     => 'required|image|mimes:jpg,jpeg,png,svg|max:2048',

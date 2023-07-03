@@ -40,8 +40,8 @@
 							class="text-md block px-3 py-2 rounded-lg w-2/6 bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
 					</div>
 					<div class="flex gap-3 justify-end mb-5">
-						<button type="submit" class="btn btn-primary">Save</button>
 						<a href="{{ route('kerjasamas.index') }}" class="btn btn-error">Back</a>
+						<button type="submit" class="btn btn-primary">Save</button>
 					</div>
 				</div>
 			</form>

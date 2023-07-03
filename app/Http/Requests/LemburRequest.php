@@ -24,8 +24,8 @@ class LemburRequest extends FormRequest
         return [
             'user_id' => 'required',
             'kerjasama_id' => 'required',
-            'perlenglapan' => 'required',
-            'keteragan' => 'required',
+            'perlengkapan' => 'required',
+            'keterangan' => 'required',
             'deskripsi' => 'nullable',
             'jam_mulai' => 'required',
             'jam_selesai' => 'nullable',

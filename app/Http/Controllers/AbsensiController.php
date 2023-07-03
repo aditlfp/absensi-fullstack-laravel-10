@@ -20,12 +20,11 @@ class AbsensiController extends Controller
 
     public function index(Request $request)
     {
-        $ipAddress = $request->ip();
-        $location = FacadesGeoIP::getLocation($ipAddress);
         $dev = Divisi::all();
         $client = Client::all();
         $shift = Shift::all();
-        return view('absensi.index', ['shift' => $shift, 'user' => $location, 'client' => $client, 'dev' => $dev]);
+        $absensi = Absensi::all();
+        return view('absensi.index', ['shift' => $shift, 'client' => $client, 'dev' => $dev, 'data' => $absensi]);
     }
 
     public function store(AbsensiRequest $request)

@@ -56,24 +56,25 @@ class KerjasamaController extends Controller
 
     public function edit($id)
     {
+        $client = Client::all();
         $kerjasama = Kerjasama::find($id);
         if ($kerjasama != null) {
-            return view('admin.kerjasama.edit', ['kerjasama' => $kerjasama]);
+            return view('admin.kerjasama.edit', ['kerjasama' => $kerjasama, 'client' => $client]);
         }
             toastr()->error('Data Tidak Ditemukan', 'error');
             return view('admin.kerjasama.index');
 
     }
 
-    public function update(KerjasamaRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $kerjasama = [
             'client_id' => $request->client_id,
             'value' => $request->value,
             'experied' => $request->experied,
-            'aprove1' => $request->approve1,
-            'aprove2' => $request->approve2,
-            'aprove3' => $request->approve3,
+            'approve1' => $request->approve1,
+            'approve2' => $request->approve2,
+            'approve3' => $request->approve3,
         ];
 
         Kerjasama::findOrFail($id)->update($kerjasama);

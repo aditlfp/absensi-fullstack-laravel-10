@@ -52,6 +52,7 @@ class UserController extends Controller
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
             'image'     => $request->image,
+            'nama_lengkap' => $request->nama_lengkap
         ];
 
         if ($request->hasFile('image')) {
@@ -87,7 +88,8 @@ class UserController extends Controller
             'name'      => $request->name,
             'devisi_id' => $request->devisi_id,
             'email'     => $request->email,
-            'image'     => $request->image
+            'image'     => $request->image,
+            'nama_lengkap' => $request->nama_lengkap
         ];
 
         if($request->hasFile('image'))

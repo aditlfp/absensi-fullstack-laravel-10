@@ -36,20 +36,19 @@
 						</select>
 					</div>
 					<div>
-						<form action="{{ url('absensi/' . Auth::user()->id . '/equipt') }}" method="POST">
-							@method('POST')
-							@csrf
 							<div>
 								<label>Perlengkapan: </label>
 							</div>
-							<div class="p-2 bg-white rounded-lg grid grid-cols-1">
-								<div class="">
+							<div class="p-2 bg-white rounded-lg ">
+								<div class="grid grid-cols-1">
 									@foreach ($dev as $arr)
 										@if (Auth::user()->devisi_id == $arr->id)
 											@foreach ($arr->perlengkapan as $i)
+											<div>
 												<input type="checkbox" name="perlengkapan[]" id="perlengkapan" value="{{ $i->name }}"
 													class="checkbox checkbox-sm m-2">
 												<label for="perlengkapan">{{ $i->name }}</label>
+											</div>
 											@endforeach
 										@else
 										@endif
@@ -79,16 +78,34 @@
 						</div>
 					</div>
 					<input type="text" id="image" name="image" class="image-tag" hidden>
-					<h2 class="hidden">{{ $user->ip }} || {{ $user->city }}</h2>
 				</div>
-				<div class="flex justify-end gap-3 mt-2">
-					<button type="submit"
-						class="p-2 my-2 px-4 text-white bg-blue-400 hover:bg-blue-500 rounded transition-all ease-linear .2s">Absen</button>
+				@forelse ($data as $i)
+				@if (Auth::user()->id == $i->user_id && $i->tanggal_absen == Carbon\Carbon::now()->format('Y-m-d'))
+				<div class="flex justify-center sm:justify-end gap-3 mt-2 mr-2">
+						<button class="p-2 my-2 px-4 text-slate-100 bg-blue-300  rounded transition-all ease-linear .2s disabled cursor-not-allowed" disabled>Sudah Absen</button>
+							<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
+							Back
+							</a>
+							</div>
+				@else
+				<div class="flex justify-center sm:justify-end gap-3 mt-2 mr-2">
+					<button class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
+						<a href="{{ route('dashboard.index') }}"
+							class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
+							Back
+						</a>
+				</div>
+				@endif
+				@empty
+				<div class="flex justify-center sm:justify-end gap-3 mt-2 mr-2">
+					<button type="submit" class="p-2 my-2 px-4 text-white bg-blue-400 hover:bg-blue-500 rounded transition-all ease-linear .2s">Absen</button>
 					<a href="{{ route('dashboard.index') }}"
 						class="p-2 my-2 px-4 text-white bg-red-400 hover:bg-red-500 rounded transition-all ease-linear .2s">
 						Back
-					</a>
+				</a>
 				</div>
+				@endforelse 
+	
 				<input class="hidden" id="thisId" value="{{ Auth::user()->id }}">
 				@php
 					$mytime = Carbon\Carbon::now()->format('H:m:s');
@@ -97,7 +114,6 @@
 				<input class="hidden" id="thisTime" value="{{ $mytime }}">
 				<input class="hidden" id="thisTime2" value="{{ $mytime2 }}">
 				<input class="hidden" id="isi" name="absensi_type_pulang" value="okok">
-			</form>
 			</form>
 		</div>
 	</x-main-div>

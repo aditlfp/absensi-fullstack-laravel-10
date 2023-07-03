@@ -2,9 +2,8 @@
 	<x-main-div>
 		<div class="py-10">
 			<p class="text-center text-2xl uppercase font-bold">History absensi</p>
-			<div class="flex flex-col items-center mx-2 my-2 justify-center ">
-				<div class="overflow-x-scroll md:overflow-hidden w-full">
-					<a href="{{ route('dashboard.index') }}" class="btn btn-error mx-10">Back</a>
+			<div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
+				<div class="overflow-x-auto w-full md:overflow-hidden sm:w-full">
 					<table class="table w-full text-sm sm:text-md scale-100 md:scale-90">
 						<thead>
 							<tr>
@@ -101,9 +100,12 @@
 					</tbody>
 				</table>
 			</div>
-			<div id="pag-1" class="hidden mb-5 mx-5">
+			<div id="pag-1" class=" mb-5 mx-5">
 				{{ $absen->links() }}
 			</div>
 		</div>
+		<div class="flex justify-end">
+		<a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>
+	</div>
 </x-main-div>
 </x-app-layout>

@@ -10,6 +10,7 @@ use App\Http\Controllers\LemburController;
 use App\Http\Controllers\PerlengkapanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RatingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,8 @@ Route::middleware('auth', 'apdt')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/lembur', LemburController::class)->only('index', 'store', 'update');
+    Route::get('/lembur-history', [LemburController::class, 'lemburIndexUser'])->name('lemburIndexUser');
+    Route::get('/rate/{id}', [RatingController::class, 'myRate']);
 });
 
 Route::middleware('auth', 'admin', 'apdt')->group(function () {
@@ -56,6 +59,7 @@ Route::middleware('auth', 'admin', 'apdt')->group(function () {
     Route::post('/divisi/{divisiId}/add-equipment', [DivisiController::class,'addEquipment'])->name('addEquipment');
     Route::resource('/data-lembur', LemburController::class);
     Route::get('/data-lembur-saat-ini', [LemburController::class, 'lemburIndexAdmin'])->name('lemburList');
+    Route::resource('/rating', RatingController::class);
 });
 
 

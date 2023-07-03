@@ -71,11 +71,12 @@
 				</div>
 				{{-- button --}}
 				<div class="flex justify-end my-10 gap-2">
-					<button type="submit" class="btn btn-primary">+
-						Client</button>
-					<a href="{{ route('admin.index') }}" class="btn btn-error">
+					
+					<a href="{{ route('data-client.index') }}" class="btn btn-error">
 						Back
 					</a>
+					<button type="submit" class="btn btn-primary">+
+						Client</button>
 				</div>
 			</form>
 		</div>

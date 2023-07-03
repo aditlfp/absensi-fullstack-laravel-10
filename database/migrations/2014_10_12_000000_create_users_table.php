@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(Kerjasama::class);
             $table->foreignIdFor(Divisi::class, 'devisi_id');
             $table->string('name');
+            $table->string('nama_lengkap');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
