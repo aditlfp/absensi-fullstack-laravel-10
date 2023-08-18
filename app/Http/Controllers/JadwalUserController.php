@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\JadwalUserRequest;
 use App\Models\JadwalUser;
+use App\Models\Shift;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalUserController extends Controller
 {
@@ -16,7 +19,13 @@ class JadwalUserController extends Controller
 
     public function create()
     {
-
+        if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA") {
+            $user = User::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
+        } else {
+            $user = User::all();
+        }
+        $shift = Shift::all();
+        return view('admin.jadwalUser.create', compact('user', 'shift'));
     }
 
     public function store(JadwalUserRequest $request)

@@ -358,6 +358,19 @@
     			menu10.toggle();
 			});
 		});
+		$(document).ready(function(){
+			$("#myModalBtn").click(function(){
+				$('#myModal').removeClass('hidden fixed');
+				$('#myModal').addClass('absolute inset-0');
+
+			});
+			
+			$("#close").click(function(){
+				$('#myModal').removeClass('absolute inset-0');
+				$('#myModal').addClass('hidden fixed');
+
+			});
+		});
 	</script>
 </body>
 
