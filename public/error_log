@@ -1,0 +1,13 @@
+[05-Jul-2023 07:38:04 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[05-Jul-2023 07:38:04 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[05-Jul-2023 07:38:05 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[05-Jul-2023 07:38:05 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[05-Jul-2023 07:38:06 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[05-Jul-2023 07:38:06 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[05-Jul-2023 07:38:07 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[05-Jul-2023 07:38:07 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[05-Jul-2023 07:38:08 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[05-Jul-2023 07:38:08 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[05-Jul-2023 07:38:09 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo for www.absensi.sac-po.com failed: Name or service not known in Unknown on line 0
+[10-Jul-2023 12:43:04 Asia/Jakarta] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in /home/sacpocom/absensi-sac.sac-po.com/storage/framework/views/bb4cbe287016cfffa4713478f41440cb.php on line 110
+[10-Jul-2023 12:43:06 Asia/Jakarta] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in /home/sacpocom/absensi-sac.sac-po.com/storage/framework/views/bb4cbe287016cfffa4713478f41440cb.php on line 110
