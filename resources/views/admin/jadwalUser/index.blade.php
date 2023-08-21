@@ -1,21 +1,21 @@
 <x-app-layout>
     <x-main-div>
-        <div class="py-10 px-5">
+        <div class="py-10">
             <p class="text-center text-2xl font-bold  uppercase">Index Jadwal User</p>
             <x-search/>
             <div class="flex justify-between gap-2 mx-16 py-3">
 				<a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
 				<a href="{{ route('leader-jadwal.create') }}" class="btn btn-primary">+ Jadwal</a>
 			</div>
-            <div class="flex justify-center overflow-x-auto mx-10 pb-10">
-                <table class="table table-fixed w-full shadow-md" id="searchTable">
+            <div class="flex justify-center overflow-x-auto mx-5 pb-10">
+                <table class="table table-auto w-full shadow-md " id="searchTable">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Nama Lengkap</th>
-                            <th>Tanggal</th>
-                            <th>Shift</th>
-                            <th>Area</th>
+                            <th >#</th>
+                            <th >Nama Lengkap</th>
+                            <th >Tanggal</th>
+                            <th >Shift</th>
+                            <th >Area</th>
                         </tr>
                     </thead>
                     <tbody>
