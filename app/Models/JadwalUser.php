@@ -13,7 +13,8 @@ class JadwalUser extends Model
         'user_id',
         'shift_id',
         'tanggal',
-        'area'
+        'area',
+        'status'
     ];
 
     public function User() {

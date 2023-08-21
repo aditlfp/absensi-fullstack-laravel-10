@@ -2,20 +2,18 @@
     <x-main-div>
         <div class="py-10">
             <p class="text-center text-2xl font-bold  uppercase">Index Jadwal User</p>
-            <x-search/>
-            <div class="flex justify-between gap-2 mx-16 py-3">
-				<a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
-				<a href="{{ route('leader-jadwal.create') }}" class="btn btn-primary">+ Jadwal</a>
-			</div>
-            <div class="flex justify-center overflow-x-auto mx-5 pb-10">
-                <table class="table table-auto w-full shadow-md " id="searchTable">
+            <div class="flex justify-end h-[35%] ml-10">
+                <x-search/>
+            </div>
+            <div class="flex justify-center overflow-x-auto mx-2 pb-10 text-xs">
+                <table class="table table-auto shadow-md scale-[65%] text-xs" id="searchTable">
                     <thead>
-                        <tr>
-                            <th >#</th>
-                            <th >Nama Lengkap</th>
-                            <th >Tanggal</th>
-                            <th >Shift</th>
-                            <th >Area</th>
+                        <tr class="flex">
+                            <th class="text-xs">#</th>
+                            <th class="text-xs">Nama Lengkap</th>
+                            <th class="text-xs">Tanggal</th>
+                            <th class="text-xs">Shift</th>
+                            <th class="text-xs">Area</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +41,10 @@
             <div class="mt-5 mx-10">
                 {{ $jadwalUser->links() }}
             </div>
+            <div class="flex justify-between gap-2 mx-16 py-3">
+				<a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
+				<a href="{{ route('leader-jadwal.create') }}" class="btn btn-primary">+ Jadwal</a>
+			</div>
         </div>
     </x-main-div>
 </x-app-layout>

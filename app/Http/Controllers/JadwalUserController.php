@@ -7,10 +7,18 @@ use App\Models\JadwalUser;
 use App\Models\Shift;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class JadwalUserController extends Controller
 {
+
+    public function __construct(Request $request)
+    {
+        $this->str = $request->input('str1');
+        $this->ended = $request->input('end1');
+    }
+
     public function index()
     {
         $jadwalUser = JadwalUser::paginate(50);
@@ -28,6 +36,22 @@ class JadwalUserController extends Controller
         return view('admin.jadwalUser.create', compact('user', 'shift'));
     }
 
+    public function processDate()
+    {
+        $str1 = $this->str;
+        $end1 = $this->ended;
+        $totalHari =  Carbon::parse($this->ended)->diffInDays(Carbon::parse($this->str));
+        if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA") {
+            $user = User::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
+        } else {
+            $user = User::all();
+        }
+        $shift = Shift::all();
+        return view('admin.jadwalUser.create', compact('user', 'shift', 'totalHari'));
+
+        // return redirect()->to(route('leader-jadwal.create')->with('totalHari', $totalHari));
+    }
+
     public function store(JadwalUserRequest $request)
     {
         $jadwal = new JadwalUser();
@@ -36,7 +60,8 @@ class JadwalUserController extends Controller
             'user_id' => $request->user_id,
             'shift_id' => $request->shift_id,
             'tanggal' => $request->tanggal,
-            'area' => $request->area
+            'area' => $request->area,
+            'status' => $request->status
         ];
 
         JadwalUser::create($jadwal);

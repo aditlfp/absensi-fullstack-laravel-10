@@ -3,8 +3,8 @@
         <div class="bg-slate-500 p-4  shadow-md rounded-md">
             <p class="text-center text-2xl uppercase font-bold">Tambah Jadwal</p>
            
-                <div class="flex justify-center overflow-x-auto mx-10 pb-10">
-                    <table class="w-full shadow-md table-auto border-collapse rounded-lg overflow-hidden" id="searchTable">
+                <div class="overflow-x-scroll pb-10 text-xs">
+                        <table class="text-xs shadow-md table-auto border-collapse rounded-lg overflow-hidden" id="searchTable">
                         <thead>
                             <tr>
                                 <th rowspan="2" class="p-2 bg-gray-200">#</th>
@@ -13,17 +13,23 @@
                             </tr>
                             <tr>
                                 @for ($i = 1; $i < 32; $i++)
-                                    <th class="p-2 bg-stone-300">{{ $i }}</th>
+                                    <th class="p-2 bg-stone-300 border-r-slate-400 border-r-[1.1px]">{{ $i }}</th>
                                 @endfor
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="even:bg-slate-300 odd:bg-slate-200 border-t border-slate-300/70">
-                                <td>1</td>
-                                <td>Budi</td>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @forelse ($user as $i)
+                            @if ($i->nama_lengkap != 'admin' && $i->nama_lengkap != 'user')
+                            <tr class="even:bg-slate-300 odd:bg-slate-200 border-t border-slate-300/70 text-xs">
+                                <td class="text-center">{{ $no++ }}</td>
+                                    <td class="text-center">{{ $i->nama_lengkap}}</td>
+                                @for ($i = 1; $i < 32; $i++)
                                 <td>
-                                    <button id="myModalBtn">M</button>
-                                    <div id="myModal" class="hidden fixed">
+                                    <button id="myModalBtn{{ $i}}" class="btn">M</button>
+                                    <div id="myModal{{ $i}}" class="hidden fixed">
                                         <div class=" flex justify-center bg-slate-500/10 backdrop-blur-sm items-center h-screen rounded-md">
                                             <div class="bg-slate-200 w-2/3 rounded-md shadow">
                                                 <div class="flex justify-end ml-[20rem] m-5">
@@ -42,10 +48,34 @@
                                         </div>
                                     </div>
                                 </td>
-                            </tr>
+                                @endfor
+
+                            </tr> 
+                            @else
+                                    
+                            @endif                          
+                            @empty
+                                
+                            @endforelse
                         </tbody>
-                    </table>
+                        </table>
                 </div>
         </div>
     </x-main-div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".myModalBtn").click(function () {
+                var buttonId = $(this).attr("id");
+                var modalId = buttonId.replace("myModalBtn", "myModal");
+                $("#" + modalId).removeClass("hidden fixed");
+                $("#" + modalId).addClass('absolute inset-0');
+            });
+    
+            $(".myModal").find("#close").click(function () {
+                $(this).closest(".myModal").addClass("hidden");
+            });
+        });
+    </script>
+    
 </x-app-layout>

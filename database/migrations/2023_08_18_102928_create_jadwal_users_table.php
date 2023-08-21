@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Shift::class);
             $table->string('tanggal');
             $table->string('area');
+            $table->string('status')->default('OFF'); // OFF & M
             $table->timestamps();
         });
     }

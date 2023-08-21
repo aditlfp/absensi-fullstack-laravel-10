@@ -25,7 +25,8 @@ class JadwalUserRequest extends FormRequest
             'user_id' => 'required',
             'shift_id' => 'required',
             'tanggal' => 'required',
-            'area' => 'required'
+            'area' => 'required',
+            'status' => 'required'
         ];
     }
 }
