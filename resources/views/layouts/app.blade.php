@@ -359,16 +359,38 @@
 			});
 		});
 		$(document).ready(function(){
-			$("#myModalBtn").click(function(){
-				$('#myModal').removeClass('hidden fixed');
-				$('#myModal').addClass('absolute inset-0');
+			$(document).on("click", ".myModalBtn", function(){
+				console.log("Modal button clicked");
+				var modalId = $(this).attr('id').replace('myModalBtn', '');
+				var modal = $('#myModal' + modalId);
+				console.log("Modal ID: ", modalId);
+				// Check if modal has the 'hidden' class
+				console.log("Is modal hidden?", modal.hasClass('hidden'));
 
+				// Check if modal has the 'fixed' class
+				console.log("Is modal fixed?", modal.hasClass('fixed'));
+
+				// Check if modal has the 'absolute' class
+				console.log("Is modal absolute?", modal.hasClass('absolute'));
+				modal.removeClass('hidden fixed');
+				modal.addClass('absolute inset-0 z-[99]');
 			});
-			
-			$("#close").click(function(){
-				$('#myModal').removeClass('absolute inset-0');
-				$('#myModal').addClass('hidden fixed');
 
+			$(document).on("click", ".close", function(){
+				console.log("Close button clicked");
+				var modalId = $(this).closest('.modalz').attr('id').replace('myModal', '');
+				var modal = $('#myModal' + modalId);
+				console.log("Modal ID: ", modalId);
+				// Check if modal has the 'hidden' class
+				console.log("Is modal hidden?", modal.hasClass('hidden'));
+
+				// Check if modal has the 'fixed' class
+				console.log("Is modal fixed?", modal.hasClass('fixed'));
+
+				// Check if modal has the 'absolute' class
+				console.log("Is modal absolute?", modal.hasClass('absolute'));
+				modal.removeClass('absolute inset-0 z-[99]');
+				modal.addClass('hidden fixed');
 			});
 		});
 	</script>
