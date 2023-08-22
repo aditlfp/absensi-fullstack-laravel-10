@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DivisiController;
@@ -96,6 +97,7 @@ Route::middleware('auth', 'admin', 'apdt')->group(function () {
     Route::patch('/claim-point/{id}', [AbsensiController::class, 'claimPoint'])->name('claim.point');
     Route::resource('holiday', HolidayController::class);
     Route::resource('/lokasi', LokasiController::class);
+    Route::resource('/area', AreaController::class);
 });
 
 
