@@ -39,8 +39,9 @@ class AreaController extends Controller
 
     public function edit($id)
     {
+        $kerjasama = Kerjasama::all();
         $area = Area::findOrFail($id);
-        return view('admin.area.edit', compact('area'));
+        return view('admin.area.edit', compact('area', 'kerjasama'));
     }
 
     public function update(Request $request, $id)

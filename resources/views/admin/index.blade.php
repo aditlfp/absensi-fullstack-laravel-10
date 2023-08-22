@@ -78,7 +78,7 @@
 					{{-- Menu Ruangan --}}
 					<div>
 						<div class="flex justify-center px-2 menu12">
-							<a href="{{ route('ruangan.index')}}" class="btn btn-warning w-full mt-5">Ruangan</a>
+							<a href="{{ route('ruangan.index')}}" class="btn btn-warning w-full mt-5"> Index Ruangan</a>
 						</div>
 					</div>
 					{{-- End Menu Ruangan --}}
@@ -90,6 +90,13 @@
 						</div>
 					</div>
 					{{-- End Menu Ruangan --}}
+					{{-- Menu area --}}
+					<div>
+						<div class="flex justify-center px-2 menu14">
+							<a href="{{ route('area.index')}}" class="btn btn-warning w-full mt-5">Index Area</a>
+						</div>
+					</div>
+					{{-- End Menu area --}}
 	
 				</div>
 			</div>

@@ -1,10 +1,19 @@
 <x-app-layout>
     <x-main-div>
         <div class="py-10">
-            <p class="text-center text-2xl font-bold  uppercase">Index Jadwal User</p>
+            <p class="text-center text-2xl font-bold mb-10 uppercase">Index Jadwal User</p>
             <div class="flex justify-end h-[35%] ml-10">
                 <x-search/>
             </div>
+            <div class="flex justify-end gap-2 mx-16 py-3">
+                <form action="{{ route('area.create') }}" method="GET">
+                    <div>
+                        <input class="input input-bordered" type="date" name="start_date" id="start_date">
+                        <input class="input input-bordered" type="date" name="end_date" id="end_date">
+                    </div>
+                    <button><a class="btn btn-primary">+ Jadwal</a></button>
+                </form>
+			</div>
             <div class="flex justify-center overflow-x-auto mx-2 pb-10 text-xs">
                 <table class="table table-auto shadow-md scale-[65%] text-xs" id="searchTable">
                     <thead>
@@ -41,10 +50,9 @@
             <div class="mt-5 mx-10">
                 {{ $jadwalUser->links() }}
             </div>
-            <div class="flex justify-between gap-2 mx-16 py-3">
+            <div class="flex justify-center my-5">
 				<a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
-				<a href="{{ route('leader-jadwal.create') }}" class="btn btn-primary">+ Jadwal</a>
-			</div>
+            </div>
         </div>
     </x-main-div>
 </x-app-layout>

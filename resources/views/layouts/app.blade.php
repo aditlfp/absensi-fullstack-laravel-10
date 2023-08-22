@@ -202,6 +202,7 @@
 			var menu11 = $('.menu11');
 			var menu12 = $('.menu12');
 			var menu13 = $('.menu13');
+			var menu14 = $('.menu14');
 			var absen = $('#absen');
 			var iPulang = $('.iPulang');
 			var iAbsensi = $('.iAbsensi');
@@ -248,6 +249,7 @@
 				menu8.toggle();
 				menu11.toggle();
                 menu12.toggle();
+                menu14.toggle();
 			});
 
 			$('#menuClient').click(function() {
@@ -259,6 +261,7 @@
 				menu8.toggle();
                 menu11.toggle();
                 menu12.toggle();
+                menu14.toggle();
 			});
 
 			$('#menuKerjasama').click(function() {
@@ -297,6 +300,7 @@
 				menu8.toggle();
 				menu11.toggle();
 				menu12.toggle();
+				menu14.toggle();
 			});
 			$('#menuPerlengkapan').click(function() {
 				$('#perlengkapan').toggle();
@@ -337,6 +341,7 @@
 				menu5.toggle();
 				menu11.toggle();
 				menu12.toggle();
+				menu14.toggle();
 			});
 			$('#menuHoliday').click(function() {
 				$('#holiday').toggle();
@@ -363,34 +368,16 @@
 				console.log("Modal button clicked");
 				var modalId = $(this).attr('id').replace('myModalBtn', '');
 				var modal = $('#myModal' + modalId);
-				console.log("Modal ID: ", modalId);
-				// Check if modal has the 'hidden' class
-				console.log("Is modal hidden?", modal.hasClass('hidden'));
-
-				// Check if modal has the 'fixed' class
-				console.log("Is modal fixed?", modal.hasClass('fixed'));
-
-				// Check if modal has the 'absolute' class
-				console.log("Is modal absolute?", modal.hasClass('absolute'));
-				modal.removeClass('hidden fixed');
-				modal.addClass('absolute inset-0 z-[99]');
+				modal.removeClass('hidden ');
+				modal.addClass(' inset-0 z-[99]');
 			});
 
 			$(document).on("click", ".close", function(){
 				console.log("Close button clicked");
 				var modalId = $(this).closest('.modalz').attr('id').replace('myModal', '');
 				var modal = $('#myModal' + modalId);
-				console.log("Modal ID: ", modalId);
-				// Check if modal has the 'hidden' class
-				console.log("Is modal hidden?", modal.hasClass('hidden'));
-
-				// Check if modal has the 'fixed' class
-				console.log("Is modal fixed?", modal.hasClass('fixed'));
-
-				// Check if modal has the 'absolute' class
-				console.log("Is modal absolute?", modal.hasClass('absolute'));
-				modal.removeClass('absolute inset-0 z-[99]');
-				modal.addClass('hidden fixed');
+				modal.removeClass(' inset-0 z-[99]');
+				modal.addClass('hidden ');
 			});
 		});
 	</script>

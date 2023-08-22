@@ -18,7 +18,7 @@
 						<th>#</th>
 						<th>Client</th>
 						<th>Nama Ruangan</th>
-						<th>Aksi</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>

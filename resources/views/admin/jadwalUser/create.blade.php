@@ -1,8 +1,12 @@
 <x-app-layout>
-    <x-main-div>
+    <x-main-div class="ydis">
         <div class="bg-slate-500 p-4  shadow-md rounded-md">
             <p class="text-center text-2xl uppercase font-bold">Tambah Jadwal</p>
-           
+           {{-- @php
+               $now = Carbon\Carbon::now();
+               $nextMonth = $now->addMonth();
+               $dNext = $nextMonth->daysInMonth;
+           @endphp --}}
                 <div class="overflow-x-scroll pb-10 text-xs">
                         <table class="text-xs shadow-md table-auto border-collapse rounded-lg overflow-hidden" id="searchTable">
                         <thead>
@@ -28,10 +32,10 @@
                                         <td class="text-center">{{ $i->nama_lengkap }}</td>
                                         @for ($j = 1; $j < 32; $j++)
                                             <td>
-                                                <button id="myModalBtn{{ $no }}_{{ $j }}" class="btn myModalBtn">M</button>
+                                                <button id="myModalBtn{{ $no }}_{{ $j }}" class="btn bg-slate-300/70 text-slate-800 border-slate-200 hover:border-slate-400/70 hover:bg-slate-400/70 myModalBtn">M</button>
                                                 <div id="myModal{{ $no }}_{{ $j }}" class="hidden fixed modalz">
                                                     <!-- Your modal content here -->
-                                                    <div class="flex justify-center bg-slate-500/10 backdrop-blur-sm items-center h-screen rounded-md">
+                                                    <div class="flex justify-center bg-slate-500/10 backdrop-blur-sm items-center min-h-screen rounded-md">
                                                         <div class="bg-slate-200 w-2/3 rounded-md shadow">
                                                             <div class="flex justify-end m-5">
                                                                 <button class="btn btn-error close">&times;</button>
@@ -39,7 +43,7 @@
                                                             <form action="{{ route('leader-jadwal.store') }}" method="POST" class="p-5 w-full" id="form">
                                                                 @csrf
                                                                 <div class="w-full ">
-                                                                    <p>Form Jadwal</p>
+                                                                    <p class="text-center text-xl font-semibold mb-3">Form Jadwal</p>
                                                                     <div>
                                                                         <div class="mt-4">
                                                                             <x-input-label for="name" :value="__('Nama Lengkap')" />
@@ -65,7 +69,7 @@
                                                                             <x-input-error :messages="$errors->get('shift_id')" class="mt-2" />
                                                                         </div>
                                                                         <div class="mt-4">
-                                                                            <x-input-label for="tanggal" :value="__('Nama Lengkap')" />
+                                                                            <x-input-label for="tanggal" :value="__('Tanggal')" />
                                                                             <input type="date" name="tanggal" class="input input-bordered">
                                                                             <x-input-error :messages="$errors->get('tanggal')" class="mt-2" />
                                                                         </div>
