@@ -21,6 +21,7 @@ use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\SVP_Controller\MainController;
 use App\Http\Controllers\UserController;
+use \App\Http\Controllers\AreaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,6 +69,7 @@ Route::middleware('auth', 'leader', 'apdt')->group(function () {
     Route::get('/LEADER/leader-lembur', [LeaderController::class, 'indexLembur'])->name('lead_lembur');
     Route::get('/LEADER/leader-user', [LeaderController::class, 'indexUser'])->name('lead_user');
     Route::resource('/LEADER/leader-jadwal', JadwalUserController::class);
+    Route::get('/LEADER/leader-jadwal-new', [JadwalUserController::class, 'processDate'])->name('store.processDare');
 });
 
 Route::middleware('auth', 'admin', 'apdt')->group(function () {
@@ -96,6 +98,7 @@ Route::middleware('auth', 'admin', 'apdt')->group(function () {
     Route::patch('/claim-point/{id}', [AbsensiController::class, 'claimPoint'])->name('claim.point');
     Route::resource('holiday', HolidayController::class);
     Route::resource('/lokasi', LokasiController::class);
+    Route::resource('/area', AreaController::class);
 });
 
 

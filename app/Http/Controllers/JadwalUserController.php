@@ -36,18 +36,24 @@ class JadwalUserController extends Controller
         return view('admin.jadwalUser.create', compact('user', 'shift'));
     }
 
-    public function processDate()
+    public function processDate(Request $request)
     {
         $str1 = $this->str;
         $end1 = $this->ended;
         $totalHari =  Carbon::parse($this->ended)->diffInDays(Carbon::parse($this->str));
-        if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA") {
-            $user = User::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
-        } else {
-            $user = User::all();
+        if($request->has(['str1', 'end1'])){
+            if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA") {
+                $user = User::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
+            } else {
+                $user = User::all();
+            }
+            $shift = Shift::all();
+            return view('admin.jadwalUser.create', compact('user', 'shift', 'totalHari'));
+        }else{
+            toastr()->error('Mohon Masukkan Taggal', 'Error');
+            return redirect()->back();
         }
-        $shift = Shift::all();
-        return view('admin.jadwalUser.create', compact('user', 'shift', 'totalHari'));
+
 
         // return redirect()->to(route('leader-jadwal.create')->with('totalHari', $totalHari));
     }
