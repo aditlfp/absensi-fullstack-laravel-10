@@ -51,7 +51,7 @@ class RuanganController extends Controller
 
         $ruanganId = Ruangan::findOrFail($id);
         $ruanganId->update($ruangan);
-        toastr()->success('Data Ruangan TerUpdate', 'success');
+        toastr()->success('Data Ruangan Ter Update', 'success');
         return to_route('ruangan.index');
     }
 
