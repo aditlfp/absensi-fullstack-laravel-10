@@ -22,7 +22,6 @@ use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\SVP_Controller\MainController;
 use App\Http\Controllers\UserController;
-use \App\Http\Controllers\AreaController;
 use Illuminate\Support\Facades\Route;
 
 /*

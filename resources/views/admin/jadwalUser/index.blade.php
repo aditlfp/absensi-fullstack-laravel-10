@@ -6,10 +6,10 @@
                 <x-search/>
             </div>
             <div class="flex justify-end gap-2 mx-16 py-3">
-                <form action="{{ route('area.create') }}" method="GET">
+                <form action="{{ route('leader-jadwal.create') }}" method="GET">
                     <div>
-                        <input class="input input-bordered" type="date" name="start_date" id="start_date">
-                        <input class="input input-bordered" type="date" name="end_date" id="end_date">
+                        <input class="input input-bordered" type="date" name="str1" id="str1">
+                        <input class="input input-bordered" type="date" name="end1" id="end1">
                     </div>
                     <button><a class="btn btn-primary">+ Jadwal</a></button>
                 </form>

@@ -6,8 +6,8 @@ use App\Http\Requests\JadwalUserRequest;
 use App\Models\JadwalUser;
 use App\Models\Shift;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class JadwalUserController extends Controller
