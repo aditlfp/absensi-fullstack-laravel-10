@@ -51,7 +51,7 @@ class JadwalUserController extends Controller
             }
             $jadwal = JadwalUser::where('status', 'M')->get();
             $shift = Shift::all();
-            return view('admin.jadwalUser.create', compact('user', 'shift', 'totalHari', 'area', 'jadwal'));
+            return view('admin.jadwalUser.create', compact('user', 'shift', 'totalHari', 'area', 'jadwal', 'str1', 'end1'));
         }else{
             toastr()->error('Mohon Masukkan Taggal', 'Error');
             return redirect()->back();

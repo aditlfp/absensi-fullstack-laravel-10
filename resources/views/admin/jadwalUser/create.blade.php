@@ -2,11 +2,6 @@
     <x-main-div class="ydis">
         <div class="bg-slate-500 p-4  shadow-md rounded-md">
             <p class="text-center text-2xl uppercase font-bold">Tambah Jadwal</p>
-           {{-- @php
-               $now = Carbon\Carbon::now();
-               $nextMonth = $now->addMonth();
-               $dNext = $nextMonth->daysInMonth;
-           @endphp --}}
                 <div class="overflow-x-scroll pb-10 text-xs">
                         <table class="text-xs shadow-md table-auto border-collapse rounded-lg overflow-hidden" id="searchTable">
                         <thead>
@@ -15,9 +10,13 @@
                                 <th rowspan="2" class="p-2 bg-gray-200">Nama Lengkap</th>
                                 <th colspan="31" class="p-2 bg-gray-200">Tanggal</th>
                             </tr>
+                            @php
+                                $starte = \Carbon\Carbon::createFromFormat('Y-m-d', $str1);
+                                $ende = \Carbon\Carbon::createFromFormat('Y-m-d', $end1);
+                            @endphp
                             <tr>
-                                @for ($i = 1; $i <= $totalHari; $i++)
-                                    <th class="p-2 bg-stone-300 border-r-slate-400 border-r-[1.1px]">{{ $i }}</th>
+                                @for ($date = $starte->copy(); $date->lte($ende); $date->addDay())
+                                    <th class="p-2 bg-stone-300 border-r-slate-400 border-r-[1.1px]">{{ $date->format('d') }}</th>
                                 @endfor
                             </tr>
                         </thead>
@@ -31,20 +30,20 @@
                                     <tr class="even:bg-slate-300 odd:bg-slate-200 border-t border-slate-300/70 text-xs">
                                         <td class="text-center">{{ $no++ }}</td>
                                         <td class="text-center">{{ $i->nama_lengkap }}</td>
-                                        @for ($j = 1; $j <= $totalHari; $j++)
+                                        @for ($date = $starte->copy(); $date->lte($ende); $date->addDay())
                                         @foreach ($jadwal as $item)
                                             @php
                                                 $dateT = strtotime($item->tanggal);
                                                 $data = date('d', $dateT);
                                             @endphp
-                                                @if ($item->user_id == $i->id && $j == ltrim($data, '0'))
+                                                @if ($item->user_id == $i->id && $date == ltrim($data, '0'))
                                                 <td>
                                                     <span class="btn btn-info">{{ $item->status }}</span>
                                                 </td>
                                                 @else
                                                 <td>
-                                                    <button id="myModalBtn{{ $no }}_{{ $j }}" class="btn bg-slate-300/70 text-slate-800 border-slate-200 hover:border-slate-400/70 hover:bg-slate-400/70 myModalBtn">M</button>
-                                                    <div id="myModal{{ $no }}_{{ $j }}" class="hidden fixed modalz">
+                                                    <button id="myModalBtn{{ $no }}_{{ $date }}" class="btn bg-slate-300/70 text-slate-800 border-slate-200 hover:border-slate-400/70 hover:bg-slate-400/70 myModalBtn">M</button>
+                                                    <div id="myModal{{ $no }}_{{ $date }}" class="hidden fixed modalz">
                                                         <!-- Your modal content here -->
                                                         <div class="flex justify-center bg-slate-500/10 backdrop-blur-sm items-center min-h-screen rounded-md">
                                                             <div class="bg-slate-200 w-2/3 mb-20 mt-10 rounded-md shadow">
