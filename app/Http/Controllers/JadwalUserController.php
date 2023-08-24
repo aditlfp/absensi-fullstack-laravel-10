@@ -49,7 +49,7 @@ class JadwalUserController extends Controller
             } else {
                 $user = User::all();
             }
-            $jadwal = JadwalUser::where('status', 'M')->get();
+            $jadwal = JadwalUser::all();
             $shift = Shift::all();
             return view('admin.jadwalUser.create', compact('user', 'shift', 'totalHari', 'area', 'jadwal', 'str1', 'end1'));
         }else{

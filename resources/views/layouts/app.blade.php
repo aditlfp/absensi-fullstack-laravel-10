@@ -365,7 +365,6 @@
 		});
 		$(document).ready(function(){
 			$(document).on("click", ".myModalBtn", function(){
-				console.log("Modal button clicked");
 				var modalId = $(this).attr('id').replace('myModalBtn', '');
 				var modal = $('#myModal' + modalId);
 				modal.removeClass('hidden ');
@@ -373,7 +372,6 @@
 			});
 
 			$(document).on("click", ".close", function(){
-				console.log("Close button clicked");
 				var modalId = $(this).closest('.modalz').attr('id').replace('myModal', '');
 				var modal = $('#myModal' + modalId);
 				modal.removeClass(' inset-0 z-[99]');

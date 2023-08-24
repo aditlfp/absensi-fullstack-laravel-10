@@ -5,13 +5,19 @@
             <div class="flex justify-end h-[35%] ml-10">
                 <x-search/>
             </div>
-            <div class="flex justify-end gap-2 mx-16 py-3">
-                <form action="{{ route('store.processDate') }}" method="GET">
-                    <div>
-                        <input class="input input-bordered" type="date" name="str1" id="str1">
-                        <input class="input input-bordered" type="date" name="end1" id="end1">
+            <div class="flex sm:justify-end justify-center gap-2 mx-5 py-3 ">
+                <form action="{{ route('store.processDate') }}" method="GET" class="flex flex-col justify-center gap-2 bg-slate-100 rounded px-5 py-3">
+                    <div class="flex justify-between flex-col gap-2 ">
+                        <div>
+                            <label class="label text-xs sm:text-base">Mulai</label>
+                            <input class="input input-bordered input-xs" type="date" name="str1" id="str1">
+                        </div>
+                        <div>
+                            <label class="label text-xs sm:text-base">Selesai</label>
+                            <input class="input input-bordered input-xs" type="date" name="end1" id="end1">
+                        </div>
                     </div>
-                    <button><a class="btn btn-primary">+ Jadwal</a></button>
+                    <button><a class="btn btn-primary btn-xs sm:btn-md">+ Jadwal</a></button>
                 </form>
 			</div>
             <div class="flex justify-center overflow-x-auto mx-2 pb-10 text-xs">
