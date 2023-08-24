@@ -6,7 +6,7 @@
                 <x-search/>
             </div>
             <div class="flex justify-end gap-2 mx-16 py-3">
-                <form action="{{ route('leader-jadwal.create') }}" method="GET">
+                <form action="{{ route('store.processDate') }}" method="GET">
                     <div>
                         <input class="input input-bordered" type="date" name="str1" id="str1">
                         <input class="input input-bordered" type="date" name="end1" id="end1">
@@ -17,8 +17,8 @@
             <div class="flex justify-center overflow-x-auto mx-2 pb-10 text-xs">
                 <table class="table table-auto shadow-md scale-[65%] text-xs" id="searchTable">
                     <thead>
-                        <tr class="flex">
-                            <th class="text-xs">#</th>
+                        <tr>
+                            <th class="text-xs flex">#</th>
                             <th class="text-xs">Nama Lengkap</th>
                             <th class="text-xs">Tanggal</th>
                             <th class="text-xs">Shift</th>
@@ -27,7 +27,7 @@
                     </thead>
                     <tbody>
                         @forelse ($jadwalUser as $item)
-                           @if ($item->kerjasama_id == Auth::user()->kerjasama_id)
+                           @if ($item->user->kerjasama_id == Auth::user()->kerjasama_id)
                            @php
                                $no = 1;
                            @endphp

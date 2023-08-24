@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\JadwalUserRequest;
+use App\Models\Area;
 use App\Models\JadwalUser;
 use App\Models\Shift;
 use App\Models\User;
@@ -38,6 +39,7 @@ class JadwalUserController extends Controller
 
     public function processDate(Request $request)
     {
+        $area = Area::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
         $str1 = $this->str;
         $end1 = $this->ended;
         $totalHari =  Carbon::parse($this->ended)->diffInDays(Carbon::parse($this->str));
@@ -47,8 +49,9 @@ class JadwalUserController extends Controller
             } else {
                 $user = User::all();
             }
+            $jadwal = JadwalUser::where('status', 'M')->get();
             $shift = Shift::all();
-            return view('admin.jadwalUser.create', compact('user', 'shift', 'totalHari'));
+            return view('admin.jadwalUser.create', compact('user', 'shift', 'totalHari', 'area', 'jadwal'));
         }else{
             toastr()->error('Mohon Masukkan Taggal', 'Error');
             return redirect()->back();
@@ -69,10 +72,9 @@ class JadwalUserController extends Controller
             'area' => $request->area,
             'status' => $request->status
         ];
-
         JadwalUser::create($jadwal);
         toastr()->success('Jadwal Berhasil Ditambahkan', 'success');
-        return to_route('jadwal.index');
+        return to_route('leader-jadwal.index');
     }
 
     public function edit($id)

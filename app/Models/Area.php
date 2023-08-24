@@ -16,6 +16,6 @@ class Area extends Model
 
     public function Kerjasama()
     {
-        return $this->belongsTo(Kejasama::class);
+        return $this->belongsTo(Kerjasama::class);
     }
 }

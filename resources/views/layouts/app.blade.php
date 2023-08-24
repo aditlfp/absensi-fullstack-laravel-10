@@ -369,7 +369,7 @@
 				var modalId = $(this).attr('id').replace('myModalBtn', '');
 				var modal = $('#myModal' + modalId);
 				modal.removeClass('hidden ');
-				modal.addClass(' inset-0 z-[99]');
+				modal.addClass(' inset-0 z-[999]');
 			});
 
 			$(document).on("click", ".close", function(){

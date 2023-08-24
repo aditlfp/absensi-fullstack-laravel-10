@@ -69,7 +69,7 @@ Route::middleware('auth', 'leader', 'apdt')->group(function () {
     Route::get('/LEADER/leader-lembur', [LeaderController::class, 'indexLembur'])->name('lead_lembur');
     Route::get('/LEADER/leader-user', [LeaderController::class, 'indexUser'])->name('lead_user');
     Route::resource('/LEADER/leader-jadwal', JadwalUserController::class);
-    Route::get('/LEADER/leader-jadwal-new', [JadwalUserController::class, 'processDate'])->name('store.processDare');
+    Route::get('/LEADER/leader-jadwal-new', [JadwalUserController::class, 'processDate'])->name('store.processDate');
 });
 
 Route::middleware('auth', 'admin', 'apdt')->group(function () {

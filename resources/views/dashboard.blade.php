@@ -161,18 +161,43 @@
 									@endphp
 
 									@if ($timeDifference >= 0 && $timeDifference <= 60)
-										<form action="{{ route('data.update', $arr->id) }}" method="POST" class="tooltip">
-											@csrf
-											@method('PUT')
-											<button type="submit"
-												class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
-													class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang</span>
-											</button>
-											<input id="lat" name="lat_user" value="" class="hidden"/>
-											<input id="long" name="long_user" value="" class="hidden"/>
-											<div id="map" class="hidden"></div>
-										</form>
-									@endif
+									<div>
+										<button id="modalPulangBtn"
+											class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
+												class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang</span>
+										</button>
+									</div>
+										<div class="fixed inset-0 modalp hidden bg-slate-500/10 backdrop-blur-sm transition-all duration-300 ease-in-out">
+											<div class="bg-slate-200 w-fit p-5 rounded-md shadow">
+												<div class="flex justify-end mb-3">
+													<button class="btn btn-error scale-90 close">&times;</button>
+												</div>
+												<form action="{{ route('data.update', $arr->id) }}" method="POST" class="flex justify-center items-center  ">
+													@csrf
+													@method('PUT')
+													<div class="flex justify-center flex-col ">
+														
+														<div class="flex flex-col gap-2">
+															<p class="text-center text-lg font-semibold">Yakin Ingin Pulang Sekarang?</p>
+															<span>waktu sampai shift anda selesai masih </span>
+															<span class="flex justify-center">
+																<span id="jam2" class="badge badge-info underline font-semibold text-slate-800 text-lg"></span>
+															</span>
+														</div>
+														<div class="flex justify-center">
+															<button type="submit"
+																class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
+																	class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang</span>
+															</button>
+															<input id="lat" name="lat_user" value="" class="hidden"/>
+															<input id="long" name="long_user" value="" class="hidden"/>
+															<div id="map" class="hidden"></div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+										@endif
                                 @else
                             @endif
                         @endforeach
@@ -254,6 +279,24 @@
 		});
 
 		//End input ++ 
+
+		// modal pulang
+		$(document).ready(function() {
+			$(document).on('click', '#modalPulangBtn', function() {
+				$('.modalp')
+					.removeClass('hidden')
+					.addClass('flex justify-center items-center opacity-100'); // Add opacity class
+			});
+
+			$(document).on('click', '.close', function() {
+				$('.modalp')
+					.removeClass('flex justify-center items-center opacity-100') // Remove opacity class
+					.addClass('opacity-0') // Add opacity class for fade-out
+					.addClass('hidden')
+					.removeClass('flex justify-center items-center');
+			});
+		});
+
 
 		// Preview Script
 		$(document).ready(function() {
@@ -527,7 +570,7 @@
 			}).addTo(map).bindPopup("Lokasi absen: "+ client)
                 .openPopup();
         }
-		window.onload = function() { jam(); }
+		window.onload = function() { jam(); jam2(); }
             function jam() {
              var e = document.getElementById('jam'),
              d = new Date(), h, m, s;
@@ -544,6 +587,36 @@
              e = e < 10 ? '0'+ e : e;
              return e;
             }
+			// jam 2
+			function jam2(){
+				var e2 = document.getElementById('jam2'),
+				d2 = new Date(), h2, m2, s2;
+				h2 = d2.getHours();
+				m2 = set(d2.getMinutes());
+				s2 = set(d2.getSeconds());
+
+				var endTime = "{{ $arr->shift->jam_end }}";
+				var endTimeParts = endTime.split(':');
+				var endHours = parseInt(endTimeParts[0]);
+				var endMinutes = parseInt(endTimeParts[1]);
+
+				var timeDiffHours = endHours - h2;
+				var timeDiffMinutes = endMinutes - m2;
+
+				if (timeDiffMinutes <= 0) {
+					timeDiffHours--;
+					timeDiffMinutes += 60;
+				}
+				
+				var timeDiffStr = (timeDiffHours < 0) ? '-' : '';
+    			timeDiffStr += Math.abs(timeDiffHours)+ ' jam ' + ' dan ' + set(timeDiffMinutes)+ ' menit';
+				e2.innerHTML = timeDiffStr;
+				setTimeout('jam2()', 1000);
+			}
+			function set(e2) {
+				e2 = e2 < 10 ? '0' + e2 : e2;
+				return e2;
+			}
     </script>
 </body>
 </html>
