@@ -11,19 +11,19 @@
             </div>
     
             <div class="overflow-x-auto mx-10">
-                <table class="table table-zebra w-full" id="searchTable">
+                <table class="table table-zebra table-xs sm:table-md bg-slate-50 w-full" id="searchTable">
                     <!-- head -->
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Sebelum</th>
-                            <th>Proses</th>
-                            <th>Sesudah</th>
-                            <th>Nama</th>
-                            <th>Mitra</th>
-                            <th>Ruangan</th>
-                            <th>Keterangan</th>
-                            <th>Aksi</th>
+                            <th class="bg-slate-300 rounded-tl-2xl">#</th>
+                            <th class="bg-slate-300 ">Sebelum</th>
+                            <th class="bg-slate-300 ">Proses</th>
+                            <th class="bg-slate-300 ">Sesudah</th>
+                            <th class="bg-slate-300 ">Nama</th>
+                            <th class="bg-slate-300 ">Mitra</th>
+                            <th class="bg-slate-300 ">Ruangan</th>
+                            <th class="bg-slate-300 ">Keterangan</th>
+                            <th class="bg-slate-300 rounded-tr-2xl">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

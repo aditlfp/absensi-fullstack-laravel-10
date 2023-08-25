@@ -11,14 +11,14 @@
 		</div>
 
 		<div class="overflow-x-auto mx-10">
-			<table class="table table-zebra w-full" id="searchTable">
+			<table class="table table-zebra w-full bg-slate-50" id="searchTable">
 				<!-- head -->
 				<thead>
 					<tr>
-						<th>#</th>
-						<th>Client</th>
-						<th>Nama Ruangan</th>
-						<th>Action</th>
+						<th class="bg-slate-300 rounded-tl-2xl">#</th>
+						<th class="bg-slate-300 ">Client</th>
+						<th class="bg-slate-300 ">Nama Ruangan</th>
+						<th class="bg-slate-300 rounded-tr-2xl">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,10 +28,15 @@
 					@forelse ($ruangan as $i)
 						<tr>
 							<td>{{ $no++ }}</td>
+							@if ($i->kerjasama)
 							<td>{{ $i->kerjasama->client->name }}</td>
+								
+							@else
+								<td>Belum Ada Client</td>
+							@endif
 							<td>{{ $i->nama_ruangan}}</td>
 							<td>
-								<form action="{{ url('ruangan/' . $i->id) }}" method="POST">
+								<form action="{{ url('ruangan/' . $i->id) }}" method="POST" class="overflow-hidden">
 									@csrf
 									@method('DELETE')
 									<x-btn-edit>{{ url('ruangan/' . $i->id . '/edit') }}</x-btn-edit>

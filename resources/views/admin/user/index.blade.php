@@ -18,23 +18,23 @@
 						class="bg-blue-500 px-5 py-2 rounded-md hover:bg-blue-600 transition-colors ease-in .2s font-bold uppercase ml-3">Filter</button>
 				</form>
 			</div>
-			<div class="input flex items-center input-bordered">
+			<div class=" flex items-center ">
 				<x-search />
 			</div>
 		</div>
 
 		<div class="overflow-x-auto mx-10 my-10">
-			<table class="table table-fixed table-zebra w-full" id="searchTable">
+			<table class="table table-fixed table-zebra w-full bg-slate-50" id="searchTable">
 				<!-- head -->
 				<thead>
 					<tr>
-						<th>#</th>
-						<th>IMAGE</th>
-						<th>NAMA</th>
-						<th>NAMA LENGKAP</th>
-						<th>EMAIL</th>
-						<th>KERJASAMA</th>
-						<th>AKSI</th>
+						<th class="bg-slate-300 rounded-tl-2xl">#</th>
+						<th class="bg-slate-300 ">IMAGE</th>
+						<th class="bg-slate-300 ">NAMA</th>
+						<th class="bg-slate-300 ">NAMA LENGKAP</th>
+						<th class="bg-slate-300 ">EMAIL</th>
+						<th class="bg-slate-300 ">KERJASAMA</th>
+						<th class="bg-slate-300 rounded-tr-2xl">AKSI</th>
 					</tr>
 				</thead>
 				<tbody>

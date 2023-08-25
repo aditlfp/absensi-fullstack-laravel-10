@@ -72,7 +72,7 @@
           </div>
           @endif
           <input type="text" class="hidden" value="{{ $client->logo}}" id="oldimage" name="oldimage">
-            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded mt-5 w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 shadow-md" id="img" name="logo" type="file" >
+            <input class="bg-gray-200 input input-bordered appearance-none border-2 border-gray-200 rounded mt-5 w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 shadow-md" id="img" name="logo" type="file" >
             <x-input-error class="mt-2" :messages="$errors->get('logo')" />
         </div>
         <div class="flex gap-2 my-5 justify-end">

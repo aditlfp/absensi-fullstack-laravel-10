@@ -3,19 +3,19 @@
         <div class="py-10">
             <p class="text-center text-xl uppercase font-bold ">Riwayat Absensi, {{ Auth::user()->kerjasama->client->name }}</p>
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
-                <div class="input flex items-center input-bordered my-5">
+                <div class="flex items-center my-5">
                     <x-search />
                 </div>
                 <div class="overflow-x-auto w-full md:overflow-hidden mx-2 sm:mx-0 sm:w-full ">
-                    <table id="searchTable" class="table w-full table-xs table-zebra sm:table-md text-xs font-semibold sm:text-md ">
+                    <table id="searchTable" class="table w-full table-xs table-zebra sm:table-md text-xs bg-slate-50 font-semibold sm:text-md ">
                         <thead>
 							<tr >
-								<th class="p-1 py-2">#</th>
-                                <th class="p-1 py-2">Name</th>
-								<th class="p-1 py-2">Shift</th>
-								<th class="p-1 py-2">Tanggal</th>
-								<th class="p-1 py-2">Masuk - pulang</th>
-								<th class="p-1 py-2">Keterangan</th>
+								<th class="p-1 py-2 bg-slate-300 rounded-tl-2xl">#</th>
+                                <th class="p-1 py-2 bg-slate-300">Name</th>
+								<th class="p-1 py-2 bg-slate-300">Shift</th>
+								<th class="p-1 py-2 px-4 bg-slate-300">Tanggal</th>
+								<th class="p-1 py-2 bg-slate-300">Masuk - pulang</th>
+								<th class="p-1 py-2 bg-slate-300 rounded-tr-2xl">Keterangan</th>
 							</tr>
 						</thead>
                         <tbody>

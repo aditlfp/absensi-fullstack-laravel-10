@@ -64,7 +64,7 @@
                     <div class="py-5">
 						<div class="flex items-end justify-end mr-3">
 							<span
-								class="text-sm font-bold text-white  sm:hidden bg-green-500 px-4 py-1 rounded-full shadow-md">{{ Carbon\Carbon::now()->isoFormat('dddd, D/MMMM/Y') }}, <span id="jam"></span>
+								class="text-xs font-bold text-white  sm:hidden bg-green-500 px-4 py-1 rounded-full shadow-md">{{ Carbon\Carbon::now()->isoFormat('dddd, D/MMMM/Y') }}, <span id="jam"></span>
 							</span>
 						</div>
                         <div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">

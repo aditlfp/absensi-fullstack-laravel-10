@@ -9,12 +9,12 @@
 				</div>
 			</div>
             <div class="flex justify-center overflow-x-auto mx-10 pb-10">
-                <table class="table table-xs  table-zebra w-full shadow-md" id="searchTable">
+                <table class="table table-sm  table-zebra w-full shadow-md bg-slate-50" id="searchTable">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Hari libur</th>
-                            <th>Tanggal Libur</th>
+                            <th class="bg-slate-300 rounded-tl-2xl">#</th>
+                            <th class="bg-slate-300 ">Hari libur</th>
+                            <th class="bg-slate-300 rounded-tr-2xl">Tanggal Libur</th>
                         </tr>
                     </thead>
                     <tbody class=" text-sm my-10">

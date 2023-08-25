@@ -9,15 +9,15 @@
 				</div>
 			</div>
 			<div class="flex justify-center overflow-x-auto mx-10 pb-10">
-				<table class="table w-full shadow-md" id="searchTable">
+				<table class="table w-full shadow-md bg-slate-50" id="searchTable">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>Kode Jabatan</th>
-							<th>Divisi</th>
-							<th>Tipe Jabatan</th>
-							<th>Nama Jabatan</th>
-							<th>Action</th>
+							<th class="bg-slate-300 rounded-tl-2xl">#</th>
+							<th class="bg-slate-300 ">Kode Jabatan</th>
+							<th class="bg-slate-300 ">Divisi</th>
+							<th class="bg-slate-300 ">Tipe Jabatan</th>
+							<th class="bg-slate-300 ">Nama Jabatan</th>
+							<th class="bg-slate-300 rounded-tr-2xl">Action</th>
 						</tr>
 					</thead>
 					<tbody class="text-sm my-10">

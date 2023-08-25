@@ -12,16 +12,16 @@
 			</div>
 
 			<div class="overflow-x-auto mx-10">
-				<table class="table w-full" id="searchTable">
+				<table class="table w-full bg-slate-50" id="searchTable">
 					<!-- head -->
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>nama CLIENT</th>
-							<th>VALUE</th>
-							<th>EXPERIED</th>
-							<th>APPROVED 1</th>
-							<th>AKSI</th>
+							<th class="bg-slate-300 rounded-tl-2xl">#</th>
+							<th class="bg-slate-300 ">nama CLIENT</th>
+							<th class="bg-slate-300 ">VALUE</th>
+							<th class="bg-slate-300 ">EXPERIED</th>
+							<th class="bg-slate-300 ">APPROVED 1</th>
+							<th class="bg-slate-300 rounded-tr-2xl">AKSI</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -36,7 +36,7 @@
 								<td>{{ $i->experied }}</td>
 								<td>{{ $i->approve1 }}</td>
 								<td>
-									<form action="{{ url('kerjasamas/' . $i->id) }}" method="POST">
+									<form action="{{ url('kerjasamas/' . $i->id) }}" method="POST" class="h-9">
 										@csrf
 										@method('DELETE')
 										<x-btn-submit />

@@ -4,20 +4,20 @@
         <div class="flex justify-end mx-10 mb-2 "><a href="{{ route('admin.export-izin') }}" class="bg-yellow-400 px-4 py-2 shadow rounded-md text-2xl"><i class="ri-file-download-line"></i></a></div>
         <div class="flex justify-between my-5 mx-10">
             <a href="{{ route('admin.index') }}" class="btn btn-error">Back</a>
-        <div class="input">
+        <div class="">
             <x-search/>
         </div>
         </div>
         <div class="flex items-center justify-center flex-col mx-10 pb-10">
-            <table class="table w-full" id="searchTable">
+            <table class="table w-full bg-slate-50" id="searchTable">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Nama User</th>
-                    <th>Shift</th>
-                    <th>Client</th>
-                    <th>Jam Masuk</th>
-                    <th>Keterangan</th>
+                    <th class="bg-slate-300 rounded-tl-2xl">#</th>
+                    <th class="bg-slate-300 ">Nama User</th>
+                    <th class="bg-slate-300 ">Shift</th>
+                    <th class="bg-slate-300 ">Client</th>
+                    <th class="bg-slate-300 ">Jam Masuk</th>
+                    <th class="bg-slate-300 rounded-tr-2xl">Keterangan</th>
                 </tr>
             </thead>
             <tbody>

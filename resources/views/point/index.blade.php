@@ -10,13 +10,13 @@
             </div>
         </div>
         <div class="overflow-x-auto mx-10">
-            <table class="table table-zebra w-full" id="searchTable">
+            <table class="table table-zebra w-full bg-slate-50" id="searchTable">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Client</th>
-                        <th>Point</th>
-                        <th>Action</th>
+                        <th class="bg-slate-300 rounded-tl-2xl">#</th>
+                        <th class="bg-slate-300">Client</th>
+                        <th class="bg-slate-300">Point</th>
+                        <th class="bg-slate-300 rounded-tr-2xl">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,7 +49,7 @@
         </div>
         <div>
             <div class="flex justify-center sm:justify-end my-3 gap-2 mr-0 sm:mr-9">
-                <a href="{{ route('dashboard.index') }}"
+                <a href="{{ route('admin.index') }}"
                     class="btn btn-error border-none hover:bg-red-500 transition-all ease-in-out .2s">Back</a>
                 <a href="{{ route('point.create') }}"
                     class="btn btn-warning hover:bg-yellow-600 border-none transition-all ease-in-out .2s">+ Point</a>

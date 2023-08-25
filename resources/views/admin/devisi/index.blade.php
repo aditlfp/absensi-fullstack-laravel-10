@@ -11,15 +11,15 @@
 		</div>
 
 		<div class="overflow-x-auto mx-10">
-			<table class="table table-fixed table-zebra w-full " id="searchTable">
+			<table class="table table-fixed table-zebra w-full bg-slate-50" id="searchTable">
 				<!-- head -->
 				<thead>
 					<tr>
-						<th>#</th>
-						<th>Nama Devisi</th>
-						<th>Jabatan</th>
-						<th>Perlengkapan</th>
-						<th>Aksi</th>
+						<th class="bg-slate-300 rounded-tl-2xl">#</th>
+						<th class="bg-slate-300 ">Nama Devisi</th>
+						<th class="bg-slate-300 ">Jabatan</th>
+						<th class="bg-slate-300 ">Perlengkapan</th>
+						<th class="bg-slate-300 rounded-tr-2xl">Aksi</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -85,6 +85,8 @@ class AbsensiController extends Controller
    Absensi::create($absensi);
         toastr()->success('Berhasil Absen Hari Ini', 'succes');
         return redirect()->to(route('dashboard.index'));            
+         }else if($request->izin){
+            
          } else {
             toastr()->error('Kamu Diluar Radius', 'Error');
             return redirect()->back();  
