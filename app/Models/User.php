@@ -65,5 +65,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Divisi::class, 'devisi_id', 'id');
     }
+    public function JadwalUser()
+    {
+        return $this->hasMany(JadwalUser::class);
+    }
+
+    
     
 }
