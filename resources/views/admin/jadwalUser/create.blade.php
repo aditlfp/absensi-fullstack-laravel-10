@@ -116,6 +116,7 @@
                                                                                     <select name="status" id="status" class="select select-bordered font-thin w-full">
                                                                                         <option disabled selected>~ Pilih Status ~</option>
                                                                                         <option value="M">M</option>
+                                                                                        <option value="-">Libur</option>
                                                                                     </select>
                                                                                     <x-input-error :messages="$errors->get('status')" class="mt-2" />
                                                                                 </div>

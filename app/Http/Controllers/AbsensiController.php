@@ -5,6 +5,7 @@ use App\Http\Requests\AbsensiRequest;
 use App\Models\Absensi;
 use App\Models\Client;
 use App\Models\Divisi;
+use App\Models\JadwalUser;
 use App\Models\Lokasi;
 use App\Models\Point;
 use App\Models\Shift;
@@ -23,10 +24,11 @@ class AbsensiController extends Controller
         $dev = Divisi::all();
         $client = Client::all();
         $shift = Shift::all();
+        $jadwal = JadwalUser::where('user_id', $user)->get();
         $absensi = Absensi::where('user_id',$user)->latest()->get();
         // dd($absensi);
         $harLok = Lokasi::where('client_id', Auth::user()->kerjasama->client_id)->first();
-        return view('absensi.index', compact('shift', 'client', 'dev', 'absensi', 'harLok'));
+        return view('absensi.index', compact('shift', 'client', 'dev', 'absensi', 'harLok', 'jadwal'));
     }
 
     public function store(AbsensiRequest $request)

@@ -7,7 +7,7 @@
             </div>
             <div class="flex sm:justify-end justify-center gap-2 mx-5 py-3 ">
                 <form action="{{ route('store.processDate') }}" method="GET" class="flex flex-col justify-center gap-2 bg-slate-100 rounded px-5 py-3">
-                    <div class="flex justify-between flex-col gap-2 ">
+                    <div class="flex justify-between flex-col md:flex-row gap-2 ">
                         <div>
                             <label class="label text-xs sm:text-base">Mulai</label>
                             <input class="input input-bordered input-xs" type="date" name="str1" id="str1">
@@ -21,15 +21,15 @@
                 </form>
 			</div>
             <div class="flex justify-center mx-2 pb-10 text-xs">
-                <div class="overflow-x-scroll w-full">
-                    <table class="table table-zebra table-lg bg-slate-50  shadow-md scale-[70%] text-xs text-center" id="searchTable">
+                <div class="overflow-x-scroll md:overflow-hidden w-full">
+                    <table class="table table-zebra table-lg bg-slate-50  shadow-md scale-[70%] text-xs md:text-base text-center" id="searchTable">
                         <thead class="text-slate-700">
                             <tr>
-                                <th class="text-xs bg-slate-300 rounded-tl-2xl">#</th>
-                                <th class="text-xs bg-slate-300 px-10">Nama Lengkap</th>
-                                <th class="text-xs bg-slate-300 px-10">Tanggal</th>
-                                <th class="text-xs bg-slate-300">Shift</th>
-                                <th class="text-xs bg-slate-300 rounded-tr-2xl">Area</th>
+                                <th class="text-xs md:text-lg bg-slate-300 rounded-tl-2xl">#</th>
+                                <th class="text-xs md:text-lg bg-slate-300 px-10">Nama Lengkap</th>
+                                <th class="text-xs md:text-lg bg-slate-300 px-10">Tanggal</th>
+                                <th class="text-xs md:text-lg bg-slate-300">Shift</th>
+                                <th class="text-xs md:text-lg bg-slate-300 rounded-tr-2xl">Area</th>
                             </tr>
                         </thead>
                         <tbody>
