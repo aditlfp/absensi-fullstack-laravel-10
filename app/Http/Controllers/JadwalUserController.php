@@ -10,6 +10,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class JadwalUserController extends Controller
 {
@@ -94,5 +96,55 @@ class JadwalUserController extends Controller
         toastr()->warning('Jadwal Telah Dihapus', 'warning');
         return redirect()->back();
 
+    }
+
+    public function exportJadwal(Request $request)
+    {
+        $tanggalSekarang = Carbon::now();
+        $currentMonth = Carbon::parse($this->ended)->month;
+        $currentYear = Carbon::parse($this->str)->year;
+        $str1 = $this->str;
+        $end1 = $this->ended;
+        
+        $totalHari =  Carbon::parse($this->ended)->diffInDays(Carbon::parse($this->str));
+        
+        if($request->has(['end1', 'str1'])) {
+            
+         $expPDF = JadwalUser::when($request->has(['str1', 'end1']), function ($query) use ($str1, $end1) {
+            return $query->whereBetween('tanggal', [$str1, $end1]);
+        })->get();
+
+        $path = 'logo/sac.png';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+        $options = new Options();
+        $options->setIsHtml5ParserEnabled(true);
+        $options->set('isRemoteEnabled', true);
+        $options->set('defaultFont', 'Arial');
+
+        $pdf = new Dompdf($options);
+        $html = view('admin.jadwal.export', compact('expPDF', 'base64', 'totalHari','currentYear', 'currentMonth','str1', 'end1'))->render();
+        $pdf->loadHtml($html);
+
+        $pdf->setPaper('A4', 'landscape');
+        $pdf->render();
+
+        $output = $pdf->output();
+        $filename = 'jadwal.pdf';
+
+        if ($request->input('action') == 'download') {
+            return response()->download($output, $filename);
+        }
+
+        return response($output, 200)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'inline; filename="'.$filename.'"');
+                    
+        }else{
+            toastr()->error('Mohon Masukkan Filter Export', 'error');
+            return redirect()->back();
+        }
     }
 }
