@@ -22,7 +22,7 @@ class JadwalUserController extends Controller
 
     public function index()
     {
-        $jadwalUser = JadwalUser::paginate(50);
+        $jadwalUser = JadwalUser::orderBy('tanggal', 'asc')->paginate(50);
         return view('admin.jadwalUser.index', compact('jadwalUser'));
     }
 

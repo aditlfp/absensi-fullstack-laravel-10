@@ -21,7 +21,7 @@
                 </form>
 			</div>
             <div class="flex justify-center overflow-x-auto mx-2 pb-10 text-xs">
-                <table class="table table-auto shadow-md scale-[65%] text-xs" id="searchTable">
+                <table class="table shadow-md scale-[65%] text-xs" id="searchTable">
                     <thead>
                         <tr>
                             <th class="text-xs flex">#</th>
@@ -39,7 +39,7 @@
                            @endphp
                            <tr>
                               <td class="p-1">{{ $no++ }}</td>
-                              <td class="p-1">{{ $item->user->nama_lengkap }}</td>
+                              <td class="p-1 break-words whitespace-pre-wrap">{{ $item->user->nama_lengkap }}</td>
                               <td class="p-1">{{ $item->tanggal }}</td>
                               <td class="p-1">{{ $item->shift->shift_name }}</td>
                               <td class="p-1">{{ $item->area }}</td>
