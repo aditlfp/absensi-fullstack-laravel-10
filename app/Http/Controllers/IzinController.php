@@ -32,6 +32,12 @@ class IzinController extends Controller
         return view('admin.absen.izin', compact('izin'));
     }
 
+    public function show($id)
+    {
+        $izinId = Izin::findOrFail($id);
+        return view('absensi.izin.detail', compact('izinId'));
+    }
+
     public function create()
     {
         $shift = Shift::all();
