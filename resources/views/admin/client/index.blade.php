@@ -9,20 +9,20 @@
 				</div>
 			</div>
 			<div class="flex justify-center overflow-x-auto mx-10 pb-10">
-				<table class="table table-fixed table-zebra w-full shadow-md" id="searchTable">
+				<table class="table table-fixed table-zebra w-full shadow-md bg-slate-50" id="searchTable">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>Logo</th>
-							<th>Name Client</th>
-							<th>Alamat</th>
-							<th>Provinsi</th>
-							<th>Kabupaten</th>
-							<th>Kode Pos</th>
-							<th>Email</th>
-							<th>No. Telepon</th>
-							<th>No. Fax</th>
-							<th>Action</th>
+							<th class="bg-slate-300 rounded-tl-2xl">#</th>
+							<th class="bg-slate-300 ">Logo</th>
+							<th class="bg-slate-300 ">Name Client</th>
+							<th class="bg-slate-300 ">Alamat</th>
+							<th class="bg-slate-300 ">Provinsi</th>
+							<th class="bg-slate-300 ">Kabupaten</th>
+							<th class="bg-slate-300 ">Kode Pos</th>
+							<th class="bg-slate-300 ">Email</th>
+							<th class="bg-slate-300 ">No. Telepon</th>
+							<th class="bg-slate-300 ">No. Fax</th>
+							<th class="bg-slate-300 rounded-tr-2xl">Action</th>
 						</tr>
 					</thead>
 					<tbody class=" text-sm my-10">

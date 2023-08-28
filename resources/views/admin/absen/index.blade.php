@@ -92,19 +92,19 @@
 			</div>
 			
 			<div class="overflow-x-auto mx-10 my-10">
-				<table class="table table-zebra w-full" id="searchTable">
+				<table class="table table-zebra w-full bg-slate-50" id="searchTable">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>Photo</th>
-							<th>Nama User</th>
-							<th>Tanggal</th>
-							<th>Shift</th>
-							<th>Client</th>
-							<th>Jam Masuk</th>
-							<th>Jam Pulang</th>
-							<th>Keterangan</th>
-							<th>Point</th>
+							<th class="bg-slate-300 rounded-tl-2xl">#</th>
+							<th class="bg-slate-300 ">Photo</th>
+							<th class="bg-slate-300 ">Nama User</th>
+							<th class="bg-slate-300 ">Tanggal</th>
+							<th class="bg-slate-300 ">Shift</th>
+							<th class="bg-slate-300 ">Client</th>
+							<th class="bg-slate-300 ">Jam Masuk</th>
+							<th class="bg-slate-300 ">Jam Pulang</th>
+							<th class="bg-slate-300 ">Keterangan</th>
+							<th class="bg-slate-300 rounded-tr-2xl">Point</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -160,7 +160,7 @@
 												@endif
 											@if($arr->point_id == null)
 												<input type="text" name="point_id" id="point_id" value="{{ $item->id }}" class="hidden">
-												<button class="px-2 py1 rounded bg-amber-400" type="submit">+ Point</button>
+												<button class="px-2 py-1 w-16 rounded bg-amber-400" type="submit">+ Point</button>
 											@break
 											@endif
 											

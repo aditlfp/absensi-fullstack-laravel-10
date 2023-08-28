@@ -9,16 +9,16 @@
 				</div>
 			</div>
             <div class="flex justify-center overflow-x-auto mx-10 pb-10">
-                <table class="table table-fixed px-5 w-full shadow-md" id="searchTable">
+                <table class="table table-fixed px-5 w-full shadow-md bg-slate-50" id="searchTable">
                     <thead>
 						<tr>
-							<th>#</th>
-							<th>Logo</th>
-							<th>Client</th>
-							<th>Latitude</th>
-							<th>Longitude</th>
-							<th>Radius</th>
-							<th>Action</th>
+							<th class="bg-slate-300 rounded-tl-2xl">#</th>
+							<th class="bg-slate-300 ">Logo</th>
+							<th class="bg-slate-300 ">Client</th>
+							<th class="bg-slate-300 ">Latitude</th>
+							<th class="bg-slate-300 ">Longitude</th>
+							<th class="bg-slate-300 ">Radius</th>
+							<th class="bg-slate-300 rounded-tr-2xl">Action</th>
 						</tr>
 					</thead>
                     <tbody class="text-sm my-10">

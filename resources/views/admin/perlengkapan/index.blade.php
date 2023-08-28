@@ -12,13 +12,13 @@
 			</div>
 
 			<div class="overflow-x-auto mx-10 flex justify-center">
-				<table class="table w-full" id="searchTable">
+				<table class="table w-full bg-slate-50" id="searchTable">
 					<!-- head -->
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>Nama Perlengkapan</th>
-							<th>AKSI</th>
+							<th class="bg-slate-300 rounded-tl-2xl">#</th>
+							<th class="bg-slate-300 ">Nama Perlengkapan</th>
+							<th class="bg-slate-300 rounded-tr-2xl">AKSI</th>
 						</tr>
 					</thead>
 					<tbody>

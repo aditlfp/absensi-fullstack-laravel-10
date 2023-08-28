@@ -9,16 +9,16 @@
 				</div>
 			</div>
 			<div class="flex justify-center overflow-x-auto mx-10 pb-10">
-				<table class="table table-fixed w-full shadow-md" id="searchTable">
+				<table class="table table-fixed w-full shadow-md bg-slate-50" id="searchTable">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>Jabatan</th>
-							<th>Name Client</th>
-							<th>Waktu Shift</th>
-							<th>Jam Mulai</th>
-							<th>Jam Selesai</th>
-							<th>Action</th>
+							<th class="bg-slate-300 rounded-tl-2xl">#</th>
+							<th class="bg-slate-300 ">Jabatan</th>
+							<th class="bg-slate-300 ">Name Client</th>
+							<th class="bg-slate-300 ">Waktu Shift</th>
+							<th class="bg-slate-300 ">Jam Mulai</th>
+							<th class="bg-slate-300 ">Jam Selesai</th>
+							<th class="bg-slate-300 rounded-tr-2xl">Action</th>
 						</tr>
 					</thead>
 					<tbody class="text-sm my-10">

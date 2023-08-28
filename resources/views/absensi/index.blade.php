@@ -108,6 +108,18 @@
 								 class="w-full textarea textarea-bordered" required></textarea>
 							</div>
 							<div class="flex flex-col">
+								<label>Jadwal Hari ini: </label>
+								@forelse ($jadwal as $jad)
+								@if ($jad->tanggal == Carbon\Carbon::now()->format('Y-m-d'))
+									<span class="input input-bordered" disabled>Tanggal: {{ $jad->tanggal }}, Shift: {{ $jad->shift->shift_name }}, Area: {{ $jad->area }}</span>
+								@else
+								    <span class="input input-bordered" disabled>Tidak Ada Jadwal</span>
+								@endif
+								@break
+								@empty
+								@endforelse
+							</div>
+							{{-- <div class="flex flex-col">
 								<label>Keterangan: </label>
 								<div class="flex justify-end mt-1">
 										<input name="keterangan" type="radio" value="masuk" class="radio cursor-pointer checked:bg-blue-500"><span
@@ -115,8 +127,9 @@
 									<input name="keterangan" type="radio" value="izin" class="radio cursor-pointer checked:bg-red-500"><span
 										class="mx-2">Izin</span>
 								</div>
-							</div>
+							</div> --}}
 							<input type="text" id="image" name="image" class="image-tag" hidden>
+							<input type="text" name="keterangan" value="masuk" hidden>
 						</div>
 						<input type="text" class="hidden" name="absensi_type_masuk" value="1">
 						@php
@@ -133,7 +146,8 @@
 								@endif
 								@break
 								@empty
-									<button class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
+								<button class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
+								<button value="izin" class="p-2 my-2 px-4 text-white bg-green-500 hover:bg-green-600 rounded transition-all ease-linear .2s">Izin</button>
 								@endforelse
 									<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
 									Back
@@ -149,7 +163,6 @@
 						<input class="hidden" id="isi" name="absensi_type_pulang" value="okok">
 						<input id="lat" name="lat_user" value="" class="hidden"/>
 						<input id="long" name="long_user" value="" class="hidden"/>
-    					
 					</form>
 				</div>
 			</main>
