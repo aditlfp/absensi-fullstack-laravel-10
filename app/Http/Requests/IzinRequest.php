@@ -27,7 +27,7 @@ class IzinRequest extends FormRequest
             'shift_id' => 'required',
             'alasan_izin' => 'required',
             'img' => 'required',
-            'status_approve' => 'nullable'
+            'approve_status' => 'nullable'
         ];
     }
 
