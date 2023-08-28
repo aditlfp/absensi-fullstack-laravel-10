@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\IzinController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JadwalUserController;
 use App\Http\Controllers\KerjasamaController;
@@ -52,6 +53,7 @@ Route::middleware('auth', 'apdt')->group(function () {
     Route::resource('/lembur', LemburController::class)->only('index', 'store', 'update');
     Route::get('/lembur-history', [LemburController::class, 'lemburIndexUser'])->name('lemburIndexUser');
     Route::get('/rate/{id}', [RatingController::class, 'myRate']);
+    Route::resource('/izin', IzinController::class);
     Route::resource('/laporan', LaporanController::class)->only('index', 'create', 'store');
     Route::get('/mypoint/{id}', [PointController::class, 'myPoint'])->name('mypoint');
 });
@@ -69,12 +71,16 @@ Route::middleware('auth', 'leader', 'apdt')->group(function () {
     Route::get('/LEADER/leader-lembur', [LeaderController::class, 'indexLembur'])->name('lead_lembur');
     Route::get('/LEADER/leader-user', [LeaderController::class, 'indexUser'])->name('lead_user');
     Route::resource('/LEADER/leader-jadwal', JadwalUserController::class);
+
+    Route::get('/LEADER/leader-absensi-izin', [IzinController::class, 'indexLead'])->name('lead_izin');
+    Route::patch('/LEADER/leader-absensi-izin/accept/{id}', [IzinController::class, 'updateSuccess'])->name('lead_acc');
+    Route::patch('/LEADER/leader-absensi/denied/{id}', [IzinController::class, 'updateDenied'])->name('lead_denied');
+
     Route::get('/LEADER/leader-jadwal-new', [JadwalUserController::class, 'processDate'])->name('store.processDate');
 });
 
 Route::middleware('auth', 'admin', 'apdt')->group(function () {
     Route::get('/admin/data-absen', [AdminController::class, 'absen'])->name('admin.absen');
-    Route::get('/admin/data-izin', [AdminController::class, 'izin'])->name('admin.izin');
     Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
     Route::get('/admin/exportV2', [AdminController::class, 'exportWith'])->name('admin.exportV2');
     Route::get('/admin/export-izin', [AdminController::class, 'exp'])->name('admin.export-izin');
@@ -99,6 +105,11 @@ Route::middleware('auth', 'admin', 'apdt')->group(function () {
     Route::resource('holiday', HolidayController::class);
     Route::resource('/lokasi', LokasiController::class);
     Route::resource('/area', AreaController::class);
+
+    Route::get('/data-izin', [IzinController::class, 'indexAdmin'])->name('data-izin.admin');
+    Route::patch('/absensi-izin/admin-accept/{id}', [IzinController::class, 'updateSuccess'])->name('admin_acc');
+    Route::patch('/absensi-izin/admin-denied/{id}', [IzinController::class, 'updateDenied'])->name('admin_denied');
+    Route::delete('/absensi-izin/{id}/deleted', [IzinController::class, 'deleteAdmin'])->name('admin.deletedIzin');
 });
 
 
