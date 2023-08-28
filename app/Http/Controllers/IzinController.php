@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IzinRequest;
 use App\Models\Izin;
+use App\Models\Shift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,10 +18,25 @@ class IzinController extends Controller
         return view('absensi.izin.index', ['izin' => $izin->paginate(30)]);
     }
 
+    public function indexLead()
+    {
+        $user = Auth::user()->kerjasama_id;
+        $izin = Izin::where('kerjasama_id', $user)->get();
+
+        return view('leader_view.absen.izin', ['izin' => $izin->paginate(30)]);
+    }
+
     public function indexAdmin()
     {
         $izin = Izin::paginate(50);
         return view('admin.absen.izin', compact('izin'));
+    }
+
+    public function create()
+    {
+        $shift = Shift::all();
+
+        return view('absensi.izin.create', compact('shift'));
     }
 
     public function store(IzinRequest $request)
@@ -64,5 +80,13 @@ class IzinController extends Controller
         $izinId = Izin::findOrFail($id);
         $izinId->update($izin);
         return redirect()->back()->with('msg', 'Berhasil Me Denied Approve');
+    }
+
+    public function deleteAdmin($id)
+    {
+        $izinId = Izin::findOrFail($id);
+        $izinId->delete();
+        toastr()->warning('Data Izin Dihapus', 'warning');
+        return redirect()->back();
     }
 }
