@@ -64,7 +64,7 @@ class IzinController extends Controller
         }
             Izin::create($izin);
             toastr()->success('Data izin Berhasil Disimpan', 'success');
-            return redirect()->to(route('data-izin.index'));
+            return redirect()->to(route('izin.index'));
     }
 
     public function updateSuccess($id)
@@ -74,7 +74,7 @@ class IzinController extends Controller
         ];
         $izinId = Izin::findOrFail($id);
         $izinId->update($izin);
-        return redirect()->back()->with('msg', 'Berhasil Meng Approve');
+        return redirect()->back()->with('message', 'Berhasil Meng Approve');
 
     }
 
@@ -85,7 +85,7 @@ class IzinController extends Controller
         ];
         $izinId = Izin::findOrFail($id);
         $izinId->update($izin);
-        return redirect()->back()->with('msg', 'Berhasil Me Denied Approve');
+        return redirect()->back()->with('message', 'Berhasil Me Denied Approve');
     }
 
     public function deleteAdmin($id)

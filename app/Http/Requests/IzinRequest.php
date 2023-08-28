@@ -30,4 +30,20 @@ class IzinRequest extends FormRequest
             'status_approve' => 'nullable'
         ];
     }
+
+        /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'user_id.required' => 'Nama Harus Diisi', 
+            'kerjasama_id.required' => 'Client Harus Diisi',
+            'shift_id.required' => 'Shift Tidak Boleh Kosong',
+            'alasan_izin.required' => 'Alasan Tidak Boleh Kosong',
+            'img.required' => 'Gambar Tidak Boleh Kosong',
+        ];
+    }
 }
