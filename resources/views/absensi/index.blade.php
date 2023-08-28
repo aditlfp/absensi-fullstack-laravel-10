@@ -147,7 +147,6 @@
 								@break
 								@empty
 								<button class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
-								<button value="izin" class="p-2 my-2 px-4 text-white bg-green-500 hover:bg-green-600 rounded transition-all ease-linear .2s">Izin</button>
 								@endforelse
 									<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
 									Back
