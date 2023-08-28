@@ -13,17 +13,17 @@ class IzinController extends Controller
     public function index()
     {
         $user = Auth::user()->id;
-        $izin = Izin::where('user_id', $user)->get();
+        $izin = Izin::where('user_id', $user)->paginate(30);
 
-        return view('absensi.izin.index', ['izin' => $izin->paginate(30)]);
+        return view('absensi.izin.index', ['izin' => $izin]);
     }
 
     public function indexLead()
     {
         $user = Auth::user()->kerjasama_id;
-        $izin = Izin::where('kerjasama_id', $user)->get();
+        $izin = Izin::where('kerjasama_id', $user)->paginate(30);
 
-        return view('leader_view.absen.izin', ['izin' => $izin->paginate(30)]);
+        return view('leader_view.absen.izin', ['izin' => $izin]);
     }
 
     public function indexAdmin()
