@@ -97,6 +97,9 @@
                             <div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiLembur">
                                 <a href="{{ route('lemburIndexUser') }}" class="btn btn-info w-full">History Lembur</a>
                             </div>
+                            <div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIzin">
+                                <a href="{{ route('izin.index') }}" class="btn btn-info w-full">History Izin</a>
+                            </div>
                         </div>
                         <div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
                             <div id="btnRating" class=" w-full flex justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
@@ -402,6 +405,7 @@
 				$('#ngeLembur').toggle();
 				$('#isiLembur').toggle();
 				$('#ngIzin').toggle();
+				$('#isiIzin').toggle();
 			});
 
 			btnRating.click(function() {

@@ -128,7 +128,7 @@
 							<a href="{{ route('admin.absen') }}"
 								class="btn-warning hover:bg-yellow-500 hover:text-white w-full shadow-md hover:shadow-none text-center uppercase font-semibold text-sm rounded-md px-4 py-2 mt-5 transition-all ease-linear .2s">Data
 								Absensi</a>
-							<a href="{{ route('admin.izin') }}"
+							<a href="{{ route('data-izin.admin') }}"
 								class="btn-warning hover:bg-yellow-500 hover:text-white w-full shadow-md hover:shadow-none text-center uppercase font-semibold text-sm rounded-md px-4 py-2 mt-5 transition-all ease-linear .2s">Data
 								Izin</a>
 						</div>

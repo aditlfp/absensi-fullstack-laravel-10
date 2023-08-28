@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-main-div>
-        <div class="p-10">
-			<p class="text-center font-bold text-2xl uppercase">Buat Laporan Harian</p>
+        <div class="p-5 py-10">
+			<p class="text-center font-bold text-xl sm:text-2xl uppercase">Buat Laporan Harian</p>
             <form method="POST" action="{{ route('laporan.store') }}" class=" my-10" id="form" enctype="multipart/form-data">
             @csrf
             <div class="bg-slate-100 px-10 py-5 rounded shadow">
@@ -10,7 +10,7 @@
                     <x-input-label for="client_id" :value="__('Client')"/>
                     <x-text-input id="client_id" class=" mt-1 w-full hidden" type="text" name="client_id"  value="{{ Auth::user()->kerjasama->client->id }}" />
                     <x-text-input id="user_id" class=" mt-1 w-full hidden" type="text" name="user_id"  value="{{ Auth::user()->id }}" />
-                    <x-text-input readonly class="block mt-1 w-full" disabled type="text"  value="{{ Auth::user()->kerjasama->client->name }}" />
+                    <x-text-input readonly class="block mt-1 w-full text-sm sm:text-base" disabled type="text"  value="{{ Auth::user()->kerjasama->client->name }}" />
                 </div>
                 {{-- ruangan --}}
 
@@ -31,7 +31,7 @@
                     <div class="preview hidden">
                         <img class="img1" src="" alt="" srcset="" height="120px" width="120px">
                     </div>
-                    <input id="img" class="block mt-1 w-full file-input file-input-bordered shadow-none" type="file" name="image1" :value="old('image1')"
+                    <input id="img" class="block mt-1 w-full file-input file-input-sm file-input-bordered shadow-none" type="file" name="image1" :value="old('image1')"
 							autofocus autocomplete="img" />
 					<x-input-error :messages="$errors->get('image1')" class="mt-2" />
                 </div>
@@ -41,7 +41,7 @@
                     <div class="preview2 hidden">
                         <img class="img2" src="" alt="" srcset="" height="120px" width="120px">
                     </div>
-                    <input id="img2" class="block mt-1 w-full file-input file-input-bordered shadow-none" type="file" name="image2" :value="old('image2')"
+                    <input id="img2" class="block mt-1 w-full file-input file-input-sm file-input-bordered shadow-none" type="file" name="image2" :value="old('image2')"
 							autofocus autocomplete="img2" />
                 </div class="my-5">
                 {{-- sudah --}}
@@ -50,7 +50,7 @@
                     <div class="preview3 hidden">
                         <img class="img3" src="" alt="" srcset="" height="120px" width="120px">
                     </div>
-                    <input id="img3" class="block mt-1 w-full file-input file-input-bordered shadow-none" type="file" name="image3" :value="old('image3')"
+                    <input id="img3" class="block mt-1 w-full file-input file-input-sm file-input-bordered shadow-none" type="file" name="image3" :value="old('image3')"
 							autofocus autocomplete="img3" />
 					<x-input-error :messages="$errors->get('image3')" class="mt-2" />
                 </div>

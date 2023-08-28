@@ -1,5 +1,6 @@
     <x-app-layout>
-        <div class="bg-slate-500 mx-10 rounded">
+        <x-main-div>
+
             <div>
                 <p class="text-center text-2xl font-bold py-10 uppercase">Index Laporan</p>
             </div>
@@ -10,7 +11,7 @@
                 </div>
             </div>
     
-            <div class="overflow-x-auto mx-10">
+            <div class="overflow-x-auto mx-5">
                 <table class="table table-zebra table-xs sm:table-md bg-slate-50 w-full" id="searchTable">
                     <!-- head -->
                     <thead>
@@ -82,7 +83,6 @@
                         class="btn btn-warning hover:bg-yellow-600 border-none transition-all ease-in-out .2s">+ Laporan</a>
     
                 </div>
-            </div>
-    
-    </x-app-layout>
+        </x-main-div>
+</x-app-layout>
     

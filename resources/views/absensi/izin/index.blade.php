@@ -2,9 +2,12 @@
     <x-main-div>
         <div class="py-10">
 			<p class="text-center text-2xl uppercase font-bold">Riwayat izin Saya</p>
+            <div class="">
+                <x-search/>
+            </div>
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
                 <div class="overflow-x-scroll w-full md:overflow-hidden mx-2 sm:mx-0 sm:w-full">
-                    <table class="table table-xs table-zebra w-full bg-slate-50 rounded-xl">
+                    <table class="table table-xs table-zebra w-full bg-slate-50 rounded-xl" id="searchTable">
                         <thead>
                             <tr>
                                 <th class="bg-slate-300 rounded-tl-xl">#</th>
@@ -43,6 +46,9 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                <div id="pag-1" class="mt-5 mb-5 mx-10">
+                    {{ $izin->links() }}
                 </div>
                 <div class="flex justify-center mt-4 sm:justify-end">
 		            <a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>

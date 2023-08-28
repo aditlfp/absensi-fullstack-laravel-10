@@ -153,6 +153,11 @@
 	</div>
 	<span style="right: 0; bottom: 150px; position:absolute;">PT. Surya Amanah Cendekia</span>
 </main>
+
+{{-- section jadwal user --}}
+<section>
+
+</section>
 </body>
 
 </html>
