@@ -88,6 +88,9 @@
                             <div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
                                 <a href="{{ route('lembur.index') }}" class="btn btn-info w-full">Lembur</a>
                             </div>
+                            <div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
+                                <a href="{{ route('lembur.index') }}" class="btn btn-success w-full">Izin</a>
+                            </div>
                             <div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
                                 <a href="historyAbsensi" class="btn btn-info w-full">History Absensi</a>
                             </div>
@@ -395,6 +398,7 @@
 				$('#ngabsen').toggle();
 				$('#ngeLembur').toggle();
 				$('#isiLembur').toggle();
+				$('#ngIzin').toggle();
 			});
 
 			btnRating.click(function() {
