@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\IzinRequest;
 use App\Models\Izin;
 use App\Models\Shift;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class IzinController extends Controller
@@ -64,28 +63,24 @@ class IzinController extends Controller
         }
             Izin::create($izin);
             toastr()->success('Data izin Berhasil Disimpan', 'success');
-            return redirect()->to(route('data-izin.index'));
+            return redirect()->to(route('izin.index'));
     }
 
     public function updateSuccess($id)
     {
-        $izin = [
-            'approve_status' => 'Accept'
-        ];
         $izinId = Izin::findOrFail($id);
-        $izinId->update($izin);
-        return redirect()->back()->with('msg', 'Berhasil Meng Approve');
+        $izinId->approve_status = 'accept';
+        $izinId->save();
+        return redirect()->back()->with('message', 'Berhasil Meng Approve');
 
     }
 
     public function updateDenied($id)
     {
-        $izin = [
-            'approve_status' => 'Denied'
-        ];
         $izinId = Izin::findOrFail($id);
-        $izinId->update($izin);
-        return redirect()->back()->with('msg', 'Berhasil Me Denied Approve');
+        $izinId->approve_status = "denied";
+        $izinId->save();
+        return redirect()->back()->with('message', 'Berhasil Me Denied Approve');
     }
 
     public function deleteAdmin($id)

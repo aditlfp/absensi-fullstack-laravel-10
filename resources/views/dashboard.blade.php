@@ -89,7 +89,7 @@
                                 <a href="{{ route('lembur.index') }}" class="btn btn-info w-full">Lembur</a>
                             </div>
                             <div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
-                                <a href="{{ route('lembur.index') }}" class="btn btn-success w-full">Izin</a>
+                                <a href="{{ route('izin.create') }}" class="btn btn-info w-full">Izin</a>
                             </div>
                             <div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
                                 <a href="historyAbsensi" class="btn btn-info w-full">History Absensi</a>
@@ -144,6 +144,9 @@
 							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="Llembur">
 								<a href="{{ route('lead_lembur') }}" class="btn btn-info w-full">Lembur, {{ Auth::user()->kerjasama->client->name }}</a>
 							</div>
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="lizin">
+                                <a href="{{ route('lead_izin') }}" class="btn btn-info w-full">Izin, {{ Auth::user()->kerjasama->client->name }}</a>
+                            </div>
 							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="Luser">
 								<a href="{{ route('lead_user') }}" class="btn btn-info w-full">User, {{ Auth::user()->kerjasama->client->name }}</a>
 							</div>
@@ -412,6 +415,7 @@
 				$('#Llembur').toggle();
 				$('#Luser').toggle();
 				$('#Ljadwal').toggle();
+				$('#lizin').toggle();
 			})
 
 			// $('#isiAbsen').click(function() {
