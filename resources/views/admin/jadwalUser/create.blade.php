@@ -1,7 +1,21 @@
 <x-app-layout>
     <x-main-div class="ydis">
+        @php
+            $starte = \Carbon\Carbon::createFromFormat('Y-m-d', $str1);
+            $ende = \Carbon\Carbon::createFromFormat('Y-m-d', $end1);
+        @endphp
         <div class="bg-slate-500 p-4  shadow-md rounded-md">
             <p class="text-center text-2xl uppercase font-bold my-10">Tambah Jadwal</p>
+            <form action="{{ route('lead_jadwal_export') }}" method="get">
+                <div class="flex justify-end mx-10 mb-2 ">
+                    <button type="submit" class="bg-yellow-400 px-3 mt-4 py-2 shadow rounded-md text-2xl flex items-center gap-2">
+                        <p class="text-sm font-semibold">Print PDF</p>
+                        <i class="ri-file-download-line"></i>
+                    </button>
+                    <input type="text" name="str1" value="{{ $starte->format('Y-m-d') }}" hidden>
+                    <input type="text" name="end1" value="{{ $ende->format('Y-m-d') }}" hidden>
+                </div>
+            </form>
                 <div class="overflow-x-scroll sm:overflow-x-auto  pb-10 text-xs">
                         <table class="text-xs shadow-md table-auto border-collapse rounded-lg overflow-hidden" id="searchTable">
                         <thead>
@@ -10,10 +24,7 @@
                                 <th rowspan="2" class="p-2 bg-gray-200">Nama Lengkap</th>
                                 <th colspan="{{ $totalHari + 1 }}" class="p-2 bg-gray-200">Tanggal</th>
                             </tr>
-                            @php
-                                $starte = \Carbon\Carbon::createFromFormat('Y-m-d', $str1);
-                                $ende = \Carbon\Carbon::createFromFormat('Y-m-d', $end1);
-                            @endphp
+                            
                             <tr>
                                 @for ($date = $starte->copy(); $date->lte($ende); $date->addDay())
                                     <th class="p-2 bg-stone-300 border-r-slate-400 border-r-[1.1px]">{{ $date->format('d') }}</th>

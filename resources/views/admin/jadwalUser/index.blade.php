@@ -17,9 +17,11 @@
                             <input class="input input-bordered input-xs" type="date" name="end1" id="end1">
                         </div>
                     </div>
-                    <button><a class="btn btn-primary btn-xs sm:btn-md">+ Jadwal</a></button>
+                    <button><a class="btn btn-primary btn-sm sm:btn-md">+ Jadwal</a></button>
+                    
                 </form>
 			</div>
+            
             <div class="flex justify-center mx-2 pb-10 text-xs">
                 <div class="overflow-x-scroll md:overflow-hidden w-full">
                     <table class="table table-zebra table-lg bg-slate-50  shadow-md scale-[70%] text-xs md:text-base text-center" id="searchTable">

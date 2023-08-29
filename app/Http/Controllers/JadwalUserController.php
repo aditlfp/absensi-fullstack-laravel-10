@@ -8,10 +8,10 @@ use App\Models\JadwalUser;
 use App\Models\Shift;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalUserController extends Controller
 {
@@ -125,7 +125,7 @@ class JadwalUserController extends Controller
         $options->set('defaultFont', 'Arial');
 
         $pdf = new Dompdf($options);
-        $html = view('admin.jadwal.export', compact('expPDF', 'base64', 'totalHari','currentYear', 'currentMonth','str1', 'end1'))->render();
+        $html = view('admin.jadwalUser.export', compact('expPDF', 'base64', 'totalHari','currentYear', 'currentMonth','str1', 'end1'))->render();
         $pdf->loadHtml($html);
 
         $pdf->setPaper('A4', 'landscape');
