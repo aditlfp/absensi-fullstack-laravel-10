@@ -8,7 +8,7 @@
                             <tr>
                                 <th rowspan="2" class="p-2 pl-4 bg-gray-200">#</th>
                                 <th rowspan="2" class="p-2 bg-gray-200">Nama Lengkap</th>
-                                <th colspan="31" class="p-2 bg-gray-200">Tanggal</th>
+                                <th colspan="{{ $totalHari + 1 }}" class="p-2 bg-gray-200">Tanggal</th>
                             </tr>
                             @php
                                 $starte = \Carbon\Carbon::createFromFormat('Y-m-d', $str1);

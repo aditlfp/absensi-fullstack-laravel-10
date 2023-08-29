@@ -119,6 +119,7 @@ class AdminController extends Controller
         $dataUser = User::all();
         $divisi = Divisi::all();
         $user = Absensi::all();
+        $mit = Kerjasama::all();
         $str1 = $this->str;
         $end1 = $this->ended;
         
@@ -133,11 +134,14 @@ class AdminController extends Controller
             
          $expPDF = User::with(['absensi' => function ($query) use ($str1, $end1) {
             return $query->whereBetween('created_at', [$str1, $end1]);
+        }, 'jadwalUser' => function ($query) use ($str1, $end1) {
+            return $query->whereBetween('created_at', [$str1, $end1]);
         }])->when($mitra, function($query) use ($mitra) {
             return $query->where('kerjasama_id', $mitra);
         })->when($divisiId, function($query) use ($divisiId) {
             return $query->where('devisi_id', $divisiId);
         })->get();
+
 
         $path = 'logo/sac.png';
         $type = pathinfo($path, PATHINFO_EXTENSION);
@@ -150,7 +154,7 @@ class AdminController extends Controller
         $options->set('defaultFont', 'Arial');
 
         $pdf = new Dompdf($options);
-        $html = view('admin.absen.exportV2', compact('expPDF', 'base64', 'totalHari', 'user', 'dataUser', 'currentYear', 'currentMonth', 'divisi', 'libur', 'str1', 'end1'))->render();
+        $html = view('admin.absen.exportV2', compact('expPDF', 'base64', 'totalHari', 'user', 'dataUser', 'currentYear', 'currentMonth', 'divisi', 'libur', 'str1', 'end1', 'mit', 'mitra'))->render();
         $pdf->loadHtml($html);
 
         $pdf->setPaper('A4', 'landscape');
