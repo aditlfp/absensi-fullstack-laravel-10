@@ -130,7 +130,7 @@ class AdminController extends Controller
         
         $totalHari =  Carbon::parse($this->ended)->diffInDays(Carbon::parse($this->str));
         
-        if($request->has(['kerjasama_id','divisi_id', 'libur', 'end1', 'str1'])) {
+        if($request->has(['kerjasama_id', 'libur', 'end1', 'str1'])) {
             
          $expPDF = User::with(['absensi' => function ($query) use ($str1, $end1) {
             return $query->whereBetween('created_at', [$str1, $end1]);
