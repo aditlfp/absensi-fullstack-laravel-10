@@ -77,6 +77,7 @@ Route::middleware('auth', 'leader', 'apdt')->group(function () {
     Route::patch('/LEADER/leader-absensi/denied/{id}', [IzinController::class, 'updateDenied'])->name('lead_denied');
 
     Route::get('/LEADER/leader-jadwal-new', [JadwalUserController::class, 'processDate'])->name('store.processDate');
+    Route::get('/LEADER/leader-jadwal-export', [JadwalUserController::class, 'exportJadwal'])->name('lead_jadwal_export');
 });
 
 Route::middleware('auth', 'admin', 'apdt')->group(function () {

@@ -43,6 +43,7 @@
 	</style>
 </head>
 
+<body>
 <main>
 	@php
 		$starte = \Carbon\Carbon::createFromFormat('Y-m-d', $str1);
