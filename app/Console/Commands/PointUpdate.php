@@ -35,7 +35,7 @@ class PointUpdate extends Command
         foreach ($abs as $key) {
             if ($key->keterangan == 'masuk') {
                 foreach ($point as $value) {
-                    if ($key->point_id == $value->id && $key->kerjasama->client_id == $value->client_id && $key->point_id == null) {
+                    if ($key->kerjasama->client_id == $value->client_id && $key->point_id == null) {
                         $cId = $key->kerjasama->where('client_id', $value->client_id);
                         Absensi::where('id', $key->id)->update(['point_id', $cId->point_id]);
                     }
