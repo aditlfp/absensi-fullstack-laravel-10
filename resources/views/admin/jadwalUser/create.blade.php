@@ -105,7 +105,7 @@
                                                                                 </div>
                                                                                 <div class="mt-4">
                                                                                     <x-input-label for="tanggal" :value="__('Tanggal')" />
-                                                                                    <input type="date" name="tanggal" value="{{ $date->format('Y-m-d') }}" class="input input-bordered w-full">
+                                                                                    <input readonly type="date" name="tanggal" value="{{ $date->format('Y-m-d') }}" class="input input-bordered w-full">
                                                                                     <x-input-error :messages="$errors->get('tanggal')" class="mt-2" />
                                                                                 </div>
                                                                                 <div class="mt-4">
@@ -127,7 +127,7 @@
                                                                                     <select name="status" id="status" class="select select-bordered font-thin w-full">
                                                                                         <option disabled selected>~ Pilih Status ~</option>
                                                                                         <option value="M">M</option>
-                                                                                        <option value="-">Libur</option>
+                                                                                        <option value="OFF">Libur</option>
                                                                                     </select>
                                                                                     <x-input-error :messages="$errors->get('status')" class="mt-2" />
                                                                                 </div>
