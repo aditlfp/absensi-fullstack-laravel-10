@@ -26,6 +26,7 @@
 			#map {
 				height: 180px;
 			}
+			
 		</style>
 	
 	</head>

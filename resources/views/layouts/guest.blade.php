@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>{{ env('APP_NAME', 'Absensi SAC-PO') }}</title>
+	<title>{{ env('APP_NAME', 'Kinerja SAC-PO') }}</title>
 	<link rel="shortcut icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon">
 
 

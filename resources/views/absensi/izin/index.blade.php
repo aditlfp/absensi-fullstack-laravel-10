@@ -1,10 +1,8 @@
 <x-app-layout>
     <x-main-div>
         <div class="py-10">
-			<p class="text-center text-2xl uppercase font-bold">Riwayat izin Saya</p>
-            <div class="">
-                <x-search/>
-            </div>
+			<p class="text-center text-2xl uppercase font-bold pb-10">Riwayat izin Saya</p>
+            
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
                 <div class="overflow-x-scroll w-full md:overflow-hidden mx-2 sm:mx-0 sm:w-full">
                     <table class="table table-xs table-zebra w-full bg-slate-50 rounded-xl" id="searchTable">
@@ -14,7 +12,7 @@
                                 <th class="bg-slate-300">Nama lengkap</th>
                                 <th class="bg-slate-300">Mitra</th>
                                 <th class="bg-slate-300">Shift</th>
-                                <th class="bg-slate-300">alasan izin</th>
+                                <th class="bg-slate-300 px-10">alasan izin</th>
                                 <th class="bg-slate-300 rounded-tr-xl">status</th>
                             </tr>
                         </thead>

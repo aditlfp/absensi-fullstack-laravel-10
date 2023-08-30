@@ -53,7 +53,7 @@
 					<textarea name="deskripsi" id="deskripsi" value="" placeholder="deskripsi..."
 					 class="w-full textarea textarea-bordered"></textarea>
 				</div>
-				<div class="flex flex-col">
+				<div class="flex-col hidden">
 					<label>Keterangan: </label>
 					<div class="flex justify-end mt-1">
 						<input name="keterangan" type="radio" value="lembur" checked class="radio cursor-pointer checked:bg-blue-500"><span

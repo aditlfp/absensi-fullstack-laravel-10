@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>{{ env('APP_NAME', 'Absensi SAC-PONOROGO') }}</title>
+	<title>{{ env('APP_NAME', 'Kinerja SAC-PONOROGO') }}</title>
 	<link rel="shortcut icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon">
 
 	<!-- Fonts -->
@@ -130,6 +130,7 @@
 						preview.find('.img1').attr('src', e.target.result);
 						preview.removeClass('hidden');
 						preview.find('.img1').addClass('rounded-md shadow-md my-4');
+						$('.iImage1').removeClass('flex').addClass('hidden');
 					};
 
 					reader.readAsDataURL(input.files[0]);
@@ -159,6 +160,7 @@
 						preview.find('.img2').attr('src', e.target.result);
 						preview.removeClass('hidden');
 						preview.find('.img2').addClass('rounded-md shadow-md my-4');
+						$('.iImage2').removeClass('flex').addClass('hidden');
 					};
 
 					reader.readAsDataURL(input.files[0]);
@@ -176,6 +178,7 @@
 						preview.find('.img3').attr('src', e.target.result);
 						preview.removeClass('hidden');
 						preview.find('.img3').addClass('rounded-md shadow-md my-4');
+						$('.iImage3').removeClass('flex').addClass('hidden');
 					};
 
 					reader.readAsDataURL(input.files[0]);
