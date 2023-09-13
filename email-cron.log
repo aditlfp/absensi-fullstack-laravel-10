@@ -1,0 +1,68 @@
+  2023-09-12 13:11:54 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:11:54 App\Mail\AbsensiNotification  2023-09-12 13:11:54 App\Mail\AbsensiNotification ................... ................... RUNNING
+ RUNNING
+  2023-09-12 13:12:00 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:12:03 App\Mail\AbsensiNotification .................. 8dt DONE
+  2023-09-12 13:12:23 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:12:28 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:12:29 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:12:29 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:12:30 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:12:34 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:12:34 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:12:35 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:12:35 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:12:36 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:12:36 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:12:40 App\Mail\AbsensiNotification .................. 6dt DONE
+  2023-09-12 13:12:40 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:12:41 App\Mail\AbsensiNotification .................. 6dt DONE
+  2023-09-12 13:12:41 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:12:42 App\Mail\AbsensiNotification .................. 6dt DONE
+  2023-09-12 13:12:42 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:12:46 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:12:47 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:12:48 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:14:38 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:14:44 App\Mail\AbsensiNotification .................. 6dt DONE
+
+   ErrorException 
+
+  include(): Read of 4355 bytes failed with errno=12 Cannot allocate memory
+
+  at absensi-sac.sac-po.com/vendor/composer/ClassLoader.php:582
+    578▕          * @param  string $file
+    579▕          * @return void
+    580▕          */
+    581▕         self::$includeFile = \Closure::bind(static function($file) {
+  ➜ 582▕             include $file;
+    583▕         }, null, null);
+    584▕     }
+    585▕ }
+    586▕
+
+      [2m+23 vendor frames [22m
+
+  24  absensi-sac.sac-po.com/artisan:35
+      Illuminate\Foundation\Console\Kernel::handle()
+
+  2023-09-12 13:18:05 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:18:13 App\Mail\AbsensiNotification .................. 7dt DONE
+  2023-09-12 13:23:44 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:23:50 App\Mail\AbsensiNotification .................. 6dt DONE
+  2023-09-12 13:40:32 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:40:38 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:44:58 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:45:05 App\Mail\AbsensiNotification .................. 6dt DONE
+  2023-09-12 13:47:47 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:47:54 App\Mail\AbsensiNotification .................. 6dt DONE
+  2023-09-12 13:50:23 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:50:29 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:52:50 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:52:56 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 13:53:00 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 13:53:06 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 14:15:05 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 14:15:11 App\Mail\AbsensiNotification .................. 5dt DONE
+  2023-09-12 14:23:47 App\Mail\AbsensiNotification ................... RUNNING
+  2023-09-12 14:23:53 App\Mail\AbsensiNotification .................. 5dt DONE
