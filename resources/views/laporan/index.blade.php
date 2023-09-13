@@ -17,9 +17,15 @@
 								<thead>
 									<tr>
 										<th class="bg-slate-300 rounded-tl-2xl">#</th>
+<<<<<<< HEAD
 										<th class="bg-slate-300">Sebelum</th>
 										<th class="bg-slate-300 px-3">Proses</th>
 										<th class="bg-slate-300">Sesudah</th>
+=======
+										<th class="bg-slate-300 ">Sebelum</th>
+										<th class="bg-slate-300 ">Proses</th>
+										<th class="bg-slate-300 ">Sesudah</th>
+>>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 										<th class="bg-slate-300 ">Nama</th>
 										<th class="bg-slate-300 ">Mitra</th>
 										<th class="bg-slate-300 ">Ruangan</th>

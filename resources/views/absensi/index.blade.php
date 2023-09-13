@@ -20,6 +20,25 @@
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
 		integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<title>{{ env('APP_NAME', 'KINERJA SAC-PONOROGO') }}</title>
+	<link rel="shortcut icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon">
+
+	<link rel="preconnect" href="https://fonts.bunny.net">
+	<link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+	<script src="{{ URL::asset('src/js/jquery-min.js') }}"></script>
+	<!-- Scripts -->
+	@vite(['resources/css/app.css', 'resources/js/app.js'])
+
+	{{-- Leaflet --}}
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+		integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
@@ -52,8 +71,7 @@
 									class="ri-camera-fill"></i></button>
 						</div>
 						<div class="p-1 rounded my-3">
-						    <p class="text-xs italic text-center text-white" id="msg">Pastikan Map Sudah Muncul Sebelum ABSENSI</p>
-							<div id="map"></div>
+						    <div id="map"></div>
 						</div>
 						<div class="flex flex-col gap-2">
 							<div class="flex flex-col justify-between">
@@ -71,11 +89,13 @@
 								<select name="shift_id" id="shift_id" class="select select-bordered font-thin">
 									<option disabled selected>-- Pilih Shift --</option>
 									@forelse ($shift as $i)
-											@if (Auth::user()->devisi_id == $i->jabatan->divisi_id && Auth::user()->kerjasama->client_id == $i->client_id)
-												<option value="{{ $i->id }}"> {{ $i->jabatan->name_jabatan }} | {{ $i->shift_name }} |
-													{{ $i->jam_start }}</option>
-											@else
-											@endif
+									@if(Auth::user()->kerjasama->client_id == $i->client_id )
+									@if(Auth::user()->devisi_id == $i->jabatan->divisi_id)
+										<option value="{{ $i->id }}" > {{$i->jabatan->name_jabatan}} | {{ $i->shift_name }} | {{ $i->jam_start }}</option>
+										@else
+										@endif
+									@else
+									@endif
 									@empty
 										<option>~ Tidak ad Shift ! ~</option>
 									@endforelse
@@ -117,98 +137,77 @@
 									$hasJadwal = false;
 								@endphp
 								@forelse ($jadwal as $jad)
-									@php
-										$tanggal = strtotime($jad->tanggal);
-										$jadi = date('Y-m-d', $tanggal);
-									@endphp
-									@if ($jadi == $today)
-									<span id="tangg" mangsud="{{ $jad->tanggal }}" hidden></span>
-										<span readonly class="textarea textarea-bordered font-semibold capitalize flex gap-2" disabled>
-										    <span class="flex flex-col">
-										        <span>Tanggal :</span>
-										        <span>Shift :</span>
-										        <span>Area :</span>
-										    </span>
-										    <span class="flex flex-col">
-										        <span>{{ $jad->tanggal }}</span>
-										        <span>{{ $jad->shift->shift_name }}</span>
-										        <span>{{ $jad->area }}</span>
-										    </span>
-										    <!--Tanggal : {{ $jad->tanggal }}, <br> Shift : {{ $jad->shift->shift_name }}, <br> Area : {{ $jad->area }}-->
-										</span>
-										@php
-											$hasJadwal = true;
-										@endphp
-									@break
+								@if ($jad->tanggal == Carbon\Carbon::now()->format('Y-m-d'))
+									<span class="input input-bordered" disabled>Tanggal: {{ $jad->tanggal }}, Shift: {{ $jad->shift->shift_name }}, Area: {{ $jad->area }}</span>
+								@else
+								    <span class="input input-bordered" disabled>Tidak Ada Jadwal</span>
 								@endif
-							@empty
-							@endforelse
-							@if (!$hasJadwal)
-								<span class="input input-bordered flex justify-center items-center">
-									<span disabled>Belum Ada Jadwal !!</span>
-								</span>
-							@endif
+								@break
+								@empty
+								@endforelse
+							</div>
+							{{-- <div class="flex flex-col">
+								<label>Keterangan: </label>
+								<div class="flex justify-end mt-1">
+										<input name="keterangan" type="radio" value="masuk" class="radio cursor-pointer checked:bg-blue-500"><span
+										class="mx-2">Masuk</span>
+									<input name="keterangan" type="radio" value="izin" class="radio cursor-pointer checked:bg-red-500"><span
+										class="mx-2">Izin</span>
+								</div>
+							</div> --}}
+							<input type="text" id="image" name="image" class="image-tag" hidden>
+							<input type="text" name="keterangan" value="masuk" hidden>
 						</div>
-
-						<input type="text" id="image" name="image" class="image-tag" hidden>
-						<input type="text" name="keterangan" value="masuk" hidden>
-					</div>
-					<input type="text" class="hidden" name="absensi_type_masuk" value="1">
-					@php
-						$key = Auth::user()->id;
-						$today = Carbon\Carbon::now()->format('Y-m-d');
-						$hasJadwal = false;
-					@endphp
-					<div class="flex justify-center sm:justify-end gap-3 mt-2 mr-2">
-						@forelse ($absensi as $abs)
-							{{-- sudah --}}
-						@if ($abs->tanggal_absen == Carbon\Carbon::now()->format('Y-m-d'))
+						<input type="text" class="hidden" name="absensi_type_masuk" value="1">
+						@php
+							$key = Auth::user()->id;
+						@endphp
+							<div class="flex justify-center sm:justify-end gap-3 mt-2 mr-2">
+								@forelse ($absensi as $abs)
+								{{-- sudah --}}
+								@if ($abs->tanggal_absen == Carbon\Carbon::now()->format('Y-m-d'))
 								<button class="p-2 my-2 px-4 text-slate-100 bg-blue-300  rounded transition-all ease-linear .2s disabled cursor-not-allowed" disabled>Sudah Absen</button>
 								{{-- belum --}}
 								@else
 									<button class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
 								@endif
 								@break
-
-					@empty
-						<button
-							class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
-					@endforelse
-					<a href="{{ route('dashboard.index') }}"
-						class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
-						Back
-					</a>
+								@empty
+								<button class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
+								@endforelse
+									<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
+									Back
+									</a>
+							</div>
+						<input class="hidden" id="thisId" value="{{ Auth::user()->id }}">
+						@php
+							$mytime = Carbon\Carbon::now()->format('H:m:s');
+							$mytime2 = '10:00:00';
+						@endphp
+						<input class="hidden" id="thisTime" value="{{ $mytime }}">
+						<input class="hidden" id="thisTime2" value="{{ $mytime2 }}">
+						<input class="hidden" id="isi" name="absensi_type_pulang" value="okok">
+						<input id="lat" name="lat_user" value="" class="hidden"/>
+						<input id="long" name="long_user" value="" class="hidden"/>
+					</form>
 				</div>
-				<input class="hidden" id="thisId" value="{{ Auth::user()->id }}">
-				@php
-					$mytime = Carbon\Carbon::now()->format('H:m:s');
-					$mytime2 = '10:00:00';
-				@endphp
-				<input class="hidden" id="thisTime" value="{{ $mytime }}">
-				<input class="hidden" id="thisTime2" value="{{ $mytime2 }}">
-				<input class="hidden" id="isi" name="absensi_type_pulang" value="okok">
-				<input id="lat" name="lat_user" value="" class="hidden" />
-				<input id="long" name="long_user" value="" class="hidden" />
-			</form>
+			</main>
 		</div>
-	</main>
-</div>
-</div>
-<div class="flex justify-center">
-<div class="fixed bottom-0 z-[999]">
-	<x-menu-mobile />
-</div>
-</div>
-
-<!-- Configure a few settings and attach camera -->
-<script language="JavaScript">
-	Webcam.set({
-		width: 320,
-		height: 240,
-		image_format: 'jpeg',
-		jpeg_quality: 80
-	});
-	Webcam.attach('#my_camera');
+	</div>
+	<div class="flex justify-center">
+		<div class="fixed bottom-0 z-[999]">
+			<x-menu-mobile />
+		</div>
+	</div>
+	<!-- Configure a few settings and attach camera -->
+	<script language="JavaScript">
+		Webcam.set({
+			width: 320,
+			height: 240,
+			image_format: 'jpeg',
+			jpeg_quality: 80
+		});
+		Webcam.attach('#my_camera');
 
 	function take_snapshot() {
 		Webcam.snap(function(data_uri) {
@@ -220,31 +219,22 @@
 	}
 </script>
 
-<script>
-	var lat = document.getElementById('lat')
-	var long = document.getElementById('long')
-	var msg = document.getElementById('msg')
-    
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function (position) {
-            // Call the showPosition function with the obtained position
-            showPosition(position);
-    
-            // Hide the message after obtaining the geolocation
-            msg.classList.add('hidden');
-        });
-	} else {
-	    msg.classList.remove('hidden');
-	}
-	
-	function showPosition(position) {
-		lat.value = position.coords.latitude;
-		long.value = position.coords.longitude;
-		
-		var lati = "{{ $harLok->latitude }}"
-		var longi = "{{ $harLok->longtitude }}"
-		var radi = "{{ $harLok->radius }}"
-		var client = "{{ $harLok->client->name }}"
+    <script>
+        var lat = document.getElementById('lat')
+        var long = document.getElementById('long')
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+        function showPosition(position) {
+            lat.value = position.coords.latitude;
+            long.value = position.coords.longitude;
+
+			var lati = "{{ $harLok->latitude }}"
+			var longi = "{{ $harLok->longtitude }}"
+			var radi = "{{ $harLok->radius }}"
+			var client = "{{$harLok->client->name}}"
 
 		var latitude = position.coords.latitude; // Ganti dengan latitude Anda
 		var longitude = position.coords.longitude; // Ganti dengan longitude Anda
@@ -262,12 +252,10 @@
 				fillColor: '#f09',
 				fillOpacity: 0.5,
 				radius: radi
-			}).addTo(map).bindPopup("Lokasi absen: " + client)
-			.openPopup();
-			
-	}
-	
-</script>
+			}).addTo(map).bindPopup("Lokasi absen: "+ client)
+                .openPopup();
+        }
+    </script>
 </body>
 
 </html>

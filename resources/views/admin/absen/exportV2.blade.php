@@ -50,6 +50,7 @@
 			$starte = \Carbon\Carbon::createFromFormat('Y-m-d', $str1);
 			$ende = \Carbon\Carbon::createFromFormat('Y-m-d', $end1);
 		@endphp
+<<<<<<< HEAD
 		<div>
     		<div class="title">
     			<img class="hero" src="{{ $base64 }}" width="60px">
@@ -68,6 +69,24 @@
     			<span style="text-align: center; display: inline-block;">{{ $starte->isoFormat('D-MMMM-Y') }} /
     				{{ $ende->isoFormat('D-MMMM-Y') }}</span>
     		</div>
+=======
+		<div class="title">
+			<img class="hero" src="{{ $base64 }}" width="60px">
+			<span class="sub-title" style="vertical-align: 20px; font-weight: bolder; font-size: 25px;">Rekab Absensi PT. Surya
+				Amanah Cendekia</span>
+		</div>
+		<div style="text-align: center; margin: 16px auto 12px auto; font-size: 14px; ">
+			@foreach ($mit as $mitName)
+				<span style="display: inline-block; font-weight: bold;">
+					@if ($mitName->id == $mitra)
+						{{ $mitName->client->name }}
+					@endif
+				</span>
+			@endforeach
+			<br>
+			<span style="text-align: center; display: inline-block;">{{ $starte->isoFormat('D-MMMM-Y') }} /
+				{{ $ende->isoFormat('D-MMMM-Y') }}</span>
+>>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 		</div>
 		<div class="table-wrapper">
 			<table class="border">
@@ -98,7 +117,10 @@
 					@endphp
 					@forelse ($sortedData as $data)
 						@if ($previousUser != $data->nama_lengkap)
+<<<<<<< HEAD
 						    @if($data->nama_lengkap != 'admin' && $data->nama_lengkap != 'user' && $data->nama_lengkap != 'SUBHAN SANTOSA')
+=======
+>>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 							<tr>
 								<!--Valid name cuy-->
 								@php
@@ -125,7 +147,11 @@
 								@php
 									$startDate = $user->min('created_at')->startOfMonth();
 									$endDate = $user->max('created_at')->endOfMonth();
+<<<<<<< HEAD
 									$hari = $totalHari + 1;
+=======
+									
+>>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 									$period = Carbon\CarbonPeriod::create($startDate, $endDate);
 									$numberOfDays = $period->count();
 									$m = $data->absensi->where('keterangan', 'masuk')->count();
@@ -134,7 +160,11 @@
 									$total = $m + $z + $t;
 									
 									if ($total != 0) {
+<<<<<<< HEAD
 									    $total = round(($m + $libur) * 100 / $hari + 2.774193548387096);
+=======
+									    $total = round((100 / 26) * $m, 1);
+>>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 									} else {
 									    $total = '0';
 									}
@@ -150,7 +180,10 @@
 									<td id="persen" style="background-color: rgb(250, 114, 65)">{{ $total }}%</td>
 								@endif
 							</tr>
+<<<<<<< HEAD
 							@endif
+=======
+>>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 						@endif
 					@empty
 						<td colspan="31" class="text-center">Kosong</td>
@@ -178,6 +211,7 @@
 
 	{{-- section jadwal user --}}
 	<section class="page-break">
+<<<<<<< HEAD
 		@php
 			$starte = \Carbon\Carbon::createFromFormat('Y-m-d', $str1);
 			$ende = \Carbon\Carbon::createFromFormat('Y-m-d', $end1);
@@ -200,6 +234,13 @@
     			<span style="text-align: center; display: inline-block;">{{ $starte->isoFormat('D-MMMM-Y') }} /
     				{{ $ende->isoFormat('D-MMMM-Y') }}</span>
     		</div>
+=======
+		<div class="title">
+			<img class="hero" src="{{ $base64 }}" width="60px">
+			<span class="sub-title" style="vertical-align: 20px; font-weight: bolder; font-size: 25px;">Jadwal PT. Surya
+				Amanah Cendekia</span>
+			<span></span>
+>>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 		</div>
 		<div>
 			<table>
