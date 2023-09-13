@@ -57,7 +57,7 @@
 									<td><img src="{{ asset('storage/images/' . $i->image) }}" alt="" srcset="" width="120px"></td>
 								@endif
 								<td>{{ $i->name }}</td>
-								<td>{{ $i->nama_lengkap }}</td>
+								<td>{{ $i->nama_lengkap?$i->nama_lengkap : 'NAMA LENGKAP KOSONG' }}</td>
 								<td>{{ $i->email }}</td>
 								<td>Client Saat Ini Kosong</td>
 								<td>

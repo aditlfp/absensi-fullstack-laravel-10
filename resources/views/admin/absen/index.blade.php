@@ -6,7 +6,6 @@
 			    <div class="flex justify-between items-center w-full">
     			    <div>
     					<form id="filterForm" action="{{ route('admin.absen') }}" method="GET" class="p-1 flex">
-    						@csrf
     						<select name="filterKerjasama" id="filterKerjasama" class="select select-bordered active:border-none border-none">
     							<option selected disabled>~ Kerja Sama ~</option>
     							@foreach ($absenSi as $i)
@@ -98,7 +97,7 @@
 							<th class="bg-slate-300 rounded-tl-2xl">#</th>
 							<th class="bg-slate-300 ">Photo</th>
 							<th class="bg-slate-300 ">Nama User</th>
-							<th class="bg-slate-300 ">Tanggal</th>
+							<th class="bg-slate-300 px-10">Tanggal</th>
 							<th class="bg-slate-300 ">Shift</th>
 							<th class="bg-slate-300 ">Client</th>
 							<th class="bg-slate-300 ">Jam Masuk</th>
@@ -115,9 +114,13 @@
 							<tr>
 								<td>{{ $no++ }}</td>
 								<td><img class="lazy" src="{{asset('storage/images/'.$arr->image)}}" alt="data-absensi-image" width="120px"/></td>
-								<td class="break-words whitespace-pre-line">{{ $arr->user->nama_lengkap }}</td>
+								<td class="break-words whitespace-pre-line">{{ $arr->user?$arr->user->nama_lengkap : $arr->user_id . 'AKU KOSONG' }}</td>
 								<td>{{ $arr->tanggal_absen }}</td>
+								@if($arr->shift != null)
 								<td id="mitra">{{ $arr->shift->shift_name }}</td>
+					            @else
+					            <td class="break-words whitespace-pre-wrap text-red-500 font-semibold">Shift Kosong</td>
+					            @endif
 								<td class="break-words whitespace-pre-line">{{ $arr->kerjasama->client->name }}</td>
 								<td>{{ $arr->absensi_type_masuk }}</td>
 								{{-- Handle Absensi Type Pulang --}}
@@ -184,7 +187,7 @@
 				</table>
 			</div>
 			<div class="mt-4 mx-10 ">
-				{{ $absen->links()}}
+    				{{ $absen->links()}}
 			</div>
 		</div>
 	</x-main-div>

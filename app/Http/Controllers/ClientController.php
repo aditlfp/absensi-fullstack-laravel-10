@@ -44,7 +44,12 @@ class ClientController extends Controller
         }else{
             toastr()->error('Logo harus ditambahkan', 'error');
         }
+        try {
             Client::create($client);
+        } catch(\Illuminate\Database\QueryException $e){
+           toastr()->error('Data Sudah Ada', 'error');
+           return redirect()->back();
+        }
             toastr()->success('Client Berhasil Ditambahkan', 'success');
             return redirect()->to(route('data-client.index'));
 
@@ -93,9 +98,15 @@ class ClientController extends Controller
             }
 
             $client['logo'] = UploadImage($request, 'logo');
+        }else{
+            $client['logo'] = $request->oldimage;
         }
-        
-        Client::findOrFail($id)->update($client);
+         try {
+            Client::findOrFail($id)->update($client);
+        } catch(\Illuminate\Database\QueryException $e){
+           toastr()->error('Data Sudah Ada', 'error');
+           return redirect()->back();
+        }
         toastr()->success('Client berhasil diedit', 'success');
         return redirect()->to(route('data-client.index'));
     }

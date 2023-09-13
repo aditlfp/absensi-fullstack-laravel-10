@@ -15,7 +15,7 @@
 							<th class="bg-slate-300 rounded-tl-2xl">#</th>
 							<th class="bg-slate-300 ">Jabatan</th>
 							<th class="bg-slate-300 ">Name Client</th>
-							<th class="bg-slate-300 ">Waktu Shift</th>
+							<th class="bg-slate-300 ">Nama Shift</th>
 							<th class="bg-slate-300 ">Jam Mulai</th>
 							<th class="bg-slate-300 ">Jam Selesai</th>
 							<th class="bg-slate-300 rounded-tr-2xl">Action</th>
@@ -29,7 +29,11 @@
 							<tr>
 								<td>{{ $no++ }}</td>
 								<td>{{ $i->jabatan->name_jabatan }}</td>
-								<td class="break-words whitespace-pre-wrap">{{ $i->client->name }}</td>
+								@if($i->client != null)
+								    <td class="break-words whitespace-pre-wrap">{{ $i->client->name}}</td>
+								@else
+								    <td class="break-words whitespace-pre-wrap text-red-500">Kosong</td>
+								@endif
 								<td>{{ $i->shift_name }}</td>
 								<td>{{ $i->jam_start }}</td>
 								<td>{{ $i->jam_end }}</td>

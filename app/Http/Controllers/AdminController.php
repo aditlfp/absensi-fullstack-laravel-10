@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AdminController extends Controller
 {
@@ -28,28 +29,67 @@ class AdminController extends Controller
         $user = User::count();
         $client = Client::count();
         $shift = Shift::all();
+        
+        
 
 
         return view('admin.index',
         [
             'user' => $user,
             'client' => $client,
-            'shift' => $shift
+            'shift' => $shift,
     ]);
+    }
+    public function getUptime()
+    {
+        $startTime = Cache::get('app_start_time');
+        $currentTime = now();
+        $uptime = $currentTime->diffInSeconds($startTime);
+        
+        // Menambahkan waktu yang telah berlalu sejak app_start_time ke waktu sekarang
+        $uptime += $currentTime->day * 24 * 3600;
+        
+        $days = intdiv($uptime, 86400); // 86400 detik dalam satu hari
+        $uptime %= 86400; // Sisa detik setelah menghitung hari
+        
+        $hours = intdiv($uptime, 3600);
+        $minutes = intdiv(($uptime % 3600), 60);
+        $seconds = $uptime % 60;
+        
+        // Menampilkan "hari" jika jumlah hari adalah 1, dan "hari" jika lebih dari 1
+        $daysLabel = $days == 1 ? 'Hari' : 'Hari';
+        
+        $formattedUptime = sprintf('%d %s %02d:%02d:%02d', $days, $daysLabel, $hours, $minutes, $seconds);
+        
+        return response()->json(['uptime' => $formattedUptime]);
+
     }
 
     public function absen(Request $request)
     {
-        $user = User::all();
-        $absenSi = Kerjasama::all();
-        $point = Point::all();
-        $divisi = Divisi::all();
-                
-        $absen = Absensi::query();
-        $absen->when($request->filterKerjasama, function($query) use($request) {
-            return $query->where('kerjasama_id', 'like', '%'. $request->filterKerjasama. '%');
-        });
-        return view('admin.absen.index',['absen' => $absen->orderBy('tanggal_absen', 'desc')->paginate(25), 'absenSi' => $absenSi, 'point' => $point, 'divisi' => $divisi]);
+        
+        $filter = $request->filterKerjasama;
+        
+        if($filter)
+        {
+            $user = User::all();
+            $absenSi = Kerjasama::all();
+            $point = Point::all();
+            $divisi = Divisi::all();
+            $absen = Absensi::where('kerjasama_id', $filter)->orderBy('tanggal_absen', 'desc')->paginate(999999999);
+        }
+        else
+        {
+            $user = User::all();
+            $absenSi = Kerjasama::all();
+            $point = Point::all();
+            $divisi = Divisi::all();
+                    
+            $absen = Absensi::orderBy('tanggal_absen', 'desc')->paginate(25);
+        }
+        
+       
+        return view('admin.absen.index',['absen' => $absen, 'absenSi' => $absenSi, 'point' => $point, 'divisi' => $divisi]);
     }
 
     public function izin()

@@ -31,7 +31,7 @@
 			<!-- client -->
 			<div class="mt-4">
 				<x-input-label for="client" :value="__('Client')" />
-				<select name="kerjasama_id" id="" class="select select-bordered w-full mt-1">
+				<select name="kerjasama_id" id="kerjasama_id" class="select select-bordered w-full mt-1">
 					<option disabled>~ Pilih Client ~</option>
 					@foreach ($client as $i)
 						<option name="kerjasama_id" {{ $dataUser->kerjasama_id == $i->id ? 'selected' : '' }}  value="{{ $i->id }}" class="py-2">{{ $i->name }}</option>
@@ -41,7 +41,7 @@
 			<!-- client -->
 			<div class="mt-4">
 				<x-input-label for="divisi" :value="__('Divisi')" />
-				<select name="devisi_id" id="" class="select select-bordered w-full mt-1">
+				<select name="devisi_id" id="devisi_id" class="select select-bordered w-full mt-1">
 					<option selected disabled>~ Pilih Devisi ~</option>
 					@foreach ($dev as $i)
 						<option name="devisi_id" {{ $dataUser->devisi_id == $i->id ? 'selected' : '' }} value="{{ $i->id }}" class="py-2">{{ $i->name }}</option>
@@ -55,7 +55,7 @@
 				</div>
 				<x-input-label>Foto Profil</x-input-label>
 				<input type="text" name="oldimage" value="{{ $user->image }}" class="hidden"/>
-				<input type="file" class="file-input file-input-bordered w-full flex flex-row" id="img" name="image" />
+				<input type="file" class="file-input file-input-bordered w-full flex flex-row" id="img" name="image"/>
 				<x-input-error class="mt-2" :messages="$errors->get('img')" />
 			</div>
 			<div class="flex justify-end mt-10 gap-2">

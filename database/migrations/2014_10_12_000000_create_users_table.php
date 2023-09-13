@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('image');
             $table->rememberToken();
             $table->timestamps();
+            $table->date('last_notification_date')->nullable();
         });
     }
 

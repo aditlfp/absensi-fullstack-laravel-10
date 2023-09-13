@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Absensi;
 use Illuminate\Http\Request;
+use App\Http\Requests\RatingRequest;
 use App\Models\User;
 use App\Models\Rating;
 use Exception;
@@ -20,11 +21,15 @@ class RatingController extends Controller
         return view('rating.index', compact('user', 'absen', 'rating'));
     }
 
-    public function store(Request $request){
+    public function store(RatingRequest $request){
 
         $rate = new Rating();
 
         $rate = [
+            'leader_name' => $request->leader_name,
+            'mitra_name' => $request->mitra_name,
+            'isLeader' => $request->isLeader,
+            'isMitra' => $request->isMitra,
             'user_id' => $request->user_id,
             'rate' => $request->rate
         ];

@@ -10,6 +10,10 @@ class Rating extends Model
     use HasFactory;
 
     protected $fillable = [
+        'leader_name',
+        'mitra_name',
+        'isLeader',
+        'isMitra',
         'user_id',
         'rate'
     ];

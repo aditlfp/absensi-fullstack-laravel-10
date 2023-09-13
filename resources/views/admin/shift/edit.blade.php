@@ -4,7 +4,7 @@
         @method('put')
         @csrf
         <div>
-		<p class="text-center text-2xl font-bold my-10">Edit User</p>
+		<p class="text-center text-2xl font-bold my-10">Edit Shift</p>
         <div class="bg-slate-100 mx-10 my-10 px-10 py-5 rounded shadow">
             <!-- Jabatan -->
             <div class="flex flex-col">
@@ -31,7 +31,7 @@
                     @endforelse
                 </select>
             </div>
-            <!-- client -->
+            <!-- nama shift -->
             <div class="flex flex-col">
                 <label for="shift_name" class="label">Nama Shift</label>
                 <input type="text" name="shift_name" value="{{ $shift->shift_name }}" id="shift_name" class="input input-bordered" placeholder="masukkan nama shift...">

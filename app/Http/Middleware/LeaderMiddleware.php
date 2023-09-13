@@ -16,7 +16,7 @@ class LeaderMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->divisi->jabatan->code_jabatan != "MITRA")
+        if(Auth::user()->divisi->jabatan->code_jabatan != "LEADER")
         {
             toastr()->error('Anda Tidak Memiliki Wewenang', 'error');
             session()->flush();

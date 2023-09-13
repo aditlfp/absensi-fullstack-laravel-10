@@ -12,6 +12,9 @@ use App\Models\Shift;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AbsensiNotification;
+// use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 
 class AbsensiController extends Controller
@@ -45,7 +48,6 @@ class AbsensiController extends Controller
             $file = $folderPath . $fileName;
             Storage::put($file, $image_base64);
         // End Get Data Image With base64
-
             $latUser = $request->lat_user;
             $longUser = $request->long_user; // 125950.0
             // $latUser = -7.864453554822072;  
@@ -82,14 +84,23 @@ class AbsensiController extends Controller
             'tanggal_absen' => Carbon::now()->format('Y-m-d'),
             'image' => $fileName,
             'deskripsi' => $deskripsi,
+            'last_notification_date' => Carbon::today()->toDateString(),
         ];
 
-   Absensi::create($absensi);
+        Absensi::create($absensi);
         toastr()->success('Berhasil Absen Hari Ini', 'succes');
+        
+        $users = Auth::user();
+        
+        // // Mail::send('emails.test', [], function ($message) use ($users) {
+        // //     $message->to($users->email)
+        // //         ->subject('Notifikasi Berhasil Absensi');
+        // // });
+        
+        Mail::to($users->email)->queue(new AbsensiNotification);
+
         return redirect()->to(route('dashboard.index'));            
-         }else if($request->izin){
-            
-         } else {
+        }else {
             toastr()->error('Kamu Diluar Radius', 'Error');
             return redirect()->back();  
         }
@@ -144,13 +155,43 @@ class AbsensiController extends Controller
         // }
     }
 
-    public function historyAbsensi()
+    public function historyAbsensi(Request $request)
+    {
+        
+        $filter = $request->search;
+        $filter2 = Carbon::parse($filter);
+        
+        if ($filter) {
+            $user = Auth::user()->id;
+            $abs = Absensi::all();
+            $pointId = Point::all();
+            $point = Absensi::whereNotNull('point_id')->where('user_id', $user)->whereMonth('created_at', $filter2->month)->get();
+            $absen = Absensi::where('user_id', $user)->whereMonth('created_at', $filter2->month)->paginate(31);
+        } else {
+            $mon = Carbon::now()->month;
+            $user = Auth::user()->id;
+            $abs = Absensi::all();
+            $pointId = Point::all();
+            $point = Absensi::whereNotNull('point_id')->where('user_id', $user)->whereMonth('created_at', $mon)->get();
+            $absen = Absensi::where('user_id', $user)->whereMonth('created_at', $mon)->paginate(15);
+        }
+        
+        return view('absensi.history', [
+            'absen' => $absen,
+            'abs' => $abs,
+            'point' => $point,
+            'pointId' => $pointId
+        ]);
+    }
+    
+    public function historyAbsenFilter(Request $request)
     {
         $user = Auth::user()->id;
         $abs = Absensi::all();
         $pointId = Point::all();
-        $point = Absensi::whereNotNull('point_id')->where('user_id', $user)->get();
-        $absen = Absensi::where('user_id', $user)->paginate(10);
+        $point = Absensi::whereNotNull('point_id')->where('user_id', $user)->whereMonth('created_at', $parse->month)->get();
+        $absen = Absensi::query();
+       
         return view('absensi.history', [
             'absen' => $absen,
             'abs' => $abs,

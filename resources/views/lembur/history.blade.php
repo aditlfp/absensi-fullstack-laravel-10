@@ -1,15 +1,14 @@
 <x-app-layout>
 	<x-main-div>
-		<p class="text-center text-2xl font-bold py-10 uppercase">List Lembur</p>
+		<p class="text-center text-2xl font-bold py-10 uppercase">Riwayat Lembur</p>
 		<div class="">
 		<div class="overflow-x-auto  mx-2">
-			<table class="table  table-zebra w-full mb-5">
+			<table class="table table-xs bg-slate-50 table-zebra w-full mb-5">
 				<thead>
 					<tr>
-						<th class="hidden sm:block">#</th>
-						<th >Name</th>
-						<th>Lama Lembur</th>
-						<th>Tanggal Lembur</th>
+						<th class=" bg-slate-300 rounded-tl-2xl">#</th>
+						<th class="bg-slate-300">Lama Lembur</th>
+						<th class="bg-slate-300 rounded-tr-2xl">Tanggal Lembur</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -19,8 +18,7 @@
 					@forelse ($lembur as $i)
                     @if (Auth::user()->id == $i->user_id)
                         <tr>
-                            <td class="py-1 hidden sm:block">{{ $no++ }}</td>
-                            <td class="py-1">{{ $i->user->name }}</td>
+                            <td class="py-1 ">{{ $no++ }}</td>
                             @if ($i->jam_selesai == null)
                                 <td class="py-1">Belum Selesai Lembur</td>
                             @else
@@ -60,7 +58,7 @@
 				{{ $lembur->links() }}
 			</div>
 	</div>
-		<div class="flex justify-end py-5 mx-5 sm:pb-10">
+		<div class="flex justify-center sm:justify-end py-5 mx-5 sm:pb-10">
 			<a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>
 		</div>
 	</x-main-div>

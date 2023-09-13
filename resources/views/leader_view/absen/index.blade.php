@@ -3,11 +3,21 @@
         <div class="py-10">
             <p class="text-center text-xl uppercase font-bold ">Riwayat Absensi, {{ Auth::user()->kerjasama->client->name }}</p>
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
-                <div class="flex items-center my-5">
-                    <x-search />
+                <div class="flex justify-center items-center my-5">
+                        <div class="flex flex-col sm:flex-row items-center justify-center">
+                              <form action="{{ url("LEADER/leader-absensi")}}" method="GET" class="sm:flex sm:justify-start">
+                			    <div class="join sm:ml-10">
+                			        <input type="month" placeholder="pilih bulan..." class="join-item input input-bordered" name="search" id="search" />
+                			        <button type="submit" class="btn btn-info join-item">FILTER</button>
+                			    </div>
+        		              </form>
+        		              <div class="flex items-center mt-5">
+        		                <x-search />
+        		              </div>
+                        </div>
                 </div>
-                <div class="overflow-x-auto w-full md:overflow-hidden mx-2 sm:mx-0 sm:w-full ">
-                    <table id="searchTable" class="table w-full table-xs table-zebra sm:table-md text-xs bg-slate-50 font-semibold sm:text-md ">
+                <div class="overflow-x-auto w-full md:overflow-hidden mx-2 sm:mx-10">
+                    <table id="searchTable" class="table table-xs table-zebra sm:table-md text-xs bg-slate-50 font-semibold sm:text-md ">
                         <thead>
 							<tr >
 								<th class="p-1 py-2 bg-slate-300 rounded-tl-2xl">#</th>
@@ -28,7 +38,16 @@
                                 <td class="p-1  break-words whitespace-pre-wrap">{{ $i->user->nama_lengkap }}</td>
                                 <td class="p-1 ">{{ $i->shift->shift_name }}</td>
                                 <td class="p-1 ">{{ $i->tanggal_absen }}</td>
-                                <td class="p-1 ">{{ $i->absensi_type_masuk }} - {{ $i->absensi_type_pulang }}</td>
+                                <td class="p-1 ">
+                                {{ $i->absensi_type_masuk }} - 
+                                @if($i->absensi_type_pulang == null)
+                                    <span class="text-red-500 font-semibold capitalize">kosong</span>
+                                @elseif($i->absensi_type_pulang == 'Tidak Absen Pulang')
+                                    <span class="text-yellow-500 font-semibold capitalize">{{ $i->absensi_type_pulang }}</span>
+                                @else
+                                    {{ $i->absensi_type_pulang }}
+                                @endif
+                                </td>
                                 <td>
                                     @if ($i->keterangan == 'masuk')
                                     <span class=" badge badge-success gap-2 overflow-hidden">{{ $i->keterangan }}</span> 
@@ -40,7 +59,7 @@
                                 </td>
                             </tr>
                             @empty
-                                <tr>
+                                <tr class="text-center">
                                     <td colspan="7">
                                         ~ Data Kosong ~
                                     </td>

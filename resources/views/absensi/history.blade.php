@@ -1,19 +1,26 @@
 <x-app-layout> 
 	<x-main-div>
 		<div class="py-10">
-			<p class="text-center text-2xl uppercase font-bold text-white">Riwayat absensi Saya</p>
+			<p class="text-center text-2xl uppercase pb-10 font-bold ">Riwayat kehadiran Saya</p>
+		    <form action="{{ url("historyAbsensi")}}" method="GET" class="sm:flex sm:justify-start sm:mx-10">
+		        <label class="mx-10 label">Pilih Bulan</label>
+			    <div class="join ml-10">
+			        <input type="month" placeholder="pilih bulan..." class="join-item input input-bordered" name="search" id="search" />
+			        <button type="submit" class="btn btn-info join-item">search</button>
+			    </div>
+		    </form>
 			<div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
 				<div class="overflow-x-auto w-full md:overflow-hidden mx-2 sm:mx-0 sm:w-full">
-					<table class="table w-full table-xs sm:table-md text-sm sm:text-md scale-90 md:scale-90">
+					<table class="table w-full table-xs bg-slate-50 table-zebra sm:table-md text-sm sm:text-md scale-90 md:scale-90">
 						<thead>
 							<tr>
-								<th class="hidden sm:block">#</th>
-								<th>Shift</th>
-								<th>Tanggal</th>
-								<th>Absen Masuk</th>
-								<th>Absen Keluar</th>
-								<th>Status</th>
-								<th>Poin</th>
+								<th class="bg-slate-300 rounded-tl-2xl">#</th>
+								<th class="bg-slate-300 px-7">Shift</th>
+								<th class="bg-slate-300 px-7">Tanggal</th>
+								<th class="bg-slate-300">Absen Masuk</th>
+								<th class="bg-slate-300">Absen Keluar</th>
+								<th class="bg-slate-300">Status</th>
+								<th class="bg-slate-300 rounded-tr-2xl">Poin</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -34,7 +41,7 @@
 
 							@else
 								<tr>
-									<td class="hidden sm:block">{{ $no++ }}</td>
+									<td>{{ $no++ }}</td>
 									<td>{{ $arr->shift->shift_name }}</td>
 									<td>{{ $arr->tanggal_absen }}</td>
 									<td>{{ $arr->absensi_type_masuk }}</td>
@@ -69,7 +76,6 @@
 								</td>
 								{{-- EndHandle Keterangan --}}
                             
-                            
                             {{-- Handle Point Samping --}}
 							@if($arr->point_id != null)
 							    <td>
@@ -86,7 +92,7 @@
 					</tbody>
 				</table>
 			</div>
-				<span class=" bg-white p-4 rounded-md">
+				<span class=" bg-white p-4 rounded-md mt-10">
 				    @forelse($absen as $arr)
 					            @if($arr->point_id != null)
 							        	@php
@@ -94,7 +100,7 @@
 										    $kali = $point->count();
 										@endphp
                                         @if($arr->point_id != null)
-										    Total point anda <span class="underline font-semibold text-green-500">{{ $kali * $p }}</span>
+										    Total point anda <span class="underline font-semibold text-green-500">{{ toRupiah($kali * $p) }}</span>
 										@else
 										    Total point anda <span class="underline font-semibold text-green-500">0</span>
 										@endif
@@ -109,7 +115,7 @@
 			<div id="pag-1" class="mt-5 mb-5 mx-10">
 				{{ $absen->links() }}
 			</div>
-		<div class="flex justify-end">
+		<div class="flex justify-center sm:justify-end">
 		<a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>
 	</div>
 </x-main-div>

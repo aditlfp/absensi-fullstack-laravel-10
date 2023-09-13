@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -47,6 +48,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+     public function hasReceivedNotificationToday()
+    {
+        return $this->last_notification_date === Carbon::today()->toDateString();
+    }
 
     public function Role()
     {
@@ -71,6 +77,10 @@ class User extends Authenticatable
         return $this->hasMany(JadwalUser::class);
     }
 
+    public function CheckPoint()
+    {
+        return $this->hasMany(User::class);
+    }
     
     
 }

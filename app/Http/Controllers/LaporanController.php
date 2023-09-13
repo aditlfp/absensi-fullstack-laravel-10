@@ -32,6 +32,10 @@ class LaporanController extends Controller
             {
                 $laporan = Laporan::paginate(25);
                 return view('laporan.index', ['laporan' => $laporan]);
+            }elseif(Auth::user()->divisi->jabatan->code_jabatan == 'MITRA'){
+                $ker = Auth::user()->kerjasama->client_id;
+                $laporan = Laporan::where('client_id', $ker)->paginate(25);
+                return view('laporan.index', ['laporan' => $laporan]);
             }
         } catch (\Throwable $th) {
             //throw $th;

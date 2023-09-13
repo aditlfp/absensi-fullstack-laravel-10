@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\JadwalUserRequest;
 use App\Models\Area;
 use App\Models\JadwalUser;
+use App\Models\Kerjasama;
 use App\Models\Shift;
 use App\Models\User;
 use Carbon\Carbon;
@@ -24,19 +25,22 @@ class JadwalUserController extends Controller
 
     public function index()
     {
+        $kerj = Kerjasama::all();
         $jadwalUser = JadwalUser::orderBy('tanggal', 'asc')->paginate(50);
-        return view('admin.jadwalUser.index', compact('jadwalUser'));
+        return view('admin.jadwalUser.index', compact('jadwalUser', 'kerj'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA") {
+        if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA" && Auth::user()->divisi->jabatan->code_jabatan == "LEADER") {
             $user = User::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
         } else {
-            $user = User::all();
+            $kerj = Kerjasama::all();
+            $filter = $request->filter;
+            $user = User::where('kerjasama_id', $filter)->get();
         }
         $shift = Shift::all();
-        return view('admin.jadwalUser.create', compact('user', 'shift'));
+        return view('admin.jadwalUser.create', compact('user', 'shift', 'kerj'));
     }
 
     public function processDate(Request $request)
@@ -44,16 +48,20 @@ class JadwalUserController extends Controller
         $area = Area::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
         $str1 = $this->str;
         $end1 = $this->ended;
+        $kerj = Kerjasama::all();
         $totalHari =  Carbon::parse($this->ended)->diffInDays(Carbon::parse($this->str));
         if($request->has(['str1', 'end1'])){
-            if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA") {
+            if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA" || Auth::user()->divisi->jabatan->code_jabatan == "LEADER") {
                 $user = User::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
+                $filter = Auth::user()->kerjasama_id;
             } else {
-                $user = User::all();
+                $kerj = Kerjasama::all();
+                $filter = $request->filter;
+                $user = User::where('kerjasama_id', $filter)->get();
             }
             $jadwal = JadwalUser::all();
             $shift = Shift::all();
-            return view('admin.jadwalUser.create', compact('user', 'shift', 'totalHari', 'area', 'jadwal', 'str1', 'end1'));
+            return view('admin.jadwalUser.create', compact('user', 'shift', 'totalHari', 'area', 'jadwal', 'str1', 'end1', 'kerj', 'filter'));
         }else{
             toastr()->error('Mohon Masukkan Taggal', 'Error');
             return redirect()->back();
@@ -76,7 +84,7 @@ class JadwalUserController extends Controller
         ];
         JadwalUser::create($jadwal);
         toastr()->success('Jadwal Berhasil Ditambahkan', 'success');
-        return to_route('leader-jadwal.index');
+        return redirect()->back();
     }
 
     public function edit($id)
@@ -105,15 +113,19 @@ class JadwalUserController extends Controller
         $currentYear = Carbon::parse($this->str)->year;
         $str1 = $this->str;
         $end1 = $this->ended;
+        $filter = $request->filter;
+        $kerj = Kerjasama::all();
         
         $totalHari =  Carbon::parse($this->ended)->diffInDays(Carbon::parse($this->str));
         
         if($request->has(['end1', 'str1'])) {
             
-         $expPDF = JadwalUser::when($request->has(['str1', 'end1']), function ($query) use ($str1, $end1) {
-            return $query->whereBetween('tanggal', [$str1, $end1]);
+        $expPDF = User::with(['jadwalUser' => function ($query) use ($str1, $end1) {
+            return $query->whereBetween('created_at', [$str1, $end1]);
+        }])->when($filter, function($query) use ($filter) {
+            return $query->where('kerjasama_id', $filter);
         })->get();
-
+        
         $path = 'logo/sac.png';
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
@@ -125,7 +137,7 @@ class JadwalUserController extends Controller
         $options->set('defaultFont', 'Arial');
 
         $pdf = new Dompdf($options);
-        $html = view('admin.jadwalUser.export', compact('expPDF', 'base64', 'totalHari','currentYear', 'currentMonth','str1', 'end1'))->render();
+        $html = view('admin.jadwalUser.export', compact('expPDF', 'base64', 'totalHari','currentYear', 'currentMonth','str1', 'end1', 'filter', 'kerj'))->render();
         $pdf->loadHtml($html);
 
         $pdf->setPaper('A4', 'landscape');

@@ -9,9 +9,13 @@ use App\Models\Rating;
 use App\Models\Point;
 use App\Models\Lokasi;
 use App\Models\Shift;
+use App\Models\JadwalUser;
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\AbsensiNotification;
+use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
@@ -27,6 +31,7 @@ class DashboardController extends Controller
         $user = Auth::user()->id;
         $point = Point::all();
         $shift = Shift::all();
+        $jadwalUser = JadwalUser::all();
         $harLok = Lokasi::where('client_id', Auth::user()->kerjasama->client_id)->first();
         return view('dashboard', [
             'absen' => $absen,
@@ -37,8 +42,25 @@ class DashboardController extends Controller
             'user' => $user,
             'point' => $point,
             'harLok' => $harLok,
-            'shift' => $shift
+            'shift' => $shift,
+            'jadwalUser' => $jadwalUser,
         ]);
+    }
+    
+    public function sendTestEmail()
+    {
+        // $users = 'aditya.budilfp11@gmail.com';
+        
+        // Mail::send('emails.test', [], function ($message) use ($users) {
+        //     $message->to($users)
+        //         ->subject('Ini adalah email uji coba');
+        // });
+        
+        // Mail::to($users)->queue(new AbsensiNotification);
+        
+        // $user->last_notification_date = Carbon::today()->toDateString();
+        // $user->save();
+
     }
 
 }

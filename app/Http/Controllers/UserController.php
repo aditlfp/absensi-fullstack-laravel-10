@@ -26,7 +26,7 @@ class UserController extends Controller
             return $query->where('kerjasama_id', 'like', '%'. $request->filterKerjasama. '%');
         });
 
-        return view('admin.user.index', ['user' => $user->paginate(15), 'kerjasama' => $kerjasama, 'client' => $client]);
+        return view('admin.user.index', ['user' => $user->paginate(500), 'kerjasama' => $kerjasama, 'client' => $client]);
     }
 
     /**
@@ -58,9 +58,15 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
             $user['image'] = UploadImage($request, 'image');
         }
+        try {
             User::create($user);
-            toastr()->success('User Berhasil Ditambahkan', 'succes');
-            return redirect()->back();
+        } catch(\Illuminate\Database\QueryException $e){
+           toastr()->error('Data Sudah Ada', 'error');
+           return redirect()->back();
+        }
+        toastr()->success('User Berhasil Ditambahkan', 'succes');
+        return redirect()->back();
+            
     }
 
     /**
@@ -101,9 +107,16 @@ class UserController extends Controller
             }
 
             $user['image'] = UploadImage($request, 'image');
+        }else{
+            $user['image'] = $request->oldimage;
         }
-
-        User::findOrFail($id)->update($user);
+        try {
+            User::findOrFail($id)->update($user);
+        } catch(\Illuminate\Database\QueryException $e){
+           toastr()->error('Data Sudah Ada', 'error');
+           return redirect()->back();
+        }
+    
         toastr()->success('Data Berhasil diupdate', 'success');
         return to_route('users.index');
     }
@@ -126,8 +139,13 @@ class UserController extends Controller
                 if ($user->image) {
                     Storage::disk('public')->delete('images/'.$user->image);
                 }
+            $user->delete();
+            toastr()->warning('Data User Telah Dihapus', 'warning');
+            return redirect()->back();
+        }else{
+          toastr()->error('Data Tidak Ditemukan', 'error');
+          return redirect()->back();
         }
-        toastr()->error('Data Tidak Ditemukan', 'error');
-        return redirect()->back();
+        
     }
 }

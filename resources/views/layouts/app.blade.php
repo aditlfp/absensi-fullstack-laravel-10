@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>{{ env('APP_NAME', 'Absensi SAC-PONOROGO') }}</title>
+	<title>{{ env('APP_NAME', 'Kinerja SAC-PONOROGO') }}</title>
 	<link rel="shortcut icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon">
 
 	<!-- Fonts -->
@@ -19,9 +19,8 @@
 	<!-- Webcam CDN -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    
-	
     
 	<style>
 		*,
@@ -60,7 +59,7 @@
 			<x-menu-mobile />
 		</div>
 	</div>
-	<script src="{{ URL::asset('src/js/jquery-min.js') }}"></script>
+	<!--<script src="{{ URL::asset('src/js/jquery-min.js') }}"></script>-->
 	 <!-- cdnjs -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
@@ -130,6 +129,7 @@
 						preview.find('.img1').attr('src', e.target.result);
 						preview.removeClass('hidden');
 						preview.find('.img1').addClass('rounded-md shadow-md my-4');
+						$('.iImage1').removeClass('flex').addClass('hidden');
 					};
 
 					reader.readAsDataURL(input.files[0]);
@@ -159,6 +159,7 @@
 						preview.find('.img2').attr('src', e.target.result);
 						preview.removeClass('hidden');
 						preview.find('.img2').addClass('rounded-md shadow-md my-4');
+						$('.iImage2').removeClass('flex').addClass('hidden');
 					};
 
 					reader.readAsDataURL(input.files[0]);
@@ -176,6 +177,7 @@
 						preview.find('.img3').attr('src', e.target.result);
 						preview.removeClass('hidden');
 						preview.find('.img3').addClass('rounded-md shadow-md my-4');
+						$('.iImage3').removeClass('flex').addClass('hidden');
 					};
 
 					reader.readAsDataURL(input.files[0]);
@@ -241,127 +243,66 @@
 				iAbsensi.toggle();
 			});
 
-			menuUser.click(function() {
+			$('#btnUser').click(function() {
 				user.toggle();
-				menu2.toggle();
-				// menu3.toggle();
-				// menu4.toggle();
-				menu5.toggle();
-				menu8.toggle();
-				menu11.toggle();
-                menu12.toggle();
-                menu14.toggle();
+				$('.btnRuangan').toggle();
+				$('#btnAbsen').toggle();
 			});
 
-			$('#menuClient').click(function() {
+			$('#btnClient').click(function() {
 				$('#client').toggle();
-				menu1.toggle();
-				// menu3.toggle();
-				// menu4.toggle();
-				menu5.toggle();
-				menu8.toggle();
-                menu11.toggle();
-                menu12.toggle();
-                menu14.toggle();
+				$('.btnArea').toggle();
+				$('#btnLembur').toggle();
+				
 			});
 
-			$('#menuKerjasama').click(function() {
+			$('#btnKerjasama').click(function() {
 				$('#kerjasama').toggle();
-				// menu1.toggle();
-				// menu2.toggle();
-				menu4.toggle();
-				// menu5.toggle();
-				menu6.toggle();
-				menu7.toggle();
-				menu9.toggle();
-				menu10.toggle();
-				menu13.toggle();
+				$('#btnJabatan').toggle();
 
 			});
 
-			$('#menuAbsen').click(function() {
-				var absen = $('#absen').toggle();
-				// menu1.toggle();
-				// menu2.toggle();
-				menu3.toggle();
-				// menu5.toggle();
-				menu6.toggle();
-				menu7.toggle();
-				menu9.toggle();
-				menu10.toggle();
-				menu13.toggle();
+			$('#btnAbsen').click(function() {
+				$('#absen').toggle();
+				$('#btnHoliday').toggle();
+				
 
 			});
-			$('#menuDevisi').click(function() {
+			$('#btnDevisi').click(function() {
 				$('#devisi').toggle();
-				menu1.toggle();
-				menu2.toggle();
-				// menu3.toggle();
-				// menu4.toggle();
-				menu8.toggle();
-				menu11.toggle();
-				menu12.toggle();
-				menu14.toggle();
+				$('.btnPoint').toggle();
+				$('#btnPerlengkapan').toggle();
+				
 			});
-			$('#menuPerlengkapan').click(function() {
+			$('#btnPerlengkapan').click(function() {
 				$('#perlengkapan').toggle();
-				// menu1.toggle();
-				// menu2.toggle();
-				menu3.toggle();
-				menu4.toggle();
-				menu7.toggle();
-				menu9.toggle();
-				menu10.toggle();
-				menu13.toggle();
+				$('#btnLokasi').toggle();
 
 			});
-			$('#menuLembur').click(function() {
+			$('#btnLembur').click(function() {
 				$('#lembur').toggle();
-				menu3.toggle();
-				menu4.toggle();
-				menu6.toggle();
-				menu9.toggle();
-				menu10.toggle();
-				menu13.toggle();
+				$('#btnJadwal').toggle();
+				
 
 			});
-			$('#menuJabatan').click(function() {
+			$('#btnJabatan').click(function() {
 				$('#jabatan').toggle();
-				menu3.toggle();
-				menu4.toggle();
-				menu6.toggle();
-				menu7.toggle();
-				menu10.toggle();
-				menu13.toggle();
-
 			});
-			$('#menuShift').click(function() {
+			$('#btnShift').click(function() {
 				$('#shift').toggle();
-				menu1.toggle();
-				menu2.toggle();
-				menu5.toggle();
-				menu11.toggle();
-				menu12.toggle();
-				menu14.toggle();
+				$('#btnKerjasama').toggle();
+				$('#btnJabatan').toggle();
 			});
-			$('#menuHoliday').click(function() {
+			$('#btnHoliday').click(function() {
 				$('#holiday').toggle();
-				menu3.toggle();
-				menu4.toggle();
-				menu6.toggle();
-				menu7.toggle();
-				menu9.toggle();
-				menu13.toggle();
 			});
 			
-			$('#menuLokasi').click(function() {
+			$('#btnLokasi').click(function() {
 			  $('#lokasi').toggle();  
-			    menu3.toggle();
-    			menu4.toggle();
-    			menu6.toggle();
-    			menu7.toggle();
-    			menu9.toggle();
-    			menu10.toggle();
+			});
+
+			$('#btnJadwal').click(function() {
+			  $('#jadwal').toggle();  
 			});
 		});
 		$(document).ready(function(){
@@ -378,7 +319,17 @@
 				modal.removeClass(' inset-0 z-[99]');
 				modal.addClass('hidden ');
 			});
-		});
+		$(document).ready(function() {
+    		function updateUptime() {
+                $.get('/get-uptime', function(data) {
+                    $('#uptime').text("Running : " + data.uptime);
+                });
+            }
+        
+            // Mulai pembaruan secara berkala (misalnya, setiap 5 detik)
+            setInterval(updateUptime, 1000); // 5000 milidetik = 5 detik
+    		});
+		})
 	</script>
 </body>
 

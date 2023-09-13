@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\Absensi;
 use App\Models\Point;
-use App\Models\User;
 use Illuminate\Console\Command;
 
 class PointUpdate extends Command
@@ -32,12 +31,19 @@ class PointUpdate extends Command
         $point = Point::all();
         
     
-        foreach ($abs as $key) {
-            if ($key->keterangan == 'masuk') {
-                foreach ($point as $value) {
-                    if ($key->kerjasama->client_id == $value->client_id && $key->point_id == null) {
-                        $cId = $key->kerjasama->where('client_id', $value->client_id);
-                        Absensi::where('id', $key->id)->update(['point_id', $cId->point_id]);
+        foreach ($abs as $key) 
+        {
+            if ($key->keterangan == 'masuk' && $key->point_id == null) 
+            {
+                foreach ($point as $value) 
+                {
+                    if ($key->kerjasama->client_id == $value->client_id) 
+                    {
+                        $pid = Point::where('client_id', $key->kerjasama->client_id)->get();
+                        foreach ($pid as $i)
+                        {
+                            Absensi::where('id', $key->id)->update(['point_id' => $i->id]);
+                        }
                     }
                 }
             }

@@ -6,7 +6,8 @@ function UploadImage($request, $NameFile)
 {
     $file = $request->file($NameFile);
     $extensions = $file->getClientOriginalExtension();
-    $rename = 'data' . time() . '.' . $extensions;
+    $randomNumber = mt_rand(1, 999999999999);
+    $rename = 'data' . $randomNumber . '.' . $extensions;
     $file->storeAs('images', $rename, 'public');
 
     return $rename;

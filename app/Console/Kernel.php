@@ -18,8 +18,10 @@ class Kernel extends ConsoleKernel
     {
         // // $schedule->command('inspire')->hourly();
         $schedule->command('app:absen-update')->everyMinute();
-        $schedule->command('app:point-update')->everyMinute();
-
+        $schedule->command('app:point-update')->everyTwoMinutes();
+        $schedule->command('app:notification')->everyTwoMinutes();
+        
+        
     }
 
     /**

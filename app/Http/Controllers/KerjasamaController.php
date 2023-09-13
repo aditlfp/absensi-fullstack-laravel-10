@@ -36,7 +36,12 @@ class KerjasamaController extends Controller
         ];
 
         if ($kerjasama) {
+        try {
             Kerjasama::create($kerjasama);
+        } catch(\Illuminate\Database\QueryException $e){
+           toastr()->error('Data Sudah Ada', 'error');
+           return redirect()->back();
+        }
             toastr()->success('Kerjasama Berhasil Dibuat', 'succes');
             return redirect()->back();
         }
@@ -76,8 +81,12 @@ class KerjasamaController extends Controller
             'approve2' => $request->approve2,
             'approve3' => $request->approve3,
         ];
-
-        Kerjasama::findOrFail($id)->update($kerjasama);
+        try {
+            Kerjasama::findOrFail($id)->update($kerjasama);
+        } catch(\Illuminate\Database\QueryException $e){
+           toastr()->error('Data Sudah Ada', 'error');
+           return redirect()->back();
+        }
             toastr()->success('Data Berhasil Di Update', 'success');
             return redirect()->to(route('kerjasamas.index'));
     }

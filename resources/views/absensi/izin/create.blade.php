@@ -51,15 +51,30 @@
             </div>
             <div class="mt-4">
                 <x-input-label for="img" :value="__('Bukti izin')" />
-                <div class="preview hidden">
-                    <img class="img1" src="" alt="" srcset="" height="120px" width="120px">
+                <div class="preview hidden w-full ">
+                    <span class="flex justify-center items-center">
+                        <label for="img" class="p-1">
+                            <img class="img1 ring-2 ring-slate-500/70 hover:ring-0 hover:bg-slate-300 transition ease-in-out .2s"
+                                src="" alt="" srcset="" height="120px" width="120px">
+                            <input id="img" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
+                                type="file" name="img" :value="old('image1')" autofocus autocomplete="img" />
+                        </label>
+                    </span>
                 </div>
-                <input type="file" name="img" id="img" class="block w-full file-input file-input-bordered shadow-none">
+                    <label for="img"
+                        class="w-full iImage1 flex flex-col items-center justify-center rounded-md bg-slate-50  ring-2 ring-slate-400/70 hover:ring-0 hover:bg-slate-200 transition ease-in-out .2s">
+                        <span class="p-3 flex justify-center flex-col items-center">
+                            <i class="ri-image-add-line text-xl text-slate-700/90"></i>
+                            <span class="text-xs font-semibold text-slate-700/70">+ Gambar</span>
+                            <input id="img" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
+                                type="file" name="img" :value="old('image1')" autofocus autocomplete="img" />
+                        </span>
+                    </label>
                 <x-input-error :messages="$errors->get('img')" class="mt-2" />
             </div>
             <div class="flex justify-center sm:justify-end gap-2 mt-4">
 				<button class="p-2 my-2 px-4 text-white bg-amber-500 hover:bg-amber-600 rounded transition-all ease-linear .2s">Izin</button>
-                <a href="{{ route('izin.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
+                <a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
                     Back
                 </a>
             </div>

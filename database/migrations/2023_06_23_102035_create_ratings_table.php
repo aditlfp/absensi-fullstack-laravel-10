@@ -14,6 +14,10 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
+            $table->string('leader_name')->nullable();
+            $table->string('mitra_name')->nullable();
+            $table->boolean('isLeader')->default(false);
+            $table->boolean('isMitra')->default(false);
             $table->foreignIdFor(User::class, 'user_id');
             $table->string('rate')->default('0');
             $table->timestamps();

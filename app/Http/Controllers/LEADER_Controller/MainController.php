@@ -7,15 +7,29 @@ use App\Models\Absensi;
 use App\Models\Laporan;
 use App\Models\Lembur;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
     
-    public function indexAbsen()
+    public function indexAbsen(Request $request)
     {
-        $kerjasama = Auth::user()->kerjasama_id;
-        $absen = Absensi::orderBy('tanggal_absen', 'asc')->where('kerjasama_id', $kerjasama)->paginate(15);
+        
+        
+        $filter = $request->search;
+        $filter2 = Carbon::parse($filter);
+        
+        if ($filter) {
+            $kerjasama = Auth::user()->kerjasama_id;
+            $absen = Absensi::latest()->where('kerjasama_id', $kerjasama)->whereMonth('tanggal_absen', $filter2->month)->paginate(1000);
+        }else{
+            $mon = Carbon::now()->month;
+            $kerjasama = Auth::user()->kerjasama_id;
+            $absen = Absensi::latest()->where('kerjasama_id', $kerjasama)->whereMonth('tanggal_absen', $mon)->paginate(31);
+        }
+        
         return view('leader_view/absen/index', compact('absen'));
     }
 
