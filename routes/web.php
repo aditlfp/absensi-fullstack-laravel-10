@@ -130,6 +130,8 @@ Route::middleware(['auth', 'admin', 'apdt'])->group(function () {
     Route::resource('/lokasi', LokasiController::class);
     Route::resource('/area', AreaController::class);
 
+    Route::get('/admin-checkpoint/{id}/edit', [CheckPointController::class, 'editAdmin'])->name('admin.cp.edit');
+    Route::patch('/admin-checkpoint/{id}', [CheckPointController::class, 'updateAdmin'])->name('admin.cp.update');
     Route::get('/admin-checkpoint', [CheckPointController::class, 'createAdmin'])->name('admin.cp.create');
     Route::post('/admin-checkpoint/store', [CheckPointController::class, 'adminStore'])->name('admin.cp.store');
 
