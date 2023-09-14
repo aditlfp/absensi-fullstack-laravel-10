@@ -185,9 +185,16 @@
 								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Llaporan">
 									<a href="{{ route('lead_laporan') }}" class="btn btn-info w-full"><i class="ri-image-add-line text-xl"></i>Data Laporan</a>
 								</div>
+								@if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA")
 								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="LRating">
-									<a href="#" class="btn btn-info w-full" disabled><i class="ri-sparkling-line text-xl"></i>Rating (Coming Soon)</a>
+									<a href="{{ route('mitra-rating.index') }}" class="btn btn-info w-full"><i class="ri-sparkling-line text-xl"></i>Rating</a>
 								</div>
+									
+								@else
+								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="LRating">
+									<a href="{{ route('leader-rating.index') }}" class="btn btn-info w-full"><i class="ri-sparkling-line text-xl"></i>Rating</a>
+								</div>
+								@endif
 					@endif
 
 						{{-- handle Pulang --}}
