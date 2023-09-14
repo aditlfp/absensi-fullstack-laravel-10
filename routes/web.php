@@ -63,6 +63,10 @@ Route::middleware('auth', 'apdt')->group(function () {
     Route::resource('checkpoint-user', CheckPointController::class);
 });
 
+Route::middleware('mitra')->group(function () {
+    Route::resource('/mitra-rating', RatingController::class);
+});
+
 Route::middleware('auth', 'spv', 'apdt')->group(function () {
     Route::get('/SPV/spv-absensi', [MainController::class, 'indexAbsen'])->name('spv_absensi');
     Route::get('/SPV/spv-laporan', [MainController::class, 'indexLaporan'])->name('spv_laporan');
@@ -71,7 +75,7 @@ Route::middleware('auth', 'spv', 'apdt')->group(function () {
 });
 
 Route::middleware('auth', 'leader', 'apdt')->group(function () {
-    Route::resource('/rating', RatingController::class);
+    Route::resource('/LEADER/leader-rating', RatingController::class);
     Route::get('/LEADER/leader-absensi', [LeaderController::class, 'indexAbsen'])->name('lead_absensi');
     Route::get('/LEADER/leader-laporan', [LeaderController::class, 'indexLaporan'])->name('lead_laporan');
     Route::get('/LEADER/leader-lembur', [LeaderController::class, 'indexLembur'])->name('lead_lembur');

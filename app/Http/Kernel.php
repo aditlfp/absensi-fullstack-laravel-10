@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
+        'mitra' => \App\Http\Middleware\MitraMiddleware::class,
         'spv' => \App\Http\Middleware\SuperPusarMiddleware::class,
         'leader' => \App\Http\Middleware\LeaderMiddleware::class,
         'apdt' => \App\Http\Middleware\UpdateAbsenTelat::class,

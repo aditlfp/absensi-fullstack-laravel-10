@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Absensi;
-use Illuminate\Http\Request;
 use App\Http\Requests\RatingRequest;
-use App\Models\User;
+use App\Models\Absensi;
+use App\Models\Laporan;
 use App\Models\Rating;
-use Exception;
+use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RatingController extends Controller
 {
@@ -50,5 +49,11 @@ class RatingController extends Controller
             return view('rating.err404');
         }
 
+    }
+    public function rateKerja(Request $request, $id) {
+        $absensi = Absensi::where('user_id', $id);
+        $laporan = Laporan::where('user_id', $id);
+        $rating = Rating::where('user_id', $id);
+        return view('rating.riwayat-kerja', compact('absensi', 'laporan'));
     }
 }

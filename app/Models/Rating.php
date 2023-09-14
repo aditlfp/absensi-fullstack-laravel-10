@@ -15,7 +15,8 @@ class Rating extends Model
         'isLeader',
         'isMitra',
         'user_id',
-        'rate'
+        'rate_mitra',
+        'rate_leader',
     ];
 
     public function User(){
