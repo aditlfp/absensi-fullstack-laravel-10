@@ -6,8 +6,9 @@
                 <x-search/>
             </div>
             @if(Auth::user()->role_id == 2)
-                 <div class="flex sm:justify-end justify-center gap-2 mx-5 py-3 ">
+                 <div class="flex  justify-center gap-2 mx-5 py-3 ">
                     <form action="{{ route('store.processDate.admin') }}" method="GET" class="flex flex-col justify-center gap-2 bg-slate-100 rounded px-5 py-3">
+                        <p class="text-center font-semibold">Buat Jadwal</p>
                         <div class="flex justify-between items-center flex-col sm:flex-row gap-2 ">
                             <div>
                                 <label class="label text-xs sm:text-base">Mulai</label>
@@ -36,8 +37,9 @@
     		@elseif(Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
     		
             @else
-                <div class="flex sm:justify-end justify-center gap-2 mx-5 py-3 ">
+                <div class="flex  justify-center gap-2 mx-5 py-3 ">
                     <form action="{{ route('store.processDate') }}" method="GET" class="flex flex-col justify-center gap-2 bg-slate-100 rounded px-5 py-3">
+                        <p class="text-center font-semibold">Buat Jadwal</p>
                         <div class="flex justify-between flex-col md:flex-row gap-2 ">
                             <div>
                                 <label class="label text-xs sm:text-base">Mulai</label>
