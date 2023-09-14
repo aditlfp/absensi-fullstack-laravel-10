@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CheckPointController extends Controller
 {
@@ -23,6 +24,7 @@ class CheckPointController extends Controller
         return view('admin.check.index', compact('cek'));
     }
 
+    // ADMIN HANDLE REQUEST CREATE
     public function createAdmin()
     {
         $user = User::all();
@@ -30,6 +32,7 @@ class CheckPointController extends Controller
         return view('admin.check.create', compact('user', 'client'));
     }
 
+    // USER HANDLE REQUEST IMAGE CP
     public function create()
     {
         $user = Auth::user()->id;
@@ -37,6 +40,7 @@ class CheckPointController extends Controller
         return view('check.create', compact('cek', 'user'));
     }
 
+    // ADMIN HANDLE REQUEST STORE NEW COUNT CP
     public function adminStore(CheckPointRequest $request)
     {
         $cek = new CheckPoint();
@@ -47,9 +51,31 @@ class CheckPointController extends Controller
             'client_id' => $request->client_id
         ];
         CheckPoint::create($cek);
-        return redirect()->back()->with('msg', 'Data Check Point Disimpan!');
+        return redirect()->back()->with('msg', 'Check Point Berhasil Dibuat');
     }
 
+    public function editAdmin($id)
+    {
+        $cek = CheckPoint::findOrFail($id);
+        return view('admin.check.edit', compact('cek'));
+    }
+
+    public function updateAdmin(Request $request, $id)
+    {
+        $cek = [
+            'user_id' => $request->user_id,
+            'check_count' => $request->check_count,
+            'client_id' => $request->client_id
+        ];
+
+        $cekId = CheckPoint::findOrFail($id);
+        $cekId->update($cek);
+        toastr()->success('Check Point' . $cekId->name . 'Berhasil Di Update', 'success');
+        return to_route('admin.cp.index');
+    }
+
+
+    // USER HANDLE REQUEST IMAGE CP
     public function store(Request $request)
     {
         if ($request->hasFile('image')) {
@@ -75,6 +101,23 @@ class CheckPointController extends Controller
         }
         toastr()->error('Tidak Ada Image Yang TerUpload', 'error');
         return redirect()->back();
-          
+    }
+
+    public function destroy($id)
+    {
+        $client = Image::findOrFail($id);
+        $arrayData = $client->image;
+
+        if ($arrayData == null) {
+            toastr()->error('Logo Tidak Ditemukan', 'error');
+        }
+        if ($arrayData) {
+            foreach ($arrayData as $value) {
+                Storage::disk('public')->delete('images/'.$value);
+            }
+        }
+
+        toastr()->warning('Check Point Anda Terhapus Permanent', 'warning');
+        return redirect()->back();
     }
 }
