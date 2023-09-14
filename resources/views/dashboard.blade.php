@@ -199,40 +199,68 @@
 										class="ri-sparkling-line text-xl"></i>Rating</a>
 							</div>
 						@elseif(Auth::user()->divisi->jabatan->code_jabatan == 'LEADER')
+							{{-- absensi --}}
+							<div id="btnAbsensi"
+								class=" w-full flex justify-center items-center gap-2 mb-4 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
+								<i class="ri-todo-line text-xl"></i>
+								<button class="uppercase font-bold text-sm">
+									Attendance( Kehadiran )
+								</button>
+							</div>
+							{{-- menu menu dashboard absensi --}}
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngabsen">
+								<a href="{{ route('absensi.index') }}" class="btn btn-info w-full" id="aAbsen">Kehadiran</a>
+							</div>
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
+								<a href="{{ route('lembur.index') }}" class="btn btn-info w-full">Lembur</a>
+							</div>
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
+								<a href="{{ route('izin.create') }}" class="btn btn-info w-full">Izin</a>
+							</div>
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
+								<a href="historyAbsensi" class="btn btn-info w-full">Riwayat Kehadiran</a>
+							</div>
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiLembur">
+								<a href="{{ route('lemburIndexUser') }}" class="btn btn-info w-full">Riwayat Lembur</a>
+							</div>
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden mb-2" id="isiIzin">
+								<a href="{{ route('izin.index') }}" class="btn btn-info w-full">Riwayat Izin</a>
+							</div>
+
 							{{-- menu menu leader --}}
 							<div class="w-full space-y-4  sm:px-16 overflow-hidden flex items-center"id="Luser">
-								<a href="{{ route('lead_user') }}" class="btn btn-info w-full"><i
+								<a href="{{ route('lead_user') }}" class="w-full flex uppercase font-bold text-sm justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s"><i
 										class="ri-pass-pending-line text-xl"></i>Data Karyawan</a>
 							</div>
 							@if (Auth::user()->role_id == 2)
 								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Ljadwal">
-									<a href="{{ route('admin-jadwal.index') }}" class="btn btn-info w-full"><i
+									<a href="{{ route('admin-jadwal.index') }}" class="w-full flex uppercase font-bold text-sm justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s"><i
 											class="ri-calendar-check-line text-xl"></i>Jadwal User</a>
 								</div>
 							@else
 								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Ljadwal">
-									<a href="{{ route('leader-jadwal.index') }}" class="btn btn-info w-full"><i
+									<a href="{{ route('leader-jadwal.index') }}" class="w-full flex uppercase font-bold text-sm justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s"><i
 											class="ri-calendar-check-line text-xl"></i>Jadwal</a>
 								</div>
 							@endif
 							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Labsensi">
-								<a href="{{ route('lead_absensi') }}" class="btn btn-info w-full"><i class="ri-todo-line text-xl"></i>Data
+								<a href="{{ route('lead_absensi') }}" class="w-full flex uppercase font-bold text-sm justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s"><i class="ri-todo-line text-xl"></i>Data
 									Absensi</a>
 							</div>
 							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="lizin">
-								<a href="{{ route('lead_izin') }}" class="btn btn-info w-full"><i
+								<a href="{{ route('lead_izin') }}" class="w-full flex uppercase font-bold text-sm justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s"><i
 										class="ri-shield-user-line text-xl"></i>Data Izin</a>
 							</div>
 							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Llembur">
-								<a href="{{ route('lead_lembur') }}" class="btn btn-info w-full"><i class="ri-time-line text-xl"></i>Data
+								<a href="{{ route('lead_lembur') }}" class="w-full flex uppercase font-bold text-sm justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s"><i class="ri-time-line text-xl"></i>Data
 									Lembur</a>
 							</div>
 							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Llaporan">
-								<a href="{{ route('lead_laporan') }}" class="btn btn-info w-full"><i
+								<a href="{{ route('lead_laporan') }}" class="w-full flex uppercase font-bold text-sm justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s"><i
 										class="ri-image-add-line text-xl"></i>Data Laporan</a>
 							</div>
 							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="LRating">
-								<a href="{{ route('leader-rating.index') }}" class="btn btn-info w-full"><i
+								<a href="{{ route('leader-rating.index') }}" class="w-full flex uppercase font-bold text-sm justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s"><i
 										class="ri-sparkling-line text-xl"></i>Rating</a>
 							</div>
 						@endif
@@ -478,6 +506,7 @@
 			var iAbsensi = $('.iAbsensi');
 
 			btnAbsensi.click(function() {
+				btnAbsensi.toggleClass('mb-4');
 				btnRating.toggle();
 				$('#isiAbsen').toggle();
 				$('#ngabsen').toggle();
@@ -705,6 +734,8 @@
 			var endTime = document.getElementById('endTime').getAttribute('endTimer');
 			var btnPulang = document.getElementById('modalPulangBtn');
 			var labelWaktu = document.getElementById('labelWaktu');
+
+			console.log(startTime);
 
 			var startTimeParts = startTime.split(':');
 			var startHours = parseInt(startTimeParts[0]);
