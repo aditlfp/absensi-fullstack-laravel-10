@@ -48,8 +48,7 @@ class CheckPointController extends Controller
         ];
 
         CheckPoint::create($cek);
-        toastr()->success('Check Point Berhasil Dibuat', 'success');
-        return redirect()->back();
+        return redirect()->back()->with('msg', 'Check Point Berhasil Dibuat');
     }
 
     public function editAdmin($id)
