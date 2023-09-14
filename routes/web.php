@@ -61,6 +61,7 @@ Route::middleware(['auth', 'apdt'])->group(function () {
     Route::get('/mypoint/{id}', [PointController::class, 'myPoint'])->name('mypoint');
 
     Route::resource('checkpoint-user', CheckPointController::class);
+    Route::get('cp-photo/{id}', [CheckPointController::class, 'lihatFoto'])->name('lihatFotoCP');
     Route::get('/riwayat-kerja/{id}', [RatingController::class, 'rateKerja'])->name('rate.kerja');
 });
 

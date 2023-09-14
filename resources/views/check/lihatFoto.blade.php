@@ -2,7 +2,7 @@
     <x-main-div>
         <div class="py-10">
             <div>
-                <p class="text-center text-lg sm:text-2xl font-bold py-10 uppercase">Index Check Point</p>
+                <p class="text-center text-lg sm:text-2xl font-bold py-10 uppercase">Lihat Foto CP</p>
             </div>
             <div class="flex justify-end">
                 <div class="input flex w-fit mx-10 items-center justify-end mb-5 input-bordered">
@@ -22,8 +22,7 @@
 								<th class="bg-slate-300 rounded-tl-2xl">#</th>
 								<th class="bg-slate-300">Nama Lengkap</th>
 								<th class="bg-slate-300">Foto</th>
-								<th class="bg-slate-300">Jumlah Check Point</th>
-								<th class="bg-slate-300">Mitra</th>
+								<th class="bg-slate-300">Tanggal</th>
 								<th class="bg-slate-300 rounded-tr-2xl">Action</th>
 							</tr>
 						</thead>
@@ -35,9 +34,21 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $c->user->nama_lengkap }}</td>
-                                    <td><a href="{{ route('lihatFotoCP', $c->id) }}" class="btn btn-sm btn-info">Lihat Foto</a></td>
-                                    <td>{{ $c->check_count }}</td>
-                                    <td>{{ $c->client->name }}</td>
+                                    <td>
+                                        <span>
+                                            @forelse ($cek as $arr)
+                                                @forelse ($arr->image as $item)
+                                                    @foreach ($item->image as $i)
+                                                        <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="">
+                                                    @endforeach
+                                                @empty
+                                                ---
+                                                @endforelse
+                                            @empty
+                                            @endforelse
+                                        </span>
+                                    </td>
+                                    <td>{{ $c->created_at->format('Y-m-d') }}</td>
                                     <td>
                                         <x-btn-edit></x-btn-edit>
                                         <x-btn-submit></x-btn-submit>
@@ -53,13 +64,13 @@
                 </div>
             </div>
             <span>
-                @foreach ($cek as $arr)
+                {{-- @foreach ($cek as $arr)
                     @foreach ($arr->image as $item)
                         @foreach ($item->image as $i)
                             <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="">
                         @endforeach
                     @endforeach
-                @endforeach
+                @endforeach --}}
             </span>
         </div>
     </x-main-div>

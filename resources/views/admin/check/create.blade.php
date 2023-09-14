@@ -1,5 +1,4 @@
 <x-app-layout>
-      
     <x-main-div>
     <div class="m-10 p-10">
         @if(session('msg'))
@@ -8,51 +7,59 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.cp.store')}}" method="post">
-                @csrf
-                <div class="flex flex-col w-2/6 mb-3">
-                    <label for="user_id" class="font-semibold text-white">Pilih User/Karyawan</label>
-                    <select name="user_id" id="user_id" class="select select-bordered">
-                        <option readonly disabled>~ Pilih User ~</option>
-                        @forelse ($user as $arr)
-                            <option value="{{ $arr->id}}" data-client_id="{{ $arr->kerjasama->client_id}}">{{ $arr->nama_lengkap}}</option>
-                        @empty
-                            <option disabled>~ User Kosong ~</option>
-                        @endforelse
-                    </select>
-                    <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
-                </div>
-
-                <div class="flex flex-col w-2/6 mb-3">
-                    <label for="client_id" class="font-semibold text-white">Pilih Client</label>
-                        <select  id="client_id" class="select select-bordered cursor-not-allowed" disabled>
-                            <option readonly disabled>~ Pilih Client ~</option>
-                            @forelse ($client as $arr)
-                                <option value="{{ $arr->id}}" readonly>{{ $arr->name}}</option>
+        <div>
+            <p class="text-center text-lg sm:text-2xl font-bold uppercase">Tambah Check Point</p>
+        </div>
+            <form action="{{ route('admin.cp.store')}}" method="post" class=" my-10 flex items-center justify-center">
+                <div class="bg-slate-100 px-10 py-5 rounded shadow items-center justify-center">
+                    @csrf
+                    <div class="flex flex-col w-full mb-3">
+                        <label for="user_id" class="font-semibold text-white">Pilih User/Karyawan</label>
+                        <select name="user_id" id="user_id" class="select select-bordered">
+                            <option readonly disabled>~ Pilih User ~</option>
+                            @forelse ($user as $arr)
+                                <option value="{{ $arr->id}}" data-client_id="{{ $arr->kerjasama->client_id}}">{{ $arr->nama_lengkap}}</option>
                             @empty
                                 <option disabled>~ User Kosong ~</option>
                             @endforelse
                         </select>
-                    <div class="hidden">
-                        <select name="client_id" id="client_id" class="select select-bordered cursor-not-allowed">
-                            <option readonly disabled>~ Pilih Client ~</option>
-                            @forelse ($client as $arr)
-                                <option value="{{ $arr->id}}" readonly>{{ $arr->name}}</option>
-                            @empty
-                                <option disabled>~ User Kosong ~</option>
-                            @endforelse
-                        </select>
+                        <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
                     </div>
-                    <x-input-error :messages="$errors->get('client_id')" class="mt-2" />
+    
+                    <div class="flex flex-col  w-full mb-3">
+                        <label for="client_id" class="font-semibold text-white">Pilih Client</label>
+                            <select  id="client_id" class="select select-bordered cursor-not-allowed" disabled>
+                                <option readonly disabled>~ Pilih Client ~</option>
+                                @forelse ($client as $arr)
+                                    <option value="{{ $arr->id}}" readonly>{{ $arr->name}}</option>
+                                @empty
+                                    <option disabled>~ User Kosong ~</option>
+                                @endforelse
+                            </select>
+                        <div class="hidden">
+                            <select name="client_id" id="client_id" class="select select-bordered cursor-not-allowed">
+                                <option readonly disabled>~ Pilih Client ~</option>
+                                @forelse ($client as $arr)
+                                    <option value="{{ $arr->id}}" readonly>{{ $arr->name}}</option>
+                                @empty
+                                    <option disabled>~ User Kosong ~</option>
+                                @endforelse
+                            </select>
+                        </div>
+                        <x-input-error :messages="$errors->get('client_id')" class="mt-2" />
+                    </div>
+    
+                    <div class="flex flex-col  w-full mb-3">
+                        <label for="check_count" class="font-semibold text-white">Masukkan Jumlah CheckPoint</label>
+                        <input type="text" name="check_count" id="check_count" placeholder="10" class="input input-bordered">
+                        <x-input-error :messages="$errors->get('check-count')" class="mt-2" />
+                    </div>
+                    <div class="flex gap-2 justify-center sm:justify-end">
+                        <a href="{{ route('admin.cp.index') }}" class="btn btn-error">Back</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
                 </div>
-
-                <div class="flex flex-col w-2/6 mb-3">
-                    <label for="check_count" class="font-semibold text-white">Masukkan Jumlah CheckPoint</label>
-                    <input type="text" name="check_count" id="check_count" placeholder="10" class="input input-bordered">
-                    <x-input-error :messages="$errors->get('check-count')" class="mt-2" />
-                </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-        </form>
+            </form>
     </div>
     </x-main-div>
 

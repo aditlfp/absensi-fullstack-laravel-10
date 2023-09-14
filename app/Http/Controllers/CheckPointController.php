@@ -15,7 +15,8 @@ class CheckPointController extends Controller
 {
     public function index()
     {
-        $cek = CheckPoint::all();
+        $user = Auth::user()->id;
+        $cek = CheckPoint::where('user_id', $user)->get();
         return view('check.index', compact('cek'));
     }
     public function indexAdmin()
@@ -119,5 +120,9 @@ class CheckPointController extends Controller
 
         toastr()->warning('Check Point Anda Terhapus Permanent', 'warning');
         return redirect()->back();
+    }
+    public function lihatFoto($id) {
+        $cek = CheckPoint::where('id', $id)->get();
+        return view('check.lihatFoto', compact('cek'));
     }
 }
