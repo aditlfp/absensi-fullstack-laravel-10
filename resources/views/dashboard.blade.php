@@ -139,7 +139,7 @@
 							</div>
 							@if (Auth::user()->role_id == 2)
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekRate">
-									<a href="{{ route('rating.index') }}" class="btn btn-info w-full">Rating</a>
+									<a href="{{ route('leader-rating.index') }}" class="btn btn-info w-full">Rating</a>
 								</div>
 							@else
 							@endif

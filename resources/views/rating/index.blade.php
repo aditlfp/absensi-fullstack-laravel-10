@@ -165,7 +165,7 @@
 							class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-[9999]">
 							<div class="modal-content bg-white rounded-md shadow  p-6">
 								@if (Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
-									<form action="{{ route('rating-mitra.store') }}" method="post">
+									<form action="{{ route('mitra-rating.store') }}" method="post">
 										@csrf
 										<p class="text-center font-semibold text-lg py-5">+ Rating, {{ $us->nama_lengkap }}</p>
 										<div>
@@ -197,7 +197,7 @@
 										</div>
 									</form>
 								@else
-									<form action="{{ route('rating.store') }}" method="post">
+									<form action="{{ route('leader-rating.store') }}" method="post">
 										@csrf
 										<p class="text-center font-semibold text-lg py-5">+ Rating, {{ $us->nama_lengkap }}</p>
 										<div>
@@ -238,7 +238,7 @@
 							<div class="modal-content bg-white rounded-md shadow mx-2 sm:mx-0 p-6">
 								@if (Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
 									@foreach ($rating as $item)
-										<form action="{{ route('rating-mitra.update', $item->id) }}" method="post">
+										<form action="{{ route('mitra-rating.update', $item->id) }}" method="post">
 											@csrf
 											@method('PATCH')
 											<p class="text-center font-semibold text-lg py-5">+ Rating, {{ $us->nama_lengkap }}</p>
@@ -279,7 +279,7 @@
 								@endforeach
 							@else
 								@foreach ($rating as $item)
-									<form action="{{ route('rating.update', $item->id) }}" method="post">
+									<form action="{{ route('leader-rating.update', $item->id) }}" method="post">
 										@csrf
 										@method('PATCH')
 										<p class="text-center font-semibold text-lg py-5">+ Rating, {{ $us->nama_lengkap }}</p>

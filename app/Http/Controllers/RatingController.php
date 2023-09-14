@@ -8,13 +8,12 @@ use App\Models\Laporan;
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RatingController extends Controller
 {
     public function index(){
-        $user = User::all();
+        $user = User::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
         $absen = Absensi::paginate(5);
         $rating = Rating::all();
         return view('rating.index', compact('user', 'absen', 'rating'));
@@ -50,10 +49,11 @@ class RatingController extends Controller
         }
 
     }
-    public function rateKerja(Request $request, $id) {
-        $absensi = Absensi::where('user_id', $id);
-        $laporan = Laporan::where('user_id', $id);
-        $rating = Rating::where('user_id', $id);
-        return view('rating.riwayat-kerja', compact('absensi', 'laporan'));
+    public function rateKerja($id) {
+        $user = User::findOrFail($id);
+        $absensi = Absensi::where('user_id', $id)->paginate(20);
+        $laporan = Laporan::where('user_id', $id)->paginate(10);
+        $rating = Rating::where('user_id', $id)->get();
+        return view('rating.riwayat-kerja', compact('absensi', 'laporan', 'rating', 'user'));
     }
 }

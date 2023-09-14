@@ -20,37 +20,37 @@
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
 		integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>{{ env('APP_NAME', 'KINERJA SAC-PONOROGO') }}</title>
-	<link rel="shortcut icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<title>{{ env('APP_NAME', 'KINERJA SAC-PONOROGO') }}</title>
+		<link rel="shortcut icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon">
 
-	<link rel="preconnect" href="https://fonts.bunny.net">
-	<link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-	<script src="{{ URL::asset('src/js/jquery-min.js') }}"></script>
-	<!-- Scripts -->
-	@vite(['resources/css/app.css', 'resources/js/app.js'])
+		<link rel="preconnect" href="https://fonts.bunny.net">
+		<link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+			integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+		<script src="{{ URL::asset('src/js/jquery-min.js') }}"></script>
+		<!-- Scripts -->
+		@vite(['resources/css/app.css', 'resources/js/app.js'])
 
-	{{-- Leaflet --}}
-	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-		integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+		{{-- Leaflet --}}
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+			integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+			integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-	<style>
-		#map {
-			height: 180px;
-		}
-	</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+		<style>
+			#map {
+				height: 180px;
+			}
+		</style>
 
-</head>
+	</head>
 
 <body class="font-sans antialiased  bg-slate-400">
 	<div class="min-h-screen pb-[12.5rem]">
@@ -71,7 +71,7 @@
 									class="ri-camera-fill"></i></button>
 						</div>
 						<div class="p-1 rounded my-3">
-						    <div id="map"></div>
+							<div id="map"></div>
 						</div>
 						<div class="flex flex-col gap-2">
 							<div class="flex flex-col justify-between">
@@ -82,26 +82,25 @@
 							<div class="flex flex-col  justify-between">
 								<label>Bermitra Dengan: </label>
 								<input type="text" name="kerjasama_id" id="kerjasama_id" hidden value="{{ Auth::user()->kerjasama_id }}">
-								<input type="text" value="{{ Auth::user()->kerjasama->client->name }}" disabled class="input input-bordered">
+								<input type="text" value="{{ Auth::user()->kerjasama->client->name }}" disabled
+									class="input input-bordered">
 							</div>
 							<div class="flex flex-col  justify-between">
 								<label>Shift: </label>
 								<select name="shift_id" id="shift_id" class="select select-bordered font-thin">
 									<option disabled selected>-- Pilih Shift --</option>
 									@forelse ($shift as $i)
-									@if(Auth::user()->kerjasama->client_id == $i->client_id )
-									@if(Auth::user()->devisi_id == $i->jabatan->divisi_id)
-										<option value="{{ $i->id }}" > {{$i->jabatan->name_jabatan}} | {{ $i->shift_name }} | {{ $i->jam_start }}</option>
+										@if (Auth::user()->kerjasama->client_id == $i->client_id && Auth::user()->divisi->jabatan_id == $i->jabatan_id)
+											<option value="{{ $i->id }}"> {{ $i->jabatan->name_jabatan }} | {{ $i->shift_name }} |
+												{{ $i->jam_start }}</option>
 										@else
 										@endif
-									@else
-									@endif
 									@empty
 										<option>~ Tidak ad Shift ! ~</option>
 									@endforelse
 								</select>
 							</div>
-							
+
 							<div>
 								<div>
 									<label>Perlengkapan: </label>
@@ -137,12 +136,14 @@
 									$hasJadwal = false;
 								@endphp
 								@forelse ($jadwal as $jad)
-								@if ($jad->tanggal == Carbon\Carbon::now()->format('Y-m-d'))
-									<span class="input input-bordered" disabled>Tanggal: {{ $jad->tanggal }}, Shift: {{ $jad->shift->shift_name }}, Area: {{ $jad->area }}</span>
-								@else
-								    <span class="input input-bordered" disabled>Tidak Ada Jadwal</span>
-								@endif
+									@if ($jad->tanggal == Carbon\Carbon::now()->format('Y-m-d'))
+										<span class="input input-bordered" disabled>Tanggal: {{ $jad->tanggal }}, Shift:
+											{{ $jad->shift->shift_name }}, Area: {{ $jad->area }}</span>
+									@else
+										<span class="input input-bordered" disabled>Tidak Ada Jadwal</span>
+									@endif
 								@break
+
 								@empty
 								@endforelse
 							</div>
@@ -162,23 +163,29 @@
 						@php
 							$key = Auth::user()->id;
 						@endphp
-							<div class="flex justify-center sm:justify-end gap-3 mt-2 mr-2">
-								@forelse ($absensi as $abs)
+						<div class="flex justify-center sm:justify-end gap-3 mt-2 mr-2">
+							@forelse ($absensi as $abs)
 								{{-- sudah --}}
 								@if ($abs->tanggal_absen == Carbon\Carbon::now()->format('Y-m-d'))
-								<button class="p-2 my-2 px-4 text-slate-100 bg-blue-300  rounded transition-all ease-linear .2s disabled cursor-not-allowed" disabled>Sudah Absen</button>
-								{{-- belum --}}
+									<button
+										class="p-2 my-2 px-4 text-slate-100 bg-blue-300  rounded transition-all ease-linear .2s disabled cursor-not-allowed"
+										disabled>Sudah Absen</button>
+									{{-- belum --}}
 								@else
-									<button class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
+									<button
+										class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
 								@endif
-								@break
-								@empty
-								<button class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
-								@endforelse
-									<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
-									Back
-									</a>
-							</div>
+							@break
+
+							@empty
+								<button
+									class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
+							@endforelse
+							<a href="{{ route('dashboard.index') }}"
+								class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
+								Back
+							</a>
+						</div>
 						<input class="hidden" id="thisId" value="{{ Auth::user()->id }}">
 						@php
 							$mytime = Carbon\Carbon::now()->format('H:m:s');
@@ -187,8 +194,8 @@
 						<input class="hidden" id="thisTime" value="{{ $mytime }}">
 						<input class="hidden" id="thisTime2" value="{{ $mytime2 }}">
 						<input class="hidden" id="isi" name="absensi_type_pulang" value="okok">
-						<input id="lat" name="lat_user" value="" class="hidden"/>
-						<input id="long" name="long_user" value="" class="hidden"/>
+						<input id="lat" name="lat_user" value="" class="hidden" />
+						<input id="long" name="long_user" value="" class="hidden" />
 					</form>
 				</div>
 			</main>
@@ -209,53 +216,53 @@
 		});
 		Webcam.attach('#my_camera');
 
-	function take_snapshot() {
-		Webcam.snap(function(data_uri) {
-			$(".image-tag").val(data_uri);
-			document.getElementById('results').innerHTML =
-				'<img id="imgprev" src="' + data_uri + '"/>';
-		});
-		// Webcam.reset();
-	}
-</script>
+		function take_snapshot() {
+			Webcam.snap(function(data_uri) {
+				$(".image-tag").val(data_uri);
+				document.getElementById('results').innerHTML =
+					'<img id="imgprev" src="' + data_uri + '"/>';
+			});
+			// Webcam.reset();
+		}
+	</script>
 
-    <script>
-        var lat = document.getElementById('lat')
-        var long = document.getElementById('long')
+	<script>
+		var lat = document.getElementById('lat')
+		var long = document.getElementById('long')
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        }
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		}
 
-        function showPosition(position) {
-            lat.value = position.coords.latitude;
-            long.value = position.coords.longitude;
+		function showPosition(position) {
+			lat.value = position.coords.latitude;
+			long.value = position.coords.longitude;
 
 			var lati = "{{ $harLok->latitude }}"
 			var longi = "{{ $harLok->longtitude }}"
 			var radi = "{{ $harLok->radius }}"
-			var client = "{{$harLok->client->name}}"
+			var client = "{{ $harLok->client->name }}"
 
-		var latitude = position.coords.latitude; // Ganti dengan latitude Anda
-		var longitude = position.coords.longitude; // Ganti dengan longitude Anda
+			var latitude = position.coords.latitude; // Ganti dengan latitude Anda
+			var longitude = position.coords.longitude; // Ganti dengan longitude Anda
 
 
-		var map = L.map('map').setView([latitude, longitude], 13); // ini adalah zoom level
+			var map = L.map('map').setView([latitude, longitude], 13); // ini adalah zoom level
 
-		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			attribution: '© OpenStreetMap contributors'
-		}).addTo(map);
+			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution: '© OpenStreetMap contributors'
+			}).addTo(map);
 
-		var marker = L.marker([latitude, longitude]).addTo(map);
-		var circle = L.circle([lati, longi], {
-				color: 'crimson',
-				fillColor: '#f09',
-				fillOpacity: 0.5,
-				radius: radi
-			}).addTo(map).bindPopup("Lokasi absen: "+ client)
-                .openPopup();
-        }
-    </script>
+			var marker = L.marker([latitude, longitude]).addTo(map);
+			var circle = L.circle([lati, longi], {
+					color: 'crimson',
+					fillColor: '#f09',
+					fillOpacity: 0.5,
+					radius: radi
+				}).addTo(map).bindPopup("Lokasi absen: " + client)
+				.openPopup();
+		}
+	</script>
 </body>
 
 </html>
