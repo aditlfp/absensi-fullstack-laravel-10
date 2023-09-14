@@ -69,7 +69,7 @@ class CheckPointController extends Controller
         $cekId = CheckPoint::findOrFail($id);
         $cekId->update($cek);
         toastr()->success('Check Point' . $cekId->name . 'Berhasil Di Update', 'success');
-        return to_route();
+        return to_route('admin.cp.index');
     }
 
 
