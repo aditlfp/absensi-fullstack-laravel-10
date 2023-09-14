@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-main-div>
-        <div class="py-10">
-            <p class="text-center text-xl uppercase font-bold ">Riwayat Absensi, {{ Auth::user()->kerjasama->client->name }}</p>
+        <div class="py-10 sm:mx-10">
+            <p class="text-center text-lg sm:text-2xl uppercase font-bold ">Riwayat Absensi, {{ Auth::user()->kerjasama->client->name }}</p>
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
-                <div class="flex justify-center items-center my-5">
-                        <div class="flex flex-col sm:flex-row items-center justify-center">
+                <div class="flex justify-center sm:justify-between  items-center my-5">
+                        <div class="flex flex-col sm:flex-row w-full gap-2 sm:gap-5 items-center justify-center sm:justify-between">
                               <form action="{{ url("LEADER/leader-absensi")}}" method="GET" class="sm:flex sm:justify-start">
                 			    <div class="join sm:ml-10">
                 			        <input type="month" placeholder="pilih bulan..." class="join-item input input-bordered" name="search" id="search" />

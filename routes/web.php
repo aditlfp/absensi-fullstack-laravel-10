@@ -45,8 +45,8 @@ Route::view('/map', 'absensi.maps');
 Route::get('/get-uptime', [AdminController::class, 'getUpTime'])->name('uptime');
 Route::get('/send', [DashboardController::class, 'sendTestEmail']);
 
-
-Route::middleware('auth', 'apdt')->group(function () {
+// Auth tok
+Route::middleware(['auth', 'apdt'])->group(function () {
     Route::put('/data/{id}/updatePulang', [AbsensiController::class, 'updatePulang'])->name('data.update');
     Route::post('/data/{id}/updateAbsenPulang', [AbsensiController::class, 'updateAbsenPulang'])->name('data-telat.update');
     Route::resource('/dashboard', DashboardController::class);
@@ -61,20 +61,30 @@ Route::middleware('auth', 'apdt')->group(function () {
     Route::get('/mypoint/{id}', [PointController::class, 'myPoint'])->name('mypoint');
 
     Route::resource('checkpoint-user', CheckPointController::class);
+    Route::get('/riwayat-kerja/{id}', [RatingController::class, 'rateKerja'])->name('rate.kerja');
 });
 
+// Untuk Mitra
 Route::middleware('mitra')->group(function () {
     Route::resource('/mitra-rating', RatingController::class);
+    Route::get('/mitra-laporan', [LeaderController::class, 'indexLaporan'])->name('mitra_laporan');
+    Route::get('/mitra-lembur', [MainController::class, 'indexLembur'])->name('mitra_lembur');
+    Route::get('/mitra-absensi-izin', [IzinController::class, 'indexLead'])->name('mitra_izin');
+    Route::get('/mitra-absensi', [LeaderController::class, 'indexAbsen'])->name('mitra_absensi');
+    Route::get('/mitra-jadwal', [JadwalUserController::class, 'index'])->name('mitra_jadwal');
+    Route::get('/mitra-user', [LeaderController::class, 'indexUser'])->name('mitra_user');
 });
 
-Route::middleware('auth', 'spv', 'apdt')->group(function () {
+// untuk SPV
+Route::middleware(['auth', 'spv', 'apdt'])->group(function () {
     Route::get('/SPV/spv-absensi', [MainController::class, 'indexAbsen'])->name('spv_absensi');
     Route::get('/SPV/spv-laporan', [MainController::class, 'indexLaporan'])->name('spv_laporan');
     Route::get('/SPV/spv-lembur', [MainController::class, 'indexLembur'])->name('spv_lembur');
     Route::get('/SPV/spv-user', [MainController::class, 'indexUser'])->name('spv_user');
 });
 
-Route::middleware('auth', 'leader', 'apdt')->group(function () {
+// leader
+Route::middleware(['auth', 'leader', 'apdt'])->group(function () {
     Route::resource('/LEADER/leader-rating', RatingController::class);
     Route::get('/LEADER/leader-absensi', [LeaderController::class, 'indexAbsen'])->name('lead_absensi');
     Route::get('/LEADER/leader-laporan', [LeaderController::class, 'indexLaporan'])->name('lead_laporan');
@@ -92,7 +102,9 @@ Route::middleware('auth', 'leader', 'apdt')->group(function () {
    
 });
 
-Route::middleware('auth', 'admin', 'apdt')->group(function () {
+
+// ADIMIN
+Route::middleware(['auth', 'admin', 'apdt'])->group(function () {
     Route::get('/admin/data-absen', [AdminController::class, 'absen'])->name('admin.absen');
     Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
     Route::get('/admin/exportV2', [AdminController::class, 'exportWith'])->name('admin.exportV2');

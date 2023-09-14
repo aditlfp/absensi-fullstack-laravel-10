@@ -1,13 +1,14 @@
 <x-app-layout>
     <x-main-div>
-        <div class="py-10">
-            <p class="text-center text-2xl font-bold mb-10 uppercase">Index Jadwal Karyawan {{ Auth::user()->divisi->jabatan->code_jabatan }}</p>
-            <div class="flex justify-end">
+        <div class="py-10 sm:mx-10">
+            <p class="text-center text-lg sm:text-2xl font-bold mb-10 uppercase">Index Jadwal Karyawan, {{ Auth::user()->kerjasama->client->name }}</p>
+            <div class="flex justify-center sm:justify-end w-full">
                 <x-search/>
             </div>
             @if(Auth::user()->role_id == 2)
-                 <div class="flex sm:justify-end justify-center gap-2 mx-5 py-3 ">
+                 <div class="flex  justify-center gap-2 mx-5 py-3 ">
                     <form action="{{ route('store.processDate.admin') }}" method="GET" class="flex flex-col justify-center gap-2 bg-slate-100 rounded px-5 py-3">
+                        <p class="text-center font-semibold">Buat Jadwal</p>
                         <div class="flex justify-between items-center flex-col sm:flex-row gap-2 ">
                             <div>
                                 <label class="label text-xs sm:text-base">Mulai</label>
@@ -36,8 +37,9 @@
     		@elseif(Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
     		
             @else
-                <div class="flex sm:justify-end justify-center gap-2 mx-5 py-3 ">
+                <div class="flex  justify-center gap-2 mx-5 py-3 ">
                     <form action="{{ route('store.processDate') }}" method="GET" class="flex flex-col justify-center gap-2 bg-slate-100 rounded px-5 py-3">
+                        <p class="text-center font-semibold">Buat Jadwal</p>
                         <div class="flex justify-between flex-col md:flex-row gap-2 ">
                             <div>
                                 <label class="label text-xs sm:text-base">Mulai</label>
@@ -97,7 +99,7 @@
             <div class="mt-5 mx-10">
                 {{ $jadwalUser->links() }}
             </div>
-            <div class="flex justify-center my-5">
+            <div class="flex justify-center sm:justify-end my-5">
 				<a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
             </div>
         </div>

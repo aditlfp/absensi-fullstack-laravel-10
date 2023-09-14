@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-main-div>
-        <div class="py-10">
-			<p class="text-center text-2xl uppercase font-bold">Riwayat izin, {{ Auth::user()->kerjasama->client->name }}</p>
-            <div class="">
+        <div class="py-10 sm:mx-10">
+			<p class="text-center text-lg sm:text-2xl uppercase font-bold">Riwayat izin, {{ Auth::user()->kerjasama->client->name }}</p>
+            <div class="flex items-center w-full justify-center sm:justify-end my-5">
                 <x-search/>
             </div>
             <div class="flex flex-col items-center m-2 sm:mx-10 sm:justify-center justify-start">
@@ -18,7 +18,7 @@
                 </div>
                 @endif
                 <div class="overflow-x-scroll w-full md:overflow-hidden mx-2 sm:mx-0 sm:w-full">
-                    <table class="table table-xs text-center table-zebra w-full bg-slate-50 rounded-xl" id="searchTable">
+                    <table id="searchTable" class="table w-full table-xs table-zebra sm:table-md text-xs bg-slate-50 font-semibold sm:text-md ">
                         <thead>
                             <tr>
                                 <th class="bg-slate-300 rounded-tl-xl">#</th>
@@ -76,7 +76,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">~ Kosong ~</td>
+                                    <td colspan="6" class="text-center">~ Kosong ~</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -85,8 +85,8 @@
                 <div id="pag-1" class="mt-5 mb-5 mx-10">
                     {{ $izin->links() }}
                 </div>
-                <div class="flex justify-center mt-4 sm:justify-end">
-		            <a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>
+                <div class="flex justify-center mt-4 sm:justify-end w-full">
+		            <a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
                 </div>
             </div>
         </div>
