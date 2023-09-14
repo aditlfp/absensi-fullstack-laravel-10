@@ -34,6 +34,6 @@ class MainController extends Controller
     {
         $kerjasama = Auth::user()->kerjasama_id;
         $lembur = Lembur::where('kerjasama_id', $kerjasama)->paginate(15);
-        return "lembur";
+        return view('leader_view.lembur.index', compact('lembur'));
     }
 }

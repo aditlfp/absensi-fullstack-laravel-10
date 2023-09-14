@@ -65,13 +65,16 @@
 		</div>
 		<div class="sm:mx-10 mx-5 bg-slate-500 rounded-md shadow-md">
 			<main>
-			    @if(Route::has('login') && Auth::user()->divisi->jabatan->code_jabatan == 'MITRA' || Auth::user()->divisi->jabatan->code_jabatan == 'LEADER')
-			        @auth
-			           <div class="bg-amber-500 mr-10 sm:w-fit flex justify-start px-4" style="border-radius: 5px 0px 6px 0px">
-			               <span class="text-white text-center text-xs font-semibold my-1 sm:pr-5"><i class="text-center">Wellcome, You Logged As, {{Auth::user()->divisi->jabatan->name_jabatan}}</i></span> 
-			           </div>
-			        @endauth
-			    @endif
+				@if (
+					(Route::has('login') && Auth::user()->divisi->jabatan->code_jabatan == 'MITRA') ||
+						Auth::user()->divisi->jabatan->code_jabatan == 'LEADER')
+					@auth
+						<div class="bg-amber-500 mr-10 sm:w-fit flex justify-start px-4" style="border-radius: 5px 0px 6px 0px">
+							<span class="text-white text-center text-xs font-semibold my-1 sm:pr-5"><i class="text-center">Wellcome, You
+									Logged As, {{ Auth::user()->divisi->jabatan->name_jabatan }}</i></span>
+						</div>
+					@endauth
+				@endif
 				<div class="sm:mx-10 mx-5 bg-slate-500 rounded-md  ">
 					<div class="py-5">
 						<div class="flex items-end justify-end mr-3">
@@ -87,37 +90,37 @@
 									<span class="text-white">{{ Carbon\Carbon::now()->format('d-m-Y') }}</span>
 								</div>
 							</div>
-							
+
 							{{-- Handle Check Kode Jabatan --}}
-						@if(Auth::user()->divisi->jabatan->code_jabatan != 'MITRA' && Auth::user()->divisi->jabatan->code_jabatan != 'LEADER')
-							
-							{{-- absensi --}}
-							<div id="btnAbsensi"
-								class=" w-full flex justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
-								<i class="ri-todo-line text-xl"></i>
-								<button class="uppercase font-bold text-sm">
-									Attendance( Kehadiran )
-								</button>
-							</div>
-							{{-- menu menu dashboard absensi --}}
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngabsen">
-								<a href="{{ route('absensi.index') }}" class="btn btn-info w-full" id="aAbsen">Kehadiran</a>
-							</div>
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
-								<a href="{{ route('lembur.index') }}" class="btn btn-info w-full">Lembur</a>
-							</div>
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
-								<a href="{{ route('izin.create') }}" class="btn btn-info w-full">Izin</a>
-							</div>
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
-								<a href="historyAbsensi" class="btn btn-info w-full">Riwayat Kehadiran</a>
-							</div>
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiLembur">
-								<a href="{{ route('lemburIndexUser') }}" class="btn btn-info w-full">Riwayat Lembur</a>
-							</div>
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIzin">
-								<a href="{{ route('izin.index') }}" class="btn btn-info w-full">Riwayat Izin</a>
-							</div>
+							@if (Auth::user()->divisi->jabatan->code_jabatan != 'MITRA' && Auth::user()->divisi->jabatan->code_jabatan != 'LEADER')
+
+								{{-- absensi --}}
+								<div id="btnAbsensi"
+									class=" w-full flex justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
+									<i class="ri-todo-line text-xl"></i>
+									<button class="uppercase font-bold text-sm">
+										Attendance( Kehadiran )
+									</button>
+								</div>
+								{{-- menu menu dashboard absensi --}}
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngabsen">
+									<a href="{{ route('absensi.index') }}" class="btn btn-info w-full" id="aAbsen">Kehadiran</a>
+								</div>
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
+									<a href="{{ route('lembur.index') }}" class="btn btn-info w-full">Lembur</a>
+								</div>
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
+									<a href="{{ route('izin.create') }}" class="btn btn-info w-full">Izin</a>
+								</div>
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
+									<a href="historyAbsensi" class="btn btn-info w-full">Riwayat Kehadiran</a>
+								</div>
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiLembur">
+									<a href="{{ route('lemburIndexUser') }}" class="btn btn-info w-full">Riwayat Lembur</a>
+								</div>
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIzin">
+									<a href="{{ route('izin.index') }}" class="btn btn-info w-full">Riwayat Izin</a>
+								</div>
 						</div>
 						<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
 							<div id="btnCP" disabled
@@ -157,45 +160,83 @@
 								<a href="{{ route('laporan.create') }}" class="btn btn-info w-full">Tambah Laporan</a>
 							</div>
 						</div>
-							
 					@else
-
-								{{-- menu menu mitra --}}
-								<div class="w-full space-y-4  sm:px-16 overflow-hidden flex items-center"id="Luser">
-								    <a href="{{ route('lead_user') }}" class="btn btn-info w-full"><i class="ri-pass-pending-line text-xl"></i>Data Karyawan</a>
+						@if (Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
+							{{-- menu menu mitra --}}
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden flex items-center"id="Luser">
+								<a href="{{ route('mitra_user') }}" class="btn btn-info w-full"><i
+										class="ri-pass-pending-line text-xl"></i>Data Karyawan</a>
+							</div>
+							@if (Auth::user()->role_id == 2)
+								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Ljadwal">
+									<a href="{{ route('admin-jadwal.index') }}" class="btn btn-info w-full"><i
+											class="ri-calendar-check-line text-xl"></i>Jadwal User</a>
 								</div>
-								@if(Auth::user()->role_id == 2)
-								    <div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Ljadwal">
-    									<a href="{{ route('admin-jadwal.index') }}" class="btn btn-info w-full"><i class="ri-calendar-check-line text-xl"></i>Jadwal User</a>
-    								</div>
-								@else
-    								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Ljadwal">
-    									<a href="{{ route('leader-jadwal.index') }}" class="btn btn-info w-full"><i class="ri-calendar-check-line text-xl"></i>Jadwal</a>
-    								</div>
-								@endif
-								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Labsensi">
-									<a href="{{ route('lead_absensi') }}" class="btn btn-info w-full"><i class="ri-todo-line text-xl"></i>Data Absensi</a>
+							@else
+								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Ljadwal">
+									<a href="{{ route('mitra_jadwal') }}" class="btn btn-info w-full"><i
+											class="ri-calendar-check-line text-xl"></i>Jadwal</a>
 								</div>
-								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="lizin">
-									<a href="{{ route('lead_izin') }}" class="btn btn-info w-full"><i class="ri-shield-user-line text-xl"></i>Data Izin</a>
+							@endif
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Labsensi">
+								<a href="{{ route('mitra_absensi') }}" class="btn btn-info w-full"><i class="ri-todo-line text-xl"></i>Data
+									Absensi</a>
+							</div>
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="lizin">
+								<a href="{{ route('mitra_izin') }}" class="btn btn-info w-full"><i
+										class="ri-shield-user-line text-xl"></i>Data Izin</a>
+							</div>
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Llembur">
+								<a href="{{ route('mitra_lembur') }}" class="btn btn-info w-full"><i class="ri-time-line text-xl"></i>Data
+									Lembur</a>
+							</div>
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Llaporan">
+								<a href="{{ route('mitra_laporan') }}" class="btn btn-info w-full"><i
+										class="ri-image-add-line text-xl"></i>Data Laporan</a>
+							</div>
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="LRating">
+								<a href="{{ route('mitra-rating.index') }}" class="btn btn-info w-full"><i
+										class="ri-sparkling-line text-xl"></i>Rating</a>
+							</div>
+						@elseif(Auth::user()->divisi->jabatan->code_jabatan == 'LEADER')
+							{{-- menu menu leader --}}
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden flex items-center"id="Luser">
+								<a href="{{ route('lead_user') }}" class="btn btn-info w-full"><i
+										class="ri-pass-pending-line text-xl"></i>Data Karyawan</a>
+							</div>
+							@if (Auth::user()->role_id == 2)
+								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Ljadwal">
+									<a href="{{ route('admin-jadwal.index') }}" class="btn btn-info w-full"><i
+											class="ri-calendar-check-line text-xl"></i>Jadwal User</a>
 								</div>
-								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Llembur">
-									<a href="{{ route('lead_lembur') }}" class="btn btn-info w-full"><i class="ri-time-line text-xl"></i>Data Lembur</a>
+							@else
+								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Ljadwal">
+									<a href="{{ route('leader-jadwal.index') }}" class="btn btn-info w-full"><i
+											class="ri-calendar-check-line text-xl"></i>Jadwal</a>
 								</div>
-								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Llaporan">
-									<a href="{{ route('lead_laporan') }}" class="btn btn-info w-full"><i class="ri-image-add-line text-xl"></i>Data Laporan</a>
-								</div>
-								@if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA")
-								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="LRating">
-									<a href="{{ route('mitra-rating.index') }}" class="btn btn-info w-full"><i class="ri-sparkling-line text-xl"></i>Rating</a>
-								</div>
-									
-								@else
-								<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="LRating">
-									<a href="{{ route('leader-rating.index') }}" class="btn btn-info w-full"><i class="ri-sparkling-line text-xl"></i>Rating</a>
-								</div>
-								@endif
-					@endif
+							@endif
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Labsensi">
+								<a href="{{ route('lead_absensi') }}" class="btn btn-info w-full"><i class="ri-todo-line text-xl"></i>Data
+									Absensi</a>
+							</div>
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="lizin">
+								<a href="{{ route('lead_izin') }}" class="btn btn-info w-full"><i
+										class="ri-shield-user-line text-xl"></i>Data Izin</a>
+							</div>
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Llembur">
+								<a href="{{ route('lead_lembur') }}" class="btn btn-info w-full"><i class="ri-time-line text-xl"></i>Data
+									Lembur</a>
+							</div>
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="Llaporan">
+								<a href="{{ route('lead_laporan') }}" class="btn btn-info w-full"><i
+										class="ri-image-add-line text-xl"></i>Data Laporan</a>
+							</div>
+							<div class="w-full space-y-4  sm:px-16 overflow-hidden" id="LRating">
+								<a href="{{ route('leader-rating.index') }}" class="btn btn-info w-full"><i
+										class="ri-sparkling-line text-xl"></i>Rating</a>
+							</div>
+						@endif
+						@endif
 
 						{{-- handle Pulang --}}
 						<div class="flex justify-center sm:justify-end">
@@ -207,55 +248,53 @@
 										$timeDifference = $now->diffInMinutes($shiftEnd, false);
 									@endphp
 
-									    <span class="hidden">
-    										<span id="userId" data-user-id="{{ $arr->user_id }}" data-auth-user="{{ Auth::user()->id }}"></span>
-    										<span id="endTime" endTimer="{{ $arr->shift->jam_end }}"></span>
-    											@foreach ($shift as $shif)
-												@if ($shif->client_id == Auth::user()->kerjasama->client_id && $arr->shift->jam_start == $shif->jam_start)
+									<span class="hidden">
+										<span id="userId" data-user-id="{{ $arr->user_id }}" data-auth-user="{{ Auth::user()->id }}"></span>
+										<span id="endTime" endTimer="{{ $arr->shift->jam_end }}"></span>
+										@foreach ($shift as $shif)
+											@if ($shif->client_id == Auth::user()->kerjasama->client_id && $arr->shift->jam_start == $shif->jam_start)
 												<span id="startTime" startTimer="{{ $shif->jam_start }}"></span>
-													
-												@endif
-											@endforeach
-    									</span>
-										<div>
-											<button id="modalPulangBtn"
-												class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
-													class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang</span>
-											</button>
-										</div>
-										<div
-											class="fixed inset-0 modalp hidden bg-slate-500/10 backdrop-blur-sm transition-all duration-300 ease-in-out">
-											<div class="bg-slate-200 w-fit p-5 rounded-md shadow">
-												<div class="flex justify-end mb-3">
-													<button class="btn btn-error scale-90 close">&times;</button>
-												</div>
-												<form action="{{ route('data.update', $arr->id) }}" method="POST"
-													class="flex justify-center items-center  ">
-													@csrf
-													@method('PUT')
-													<div class="flex justify-center flex-col ">
-
-														<div class="flex flex-col gap-2">
-															<p class="text-center text-lg font-semibold">Apakah Anda Yakin Ingin Pulang Sekarang?</p>
-															<span id="labelWaktu"></span>
-    														<span class="flex justify-center">
-    															<span id="jam2" class="badge badge-info underline font-semibold text-slate-800 text-sm"></span>
-    														</span>
-														</div>
-														<div class="flex justify-center items-center">
-															<button type="submit"
-																class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
-																	class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang Sekarang</span>
-															</button>
-															<input id="lat" name="lat_user" value="" class="hidden" />
-															<input id="long" name="long_user" value="" class="hidden" />
-															<div id="map" class="hidden"></div>
-														</div>
-													</div>
-												</form>
+											@endif
+										@endforeach
+									</span>
+									<div>
+										<button id="modalPulangBtn"
+											class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
+												class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang</span>
+										</button>
+									</div>
+									<div
+										class="fixed inset-0 modalp hidden bg-slate-500/10 backdrop-blur-sm transition-all duration-300 ease-in-out">
+										<div class="bg-slate-200 w-fit p-5 rounded-md shadow">
+											<div class="flex justify-end mb-3">
+												<button class="btn btn-error scale-90 close">&times;</button>
 											</div>
+											<form action="{{ route('data.update', $arr->id) }}" method="POST"
+												class="flex justify-center items-center  ">
+												@csrf
+												@method('PUT')
+												<div class="flex justify-center flex-col ">
+
+													<div class="flex flex-col gap-2">
+														<p class="text-center text-lg font-semibold">Apakah Anda Yakin Ingin Pulang Sekarang?</p>
+														<span id="labelWaktu"></span>
+														<span class="flex justify-center">
+															<span id="jam2" class="badge badge-info underline font-semibold text-slate-800 text-sm"></span>
+														</span>
+													</div>
+													<div class="flex justify-center items-center">
+														<button type="submit"
+															class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
+																class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang Sekarang</span>
+														</button>
+														<input id="lat" name="lat_user" value="" class="hidden" />
+														<input id="long" name="long_user" value="" class="hidden" />
+														<div id="map" class="hidden"></div>
+													</div>
+												</div>
+											</form>
 										</div>
-									
+									</div>
 								@else
 								@endif
 							@endforeach
@@ -278,7 +317,6 @@
 						</div>
 					</div>
 				</div>
-				
 
 				<div class="flex justify-center">
 					<div class="fixed bottom-0 z-[999]">
@@ -651,65 +689,64 @@
 			return e;
 		}
 		// jam 2
-// jam 2
+		// jam 2
 		function jam2() {
 			var e2 = document.getElementById('jam2'),
 				d2 = new Date(),
 				h2 = d2.getHours(),
 				m2 = set(d2.getMinutes()),
-				s2 = set(d2.getSeconds())
-			;
-			
-            var startTime = document.getElementById('startTime').getAttribute('startTimer');
-            var btnAbsensi = document.getElementById('ngabsen');
-            var aAbsensi = document.getElementById('aAbsen');
-            var aAbsensi2 = document.getElementById('aAbsen2');
-            var hrefAbsen = aAbsensi.getAttribute("href");
+				s2 = set(d2.getSeconds());
+
+			var startTime = document.getElementById('startTime').getAttribute('startTimer');
+			var btnAbsensi = document.getElementById('ngabsen');
+			var aAbsensi = document.getElementById('aAbsen');
+			var aAbsensi2 = document.getElementById('aAbsen2');
+			var hrefAbsen = aAbsensi.getAttribute("href");
 			var endTime = document.getElementById('endTime').getAttribute('endTimer');
 			var btnPulang = document.getElementById('modalPulangBtn');
 			var labelWaktu = document.getElementById('labelWaktu');
-			
+
 			var startTimeParts = startTime.split(':');
 			var startHours = parseInt(startTimeParts[0]);
 			var startMinutes = parseInt(startTimeParts[1]);
-			
+
 			var startDiffMinutes = startHours * 60 + startMinutes;
 			var nowDiffMinutes = h2 * 60 + m2;
-			
+
 			var jadi = nowDiffMinutes - startDiffMinutes;
-			
+
 			var kesimH = Math.floor(jadi / 60);
 			var kesimM = Math.abs(jadi % 60);
 			var kesimS = Math.abs(60 - s2);
-			
-			if(jadi >= -60){
-			    btnAbsensi.removeAttribute("disabled");
-			    btnAbsensi.classList.remove('cursor-not-allowed');
-			    aAbsensi.classList.remove('cursor-not-allowed');
-			    aAbsensi.style.backgroundColor = "";
-                aAbsensi.style.border = "";
-                aAbsensi.setAttribute("href", "{{ route('absensi.index') }}");
-                aAbsensi.innerHTML = "Kehadiran";
-                //   a2
-			    aAbsensi2.classList.remove('cursor-not-allowed');
-			    aAbsensi2.style.backgroundColor = "";
-			    aAbsensi2.style.border = "";
-			    aAbsensi2.setAttribute("href", "{{ route('absensi.index') }}");
-			}else{
-			    btnAbsensi.setAttribute("disabled", true);
-			    btnAbsensi.classList.add('cursor-not-allowed');
-			    aAbsensi.classList.add('cursor-not-allowed');
-			    aAbsensi.style.backgroundColor = "rgba(59, 130, 246, 0.5)";
-			    aAbsensi.style.border = "none";
-			    aAbsensi.removeAttribute("href");
-			    aAbsensi.innerHTML = set(kesimH)+ ' jam ' + set(kesimM) + ' menit ' + kesimS + ' detik lagi';
-			 //   a2
-			    aAbsensi2.classList.add('cursor-not-allowed');
-			    aAbsensi2.style.backgroundColor = "rgba(59, 130, 246, 0.5)";
-			    aAbsensi2.style.border = "none";
-			    aAbsensi2.removeAttribute("href");
+
+			if (jadi >= -60) {
+				btnAbsensi.removeAttribute("disabled");
+				btnAbsensi.classList.remove('cursor-not-allowed');
+				aAbsensi.classList.remove('cursor-not-allowed');
+				aAbsensi.style.backgroundColor = "";
+				aAbsensi.style.border = "";
+				aAbsensi.setAttribute("href", "{{ route('absensi.index') }}");
+				aAbsensi.innerHTML = "Kehadiran";
+				//   a2
+				aAbsensi2.classList.remove('cursor-not-allowed');
+				aAbsensi2.style.backgroundColor = "";
+				aAbsensi2.style.border = "";
+				aAbsensi2.setAttribute("href", "{{ route('absensi.index') }}");
+			} else {
+				btnAbsensi.setAttribute("disabled", true);
+				btnAbsensi.classList.add('cursor-not-allowed');
+				aAbsensi.classList.add('cursor-not-allowed');
+				aAbsensi.style.backgroundColor = "rgba(59, 130, 246, 0.5)";
+				aAbsensi.style.border = "none";
+				aAbsensi.removeAttribute("href");
+				aAbsensi.innerHTML = set(kesimH) + ' jam ' + set(kesimM) + ' menit ' + kesimS + ' detik lagi';
+				//   a2
+				aAbsensi2.classList.add('cursor-not-allowed');
+				aAbsensi2.style.backgroundColor = "rgba(59, 130, 246, 0.5)";
+				aAbsensi2.style.border = "none";
+				aAbsensi2.removeAttribute("href");
 			}
-			
+
 
 			var endTimeParts = endTime.split(':');
 			var endHours = parseInt(endTimeParts[0]);
@@ -726,7 +763,8 @@
 			var jadiMenit = timeDiffHours * 60 + timeDiffMinutes;
 
 			var timeDiffStr = (timeDiffHours < 0) ? '-' : '';
-			timeDiffStr += Math.abs(timeDiffHours) + ' jam ' + set(timeDiffMinutes) + ' menit ' + set(timeDiffSeconds) + ' detik';
+			timeDiffStr += Math.abs(timeDiffHours) + ' jam ' + set(timeDiffMinutes) + ' menit ' + set(timeDiffSeconds) +
+				' detik';
 
 			e2.innerHTML = timeDiffStr;
 
@@ -747,16 +785,16 @@
 				btnPulang.classList.remove('flex');
 			}
 
-// 			console.log(
-// 				endTime,
-// 				'dipartisi: ', endHours, ':', endMinutes, 
-// 				'waktu sekarang: ', h2, m2,
-// 				'beda jam: ', timeDiffHours, timeDiffMinutes, timeDiffSeconds,
-				// 'beda menit: ', jadiMenit,
-// 				'jadi jam: ', Math.abs(jadiMenit / 60),
-				// );
-        
-            setTimeout(jam2, 1000);
+			// 			console.log(
+			// 				endTime,
+			// 				'dipartisi: ', endHours, ':', endMinutes, 
+			// 				'waktu sekarang: ', h2, m2,
+			// 				'beda jam: ', timeDiffHours, timeDiffMinutes, timeDiffSeconds,
+			// 'beda menit: ', jadiMenit,
+			// 				'jadi jam: ', Math.abs(jadiMenit / 60),
+			// );
+
+			setTimeout(jam2, 1000);
 		}
 
 		function set(e2) {

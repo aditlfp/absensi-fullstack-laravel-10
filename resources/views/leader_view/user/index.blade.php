@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-main-div>
-        <div class="py-10">
-            <p class="text-center text-xl uppercase font-bold ">List Karyawan, {{ Auth::user()->kerjasama->client->name }}</p>
+        <div class="py-10 sm:mx-10">
+            <p class="text-center text-lg sm:text-2xl uppercase font-bold ">List Karyawan, {{ Auth::user()->kerjasama->client->name }}</p>
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
-                <div class=" flex items-center my-5">
+                <div class=" flex items-center justify-center sm:justify-end w-full my-5">
                     <x-search />
                 </div>
                 <div class="overflow-x-scroll w-full md:overflow-hidden mx-2 sm:mx-10  ">
@@ -58,8 +58,8 @@
                     <div id="pag-1" class="mt-5 mb-5">
                         {{ $user->links() }}
                     </div>
-                    <div class="flex">
-		                <a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>
+                    <div class="flex justify-center sm:justify-end w-full">
+		                <a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
                     </div>
             </div>
         </div>

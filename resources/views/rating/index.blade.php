@@ -1,7 +1,7 @@
 <x-app-layout>
 	<x-main-div>
 		<div class="py-10 px-5">
-			<p class="text-center text-2xl font-bold  uppercase">Index Rating, {{ Auth::user()->kerjasama->client->name }}</p>
+			<p class="text-center text-lg sm:text-2xl font-bold  uppercase">Index Rating, {{ Auth::user()->kerjasama->client->name }}</p>
 			
 			<div class="flex justify-center sm:justify-end ">
 				<div class="input flex items-center w-fit input-bordered my-10">
@@ -329,6 +329,9 @@
 		@endforelse
 	</tbody>
 </table>
+</div>
+<div class="flex justify-center sm:justify-end ">
+	<a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>
 </div>
 </div>
 </div>

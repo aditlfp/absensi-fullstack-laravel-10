@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-main-div>
-        <div class="py-10">
-            <p class="text-center text-2xl font-bold mb-10 uppercase">Index Jadwal Karyawan {{ Auth::user()->divisi->jabatan->code_jabatan }}</p>
-            <div class="flex justify-end">
+        <div class="py-10 sm:mx-10">
+            <p class="text-center text-lg sm:text-2xl font-bold mb-10 uppercase">Index Jadwal Karyawan, {{ Auth::user()->kerjasama->client->name }}</p>
+            <div class="flex justify-center sm:justify-end w-full">
                 <x-search/>
             </div>
             @if(Auth::user()->role_id == 2)
@@ -97,7 +97,7 @@
             <div class="mt-5 mx-10">
                 {{ $jadwalUser->links() }}
             </div>
-            <div class="flex justify-center my-5">
+            <div class="flex justify-center sm:justify-end my-5">
 				<a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
             </div>
         </div>
