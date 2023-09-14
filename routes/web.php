@@ -130,7 +130,8 @@ Route::middleware(['auth', 'admin', 'apdt'])->group(function () {
     Route::resource('/lokasi', LokasiController::class);
     Route::resource('/area', AreaController::class);
 
-    Route::get('/admin-checkpoint', [CheckPointController::class, 'createAdmin'])->name('admin.cp.create');
+    Route::get('/admin-checkpoint', [CheckPointController::class, 'indexAdmin'])->name('admin.cp.index');
+    Route::get('/admin-checkpoint/create', [CheckPointController::class, 'createAdmin'])->name('admin.cp.create');
     Route::post('/admin-checkpoint/store', [CheckPointController::class, 'adminStore'])->name('admin.cp.store');
 
     Route::resource('admin-jadwal', JadwalUserController::class);

@@ -2,7 +2,7 @@
 	<x-main-div>
 
 		<div>
-			<p class="text-center text-2xl font-bold py-10 uppercase">Index Laporan</p>
+			<p class="text-center text-2xl font-bold py-10 uppercase">Index Laporan</p> 
 		</div>
 		<div class="flex justify-end">
 			<div class="input flex w-fit mx-10 items-center justify-end mb-5 input-bordered">

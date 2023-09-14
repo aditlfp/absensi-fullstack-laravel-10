@@ -10,6 +10,9 @@
                     <input type="search" id="searchInput" class="border-none rounded ml-1" placeholder="Search..." required>
                 </div>
             </div>
+            <div class="flex justify-center sm:justify-end mx-10">
+                <a href="{{ route('admin.cp.create') }}" class="btn btn-primary">+ CP</a>
+            </div>
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
                 <div class="overflow-x-auto w-full md:overflow-hidden mx-2 sm:mx-0 sm:w-full">
                     <table class="table w-full table-xs bg-slate-50 table-zebra sm:table-md text-sm sm:text-md scale-90 md:scale-90">
@@ -30,10 +33,18 @@
                             @forelse ($cek as $c)
                                 <tr>
                                     <td>{{ $no++ }}</td>
+                                    <td>{{ $c->user->nama_lengkap }}</td>
+                                    <td><a href="#" class="btn btn-sm btn-info">Lihat Foto</a></td>
+                                    <td>{{ $c->check_count }}</td>
+                                    <td>{{ $c->kerjasama->client->name }}</td>
+                                    <td>
+                                        <x-btn-edit></x-btn-edit>
+                                        <x-btn-submit></x-btn-submit>
+                                    </td>
                                 </tr>
                             @empty
                             <tr>
-                                <td>~ Kosong ~</td>
+                                <td colspan="6" class="text-center">~ Kosong ~</td>
                             </tr>
                             @endforelse
                         </tbody>

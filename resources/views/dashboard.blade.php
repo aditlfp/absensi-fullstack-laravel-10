@@ -123,13 +123,26 @@
 								</div>
 						</div>
 						<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
-							<div id="btnCP" disabled
-								class="text-gray-700 w-full flex justify-center items-center gap-2 bg-amber-400/70 rounded-md h-11 cursor-not-allowed transition-all ease-linear .2s">
+							<div id="btnCP" 
+								class="w-full flex justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
 								<i class="ri-list-check-3"></i>
-								<button class="uppercase font-bold text-sm cursor-not-allowed" disabled>
-									Kinerja harian <br>(coming soon)
+								<button class="uppercase font-bold text-sm">
+									Kinerja harian
 								</button>
 							</div>
+							@if (Auth::user()->role_id == 2)
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIndex">
+								<a href="{{ route('admin.cp.index') }}" class="btn btn-info w-full">Index Check Point</a>
+							</div>
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="tambahCP">
+								<a href="{{ route('admin.cp.create') }}" class="btn btn-info w-full">Tambah Check Point</a>
+							</div>
+								
+							@else
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIndex">
+								<a href="{{ route('checkpoint-user.index') }}" class="btn btn-info w-full">Index Check Point</a>
+							</div>
+							@endif
 						</div>
 						<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
 							<div id="btnRating"
@@ -486,6 +499,7 @@
 			var btnAbsensi = $("#btnAbsensi");
 			var btnRating = $("#btnRating");
 			var btnMitra = $('#btnMitra');
+			var btnCP = $('#btnCP');
 
 			var table = $("#table");
 			var table2 = $("#table2");
@@ -509,7 +523,6 @@
 			var iAbsensi = $('.iAbsensi');
 
 			btnAbsensi.click(function() {
-				btnAbsensi.toggleClass('mb-4');
 				btnRating.toggle();
 				$('#isiAbsen').toggle();
 				$('#ngabsen').toggle();
@@ -543,6 +556,11 @@
 				$('#Luser').toggle();
 				$('#Ljadwal').toggle();
 				$('#lizin').toggle();
+			})
+
+			btnCP.click(function() {
+				$('#isiIndex').toggle();
+				$('#tambahCP').toggle();
 			})
 
 			// $('#isiAbsen').click(function() {

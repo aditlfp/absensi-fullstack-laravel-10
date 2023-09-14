@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckPointRequest;
-use App\Http\Requests\ImageRequest;
 use App\Models\CheckPoint;
 use App\Models\Client;
 use App\Models\Image;
@@ -17,6 +16,11 @@ class CheckPointController extends Controller
     {
         $cek = CheckPoint::all();
         return view('check.index', compact('cek'));
+    }
+    public function indexAdmin()
+    {
+        $cek = CheckPoint::all();
+        return view('admin.check.index', compact('cek'));
     }
 
     public function createAdmin()
@@ -42,7 +46,6 @@ class CheckPointController extends Controller
             'check_count' => $request->check_count,
             'client_id' => $request->client_id
         ];
-
         CheckPoint::create($cek);
         return redirect()->back()->with('msg', 'Data Check Point Disimpan!');
     }

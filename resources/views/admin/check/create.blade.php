@@ -25,8 +25,16 @@
 
                 <div class="flex flex-col w-2/6 mb-3">
                     <label for="client_id" class="font-semibold text-white">Pilih Client</label>
-                    <div readonly>
-                        <select name="client_id" id="client_id" class="select select-bordered cursor-not-allowed" aria-readonly="true">
+                        <select  id="client_id" class="select select-bordered cursor-not-allowed" disabled>
+                            <option readonly disabled>~ Pilih Client ~</option>
+                            @forelse ($client as $arr)
+                                <option value="{{ $arr->id}}" readonly>{{ $arr->name}}</option>
+                            @empty
+                                <option disabled>~ User Kosong ~</option>
+                            @endforelse
+                        </select>
+                    <div class="hidden">
+                        <select name="client_id" id="client_id" class="select select-bordered cursor-not-allowed">
                             <option readonly disabled>~ Pilih Client ~</option>
                             @forelse ($client as $arr)
                                 <option value="{{ $arr->id}}" readonly>{{ $arr->name}}</option>
