@@ -14,6 +14,10 @@ class Image extends Model
         'image'
     ];
 
+    protected $casts = [
+        'image' => 'array',
+    ];
+
     public function CheckPoint()
     {
         return $this->belongsTo(CheckPoint::class);

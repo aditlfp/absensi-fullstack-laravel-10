@@ -44,6 +44,7 @@ class ClientController extends Controller
         }else{
             toastr()->error('Logo harus ditambahkan', 'error');
         }
+        // dd($request->all());
         try {
             Client::create($client);
         } catch(\Illuminate\Database\QueryException $e){

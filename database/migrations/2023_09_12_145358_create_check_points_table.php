@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('check_points', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->integer('check-count')->nullable();
+            $table->integer('check_count')->nullable();
             $table->foreignIdFor(Client::class);
             $table->timestamps();
         });

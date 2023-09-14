@@ -319,16 +319,6 @@
 				modal.removeClass(' inset-0 z-[99]');
 				modal.addClass('hidden ');
 			});
-		$(document).ready(function() {
-    		function updateUptime() {
-                $.get('/get-uptime', function(data) {
-                    $('#uptime').text("Running : " + data.uptime);
-                });
-            }
-        
-            // Mulai pembaruan secara berkala (misalnya, setiap 5 detik)
-            setInterval(updateUptime, 1000); // 5000 milidetik = 5 detik
-    		});
 		})
 	</script>
 </body>

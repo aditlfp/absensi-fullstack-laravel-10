@@ -15,7 +15,8 @@ class CheckPointController extends Controller
 {
     public function index()
     {
-
+        $cek = CheckPoint::all();
+        return view('check.index', compact('cek'));
     }
 
     public function createAdmin()
@@ -27,8 +28,8 @@ class CheckPointController extends Controller
 
     public function create()
     {
-        $cek = CheckPoint::all();
         $user = Auth::user()->id;
+        $cek = CheckPoint::where('user_id', $user)->get();
         return view('check.create', compact('cek', 'user'));
     }
 
@@ -38,7 +39,7 @@ class CheckPointController extends Controller
 
         $cek = [
             'user_id' => $request->user_id,
-            'check-count' => $request->check_count,
+            'check_count' => $request->check_count,
             'client_id' => $request->client_id
         ];
 
@@ -46,22 +47,31 @@ class CheckPointController extends Controller
         return redirect()->back()->with('msg', 'Data Check Point Disimpan!');
     }
 
-    public function store(ImageRequest $request)
+    public function store(Request $request)
     {
-
-        $img = new Image();
-
-        $img = [
-            'check_point_id' => $request->check_point_id,
-            'image' => $request->image
-        ];
-
         if ($request->hasFile('image')) {
-            $img['image'] = UploadImage($request, 'image');
+            $imagesData = [];
+
+            foreach ($request->file('image') as $image) {
+                if ($image->isValid()) {
+                    $extension = $image->getClientOriginalExtension();
+                    $randomNumber = mt_rand(1, 9999);
+                    $fileName = 'image_' . $randomNumber . '.' . $extension;
+                    $image->storeAs('images', $fileName, 'public');
+                    $imagesData[] = $fileName;
+                }
+            }
+            // dd($imagesData);
+            Image::create([
+                'check_point_id' => $request->check_point_id,
+                'image' => $imagesData
+            ]);
+
+            toastr()->success('Berhasil Menambahkan Check Point', 'success');
+            return to_route('dashboard.index');
         }
-
-        Image::create($img);
-        return "Data Disimpan Cuy";
-
+        toastr()->error('Tidak Ada Image Yang TerUpload', 'error');
+        return redirect()->back();
+          
     }
 }

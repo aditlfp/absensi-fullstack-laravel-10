@@ -11,7 +11,7 @@ class CheckPoint extends Model
 
     protected $fillable = [
         'user_id',
-        'check-count',
+        'check_count',
         'client_id'
     ];
 
@@ -23,5 +23,10 @@ class CheckPoint extends Model
     public function Client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function Image()
+    {
+        return $this->hasMany(Image::class);
     }
 }
