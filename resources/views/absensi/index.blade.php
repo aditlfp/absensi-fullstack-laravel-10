@@ -91,7 +91,8 @@
 									<option disabled selected>-- Pilih Shift --</option>
 									@forelse ($shift as $i)
 										@if (Auth::user()->kerjasama->client_id == $i->client_id && Auth::user()->divisi->jabatan_id == $i->jabatan_id)
-											<option value="{{ $i->id }}"> {{ $i->jabatan->name_jabatan }} | {{ $i->shift_name }} |
+											<option value="{{ $i->id }}" data-shift="{{ $i->jam_start }}"> {{ $i->jabatan->name_jabatan }} |
+												{{ $i->shift_name }} |
 												{{ $i->jam_start }}</option>
 										@else
 										@endif
@@ -163,28 +164,31 @@
 						@php
 							$key = Auth::user()->id;
 						@endphp
-						<div class="flex justify-center sm:justify-end gap-3 mt-2 mr-2">
-							@forelse ($absensi as $abs)
-								{{-- sudah --}}
-								@if ($abs->tanggal_absen == Carbon\Carbon::now()->format('Y-m-d'))
-									<button
-										class="p-2 my-2 px-4 text-slate-100 bg-blue-300  rounded transition-all ease-linear .2s disabled cursor-not-allowed"
-										disabled>Sudah Absen</button>
-									{{-- belum --}}
-								@else
-									<button
-										class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
-								@endif
-							@break
+						<div class="flex flex-col justify-center sm:justify-end gap-3 mt-2 mr-2">
+							<span id="labelWaktuStart" class="text-center text-[10px] capitalize font-semibold hidden"></span>
+							<span class="flex justify-center gap-3">
+								@forelse ($absensi as $abs)
+									{{-- sudah --}}
+									@if ($abs->tanggal_absen == Carbon\Carbon::now()->format('Y-m-d'))
+										<button
+											class="p-2 my-2 px-4 text-slate-100 bg-blue-300  rounded transition-all ease-linear .2s disabled cursor-not-allowed"
+											disabled>Sudah Absen</button>
+										{{-- belum --}}
+									@else
+										<button class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s"
+											id="btnAbsen">Absen</button>
+									@endif
+								@break
 
-							@empty
-								<button
-									class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Absen</button>
-							@endforelse
-							<a href="{{ route('dashboard.index') }}"
-								class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
-								Back
-							</a>
+								@empty
+									<button class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s"
+										id="btnAbsen">Absen</button>
+								@endforelse
+								<a href="{{ route('dashboard.index') }}"
+									class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
+									Back
+								</a>
+							</span>
 						</div>
 						<input class="hidden" id="thisId" value="{{ Auth::user()->id }}">
 						@php
@@ -262,6 +266,65 @@
 				}).addTo(map).bindPopup("Lokasi absen: " + client)
 				.openPopup();
 		}
+	</script>
+	<script>
+		$(document).ready(function() {
+			function calculatedJamStart() {
+				// get jam
+				var currentDate = new Date();
+				var jamSaiki = currentDate.getHours();
+				var menitSaiki = currentDate.getMinutes();
+				var detikSaiki = currentDate.getSeconds();
+
+				// fungsi
+				var selectedOption = $('#shift_id').find(":selected");
+				var shiftStart = selectedOption.data('shift');
+				if (typeof shiftStart !== 'undefined' && shiftStart !== '') {
+					var startTimeParts = shiftStart.split(':');
+					var startHours = parseInt(startTimeParts[0]);
+					var startMinutes = parseInt(startTimeParts[1]);
+
+					var startDiffMinutes = startHours * 60 + startMinutes;
+					var nowDiffMinutes = jamSaiki * 60 + menitSaiki;
+
+					var jadi = startDiffMinutes - nowDiffMinutes;
+
+					var kesimH = Math.floor(jadi / 60);
+					var kesimM = Math.abs(jadi % 60);
+					var kesimS = Math.abs(60 - detikSaiki);
+
+					// console.log(jadi);
+
+					if (jadi <= 60) {
+						$('#btnAbsen').removeClass('cursor-not-allowed bg-blue-400/50 hover:bg-blue-400/50');
+						$('#btnAbsen').prop('disabled', false);
+						$('#labelWaktuStart').addClass('hidden py-2 px-4 rounded-md bg-slate-50');
+					} else {
+						$('#btnAbsen').addClass('cursor-not-allowed bg-blue-400/50 hover:bg-blue-400/50');
+						$('#labelWaktuStart').removeClass('hidden');
+						$('#btnAbsen').prop('disabled', true);
+						if (kesimH == 0) {
+							$('#labelWaktuStart').html(`tunggu ${kesimM} menit ${kesimS} detik lagi untuk absen`);
+						} else if (kesimM == 0 && kesimH == 0) {
+							$('#labelWaktuStart').html(`tunggu ${kesimS} detik lagi untuk absen`);
+						} else
+							$('#labelWaktuStart').html(
+								`tunggu ${kesimH} jam ${kesimM} menit ${kesimS} detik lagi untuk absen`);
+					}
+					console.log();
+
+				} else {
+					console.log('kosong bg');
+				}
+				setTimeout(calculatedJamStart, 1000)
+			}
+
+			// Attach an event handler to the #shift_id change event
+			$('#shift_id').change(function() {
+				// This code runs when the #shift_id element changes
+				calculatedJamStart();
+			});
+		})
 	</script>
 </body>
 
