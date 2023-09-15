@@ -76,7 +76,7 @@ class AdminController extends Controller
             $absenSi = Kerjasama::all();
             $point = Point::all();
             $divisi = Divisi::all();
-            $absen = Absensi::where('kerjasama_id', $filter)->orderBy('tanggal_absen', 'desc')->paginate(999999999);
+            $absen = Absensi::with(['User', 'Shift', 'Kerjasama'])->where('kerjasama_id', $filter)->orderBy('tanggal_absen', 'desc')->paginate(999999999);
         }
         else
         {
@@ -84,8 +84,8 @@ class AdminController extends Controller
             $absenSi = Kerjasama::all();
             $point = Point::all();
             $divisi = Divisi::all();
-                    
-            $absen = Absensi::orderBy('tanggal_absen', 'desc')->paginate(25);
+                    // user shift kerjasama
+            $absen = Absensi::with(['User', 'Shift', 'Kerjasama'])->orderBy('tanggal_absen', 'desc')->paginate(25);
         }
         
        

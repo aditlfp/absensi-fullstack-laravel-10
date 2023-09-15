@@ -1,14 +1,13 @@
 <x-app-layout>
     <x-main-div>
     <div class="m-10 p-10">
-        @if(session('msg'))
-            <div class="bg-green-500 w-2/6 p-2 text-center rounded-md shadow-md text-white font-semibold">
-                {{ session('msg') }}
-            </div>
-        @endif
-
-        <div>
+        <div class="flex flex-col justify-center w-full">
             <p class="text-center text-lg sm:text-2xl font-bold uppercase">Tambah Check Point</p>
+            @if(session('msg'))
+                <div class="mx-auto bg-green-500 w-3/6 p-2 text-center rounded-md shadow-md text-white font-semibold mt-5">
+                        {{ session('msg') . '!!!' }}
+                    </div>
+            @endif
         </div>
             <form action="{{ route('admin.cp.store')}}" method="post" class=" my-10 flex items-center justify-center">
                 <div class="bg-slate-100 px-10 py-5 rounded shadow items-center justify-center">
@@ -54,6 +53,9 @@
                         <input type="text" name="check_count" id="check_count" placeholder="10" class="input input-bordered">
                         <x-input-error :messages="$errors->get('check-count')" class="mt-2" />
                     </div>
+                    <div class="flex flex-col  w-full mb-3">
+                       <div id="nameInputs" class="flex flex-col  w-full mb-3"></div>
+                    </div>
                     <div class="flex gap-2 justify-center sm:justify-end">
                         <a href="{{ route('admin.cp.index') }}" class="btn btn-error">Back</a>
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -72,6 +74,34 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            var checkCountInput = $("#check_count");
     
+            var nameInputsDiv = $("#nameInputs");
+    
+            checkCountInput.on("input", function () {
+                var checkCount = parseInt(checkCountInput.val());
+    
+                nameInputsDiv.empty();
+    
+                for (var i = 1; i <= checkCount; i++) {
+                    var nameLabel = $("<label>")
+                        .attr("for", "name[]")
+                        .text("Name " + i + " ( Opsional ):");
+                    
+                    var nameInput = $("<input>")
+                        .attr("type", "text")
+                        .attr("name", "name[]")
+                        .attr("id", "name" + i)
+                        .addClass("input input-bordered")
+                        .attr("placeholder", "Name....");
+    
+                    nameInputsDiv.append(nameLabel);
+                    nameInputsDiv.append(nameInput);
+                }
+            });
+        });
+    </script>
     
 </x-app-layout>

@@ -7,16 +7,31 @@
                 @foreach ($cek as $arr)
                     @php
                         $dataCount = $arr['check_count'];
+                        $i = 1;
                     @endphp
                     <input type="text" name="check_point_id" id="check_point_id" value="{{ $arr['id'] }}"
                         class="hidden" readonly>
                     <div class="flex flex-col w-2/6">
-                        @for ($i = 1; $i <= $dataCount; $i++)
-                            <label for="image{{ $i }}" class="font-semibold text-white">Image
-                                {{ $i }}:</label>
-                            <input type="file" name="image[]" id="image{{ $i }}" accept="image/*" multiple required
+                        @if ($arr->name != null)
+                        @forelse ($arr->name as $item)
+                        <label for="image{{ $i++ }}" class="font-semibold text-white">Image
+                                {{ $item}}:</label>
+                                <input type="file" name="image[]" id="image{{ $i++ }}" accept="image/*" multiple required
+                                    class="file-input file-input-bordered">
+                        @empty
+                        <label for="image{{ $i++ }}" class="font-semibold text-white">Image
+                        :</label>
+                            <input type="file" name="image[]" id="image{{ $i++ }}" accept="image/*" multiple required
                                 class="file-input file-input-bordered">
-                        @endfor
+                        @endforelse
+                        @else
+                            @for ($n = 1; $n <= $arr->check_count; $n++)
+                                <label for="image{{ $n }}" class="font-semibold text-white">Image {{ $n}}
+                                :</label>
+                                <input type="file" name="image[]" id="image{{ $n }}" accept="image/*" multiple required
+                                    class="file-input file-input-bordered">
+                            @endfor
+                        @endif
                     </div>
                 @endforeach
 

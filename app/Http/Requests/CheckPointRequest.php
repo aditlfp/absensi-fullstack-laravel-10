@@ -24,7 +24,8 @@ class CheckPointRequest extends FormRequest
         return [
             'user_id' => 'required',
             'check-count' => 'nullable',
-            'client_id' => 'required'
+            'client_id' => 'required',
+            'name' => 'nullable'
         ];
     }
 }

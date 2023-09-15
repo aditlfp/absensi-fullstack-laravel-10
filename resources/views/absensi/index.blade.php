@@ -231,7 +231,9 @@
 		var long = document.getElementById('long')
 
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition);
+			navigator.geolocation.watchPosition(showPosition);
+		}else{
+			alert('Geo Location Not Supported By This Browser !!');
 		}
 
 		function showPosition(position) {

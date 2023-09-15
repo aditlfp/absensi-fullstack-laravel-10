@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->integer('check_count')->nullable();
+            $table->string('name')->nullable();
             $table->foreignIdFor(Client::class);
             $table->timestamps();
         });

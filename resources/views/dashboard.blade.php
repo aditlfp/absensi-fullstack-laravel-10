@@ -692,7 +692,9 @@
 		var long = document.getElementById('long')
 
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition);
+			navigator.geolocation.watchPosition(showPosition);
+		}else{
+			alert("Geolocation is Not Supported By This Browser");
 		}
 
 		function showPosition(position) {

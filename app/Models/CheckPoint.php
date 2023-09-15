@@ -12,7 +12,12 @@ class CheckPoint extends Model
     protected $fillable = [
         'user_id',
         'check_count',
+        'name',
         'client_id'
+    ];
+
+    protected $casts = [
+        'name' => 'array',
     ];
 
     public function User()

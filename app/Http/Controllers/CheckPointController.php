@@ -21,7 +21,7 @@ class CheckPointController extends Controller
     }
     public function indexAdmin()
     {
-        $cek = CheckPoint::all();
+        $cek = CheckPoint::with(['User', 'Client'])->get();
         return view('admin.check.index', compact('cek'));
     }
 
@@ -44,14 +44,16 @@ class CheckPointController extends Controller
     // ADMIN HANDLE REQUEST STORE NEW COUNT CP
     public function adminStore(CheckPointRequest $request)
     {
-        $cek = new CheckPoint();
-
-        $cek = [
+        $dataName = [];
+        foreach ($request->input('name') as $value) {
+            $dataName[] = $value;
+        }
+        CheckPoint::create([
             'user_id' => $request->user_id,
             'check_count' => $request->check_count,
-            'client_id' => $request->client_id
-        ];
-        CheckPoint::create($cek);
+            'client_id' => $request->client_id,
+            'name' => $dataName
+        ]);
         return redirect()->back()->with('msg', 'Check Point Berhasil Dibuat');
     }
 
@@ -66,7 +68,8 @@ class CheckPointController extends Controller
         $cek = [
             'user_id' => $request->user_id,
             'check_count' => $request->check_count,
-            'client_id' => $request->client_id
+            'client_id' => $request->client_id,
+            'name' => $request->name
         ];
 
         $cekId = CheckPoint::findOrFail($id);

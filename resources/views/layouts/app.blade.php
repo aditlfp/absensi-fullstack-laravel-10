@@ -63,7 +63,6 @@
 	 <!-- cdnjs -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
-
 	<script>
 		$(document).ready(function() {
 			$("#searchInput").on("keyup", function() {
