@@ -33,11 +33,11 @@ class JadwalUserController extends Controller
     public function create(Request $request)
     {
         if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA" && Auth::user()->divisi->jabatan->code_jabatan == "LEADER") {
-            $user = User::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
+            $user = User::with('Kerjasama')->where('kerjasama_id', Auth::user()->kerjasama_id)->get();
         } else {
             $kerj = Kerjasama::all();
             $filter = $request->filter;
-            $user = User::where('kerjasama_id', $filter)->get();
+            $user = User::with('Kerjasama')->where('kerjasama_id', $filter)->get();
         }
         $shift = Shift::all();
         return view('admin.jadwalUser.create', compact('user', 'shift', 'kerj'));
@@ -45,19 +45,19 @@ class JadwalUserController extends Controller
 
     public function processDate(Request $request)
     {
-        $area = Area::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
+        $area = Area::with('Kerjasama')->where('kerjasama_id', Auth::user()->kerjasama_id)->get();
         $str1 = $this->str;
         $end1 = $this->ended;
-        $kerj = Kerjasama::all();
+        $kerj = Kerjasama::with('Devisi');
         $totalHari =  Carbon::parse($this->ended)->diffInDays(Carbon::parse($this->str));
         if($request->has(['str1', 'end1'])){
             if (Auth::user()->divisi->jabatan->code_jabatan == "MITRA" || Auth::user()->divisi->jabatan->code_jabatan == "LEADER") {
-                $user = User::where('kerjasama_id', Auth::user()->kerjasama_id)->get();
+                $user = User::with('Kerjasama')->where('kerjasama_id', Auth::user()->kerjasama_id)->get();
                 $filter = Auth::user()->kerjasama_id;
             } else {
                 $kerj = Kerjasama::all();
                 $filter = $request->filter;
-                $user = User::where('kerjasama_id', $filter)->get();
+                $user = User::with('Kerjasama')->where('kerjasama_id', $filter)->get();
             }
             $jadwal = JadwalUser::all();
             $shift = Shift::all();

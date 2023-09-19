@@ -20,6 +20,7 @@ use App\Http\Controllers\PerlengkapanController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\ReportBrefController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\SVP_Controller\MainController;
@@ -44,6 +45,7 @@ Route::get('/', function () {
 Route::view('/map', 'absensi.maps');
 Route::get('/get-uptime', [AdminController::class, 'getUpTime'])->name('uptime');
 Route::get('/send', [DashboardController::class, 'sendTestEmail']);
+Route::resource('brief', ReportBrefController::class);
 
 // Auth tok
 Route::middleware(['auth', 'apdt'])->group(function () {

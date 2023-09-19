@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.8",
         "symfony/asset": "^6.3",
         "torann/geoip": "^3.0",
+        "yajra/laravel-datatables": "^10.1",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {

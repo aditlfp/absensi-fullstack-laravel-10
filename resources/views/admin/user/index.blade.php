@@ -41,36 +41,6 @@
 					@php
 						$no = 1;
 					@endphp
-					@if ($user == null)
-						<tr>
-							<td class="text-center" colspan="5">Data Kosong</td>
-						</tr>
-					@elseif($client == null)
-						@foreach ($user as $i)
-							<tr>
-								<td>{{ $no++ }}</td>
-								@if ($i->image == 'no-image.jpg')
-									<td>
-										<x-no-img />
-									</td>
-								@else
-									<td><img src="{{ asset('storage/images/' . $i->image) }}" alt="" srcset="" width="120px"></td>
-								@endif
-								<td>{{ $i->name }}</td>
-								<td>{{ $i->nama_lengkap?$i->nama_lengkap : 'NAMA LENGKAP KOSONG' }}</td>
-								<td>{{ $i->email }}</td>
-								<td>Client Saat Ini Kosong</td>
-								<td>
-									<form action="{{ url('users/' . $i->id) }}" method="POST">
-										@csrf
-										@method('DELETE')
-										<x-btn-submit />
-										<x-btn-edit>{{ url('users/' . $i->id . '/edit') }}</x-btn-edit>
-									</form>
-								</td>
-							</tr>
-						@endforeach
-					@else
 						@forelse ($user as $i)
 							<tr>
 								<td>{{ $no++ }}</td>
@@ -79,14 +49,12 @@
 										<x-no-img />
 									</td>
 								@else
-									<td><img src="{{ asset('storage/images/' . $i->image) }}" alt="" srcset="" width="120px"></td>
+									<td><img class="lazy lazy-image" loading="lazy" src="{{ asset('storage/images/' . $i->image) }}" data-src="{{ asset('storage/images/' . $i->image) }}" alt="" srcset="" width="120px"></td>
 								@endif
 								<td>{{ $i->name }}</td>
 								<td class="break-words whitespace-pre-line">{{ $i->nama_lengkap }}</td>
 								<td class="break-words whitespace-pre-line">{{ $i->email }}</td>
-								@if ($i->kerjasama == null)
-									<td>kosong</td>
-								@elseif($i->kerjasama->client == null)
+								@if ($i->kerjasama == null || $i->kerjasama->client == null)
 									<td>kosong</td>
 								@else
 									<td class="break-words whitespace-pre-line">{{ $i->kerjasama->client->name }}</td>
@@ -110,11 +78,29 @@
 			<div class="mt-5">
 				{{ $user->links() }}
 			</div>
-			@endif
 		</div>
 		<div class="flex justify-end gap-2 mx-16 py-3 mb-10">
 			<a href="{{ route('admin.index') }}" class="btn btn-error">Back</a>
 			<button><a href="{{ route('users.create') }}" class="btn btn-primary">+ User</a></button>
 		</div>
-
+		<script>
+				$(document).ready(function () {
+				// Saat halaman dimuat, ambil semua elemen dengan class "lazy-image"
+				var lazyImages = $('.lazy-image');
+			
+				// Fungsi untuk memuat gambar ketika mendekati jendela pandangan pengguna
+				function lazyLoad() {
+					lazyImages.each(function () {
+						var image = $(this);
+						if (image.is(':visible') && !image.attr('src')) {
+							image.attr('src', image.attr('data-src'));
+						}
+					});
+				}
+			
+				// Panggil fungsi lazyLoad saat halaman dimuat dan saat pengguna menggulir
+				lazyLoad();
+				$(window).on('scroll', lazyLoad);
+			});
+		</script>
 </x-app-layout>

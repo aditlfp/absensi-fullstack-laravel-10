@@ -28,7 +28,6 @@ class AdminController extends Controller
     {
         $user = User::count();
         $client = Client::count();
-        $shift = Shift::all();
         
         
 
@@ -37,7 +36,6 @@ class AdminController extends Controller
         [
             'user' => $user,
             'client' => $client,
-            'shift' => $shift,
     ]);
     }
     public function getUptime()
