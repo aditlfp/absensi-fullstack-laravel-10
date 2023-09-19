@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Storage;
+
 
 function UploadImage($request, $NameFile)
 {
