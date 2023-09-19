@@ -303,7 +303,7 @@
 									</span>
 									<div>
 										<button id="modalPulangBtn"
-											class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
+											class="bg-yellow-600 hidden justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
 												class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang</span>
 										</button>
 									</div>
@@ -698,8 +698,11 @@
 		}
 
 		function showPosition(position) {
-			lat.value = position.coords.latitude;
-			long.value = position.coords.longitude;
+			try {
+				lat.value = position.coords.latitude;
+				long.value = position.coords.longitude;
+			} catch (error) {
+			}
 
 			var lati = "{{ $harLok->latitude }}"
 			var longi = "{{ $harLok->longtitude }}"
@@ -710,20 +713,20 @@
 			var longitude = position.coords.longitude; // Ganti dengan longitude Anda
 
 
-			var map = L.map('map').setView([latitude, longitude], 13); // ini adalah zoom level
+			// var map = L.map('map').setView([latitude, longitude], 13); // ini adalah zoom level
 
-			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				attribution: '© OpenStreetMap contributors'
-			}).addTo(map);
+			// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			// 	attribution: '© OpenStreetMap contributors'
+			// }).addTo(map);
 
-			var marker = L.marker([latitude, longitude]).addTo(map);
-			var circle = L.circle([lati, longi], {
-					color: 'crimson',
-					fillColor: '#f09',
-					fillOpacity: 0.5,
-					radius: radi,
-				}).addTo(map).bindPopup("Lokasi absen: " + client)
-				.openPopup();
+			// var marker = L.marker([latitude, longitude]).addTo(map);
+			// var circle = L.circle([lati, longi], {
+			// 		color: 'crimson',
+			// 		fillColor: '#f09',
+			// 		fillOpacity: 0.5,
+			// 		radius: radi,
+			// 	}).addTo(map).bindPopup("Lokasi absen: " + client)
+			// 	.openPopup();
 		}
 		window.onload = function() {
 			jam();
@@ -756,16 +759,14 @@
 				m2 = set(d2.getMinutes()),
 				s2 = set(d2.getSeconds());
 
-			var startTime = document.getElementById('startTime').getAttribute('startTimer');
-			var btnAbsensi = document.getElementById('ngabsen');
-			var aAbsensi = document.getElementById('aAbsen');
-			var aAbsensi2 = document.getElementById('aAbsen2');
-			var hrefAbsen = aAbsensi.getAttribute("href");
-			var endTime = document.getElementById('endTime').getAttribute('endTimer');
-			var btnPulang = document.getElementById('modalPulangBtn');
-			var labelWaktu = document.getElementById('labelWaktu');
-
-			console.log(startTime);
+			var startTime = $('#startTime').attr('startTimer');
+			var btnAbsensi = $('#ngabsen');
+			var aAbsensi = $('#aAbsen');
+			var aAbsensi2 = $('#aAbsen2');
+			var hrefAbsen = aAbsensi.attr("href");
+			var endTime = $('#endTime').attr('endTimer');
+			var btnPulang = $('#modalPulangBtn');
+			var labelWaktu = $('#labelWaktu');
 
 			var startTimeParts = startTime.split(':');
 			var startHours = parseInt(startTimeParts[0]);
@@ -781,31 +782,27 @@
 			var kesimS = Math.abs(60 - s2);
 
 			if (jadi >= -60) {
-				btnAbsensi.removeAttribute("disabled");
-				btnAbsensi.classList.remove('cursor-not-allowed');
-				aAbsensi.classList.remove('cursor-not-allowed');
-				aAbsensi.style.backgroundColor = "";
-				aAbsensi.style.border = "";
-				aAbsensi.setAttribute("href", "{{ route('absensi.index') }}");
-				aAbsensi.innerHTML = "Kehadiran";
+				btnAbsensi.removeAttr("disabled");
+				btnAbsensi.removeClass('cursor-not-allowed');
+				aAbsensi.removeClass('cursor-not-allowed');
+				aAbsensi.css({ 'background-color': '', 'border': '' });
+				aAbsensi.attr("href", "{{ route('absensi.index') }}");
+				aAbsensi.text("Kehadiran");
 				//   a2
-				aAbsensi2.classList.remove('cursor-not-allowed');
-				aAbsensi2.style.backgroundColor = "";
-				aAbsensi2.style.border = "";
-				aAbsensi2.setAttribute("href", "{{ route('absensi.index') }}");
+				aAbsensi2.removeClass('cursor-not-allowed');
+				aAbsensi2.css({ 'background-color': '', 'border': '' });
+				aAbsensi2.attr("href", "{{ route('absensi.index') }}");
 			} else {
-				btnAbsensi.setAttribute("disabled", true);
-				btnAbsensi.classList.add('cursor-not-allowed');
-				aAbsensi.classList.add('cursor-not-allowed');
-				aAbsensi.style.backgroundColor = "rgba(59, 130, 246, 0.5)";
-				aAbsensi.style.border = "none";
-				aAbsensi.removeAttribute("href");
-				aAbsensi.innerHTML = set(kesimH) + ' jam ' + set(kesimM) + ' menit ' + kesimS + ' detik lagi';
-				//   a2
-				aAbsensi2.classList.add('cursor-not-allowed');
-				aAbsensi2.style.backgroundColor = "rgba(59, 130, 246, 0.5)";
-				aAbsensi2.style.border = "none";
-				aAbsensi2.removeAttribute("href");
+				btnAbsensi.attr("disabled", true);
+				btnAbsensi.addClass('cursor-not-allowed');
+				aAbsensi.addClass('cursor-not-allowed');
+				aAbsensi.css({ 'background-color': 'rgba(59, 130, 246, 0.5)', 'border': 'none' });
+				aAbsensi.removeAttr("href");
+				aAbsensi.text(set(kesimH) + ' jam ' + set(kesimM) + ' menit ' + kesimS + ' detik lagi');
+
+				aAbsensi2.addClass('cursor-not-allowed');
+				aAbsensi2.css({ 'background-color': 'rgba(59, 130, 246, 0.5)', 'border': 'none' });
+				aAbsensi2.removeAttr("href");
 			}
 
 
@@ -827,33 +824,22 @@
 			timeDiffStr += Math.abs(timeDiffHours) + ' jam ' + set(timeDiffMinutes) + ' menit ' + set(timeDiffSeconds) +
 				' detik';
 
-			e2.innerHTML = timeDiffStr;
+			$('#jam2').text(timeDiffStr);
 
 			if (jadiMenit <= 0) {
-				e2.innerHTML = '~ Shift Anda Telah Selesai ~';
-				labelWaktu.innerHTML = '';
+				$('#jam2').text('~ Shift Anda Telah Selesai ~');
+				labelWaktu.text('');
 			} else {
-				e2.innerHTML = timeDiffStr;
-				labelWaktu.innerHTML = 'Shift Anda Masih';
-				labelWaktu.classList.add('text-center');
+				$('#jam2').text(timeDiffStr);
+				labelWaktu.text('Shift Anda Masih');
+				labelWaktu.addClass('text-center');
 			}
 
 			if (jadiMenit <= 120) {
-				btnPulang.classList.add('flex');
-				btnPulang.classList.remove('hidden');
+				btnPulang.addClass('flex').removeClass('hidden');
 			} else {
-				btnPulang.classList.add('hidden');
-				btnPulang.classList.remove('flex');
+				btnPulang.addClass('hidden').removeClass('flex');
 			}
-
-			// 			console.log(
-			// 				endTime,
-			// 				'dipartisi: ', endHours, ':', endMinutes, 
-			// 				'waktu sekarang: ', h2, m2,
-			// 				'beda jam: ', timeDiffHours, timeDiffMinutes, timeDiffSeconds,
-			// 'beda menit: ', jadiMenit,
-			// 				'jadi jam: ', Math.abs(jadiMenit / 60),
-			// );
 
 			setTimeout(jam2, 1000);
 		}

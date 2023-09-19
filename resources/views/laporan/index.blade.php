@@ -17,9 +17,8 @@
 				<thead>
 					<tr>
 						<th class="bg-slate-300 rounded-tl-2xl">#</th>
-						<th class="bg-slate-300">Sebelum</th>
-						<th class="bg-slate-300 px-3">Proses</th>
-						<th class="bg-slate-300">Sesudah</th>
+						<th class="bg-slate-300 text-center" colspan="3">Foto Progres</th>
+						
 						<th class="bg-slate-300 ">Nama</th>
 						<th class="bg-slate-300 ">Mitra</th>
 						<th class="bg-slate-300 ">Ruangan</th>
@@ -43,7 +42,7 @@
 									<x-no-img />
 								</td>
 							@else
-								<td><img src="{{ asset('storage/images/' . $i->image1) }}" alt="" srcset="" width="100px">
+								<td class="scale-75"><img src="{{ asset('storage/images/' . $i->image1) }}" alt="" srcset="" width="100px">
 								</td>
 							@endif
 							@if ($i->image2 == null)
@@ -51,10 +50,10 @@
 									<x-no-img />
 								</td>
 							@else
-								<td><img src="{{ asset('storage/images/' . $i->image2) }}" alt="" srcset="" width="100px">
+								<td class="scale-75"><img src="{{ asset('storage/images/' . $i->image2) }}" alt="" srcset="" width="100px">
 								</td>
 							@endif
-							<td><img src="{{ asset('storage/images/' . $i->image3) }}" alt="" srcset="" width="100px"></td>
+							<td class="scale-75"><img src="{{ asset('storage/images/' . $i->image3) }}" alt="" srcset="" width="100px"></td>
 							<td>{{ $i->user->nama_lengkap }}</td>
 							<td>{{ $i->client->name }}</td>
 							<td>{{ $i->ruangan->nama_ruangan }}</td>
