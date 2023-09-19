@@ -687,6 +687,18 @@
 			})
 		});
 	</script>
+
+		<script>
+			const beamsClient = new PusherPushNotifications.Client({
+				instanceId: '409a907f-910b-4eed-b1d0-14be24f087f2',
+			});
+
+			beamsClient.start()
+				.then(() => beamsClient.addDeviceInterest('hello'))
+				.then(() => console.log('Successfully registered and subscribed!'))
+				.catch(console.error);
+		</script>
+
 	<script>
 		var lat = document.getElementById('lat')
 		var long = document.getElementById('long')

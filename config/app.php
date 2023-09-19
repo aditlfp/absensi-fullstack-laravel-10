@@ -169,6 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Torann\GeoIP\GeoIPServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -184,6 +185,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'GeoIP' => Torann\GeoIP\Facades\GeoIP::class,
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
