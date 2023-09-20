@@ -159,7 +159,9 @@
 								@empty
 								@endforelse
 								@if (!$hasJadwal)
-									<span class="input input-bordered" disabled>Tidak Ada Jadwal</span>
+								<span class="input input-bordered flex items-center justify-center">
+									<span class=" text-center" disabled>Belum Ada Jadwal</span>
+								</span>
 								@endif
 							</div>
 							<input type="text" id="image" name="image" class="image-tag" hidden>
@@ -191,7 +193,7 @@
 								@endforelse
 								<a href="{{ route('dashboard.index') }}"
 									class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
-									Back
+									Kembali
 								</a>
 							</span>
 						</div>

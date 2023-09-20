@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-main-div>
         <div class="py-10">
-			<p class="text-center text-2xl uppercase font-bold pb-10">Riwayat izin Saya</p>
+			<p class="text-center text-lg sm:text-2xl uppercase font-bold pb-10">Riwayat izin Saya</p>
             
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
                 <div class="overflow-x-scroll w-full md:overflow-hidden mx-2 sm:mx-0 sm:w-full">
@@ -9,8 +9,8 @@
                         <thead>
                             <tr>
                                 <th class="bg-slate-300 rounded-tl-xl">#</th>
-                                <th class="bg-slate-300">Nama lengkap</th>
-                                <th class="bg-slate-300">Mitra</th>
+                                <th class="bg-slate-300 px-7 line-clamp-2">Nama lengkap</th>
+                                <th class="bg-slate-300 px-12">Mitra</th>
                                 <th class="bg-slate-300">Shift</th>
                                 <th class="bg-slate-300 px-10">alasan izin</th>
                                 <th class="bg-slate-300 rounded-tr-xl">status</th>
@@ -49,7 +49,7 @@
                     {{ $izin->links() }}
                 </div>
                 <div class="flex justify-center mt-4 sm:justify-end">
-		            <a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>
+		            <a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Kembali</a>
                 </div>
             </div>
         </div>

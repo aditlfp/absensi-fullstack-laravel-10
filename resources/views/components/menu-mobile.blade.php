@@ -31,7 +31,7 @@
     				<li class="overflow-hidden">
     					<a id="aAbsen2" href="{{ route('absensi.index') }}" class="flex flex-col gap-0" style="margin-top: -0.5rem; margin-bottom: -0.5rem">
     						<i class="ri-file-edit-fill text-xl text-green-500"></i>
-    						<span class="font-semibold text-slate-700">Absensi</span>
+    						<span class="font-semibold text-slate-700">Kehadiran</span>
     					</a>
     				</li>
     			@endif

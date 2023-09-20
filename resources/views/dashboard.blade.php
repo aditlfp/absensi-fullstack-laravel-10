@@ -140,7 +140,7 @@
 								
 							@else
 							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIndex">
-								<a href="{{ route('checkpoint-user.index') }}" class="btn btn-info w-full">Index Check Point</a>
+								<a href="{{ route('checkpoint-user.index') }}" class="btn btn-info w-full">Index Kinerja Harian</a>
 							</div>
 							@endif
 						</div>
@@ -166,12 +166,13 @@
 								<i class="ri-speak-line text-xl"></i>
 								<button class="uppercase font-bold text-sm">Laporan</button>
 							</div>
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekLaporan">
-								<a href="{{ route('laporan.index') }}" class="btn btn-info w-full">Riwayat Laporan</a>
-							</div>
 							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="tambahLaporan">
 								<a href="{{ route('laporan.create') }}" class="btn btn-info w-full">Tambah Laporan</a>
 							</div>
+							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekLaporan">
+								<a href="{{ route('laporan.index') }}" class="btn btn-info w-full">Riwayat Laporan</a>
+							</div>
+							
 						</div>
 					@else
 						@if (Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')

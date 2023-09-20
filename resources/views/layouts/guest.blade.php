@@ -20,7 +20,7 @@
 
 <body class="font-sans text-gray-900 antialiased">
 
-	<div class="min-h-screen flex flex-col px-4 sm:px-0 pt-6 sm:pt-0 bg-slate-300 items-center justify-center">
+	<div class="min-h-screen flex flex-col px-4 sm:px-0 pt-6 sm:pt-0 bg-[url('/public/logo/bg-pc.jpg')] bg-cover bg-fixed items-center justify-center">
 		<div class="sm:flex sm:flex-col justify-center">
 			<a href="{{ url('https://sac-po.com') }}">
 			<div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-0">

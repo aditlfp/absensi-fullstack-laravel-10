@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Client;
-use App\Models\Shift;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Client::class);
             $table->string('tanggal');
-            $table->foreignIdFor(Shift::class);
+            $table->string('shift');
             $table->string('hadir')->nullable();
             $table->string('spv')->nullable();
             $table->string('tl')->nullable();

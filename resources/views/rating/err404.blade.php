@@ -5,7 +5,7 @@
            <div class=" py-10 font-semibold w-fit bg-slate-100 mx-10 my-10 rounded-md p-3 px-10 shadow-md">
                <h2 class="underline text-red-600 text-xs text-center sm:text-xl mb-8">Kamu Belum Mempunyai Rating !</h2>
                <div class="pt-2 flex justify-center">
-                   <a href="{{ url('dashboard') }}" class="px-10 btn btn-error">Back</a>
+                   <a href="{{ route('dashboard.index') }}" class="px-10 btn btn-error">Kembali</a>
                </div>
            </div>
        </div>

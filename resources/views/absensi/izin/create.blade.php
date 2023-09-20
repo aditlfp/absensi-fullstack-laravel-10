@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-main-div>
         <div class="p-5">
-			<p class="text-center text-2xl uppercase font-bold my-10">Halaman izin</p>
+			<p class="text-center text-lg sm:text-2xl uppercase font-bold my-10">Halaman izin</p>
             <form action="{{ route('izin.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
@@ -75,7 +75,7 @@
             <div class="flex justify-center sm:justify-end gap-2 mt-4">
 				<button class="p-2 my-2 px-4 text-white bg-amber-500 hover:bg-amber-600 rounded transition-all ease-linear .2s">Izin</button>
                 <a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
-                    Back
+                    Kembali
                 </a>
             </div>
             </form>
