@@ -4,6 +4,36 @@
 		<div>
 			<p class="text-center text-2xl font-bold py-10 uppercase">Index Laporan</p> 
 		</div>
+		@if (Auth::user()->role_id == 2)
+		<div class="ml-5">
+			<form action="{{ route('export.laporans')}}" method="get">
+				<div class="flex flex-col">
+					<label for="client_id">Pilih Mitra</label>
+					<select name="client_id" id="client_id" class="select select-bordered w-[20%] h-[10%] sm:h-auto sm:w-[20%]">
+						<option selected disabled>~Pilih Mitra~</option>
+						@forelse ($mitra as $i)
+							<option value="{{ $i->id}}">{{ $i->client->name}}</option>
+						@empty
+							<option>~Kosong~</option>
+						@endforelse
+					</select>
+				</div>
+				<div class="flex mr-2">
+					<div class="mr-2">
+						<input type="date" name="str1" id="str1" placeholder="Tanggal Mulai"
+							class="text-md block px-3 py-2 rounded-lg bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+					</div>
+					<div class="ml-2">
+						 <input type="date" name="end1" id="end1"
+							class="text-md block px-3 py-2 rounded-lg bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+					</div>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-error sm:btn-sm btn-xs">PDF</button>
+				</div>
+			</form>
+		</div>
+		@endif
 		<div class="flex justify-end">
 			<div class="input flex w-fit mx-10 items-center justify-end mb-5 input-bordered">
 				<i class="ri-search-2-line"></i>

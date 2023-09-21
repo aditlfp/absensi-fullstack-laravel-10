@@ -13,14 +13,8 @@ class ReportBrefController extends Controller
 {
     public function index()
     {
-        if(request()->ajax()) {
-            return datatables()->of(ReportBref::select('*'))
-            ->addColumn('action', 'components/bref-action')
-            ->rawColumns(['action'])
-            ->addIndexColumn()
-            ->make(true);
-        }
-        return view('brief.index');
+        $brief = ReportBref::with('Client')->paginate(50);
+        return view('brief.index', compact('brief'));
     }
 
     public function edit($id)
@@ -28,7 +22,7 @@ class ReportBrefController extends Controller
         $briefid = new ReportBref();
         try {
             $brief = $briefid->findById($id);
-            return response()->json($brief, 200);
+            return view('brief.edit', compact('brief'));
         } catch (\Throwable $th) {
             toastr()->error($th, 'error');
             return redirect()->back();
@@ -55,8 +49,15 @@ class ReportBrefController extends Controller
             'materi_breafing' => $request->materi_breafing
         ];
 
-        ReportBref::create($brief);
-        return response()->json($brief, 200);
+        try {
+            ReportBref::create($brief);
+            toastr()->success('Laporan Brefing Berhasil Dibuat', 'success');
+            return to_route('brief.index');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back();
+        }
+        
     }
 
     public function update(Request $request, $id)
@@ -77,12 +78,17 @@ class ReportBrefController extends Controller
             'materi_breafing' => $request->materi_breafing
         ];
 
-        $brief = ReportBref::findOrFail($id);
+        try {
+            $brief = ReportBref::findOrFail($id);
 
-        $brief->update($briefData);
+            $brief->update($briefData);
 
-        return response()->json($brief, 200);
-
+            toastr()->success('Laporan Brefing Di Update', 'success');
+            return to_route('brief.index');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back();
+        }
     }
 
     public function destroy($id)

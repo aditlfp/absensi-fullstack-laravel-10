@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Client::class);
             $table->string('tanggal');
-            $table->foreignIdFor(Shift::class);
+            $table->foreignIdFor('shift');
             $table->string('hadir')->nullable();
             $table->string('spv')->nullable();
             $table->string('tl')->nullable();
