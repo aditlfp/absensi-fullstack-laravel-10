@@ -98,14 +98,6 @@ class ReportBrefController extends Controller
         }
     }
 
-    public function akuEdit(Request $request)
-    {
-        $where = array('id' => $request->id);
-        $brief  = ReportBref::where($where)->first();
-      
-        return Response()->json($brief);
-    }
-
     public function destroy($id)
     {
         $brief = new ReportBref();
