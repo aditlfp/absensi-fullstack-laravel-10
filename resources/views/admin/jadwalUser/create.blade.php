@@ -22,7 +22,7 @@
 							</select>
 						</div>
 					</div>
-					<span class="flex justify-end mx-10">
+					<span class=" justify-end mx-10 hidden">
 						<button type="submit" class="bg-yellow-400 px-3 py-2 shadow rounded-md text-2xl flex items-center gap-2"
 							style="margin-bottom: 3rem;">
 							<p class="text-sm font-semibold">Print PDF</p>
@@ -31,7 +31,7 @@
 					</span>
 				</form>
 			@else
-				<form action="{{ route('lead_jadwal_export') }}" method="get">
+				<form action="{{ route('lead_jadwal_export') }}" method="get" class="hidden">
 					<div class="flex justify-end mx-10 mb-2 ">
 						<button type="submit" class="bg-yellow-400 px-3 mt-4 py-2 shadow rounded-md text-2xl flex items-center gap-2">
 							<p class="text-sm font-semibold">Print PDF</p>
