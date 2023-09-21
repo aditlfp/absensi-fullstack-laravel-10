@@ -7,7 +7,7 @@
                 <p>Nama Lengkap: {{ $rating->user->nama_lengkap }}</p>
                 <p>Rating User: {{ $rating->rate }}</p>
                 <div class="pt-5 flex justify-end">
-                    <a href="{{ url('dashboard') }}" class="btn btn-error">Back</a>
+                    <a href="{{ route('dashboard.index') }}" class="btn btn-error">Kembali</a>
                 </div>
             </div>
         </div>

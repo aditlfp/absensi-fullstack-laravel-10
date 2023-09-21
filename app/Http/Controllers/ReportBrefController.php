@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\ReportBrefDataTable;
 use App\Http\Requests\ReportBref as RequestsReportBref;
 use App\Models\ReportBref;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 
 class ReportBrefController extends Controller
 {
@@ -15,6 +12,11 @@ class ReportBrefController extends Controller
     {
         $brief = ReportBref::with('Client')->paginate(50);
         return view('brief.index', compact('brief'));
+    }
+
+    public function create()
+    {
+        return view('brief.create');
     }
 
     public function edit($id)
@@ -31,9 +33,14 @@ class ReportBrefController extends Controller
 
     public function store(RequestsReportBref $request)
     {
-        $brief = new ReportBref();
 
-        $brief = [
+        $briefId = $request->id;
+
+        $brief = ReportBref::updateOrCreate(
+        [
+            'id' => $briefId
+        ],
+        [
             'client_id' => $request->client_id,
             'tanggal' => $request->tanggal,
             'shift' => $request->shift,
@@ -47,7 +54,7 @@ class ReportBrefController extends Controller
             'off' => $request->off,
             'total_mp' => $request->total_mp,
             'materi_breafing' => $request->materi_breafing
-        ];
+        ]);
 
         try {
             ReportBref::create($brief);
@@ -89,6 +96,14 @@ class ReportBrefController extends Controller
             //throw $th;
             return redirect()->back();
         }
+    }
+
+    public function akuEdit(Request $request)
+    {
+        $where = array('id' => $request->id);
+        $brief  = ReportBref::where($where)->first();
+      
+        return Response()->json($brief);
     }
 
     public function destroy($id)

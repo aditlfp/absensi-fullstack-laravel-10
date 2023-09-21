@@ -137,26 +137,33 @@
 									$hasJadwal = false;
 								@endphp
 								@forelse ($jadwal as $jad)
-									@if ($jad->tanggal == Carbon\Carbon::now()->format('Y-m-d'))
-										<span class="input input-bordered" disabled>Tanggal: {{ $jad->tanggal }}, Shift:
-											{{ $jad->shift->shift_name }}, Area: {{ $jad->area }}</span>
-									@else
-										<span class="input input-bordered" disabled>Tidak Ada Jadwal</span>
+									@php
+										$tanggalJDW = strtotime($jad->tanggal);
+										$jadiTGL = date('Y-m-d', $tanggalJDW);
+									@endphp
+									@if (Carbon\Carbon::now()->format('Y-m-d') == $jadiTGL)
+										@if ($jad->status == 'OFF')
+											<span class="input input-bordered" disabled>Tanggal: {{ $jad->tanggal }}, Shift:
+												{{ $jad->shift->shift_name }}, Status: <span class="text-red-500">{{ $jad->status }}</span></span>
+											@php
+												$hasJadwal = true;
+											@endphp
+										@else
+											<span class="input input-bordered" disabled>Tanggal: {{ $jad->tanggal }}, Shift:
+												{{ $jad->shift->shift_name }}, Area: {{ $jad->area }}</span>
+											@php
+												$hasJadwal = true;
+											@endphp
+										@endif
 									@endif
-								@break
-
 								@empty
 								@endforelse
+								@if (!$hasJadwal)
+								<span class="input input-bordered flex items-center justify-center">
+									<span class=" text-center" disabled>Belum Ada Jadwal</span>
+								</span>
+								@endif
 							</div>
-							{{-- <div class="flex flex-col">
-								<label>Keterangan: </label>
-								<div class="flex justify-end mt-1">
-										<input name="keterangan" type="radio" value="masuk" class="radio cursor-pointer checked:bg-blue-500"><span
-										class="mx-2">Masuk</span>
-									<input name="keterangan" type="radio" value="izin" class="radio cursor-pointer checked:bg-red-500"><span
-										class="mx-2">Izin</span>
-								</div>
-							</div> --}}
 							<input type="text" id="image" name="image" class="image-tag" hidden>
 							<input type="text" name="keterangan" value="masuk" hidden>
 						</div>
@@ -186,7 +193,7 @@
 								@endforelse
 								<a href="{{ route('dashboard.index') }}"
 									class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
-									Back
+									Kembali
 								</a>
 							</span>
 						</div>
@@ -236,7 +243,7 @@
 
 		if (navigator.geolocation) {
 			navigator.geolocation.watchPosition(showPosition);
-		}else{
+		} else {
 			alert('Geo Location Not Supported By This Browser !!');
 		}
 

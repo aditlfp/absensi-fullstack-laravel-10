@@ -258,6 +258,7 @@
 			$('#btnKerjasama').click(function() {
 				$('#kerjasama').toggle();
 				$('#btnJabatan').toggle();
+				$('#btnLaporan').toggle();
 
 			});
 
@@ -286,6 +287,7 @@
 			});
 			$('#btnJabatan').click(function() {
 				$('#jabatan').toggle();
+				$('#btnLaporan').toggle();
 			});
 			$('#btnShift').click(function() {
 				$('#shift').toggle();
@@ -302,6 +304,9 @@
 
 			$('#btnJadwal').click(function() {
 			  $('#jadwal').toggle();  
+			});
+			$('#btnLaporan').click(function() {
+			  $('#laporan').toggle();  
 			});
 		});
 		$(document).ready(function(){

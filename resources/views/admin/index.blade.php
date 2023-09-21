@@ -268,6 +268,22 @@
 					</div>
 				</div>
 				{{-- End Menu --}}
+				{{-- Menu Laporan --}}
+				<div style="width: 17rem;">
+					<div class="flex justify-center px-2 menuLaporan">
+						<button id="btnLaporan" class="btn btn-warning w-full mt-5"><i class="ri-task-line text-lg"></i> Menu Laporan</button>
+					</div>
+					<div id="laporan" class="hidden absolute">
+						<div style="width: 17rem;">
+							<span class="flex flex-col justify-center gap-x-2 mx-2 pb-[148px] ">
+								<a href="{{ route('laporan.index')}}"
+									class="btn-info hover:bg-sky-500 hover:text-white w-full shadow-md hover:shadow-none text-center uppercase font-semibold text-sm rounded-md px-4 py-2 mt-5 transition-all ease-linear .2s"><i class="ri-calendar-2-line text-lg"></i> Index
+									Laporan</a>
+							</span>
+						</div>
+					</div>
+				</div>
+				{{-- End Menu --}}
 			</div>
 		</div>
 

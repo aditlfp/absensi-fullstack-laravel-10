@@ -11,9 +11,7 @@
                         <thead>
 							<tr >
 								<th class="p-1 py-2 bg-slate-300 rounded-tl-2xl">#</th>
-                                <th class="p-1 py-2 bg-slate-300">Progres 1</th>
-								<th class="p-1 py-2 bg-slate-300">Progres 2</th>
-								<th class="p-1 py-2 bg-slate-300">Progres 3</th>
+                                <th class="p-1 py-2 bg-slate-300 text-center" colspan="3">Foto Progres</th>
 								<th class="p-1 py-2 bg-slate-300 rounded-tr-2xl">Keterangan</th>
 							</tr>
 						</thead>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-main-div>
         <div class="py-10 sm:mx-10">
-            <p class="text-center text-lg sm:text-2xl uppercase font-bold ">Riwayat Absensi, {{ Auth::user()->kerjasama->client->name }}</p>
+            <p class="text-center text-lg sm:text-2xl uppercase font-bold ">Riwayat Lembur, {{ Auth::user()->kerjasama->client->name }}</p>
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
                 <div class="flex items-center w-full justify-center sm:justify-end my-5">
                     <x-search />

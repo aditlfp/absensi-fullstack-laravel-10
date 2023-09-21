@@ -2,7 +2,7 @@
 	<x-main-div>
 
 		<div>
-			<p class="text-center text-2xl font-bold py-10 uppercase">Index Laporan</p> 
+			<p class="text-center text-lg sm:text-2xl font-bold py-10 uppercase">Index Laporan</p>
 		</div>
 		@if (Auth::user()->role_id == 2)
 		<div class="ml-5">
@@ -47,10 +47,12 @@
 				<thead>
 					<tr>
 						<th class="bg-slate-300 rounded-tl-2xl">#</th>
-						<th class="bg-slate-300">Sebelum</th>
-						<th class="bg-slate-300 px-3">Proses</th>
-						<th class="bg-slate-300">Sesudah</th>
-						<th class="bg-slate-300 ">Nama</th>
+						<th class="bg-slate-300 text-center" colspan="3">Foto Progres</th>
+						@if (Auth::user()->role_id == 2 ||
+								Auth::user()->divisi->jabatan->code_jabatan == 'LEADER' ||
+								Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
+							<th class="bg-slate-300 ">Nama</th>
+						@endif
 						<th class="bg-slate-300 ">Mitra</th>
 						<th class="bg-slate-300 ">Ruangan</th>
 						@if (Auth::user()->role_id == 2)
@@ -73,7 +75,8 @@
 									<x-no-img />
 								</td>
 							@else
-								<td><img src="{{ asset('storage/images/' . $i->image1) }}" alt="" srcset="" width="100px">
+								<td class="scale-75"><img src="{{ asset('storage/images/' . $i->image1) }}" alt="" srcset=""
+										width="100px">
 								</td>
 							@endif
 							@if ($i->image2 == null)
@@ -81,11 +84,17 @@
 									<x-no-img />
 								</td>
 							@else
-								<td><img src="{{ asset('storage/images/' . $i->image2) }}" alt="" srcset="" width="100px">
+								<td class="scale-75"><img src="{{ asset('storage/images/' . $i->image2) }}" alt="" srcset=""
+										width="100px">
 								</td>
 							@endif
-							<td><img src="{{ asset('storage/images/' . $i->image3) }}" alt="" srcset="" width="100px"></td>
-							<td>{{ $i->user->nama_lengkap }}</td>
+							<td class="scale-75"><img src="{{ asset('storage/images/' . $i->image3) }}" alt="" srcset=""
+									width="100px"></td>
+							@if (Auth::user()->role_id == 2 ||
+									Auth::user()->divisi->jabatan->code_jabatan == 'LEADER' ||
+									Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
+								<td>{{ $i->user->nama_lengkap }}</td>
+							@endif
 							<td>{{ $i->client->name }}</td>
 							<td>{{ $i->ruangan->nama_ruangan }}</td>
 							<td>{{ $i->keterangan }}</td>
@@ -111,10 +120,10 @@
 		</div>
 		<div>
 			<div class="flex justify-center sm:justify-end my-3 gap-2 mr-0 sm:mr-9">
-				<a href="{{ route('dashboard.index') }}"
-					class="btn btn-error border-none hover:bg-red-500 transition-all ease-in-out .2s">Back</a>
 				<a href="{{ route('laporan.create') }}"
 					class="btn btn-warning hover:bg-yellow-600 border-none transition-all ease-in-out .2s">+ Laporan</a>
+				<a href="{{ route('dashboard.index') }}"
+					class="btn btn-error border-none hover:bg-red-500 transition-all ease-in-out .2s">Kembali</a>
 
 			</div>
 	</x-main-div>

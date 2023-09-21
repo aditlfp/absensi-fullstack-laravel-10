@@ -33,18 +33,11 @@
 						<x-input-label for="sebelum" :value="__('Sebelum')" />
 						<div class="preview hidden w-full">
 							<span class="flex justify-center items-center">
-<<<<<<< HEAD
-								<label for="img1" class="p-1">
-									<img class="img1 ring-2 ring-slate-500/70 hover:ring-0 hover:bg-slate-300 transition ease-in-out .2s"
-										src="" alt="" srcset="" height="120px" width="120px">
-									
-=======
 								<label for="img" class="p-1">
 									<img class="img1 ring-2 ring-slate-500/70 hover:ring-0 hover:bg-slate-300 transition ease-in-out .2s"
 										src="" alt="" srcset="" height="120px" width="120px">
 									<input id="img" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
 										type="file" name="image1" :value="old('image1')" autofocus autocomplete="img" />
->>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 								</label>
 							</span>
 						</div>
@@ -54,11 +47,7 @@
 								<i class="ri-image-add-line text-xl text-slate-700/90"></i>
 								<span class="text-xs font-semibold text-slate-700/70">+ Gambar</span>
 								<input id="img" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
-<<<<<<< HEAD
-									type="file" name="image1"/>
-=======
 									type="file" name="image1" :value="old('image1')" autofocus autocomplete="img" />
->>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 							</span>
 						</label>
 						<x-input-error :messages="$errors->get('image1')" class="mt-2" />
@@ -72,12 +61,8 @@
 								<label for="img2" class="p-1">
 									<img class="img2 ring-2 ring-slate-400/70 hover:ring-0 hover:bg-slate-300 transition ease-in-out .2s"
 										src="" alt="" srcset="" height="120px" width="120px">
-<<<<<<< HEAD
-									
-=======
 									<input id="img2" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
 										type="file" name="image2" :value="old('image2')" autofocus autocomplete="img2" />
->>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 								</label>
 							</span>
 						</div>
@@ -87,11 +72,7 @@
 								<i class="ri-image-add-line text-xl text-slate-700/90"></i>
 								<span class="text-xs font-semibold text-slate-700/70">+ Gambar</span>
 								<input id="img2" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
-<<<<<<< HEAD
-									type="file" name="image2"/>
-=======
 									type="file" name="image2" :value="old('image2')" autofocus autocomplete="img2" />
->>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 							</span>
 						</label>
 					</div class="my-5">
@@ -104,12 +85,8 @@
 								<label for="img3" class="p-1">
 									<img class="img3 ring-2 ring-slate-400/70 hover:ring-0 hover:bg-slate-300 transition ease-in-out .2s"
 										src="" alt="" srcset="" height="120px" width="120px">
-<<<<<<< HEAD
-									
-=======
 									<input id="img3" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
 										type="file" name="image3" :value="old('image3')" autofocus autocomplete="img3" />
->>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 								</label>
 							</span>
 						</div>
@@ -119,11 +96,7 @@
 								<i class="ri-image-add-line text-xl text-slate-700/90"></i>
 								<span class="text-xs font-semibold text-slate-700/70">+ Gambar</span>
 								<input id="img3" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
-<<<<<<< HEAD
-									type="file" name="image3"/>
-=======
 									type="file" name="image3" :value="old('image3')" autofocus autocomplete="img3" />
->>>>>>> 3d29ec78b1e64f5cdf411b9c8d49d3eb67e249de
 							</span>
 						</label>
 						<x-input-error :messages="$errors->get('image3')" class="mt-2" />
@@ -135,10 +108,10 @@
 						<x-input-error :messages="$errors->get('keterangan')" class="mt-2" />
 					</div>
 					<div class="flex justify-center sm:justify-end gap-2">
+						<button type="submit" class="btn btn-primary">Simpan</button>
 						<a href="{{ route('laporan.index') }}" class="btn btn-error hover:bg-red-500 transition-all ease-linear .2s">
-							Back
+							Kembali
 						</a>
-						<button type="submit" class="btn btn-primary">Save</button>
 					</div>
 				</div>
 			</form>

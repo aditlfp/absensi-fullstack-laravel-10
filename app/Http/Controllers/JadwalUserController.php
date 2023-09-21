@@ -74,6 +74,7 @@ class JadwalUserController extends Controller
     public function store(JadwalUserRequest $request)
     {
         $jadwal = new JadwalUser();
+        $user = User::all();
         
         $jadwal = [
             'user_id' => $request->user_id,
@@ -82,6 +83,7 @@ class JadwalUserController extends Controller
             'area' => $request->area,
             'status' => $request->status
         ];
+        
         JadwalUser::create($jadwal);
         toastr()->success('Jadwal Berhasil Ditambahkan', 'success');
         return redirect()->back();
@@ -94,7 +96,7 @@ class JadwalUserController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        
     }
  
     public function destroy($id)

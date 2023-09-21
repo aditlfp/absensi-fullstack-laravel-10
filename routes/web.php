@@ -46,6 +46,7 @@ Route::view('/map', 'absensi.maps');
 Route::get('/get-uptime', [AdminController::class, 'getUpTime'])->name('uptime');
 Route::get('/send', [DashboardController::class, 'sendTestEmail']);
 Route::resource('brief', ReportBrefController::class);
+Route::POST('brief-edit', [ReportBrefController::class, 'akuEdit']);
 
 Route::get('/test', [LaporanController::class, 'test']);
 

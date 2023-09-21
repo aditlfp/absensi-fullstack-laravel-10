@@ -114,7 +114,7 @@
 							<tr>
 								<td>{{ $no++ }}</td>
 								<td><img class="lazy lazy-image" loading="lazy" src="{{asset('storage/images/'.$arr->image)}}" data-src="{{asset('storage/images/'.$arr->image)}}" alt="data-absensi-image" width="120px"/></td>
-								<td class="break-words whitespace-pre-line">{{ $arr->user?$arr->user->nama_lengkap : $arr->user_id . 'AKU KOSONG' }}</td>
+								<td class="break-words whitespace-pre-line">{{ $arr->user?$arr->user->nama_lengkap : 'user_id'. ' : '. $arr->user_id . 'AKU KOSONG' }}</td>
 								<td>{{ $arr->tanggal_absen }}</td>
 								@if($arr->shift != null)
 								<td id="mitra">{{ $arr->shift->shift_name }}</td>

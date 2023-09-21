@@ -64,8 +64,9 @@
                                 <th class="text-xs md:text-lg bg-slate-300 rounded-tl-2xl">#</th>
                                 <th class="text-xs md:text-lg bg-slate-300 px-10">Nama Lengkap</th>
                                 <th class="text-xs md:text-lg bg-slate-300 px-10">Tanggal</th>
-                                <th class="text-xs md:text-lg bg-slate-300">Shift</th>
-                                <th class="text-xs md:text-lg bg-slate-300 rounded-tr-2xl">Area</th>
+                                <th class="text-xs md:text-lg bg-slate-300 px-10">Shift</th>
+                                <th class="text-xs md:text-lg bg-slate-300 px-10">Area</th>
+                                <th class="text-xs md:text-lg bg-slate-300 rounded-tr-2xl">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,13 +80,15 @@
                                 <td class="p-1">{{ $item->user->nama_lengkap }}</td>
                                 <td class="p-1 ">{{ $item->tanggal }}</td>
                                 <td class="p-1">{{ $item->shift->shift_name }}</td>
-                                <td class="p-1 flex justify-center items-center overflow-hidden"><span class="alert alert-info px-2 font-semibold text-slate-700">{{ $item->area }}</span></td>
+                                <td class="p-1 flex justify-center items-center overflow-hidden"><span class="alert alert-info px-2 font-semibold text-slate-700 text-sm sm:text-base">{{ $item->area }}</span></td>
+                                <td>
+                                    <form action="{{ route('leader-jadwal.destroy', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <x-btn-submit/>
+                                    </form>
+                                </td>
                             </tr>
-                            @else
-                            <tr>
-                                <td colspan="5" class="text-center">Kosong</td>
-                            </tr>
-                            @break
                             @endif
                             @empty
                                 <tr>
