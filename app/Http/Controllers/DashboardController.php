@@ -3,26 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absensi;
+use App\Models\JadwalUser;
 use App\Models\Kerjasama;
 use App\Models\Lembur;
-use App\Models\Rating;
-use App\Models\Point;
 use App\Models\Lokasi;
+use App\Models\Point;
+use App\Models\Rating;
 use App\Models\Shift;
-use App\Models\JadwalUser;
-use Carbon\Carbon;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\AbsensiNotification;
-use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        
-
         $abs = Absensi::all();
         $lembur = Lembur::latest('jam_selesai')->get();
         $kerjasama = Kerjasama::all();

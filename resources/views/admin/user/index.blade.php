@@ -7,7 +7,6 @@
 		<div class="flex justify-between items-center overflow-hidden mx-10 my-1">
 			<div>
 				<form id="filterForm" action="{{ route('users.index') }}" method="GET" class="p-1">
-					@csrf
 					<select name="filterKerjasama" id="filterKerjasama" class="select select-bordered active:border-none border-none">
 						<option selected disabled>~ Kerja Sama ~</option>
 						@foreach ($kerjasama as $i)
@@ -48,8 +47,12 @@
 									<td>
 										<x-no-img />
 									</td>
-								@else
+								@elseif(Storage::disk('public')->exists('images/' . $i->image))
 									<td><img class="lazy lazy-image" loading="lazy" src="{{ asset('storage/images/' . $i->image) }}" data-src="{{ asset('storage/images/' . $i->image) }}" alt="" srcset="" width="120px"></td>
+								@else
+								    <td>
+										<x-no-img />
+									</td>
 								@endif
 								<td>{{ $i->name }}</td>
 								<td class="break-words whitespace-pre-line">{{ $i->nama_lengkap }}</td>
@@ -70,7 +73,7 @@
 							</tr>
 						@empty
 							<tr>
-								<td colspan="6">Data Kosong</td>
+								<td colspan="7" class="text-center">Data Kosong</td>
 							</tr>
 						@endforelse
 				</tbody>

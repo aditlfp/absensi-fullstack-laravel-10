@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="flex justify-center gap-2 sm:justify-between mx-10">
-                <a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
+                <a href="{{ url('/admin-checkpoint') }}" class="btn btn-error">Back</a>
                 <a href="{{ route('admin.cp.create') }}" class="btn btn-primary">+ CP</a>
             </div>
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
@@ -39,7 +39,7 @@
                                             @forelse ($cek as $arr)
                                                 @forelse ($arr->image as $item)
                                                     @foreach ($item->image as $i)
-                                                        <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="">
+                                                        <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="" width="120px" class="rounded">
                                                     @endforeach
                                                 @empty
                                                 ---

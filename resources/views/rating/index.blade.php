@@ -331,7 +331,7 @@
 </table>
 </div>
 <div class="flex justify-center sm:justify-end ">
-	<a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>
+	<a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Kembali</a>
 </div>
 </div>
 </div>

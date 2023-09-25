@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -20,27 +20,48 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit(Request $request, $id)
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $user = User::find($id);
+        $dataUser = User::findOrFail($id);
+        if ($dataUser != null) {
+            return view('profile.edit', compact('dataUser'));
+        }
+        toastr()->error('Data tidak tidak ditemukan', 'error');
+        return redirect()->back();
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request, $id)
     {
-        $request->user()->fill($request->validated());
+        $user = [
+            'nama_lengkap' => $request->nama_lengkap,
+            'email'     => $request->email,
+            'image'     => $request->image,
+        ];
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if($request->hasFile('image'))
+        {
+            if($request->oldimage)
+            {
+                Storage::disk('public')->delete('images/' . $request->oldimage);
+            }
+
+            $user['image'] = UploadImage($request, 'image');
+        }else{
+            $user['image'] = $request->oldimage;
         }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        try {
+            User::findOrFail($id)->update($user);
+        } catch(\Illuminate\Database\QueryException $e){
+           toastr()->error('Data Sudah Ada', 'error');
+           return redirect()->back();
+        }
+    
+        toastr()->success('Data Berhasil diupdate', 'success');
+        return to_route('profile.index');
     }
 
     /**

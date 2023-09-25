@@ -23,7 +23,7 @@ class UserController extends Controller
         $client = Client::all();
         $user = User::with('Kerjasama');
         $user->when($request->filterKerjasama, function($query) use($request) {
-            return $query->where('kerjasama_id', 'like', '%'. $request->filterKerjasama. '%');
+            return $query->where('kerjasama_id', '=',  $request->filterKerjasama. '%');
         });
 
         return view('admin.user.index', ['user' => $user->paginate(5000), 'kerjasama' => $kerjasama, 'client' => $client]);

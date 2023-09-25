@@ -13,7 +13,7 @@
                 <div class="bg-slate-100 px-10 py-5 rounded shadow items-center justify-center">
                     @csrf
                     <div class="flex flex-col w-full mb-3">
-                        <label for="user_id" class="font-semibold text-white">Pilih User/Karyawan</label>
+                        <label for="user_id" class="font-semibold">Pilih User/Karyawan</label>
                         <select name="user_id" id="user_id" class="select select-bordered">
                             <option readonly disabled>~ Pilih User ~</option>
                             @forelse ($user as $arr)
@@ -26,7 +26,7 @@
                     </div>
     
                     <div class="flex flex-col  w-full mb-3">
-                        <label for="client_id" class="font-semibold text-white">Pilih Client</label>
+                        <label for="client_id" class="font-semibold">Pilih Client</label>
                             <select  id="client_id" class="select select-bordered cursor-not-allowed" disabled>
                                 <option readonly disabled>~ Pilih Client ~</option>
                                 @forelse ($client as $arr)
@@ -49,7 +49,7 @@
                     </div>
     
                     <div class="flex flex-col  w-full mb-3">
-                        <label for="check_count" class="font-semibold text-white">Masukkan Jumlah CheckPoint</label>
+                        <label for="check_count" class="font-semibold">Masukkan Jumlah CheckPoint</label>
                         <input type="text" name="check_count" id="check_count" placeholder="10" class="input input-bordered">
                         <x-input-error :messages="$errors->get('check-count')" class="mt-2" />
                     </div>

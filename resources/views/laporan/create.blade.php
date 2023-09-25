@@ -36,8 +36,7 @@
 								<label for="img" class="p-1">
 									<img class="img1 ring-2 ring-slate-500/70 hover:ring-0 hover:bg-slate-300 transition ease-in-out .2s"
 										src="" alt="" srcset="" height="120px" width="120px">
-									<input id="img" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
-										type="file" name="image1" :value="old('image1')" autofocus autocomplete="img" />
+									
 								</label>
 							</span>
 						</div>
@@ -61,8 +60,7 @@
 								<label for="img2" class="p-1">
 									<img class="img2 ring-2 ring-slate-400/70 hover:ring-0 hover:bg-slate-300 transition ease-in-out .2s"
 										src="" alt="" srcset="" height="120px" width="120px">
-									<input id="img2" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
-										type="file" name="image2" :value="old('image2')" autofocus autocomplete="img2" />
+									
 								</label>
 							</span>
 						</div>
@@ -85,8 +83,7 @@
 								<label for="img3" class="p-1">
 									<img class="img3 ring-2 ring-slate-400/70 hover:ring-0 hover:bg-slate-300 transition ease-in-out .2s"
 										src="" alt="" srcset="" height="120px" width="120px">
-									<input id="img3" class="hidden mt-1 w-full file-input file-input-sm file-input-bordered shadow-none"
-										type="file" name="image3" :value="old('image3')" autofocus autocomplete="img3" />
+									
 								</label>
 							</span>
 						</div>

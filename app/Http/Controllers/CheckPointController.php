@@ -34,11 +34,11 @@ class CheckPointController extends Controller
     }
 
     // USER HANDLE REQUEST IMAGE CP
-    public function create()
+    public function create(Request $request)
     {
-        $user = Auth::user()->id;
-        $cek = CheckPoint::where('user_id', $user)->get();
-        return view('check.create', compact('cek', 'user'));
+        $id = $request->query('id');
+        $cek = CheckPoint::with(['Image'])->where('id', $id)->get();
+        return view('check.create', compact('cek'));
     }
 
     // ADMIN HANDLE REQUEST STORE NEW COUNT CP
@@ -101,7 +101,7 @@ class CheckPointController extends Controller
             ]);
 
             toastr()->success('Berhasil Menambahkan Check Point', 'success');
-            return to_route('dashboard.index');
+            return to_route('checkpoint-user.index');
         }
         toastr()->error('Tidak Ada Image Yang TerUpload', 'error');
         return redirect()->back();

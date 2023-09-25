@@ -89,10 +89,15 @@
                                     </form>
                                 </td>
                             </tr>
+                            @else
+                            <tr>
+                                <td colspan="6" class="text-center">Kosong</td>
+                            </tr>
+                            @break
                             @endif
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">Kosong</td>
+                                    <td colspan="6" class="text-center">Kosong</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -103,7 +108,7 @@
                 {{ $jadwalUser->links() }}
             </div>
             <div class="flex justify-center sm:justify-end my-5">
-				<a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
+				<a href="{{ route('dashboard.index') }}" class="btn btn-error">Kembali</a>
             </div>
         </div>
     </x-main-div>

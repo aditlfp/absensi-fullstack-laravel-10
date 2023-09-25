@@ -10,19 +10,16 @@
                     <input type="search" id="searchInput" class="border-none rounded ml-1" placeholder="Search..." required>
                 </div>
             </div>
-            <div class="flex m-2 justify-end">
-                <a href="#" class="btn btn-warning mx-2 sm:mx-10">+ Check point</a>
-            </div>
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
                 <div class="overflow-x-auto w-full md:overflow-hidden mx-2 sm:mx-0 sm:w-full">
                     <table class="table w-full table-xs bg-slate-50 table-zebra sm:table-md text-sm sm:text-md scale-90 md:scale-90">
                         <thead>
 							<tr>
 								<th class="bg-slate-300 rounded-tl-2xl">#</th>
-								<th class="bg-slate-300">Nama Lengkap</th>
-								<th class="bg-slate-300">Foto</th>
-								<th class="bg-slate-300">Jumlah Check Point</th>
-								<th class="bg-slate-300">Mitra</th>
+								<th class="bg-slate-300 px-10">Nama Lengkap</th>
+								<th class="bg-slate-300 px-10">Foto</th>
+								<th class="bg-slate-300">Jumlah CP</th>
+								<th class="bg-slate-300 px-10">Mitra</th>
 								<th class="bg-slate-300 rounded-tr-2xl">Action</th>
 							</tr>
 						</thead>
@@ -33,6 +30,25 @@
                             @forelse ($cek as $c)
                                 <tr>
                                     <td>{{ $no++ }}</td>
+                                    <td>{{ $c->user->nama_lengkap }}</td>
+                                    @forelse($c->image as $img)
+                                    <td>
+                                            @foreach($img->image as $i)
+                                                <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="" width="120px" class="rounded">
+                                            @endforeach
+                                            </td>
+                                    @empty
+                                    <td class="flex justify-center">
+                                        <form action="{{ route('checkpoint-user.create') }}" method="get">
+                                        <input name="id" type="text" value="{{ $c->id }}" class="hidden"/>
+                                        <button type="submit" class="btn btn-sm btn-info sm:mx-2 ">+ CP</button>
+                                        </form>
+                                    </td>
+                                    @endforelse
+                                    
+                                    <td class="text-center">{{ $c->check_count }}</td>
+                                    <td>{{ $c->client->name }}</td>
+                                    <td></td>
                                 </tr>
                             @empty
                             <tr>
@@ -46,15 +62,7 @@
             <div class="flex justify-center sm:justify-end">
                 <a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Kembali</a>
             </div>
-            {{-- <span>
-                @foreach ($cek as $arr)
-                    @foreach ($arr->image as $item)
-                        @foreach ($item->image as $i)
-                            <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="">
-                        @endforeach
-                    @endforeach
-                @endforeach
-            </span> --}}
+            
         </div>
     </x-main-div>
 </x-app-layout>

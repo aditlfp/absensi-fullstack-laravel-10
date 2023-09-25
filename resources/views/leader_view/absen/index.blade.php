@@ -5,12 +5,21 @@
             <div class="flex flex-col items-center mx-2 my-2 sm:justify-center justify-start">
                 <div class="flex justify-center sm:justify-between  items-center my-5">
                         <div class="flex flex-col sm:flex-row w-full gap-2 sm:gap-5 items-center justify-center sm:justify-between">
-                              <form action="{{ url("LEADER/leader-absensi")}}" method="GET" class="sm:flex sm:justify-start">
+                            @if(Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
+                            <form action="{{ route('mitra_absensi') }}" method="GET" class="sm:flex sm:justify-start">
                 			    <div class="join sm:ml-10">
-                			        <input type="month" placeholder="pilih bulan..." class="join-item input input-bordered" name="search" id="search" />
+                			        <input type="month" placeholder="pilih bulan..." class="join-item input input-bordered" name="search" id="search" max="{{ Carbon\Carbon::now()->format('Y-m') }}"/>
                 			        <button type="submit" class="btn btn-info join-item">FILTER</button>
                 			    </div>
         		              </form>
+                            @else
+                              <form action="{{ url("LEADER/leader-absensi")}}" method="GET" class="sm:flex sm:justify-start">
+                			    <div class="join sm:ml-10">
+                			        <input type="month" placeholder="pilih bulan..." class="join-item input input-bordered" name="search" id="search" max="{{ Carbon\Carbon::now()->format('Y-m') }}"/>
+                			        <button type="submit" class="btn btn-info join-item">FILTER</button>
+                			    </div>
+        		              </form>
+                            @endif
         		              <div class="flex items-center mt-5">
         		                <x-search />
         		              </div>
@@ -72,7 +81,7 @@
                         {{ $absen->links() }}
                     </div>
                     <div class="flex">
-		                <a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Back</a>
+		                <a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Kembali</a>
                     </div>
             </div>
         </div>
