@@ -46,7 +46,6 @@ Route::view('/map', 'absensi.maps');
 Route::get('/get-uptime', [AdminController::class, 'getUpTime'])->name('uptime');
 Route::get('/send', [DashboardController::class, 'sendTestEmail']);
 Route::resource('brief', ReportBrefController::class);
-Route::POST('brief-edit', [ReportBrefController::class, 'akuEdit']);
 
 Route::get('/test', [LaporanController::class, 'test']);
 
@@ -66,6 +65,7 @@ Route::middleware(['auth', 'apdt'])->group(function () {
     Route::get('/mypoint/{id}', [PointController::class, 'myPoint'])->name('mypoint');
 
     Route::resource('checkpoint-user', CheckPointController::class);
+    Route::get('/checkpoint-user-edit', [CheckPointController::class, 'editByAuth'])->name('editByAuth');
     Route::get('cp-photo/{id}', [CheckPointController::class, 'lihatFoto'])->name('lihatFotoCP');
     Route::get('/riwayat-kerja/{id}', [RatingController::class, 'rateKerja'])->name('rate.kerja');
 });

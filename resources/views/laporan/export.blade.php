@@ -86,7 +86,7 @@
 					@forelse ($expPDF as $arr)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $arr->nama_lengkap}}</td>
+                            <td>{{ $arr->user->nama_lengkap}}</td>
                             <td><img src="{{ asset('storage/images/' . $arr->image1) }}" alt="no image" width="120px"></td>
                             @if ($arr->image2)
                                 <td><img src="{{ asset('storage/images/' . $arr->image2) }}" alt="no image" width="120px"></td>
@@ -118,6 +118,9 @@
             <span style="right: 0; bottom: 10rem;">PT. Surya Amanah Cendekia</span>
         </div>
     </div> --}}
+<script>
+	window.print();
+</script>
 </body>
 
 </html>

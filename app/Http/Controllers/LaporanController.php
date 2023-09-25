@@ -108,19 +108,6 @@ class LaporanController extends Controller
         }
     }
 
-    public function test()
-    {
-        $totalHari = 20;
-        $str1 = Carbon::now()->format('Y-m-d');
-        $end1 = Carbon::now()->format('Y-m-d');
-        $path = 'logo/sac.png';
-        $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
-        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        $expPDF = Laporan::all();
-        return view('laporan.export', compact('expPDF', 'str1', 'end1', 'base64', 'totalHari'));
-    }
-
     public function exportWith(Request $request)
     {
         $tanggalSekarang = Carbon::now();
@@ -136,10 +123,10 @@ class LaporanController extends Controller
         
         if($request->has(['client_id', 'end1', 'str1'])) {
             
-         $expPDF = User::with(['Laporan' => function ($query) use ($str1, $end1) {
+         $expPDF = Laporan::with(['User' => function ($query) use ($str1, $end1) {
             return $query->whereBetween('created_at', [$str1, $end1]);
         }])->when($mitra, function($query) use ($mitra) {
-            return $query->where('kerjasama_id', $mitra);
+            return $query->where('client_id', $mitra);
         })->get();
 
         $path = 'logo/sac.png';
@@ -147,28 +134,7 @@ class LaporanController extends Controller
         $data = file_get_contents($path);
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-        $options = new Options();
-        $options->setIsHtml5ParserEnabled(true);
-        $options->set('isRemoteEnabled', true);
-        $options->set('defaultFont', 'Arial');
-
-        $pdf = new Dompdf($options);
-        $html = view('laporan.export', compact('expPDF', 'base64', 'totalHari', 'currentYear', 'currentMonth', 'str1', 'end1'))->render();
-        $pdf->loadHtml($html);
-
-        $pdf->setPaper('A4', 'landscape');
-        $pdf->render();
-
-        $output = $pdf->output();
-        $filename = 'laporan.pdf';
-
-        if ($request->input('action') == 'download') {
-            return response()->download($output, $filename);
-        }
-
-        return response($output, 200)
-            ->header('Content-Type', 'application/pdf')
-            ->header('Content-Disposition', 'inline; filename="'.$filename.'"');
+        return view('laporan.export', compact('expPDF', 'base64', 'totalHari', 'currentYear', 'currentMonth', 'str1', 'end1'))->render();
                     
         }else{
             toastr()->error('Mohon Masukkan Filter Export', 'error');
