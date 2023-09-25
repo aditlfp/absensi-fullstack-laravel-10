@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Expr\AssignOp\Concat;
 
 class CheckPointController extends Controller
 {
@@ -17,7 +18,8 @@ class CheckPointController extends Controller
     {
         $user = Auth::user()->id;
         $cek = CheckPoint::where('user_id', $user)->get();
-        return view('check.index', compact('cek'));
+        $image = Image::all();
+        return view('check.index', compact('cek', 'image'));
     }
     public function indexAdmin()
     {
@@ -35,10 +37,12 @@ class CheckPointController extends Controller
 
     // USER HANDLE REQUEST IMAGE CP
     public function create(Request $request)
+    public function create(Request $request)
     {
-        $id = $request->query('id');
-        $cek = CheckPoint::with(['Image'])->where('id', $id)->get();
-        return view('check.create', compact('cek'));
+        $user = $request->query('id');
+        $cek = CheckPoint::where('id', $user)->get();
+        $foto = Image::all();
+        return view('check.create', compact('cek', 'user', 'foto'));
     }
 
     // ADMIN HANDLE REQUEST STORE NEW COUNT CP
@@ -76,6 +80,76 @@ class CheckPointController extends Controller
         $cekId->update($cek);
         toastr()->success('Check Point' . $cekId->name . 'Berhasil Di Update', 'success');
         return to_route('admin.cp.index');
+    }
+
+    public function editByAuth(Request $request)
+    {
+        $user = $request->query('id');
+        $cek = CheckPoint::where('id', $user)->get();
+        $foto = []; // Inisialisasi $foto sebagai array kosong.
+        $name = [];
+        foreach ($cek as $key) {
+            $fotoArr = Image::where('check_point_id', $key->id)->get(); // Mengambil data foto berdasarkan $key->id.
+            foreach ($fotoArr as $fotoItem) {
+                    $foto[] = $fotoItem;
+            }
+        }
+        foreach ($cek as $value) {
+            foreach ($value->name as $names) {
+                $name[] = $names;
+            }
+        }
+        // dd($foto);
+
+        return view('check.edit', compact('user', 'cek', 'foto', 'name'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $newImagesData = [];
+        $existingImages = Image::where('check_point_id', $id)->pluck('image')->toArray();
+
+        // Cek apakah ada file baru di request
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $image) {
+                if ($image->isValid()) {
+                    $extension = $image->getClientOriginalExtension();
+                    $randomNumber = mt_rand(1, 9999);
+                    $fileName = 'image_' . $randomNumber . '.' . $extension;
+                    $image->storeAs('images', $fileName, 'public');
+                    $newImagesData[] = $fileName;
+                }
+                // Hapus file lama jika ada request->oldImage
+                if ($request->oldImage) {
+                    foreach ($request->oldImage as $foto) {
+                        Storage::disk('public')->delete('images/' . $foto);
+                    }
+                }else{
+                    if (is_array($existingImages[0])) {
+                        $allImages = array_merge($existingImages[0], $newImagesData);
+                    } else {
+                        $allImages = array_merge($existingImages, $newImagesData);
+                    }
+                }
+            }
+    
+            if (is_array($existingImages[0])) {
+                $allImages = array_merge($existingImages[0], $newImagesData);
+            } else {
+                $allImages = array_merge($existingImages, $newImagesData);
+            }
+
+            // dd($allImages);
+            Image::where('check_point_id', $id)->update([
+                'image' => $allImages
+            ]);
+    
+            toastr()->success('Berhasil Mengupdate', 'success');
+            return to_route('checkpoint-user.index');
+        } else {
+            toastr()->error('Tidak Ada Image Yang TerUpload', 'error');
+            return redirect()->back();
+        }
     }
 
 

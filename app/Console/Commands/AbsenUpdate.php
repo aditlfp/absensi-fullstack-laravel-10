@@ -47,10 +47,7 @@ class AbsenUpdate extends Command
                         if($key->shift_id == $s->id && $key->absensi_type_masuk > $s->jam_start && $key->keterangan != 'izin') 
                         {
                             Absensi::where('id', $key->id)->update(['keterangan' => 'telat']);
-                        }elseif($key->shift_id == $s->id && $key->keterangan != 'izin'){
-                            Absensi::where('id', $key->id)->update(['keterangan' => $key->shift->shift_name + $key->kerjasama->client?$key->kerjasama->client->name : 'Kosong']);
                         }
-
                         if($key->shift_id == $s->id && $key->absensi_type_pulang == null && Carbon::now()->format('H:m:s') > $key->shift->jam_end && $key->keterangan != 'izin') 
                         {
                             Absensi::where('id', $key->id)->update(['absensi_type_pulang' => 'Tidak Absen Pulang']);

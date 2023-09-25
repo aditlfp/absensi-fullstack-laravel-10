@@ -46,7 +46,8 @@ Route::view('/map', 'absensi.maps');
 Route::get('/get-uptime', [AdminController::class, 'getUpTime'])->name('uptime');
 Route::get('/send', [DashboardController::class, 'sendTestEmail']);
 Route::resource('brief', ReportBrefController::class);
-Route::POST('brief-edit', [ReportBrefController::class, 'akuEdit']);
+
+Route::get('/test', [LaporanController::class, 'test']);
 
 // Auth tok
 Route::middleware(['auth', 'apdt'])->group(function () {
@@ -64,6 +65,7 @@ Route::middleware(['auth', 'apdt'])->group(function () {
     Route::get('/mypoint/{id}', [PointController::class, 'myPoint'])->name('mypoint');
 
     Route::resource('checkpoint-user', CheckPointController::class);
+    Route::get('/checkpoint-user-edit', [CheckPointController::class, 'editByAuth'])->name('editByAuth');
     Route::get('cp-photo/{id}', [CheckPointController::class, 'lihatFoto'])->name('lihatFotoCP');
     Route::get('/riwayat-kerja/{id}', [RatingController::class, 'rateKerja'])->name('rate.kerja');
 });
@@ -126,7 +128,7 @@ Route::middleware(['auth', 'admin', 'apdt'])->group(function () {
     Route::resource('/shift', ShiftController::class);
     Route::resource('/jabatan', JabatanController::class);
     Route::delete('/laporans/{id}', [LaporanController::class, 'destroy']);
-    Route::get('/export/laporans', [LaporanController::class, 'export'])->name('export.laporans');
+    Route::get('/export/laporans', [LaporanController::class, 'exportWith'])->name('export.laporans');
     Route::resource('/ruangan', RuanganController::class);
     Route::resource('/point', PointController::class);
     Route::patch('/claim-point/{id}', [AbsensiController::class, 'claimPoint'])->name('claim.point');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LaporanRequest;
+use App\Models\Kerjasama;
 use App\Models\Laporan;
 use App\Models\Ruangan;
 use App\Models\User;
@@ -30,8 +31,9 @@ class LaporanController extends Controller
                 return view('laporan.index', ['laporan' => $laporan]);
             }elseif(Auth::user()->role_id == 2)
             {
+                $mitra = Kerjasama::all();
                 $laporan = Laporan::paginate(25);
-                return view('laporan.index', ['laporan' => $laporan]);
+                return view('laporan.index', ['laporan' => $laporan, 'mitra' => $mitra]);
             }elseif(Auth::user()->divisi->jabatan->code_jabatan == 'MITRA'){
                 $ker = Auth::user()->kerjasama->client_id;
                 $laporan = Laporan::where('client_id', $ker)->paginate(25);
@@ -105,6 +107,7 @@ class LaporanController extends Controller
             toastr()->error('Laporan Tidak Ditemukan', 'error');
         }
     }
+
     public function exportWith(Request $request)
     {
         $tanggalSekarang = Carbon::now();
@@ -118,9 +121,9 @@ class LaporanController extends Controller
         
         $totalHari =  Carbon::parse($this->ended)->diffInDays(Carbon::parse($this->str));
         
-        if($request->has(['kerjasama_id','divisi_id', 'libur', 'end1', 'str1'])) {
+        if($request->has(['client_id', 'end1', 'str1'])) {
             
-         $expPDF = User::with(['laporan' => function ($query) use ($str1, $end1) {
+         $expPDF = Laporan::with(['User' => function ($query) use ($str1, $end1) {
             return $query->whereBetween('created_at', [$str1, $end1]);
         }])->when($mitra, function($query) use ($mitra) {
             return $query->where('client_id', $mitra);
@@ -131,28 +134,7 @@ class LaporanController extends Controller
         $data = file_get_contents($path);
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-        $options = new Options();
-        $options->setIsHtml5ParserEnabled(true);
-        $options->set('isRemoteEnabled', true);
-        $options->set('defaultFont', 'Arial');
-
-        $pdf = new Dompdf($options);
-        $html = view('laporan.export', compact('expPDF', 'base64', 'totalHari', 'currentYear', 'currentMonth', 'str1', 'end1'))->render();
-        $pdf->loadHtml($html);
-
-        $pdf->setPaper('A4', 'landscape');
-        $pdf->render();
-
-        $output = $pdf->output();
-        $filename = 'laporan.pdf';
-
-        if ($request->input('action') == 'download') {
-            return response()->download($output, $filename);
-        }
-
-        return response($output, 200)
-            ->header('Content-Type', 'application/pdf')
-            ->header('Content-Disposition', 'inline; filename="'.$filename.'"');
+        return view('laporan.export', compact('expPDF', 'base64', 'totalHari', 'currentYear', 'currentMonth', 'str1', 'end1'))->render();
                     
         }else{
             toastr()->error('Mohon Masukkan Filter Export', 'error');

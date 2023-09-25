@@ -48,9 +48,7 @@
 					<tr>
 						<th class="bg-slate-300 rounded-tl-2xl">#</th>
 						<th class="bg-slate-300 text-center" colspan="3">Foto Progres</th>
-						@if (Auth::user()->role_id == 2 ||
-								Auth::user()->divisi->jabatan->code_jabatan == 'LEADER' ||
-								Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
+						@if (Auth::user()->role_id == 2 )
 							<th class="bg-slate-300 ">Nama</th>
 						@endif
 						<th class="bg-slate-300 ">Mitra</th>

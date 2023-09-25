@@ -30,21 +30,36 @@
                             @forelse ($cek as $c)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $c->user->nama_lengkap }}</td>
-                                    @forelse($c->image as $img)
+                                    <td>{{ $c->user->nama_lengkap }} {{ $c->id}}</td>
+                                        @forelse($c->image as $img)
                                     <td>
-                                            @foreach($img->image as $i)
+                                        @foreach($img->image as $i)
                                                 <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="" width="120px" class="rounded">
                                             @endforeach
-                                            </td>
-                                    @empty
+                                        @forelse ($image as $i)
+                                            @php
+                                                $arrayImage = $i->image;
+                                                $jumlahImage = count($arrayImage);
+                                                // cek count & image
+                                            @endphp
+                                            @if ($c->id == $i->check_point_id && $jumlahImage != $c->check_count)
+                                            <form action="{{ route('editByAuth') }}" method="get">
+                                                <input name="id" type="text" value="{{ $c->id }}" class="hidden"/>
+                                                <button type="submit" class="btn btn-sm btn-info sm:mx-2 ">+ CP</button>
+                                                </form>
+                                            @endif
+                                        @empty
+                                            
+                                        @endforelse
+                                    </td>
+                                        @empty
                                     <td class="flex justify-center">
                                         <form action="{{ route('checkpoint-user.create') }}" method="get">
                                         <input name="id" type="text" value="{{ $c->id }}" class="hidden"/>
                                         <button type="submit" class="btn btn-sm btn-info sm:mx-2 ">+ CP</button>
                                         </form>
                                     </td>
-                                    @endforelse
+                                        @endforelse
                                     
                                     <td class="text-center">{{ $c->check_count }}</td>
                                     <td>{{ $c->client->name }}</td>

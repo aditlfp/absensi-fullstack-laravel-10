@@ -19,7 +19,7 @@
                         @forelse ($arr->name as $item)
                         <label for="image{{ $i++ }}" class="font-semibold">Image
                                 {{ $item}}:</label>
-                                <input type="file" name="image[]" id="image{{ $i++ }}" accept="image/*" multiple required
+                                <input type="file" name="image[]" id="image{{ $i++ }}" accept="image/*" multiple
                                     class="file-input file-input-bordered">
                                     
                   <!--                  <div class="preview hidden w-full">-->
@@ -41,19 +41,16 @@
             						<!--	</span>-->
             						<!--</label>-->
                         @empty
-                        <label for="image{{ $i++ }}" class="font-semibold">Image
-                        :</label>
-                            <input type="file" name="image[]" id="image{{ $i++ }}" accept="image/*" multiple required
-                                class="file-input file-input-bordered">
+                            <h2>SAAT INI MASIH KOSONG</h2>
                         @endforelse
+
                     @else
-                            @for ($n = 1; $n <= $arr->check_count ; $n++)
+                            @for ($n = 1; $n <= $arr->check_count; $n++)
                                 <label for="image{{ $n }}" class="font-semibold text-white">Image {{ $n}}
                                 :</label>
-                                <input type="file" name="image[]" id="image{{ $n }}" accept="image/*" multiple required
+                                <input type="file" name="image[]" id="image{{ $n }}" accept="image/*" multiple
                                     class="file-input file-input-bordered">
                             @endfor
-                        
                     @endif
                     </div>
                     <div class="flex justify-center sm:justify-end gap-x-4 my-10">
