@@ -51,7 +51,7 @@
 					<div class="flex justify-center mt-10 gap-2">
 						<button type="submit" class="btn btn-primary">Save</button>
 						<a href="{{ route('profile.index') }}" class="btn btn-error transition-all ease-linear .2s">
-							Back
+							Kembali
 						</a>
 					</div>
 				</div>
