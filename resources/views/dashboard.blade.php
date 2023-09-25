@@ -282,13 +282,6 @@
 							</div>
 						@endif
 						@endif
-
-						<span class="countdown font-mono text-2xl">
-							<span id="H" style=""></span>:
-							<span id="M" style=""></span>:
-							<span id="S" style=""></span>
-						</span>
-
 						{{-- handle Pulang --}}
 						<div class="flex justify-center sm:justify-end">
 							@foreach ($absen as $arr)
