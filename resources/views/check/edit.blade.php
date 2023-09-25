@@ -39,7 +39,6 @@
                 //  datas.val('data')
                 var oled = $(data).attr('data-textval');
                 $(datas).val(oled)
-                console.log(datas, data, oled);
             } else {
                 // Jika tidak ada gambar yang dipilih, kosongkan nilai oldImage
                 this.val('');

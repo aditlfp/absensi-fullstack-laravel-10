@@ -10,7 +10,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use PhpParser\Node\Expr\AssignOp\Concat;
 
 class CheckPointController extends Controller
 {
@@ -36,7 +35,6 @@ class CheckPointController extends Controller
     }
 
     // USER HANDLE REQUEST IMAGE CP
-    public function create(Request $request)
     public function create(Request $request)
     {
         $user = $request->query('id');
