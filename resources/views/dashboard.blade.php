@@ -301,6 +301,39 @@
 											@endif
 										@endforeach
 									</span>
+									@if ($arr->shift->jam_end >= '09:00' && $arr->shift->jam_end <= '18:00')
+									{{-- Absen siang --}}
+									<div>
+										<button id="modalSiangBtn"
+											class="bg-[#E55604] hidden justify-center shadow-md hover:bg-[#af4a0f] text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition-all ease-in-out duration-200 mt-5 mr-0 sm:mr-2 uppercase items-center"><i class="ri-sun-foggy-line"></i><span class="font-bold">Absen siang</span>
+										</button>
+									</div>
+									@endif
+									<div
+										class="fixed inset-0 modalSiang hidden bg-slate-500/10 backdrop-blur-sm transition-all duration-300 ease-in-out">
+										<div class="bg-slate-200 w-fit p-5 rounded-md shadow">
+											<div class="flex justify-end mb-3">
+												<button class="btn btn-error scale-90 close">&times;</button>
+											</div>
+											<form action="{{ route('data.update.siang', $arr->id) }}" method="POST"
+												class="flex justify-center items-center  ">
+												@csrf
+												@method('PUT')
+												<div class="flex justify-center flex-col ">
+													<div class="flex flex-col gap-2">
+														<p class="text-center text-lg font-semibold">Apakah Anda Yakin Ingin Absen Siang Sekarang?</p>
+													</div>
+													<div class="flex justify-center items-center">
+														<button type="submit"
+															class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i class="ri-sun-foggy-line"></i><span class="font-bold">Absen Siang</span>
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+
+
 									<div>
 										<button id="modalPulangBtn"
 											class="bg-yellow-600 hidden justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
@@ -352,7 +385,7 @@
 										@method('PUT')
 										<button type="submit"
 											class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
-												class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Selasaikan Lembur</span>
+												class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Selesaikan Lembur</span>
 										</button>
 									</form>
 								@else
@@ -422,6 +455,21 @@
 
 			$(document).on('click', '.close', function() {
 				$('.modalp')
+					.removeClass('flex justify-center items-center opacity-100') // Remove opacity class
+					.addClass('opacity-0') // Add opacity class for fade-out
+					.addClass('hidden')
+					.removeClass('flex justify-center items-center');
+			});
+
+			// absen siang
+			$(document).on('click', '#modalSiangBtn', function() {
+				$('.modalSiang')
+					.removeClass('hidden')
+					.addClass('flex justify-center items-center opacity-100'); // Add opacity class
+			});
+
+			$(document).on('click', '.close', function() {
+				$('.modalSiang')
 					.removeClass('flex justify-center items-center opacity-100') // Remove opacity class
 					.addClass('opacity-0') // Add opacity class for fade-out
 					.addClass('hidden')
@@ -529,6 +577,9 @@
 				$('#ngeLembur').toggle();
 				$('#isiLembur').toggle();
 				$('#ngIzin').toggle();
+				setTimeout(function() {
+					$("#ngIzin").toggleClass("mb-5");
+				}, 1);
 				$('#isiIzin').toggle();
 				$('#Luser').toggle();
 				$('#Ljadwal').toggle();
@@ -778,35 +829,35 @@
 			var startDiffMinutes = startHours * 60 + startMinutes;
 			var nowDiffMinutes = h2 * 60 + m2;
 
-			var jadi = nowDiffMinutes - startDiffMinutes;
+			// var jadi = nowDiffMinutes - startDiffMinutes;
 
-			var kesimH = Math.floor(jadi / 60);
-			var kesimM = Math.abs(jadi % 60);
-			var kesimS = Math.abs(60 - s2);
+			// var kesimH = Math.floor(jadi / 60);
+			// var kesimM = Math.abs(jadi % 60);
+			// var kesimS = Math.abs(60 - s2);
 
-			if (jadi >= -60) {
-				btnAbsensi.removeAttr("disabled");
-				btnAbsensi.removeClass('cursor-not-allowed');
-				aAbsensi.removeClass('cursor-not-allowed');
-				aAbsensi.css({ 'background-color': '', 'border': '' });
-				aAbsensi.attr("href", "{{ route('absensi.index') }}");
-				aAbsensi.text("Kehadiran");
-				//   a2
-				aAbsensi2.removeClass('cursor-not-allowed');
-				aAbsensi2.css({ 'background-color': '', 'border': '' });
-				aAbsensi2.attr("href", "{{ route('absensi.index') }}");
-			} else {
-				btnAbsensi.attr("disabled", true);
-				btnAbsensi.addClass('cursor-not-allowed');
-				aAbsensi.addClass('cursor-not-allowed');
-				aAbsensi.css({ 'background-color': 'rgba(59, 130, 246, 0.5)', 'border': 'none' });
-				aAbsensi.removeAttr("href");
-				aAbsensi.text(set(kesimH) + ' jam ' + set(kesimM) + ' menit ' + kesimS + ' detik lagi');
+			// if (jadi >= -60) {
+			// 	btnAbsensi.removeAttr("disabled");
+			// 	btnAbsensi.removeClass('cursor-not-allowed');
+			// 	aAbsensi.removeClass('cursor-not-allowed');
+			// 	aAbsensi.css({ 'background-color': '', 'border': '' });
+			// 	aAbsensi.attr("href", "{{ route('absensi.index') }}");
+			// 	aAbsensi.text("Kehadiran");
+			// 	//   a2
+			// 	aAbsensi2.removeClass('cursor-not-allowed');
+			// 	aAbsensi2.css({ 'background-color': '', 'border': '' });
+			// 	aAbsensi2.attr("href", "{{ route('absensi.index') }}");
+			// } else {
+			// 	btnAbsensi.attr("disabled", true);
+			// 	btnAbsensi.addClass('cursor-not-allowed');
+			// 	aAbsensi.addClass('cursor-not-allowed');
+			// 	aAbsensi.css({ 'background-color': 'rgba(59, 130, 246, 0.5)', 'border': 'none' });
+			// 	aAbsensi.removeAttr("href");
+			// 	aAbsensi.text(set(kesimH) + ' jam ' + set(kesimM) + ' menit ' + kesimS + ' detik lagi');
 
-				aAbsensi2.addClass('cursor-not-allowed');
-				aAbsensi2.css({ 'background-color': 'rgba(59, 130, 246, 0.5)', 'border': 'none' });
-				aAbsensi2.removeAttr("href");
-			}
+			// 	aAbsensi2.addClass('cursor-not-allowed');
+			// 	aAbsensi2.css({ 'background-color': 'rgba(59, 130, 246, 0.5)', 'border': 'none' });
+			// 	aAbsensi2.removeAttr("href");
+			// }
 
 
 			var endTimeParts = endTime.split(':');
@@ -844,6 +895,22 @@
 				btnPulang.addClass('hidden').removeClass('flex');
 			}
 
+			// abs siang
+
+			var mulaiDiffMinutes = startHours * 60 + startMinutes;
+			var endDiffMinutes = endHours * 60 + endMinutes - 60;
+			var tengahHari = (endDiffMinutes - mulaiDiffMinutes) / 2;
+			var belumTengahHari = mulaiDiffMinutes + tengahHari - 60;
+			var sudahTengahHari = endDiffMinutes - tengahHari + 120;
+
+			if (nowDiffMinutes >= belumTengahHari && nowDiffMinutes <= sudahTengahHari) {
+				$('#modalSiangBtn').addClass('flex').removeClass('hidden');
+				// console.log('ok bang');
+			}else{
+				$('#modalSiangBtn').addClass('hidden').removeClass('flex');
+				// console.log('belum bang');
+			}
+			
 			setTimeout(jam2, 1000);
 		}
 

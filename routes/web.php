@@ -20,7 +20,6 @@ use App\Http\Controllers\PerlengkapanController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingController;
-use App\Http\Controllers\ReportBrefController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\SVP_Controller\MainController;
@@ -49,8 +48,8 @@ Route::get('/get-uptime', [AdminController::class, 'getUpTime'])->name('uptime')
 
 // Auth tok
 Route::middleware(['auth', 'apdt'])->group(function () {
-    Route::patch('/data/{id}/updatePulang', [AbsensiController::class, 'updatePulang'])->name('data.update');
-    Route::patch('/data/{id}/updateSiang', [AbsensiController::class, 'updateSiang'])->name('data.update.siang');
+    Route::put('/data/{id}/updatePulang', [AbsensiController::class, 'updatePulang'])->name('data.update');
+    Route::put('/data/{id}/updateSiang', [AbsensiController::class, 'updateSiang'])->name('data.update.siang');
     Route::resource('/dashboard', DashboardController::class);
     Route::resource('/absensi', AbsensiController::class);
     Route::get('/historyAbsensi', [AbsensiController::class, 'historyAbsensi']);

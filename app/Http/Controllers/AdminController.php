@@ -7,7 +7,6 @@ use App\Models\Client;
 use App\Models\Divisi;
 use App\Models\Kerjasama;
 use App\Models\Point;
-use App\Models\Shift;
 use App\Models\User;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
@@ -87,7 +86,7 @@ class AdminController extends Controller
         }
         
        
-        return view('admin.absen.index',['absen' => $absen, 'absenSi' => $absenSi, 'point' => $point, 'divisi' => $divisi]);
+        return view('admin.absen.index',['absen' => $absen, 'absenSi' => $absenSi, 'point' => $point, 'divisi' => $divisi, 'filter' => $filter]);
     }
 
     public function izin()

@@ -9,7 +9,7 @@
     						<select name="filterKerjasama" id="filterKerjasama" class="select select-bordered active:border-none border-none">
     							<option selected disabled>~ Kerja Sama ~</option>
     							@foreach ($absenSi as $i)
-    								<option value="{{ $i->id }}">{{ $i->client->name }}</option>
+    								<option value="{{ $i->id }}" {{ $filter == $i->id ? 'selected' : '' }}>{{ $i->client->name }}</option>
     							@endforeach
     						</select>
     						<div>
@@ -19,7 +19,10 @@
     						</div>
     					</form>
     				</div>
-    				<div>
+					<div class="flex justify-end items-center mr-10 mt-5">
+						<x-search/>
+					</div>
+    				<div class="hidden">
             			<form method="GET" action="{{route('admin.export')}}">
             			    <div class="flex items-center">
             			        <!--LIBUR-->
@@ -86,9 +89,7 @@
 				        </div>
                 </form>
 			</div>
-			<div class="flex justify-end items-center mr-10 mt-5">
-				<x-search/>
-			</div>
+			
 			
 			<div class="overflow-x-auto mx-10 my-10">
 				<table class="table table-zebra w-full bg-slate-50" id="searchTable">
