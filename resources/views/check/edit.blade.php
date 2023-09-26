@@ -17,7 +17,7 @@
                     <span hidden id="dataOld" data-abc="#image{{ $item}}" data-def="#oldImage{{ $item}}"></span>
                     <input hidden type="text" id="oldImage{{ $item}}" name="oldImage[]" value="" class="old-image" accept="image/*" multiple data-index="{{ $item }}">
                 @endforeach
-    
+                
                 @for ($j = count($existingImages); $j < $checkCount; $j++)
                     <label for="image{{ $j }}">
                         <!-- Tampilkan input file kosong -->
@@ -39,7 +39,6 @@
                 //  datas.val('data')
                 var oled = $(data).attr('data-textval');
                 $(datas).val(oled)
-                console.log(datas, data, oled);
             } else {
                 // Jika tidak ada gambar yang dipilih, kosongkan nilai oldImage
                 this.val('');
