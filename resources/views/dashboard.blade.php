@@ -75,11 +75,11 @@
 						</div>
 					@endauth
 				@endif
-				<div class="sm:px-10 px-5 sm:mx-10 mx5 bg-[#F4FEFD]/70 rounded-md shadow-inner shadow-gray-900/60">
+				<div class="sm:px-10 px-5 sm:mx-10 mx5 bg-[#0EF6CC]/70 rounded-md shadow-inner shadow-gray-900/60">
 					<div class="py-5">
 						<div class="flex items-end justify-end mr-3">
 							<span
-								class="text-xs font-bold text-white sm:hidden bg-green-500 px-4 py-1 rounded-full shadow-md">{{ Carbon\Carbon::now()->isoFormat('dddd, D/MMMM/Y') }},
+								class="text-xs font-bold text-white sm:hidden bg-[#273C3D] px-4 py-1 rounded-full shadow-md">{{ Carbon\Carbon::now()->isoFormat('dddd, D/MMMM/Y') }},
 								<span id="jam"></span>
 							</span>
 						</div>
@@ -98,79 +98,79 @@
 								<div id="btnAbsensi"
 									class=" w-full flex justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
 									<i class="ri-todo-line text-xl"></i>
-									<button class="uppercase font-bold text-sm">
+									<button class="uppercase font-semibold text-sm text-slate-100/90">
 										Attendance( Kehadiran )
 									</button>
 								</div>
 								{{-- menu menu dashboard absensi --}}
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngabsen">
-									<a href="{{ route('absensi.index') }}" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200 " id="aAbsen">Kehadiran</a>
+									<a href="{{ route('absensi.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-700 " id="aAbsen">Kehadiran</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
-									<a href="{{ route('lembur.index') }}" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Lembur</a>
+									<a href="{{ route('lembur.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Lembur</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
-									<a href="{{ route('izin.create') }}" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Izin</a>
+									<a href="{{ route('izin.create') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-in-out duration-200 hover:text-slate-200">Izin</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
-									<a href="historyAbsensi" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Kehadiran</a>
+									<a href="historyAbsensi" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Kehadiran</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiLembur">
-									<a href="{{ route('lemburIndexUser') }}" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Lembur</a>
+									<a href="{{ route('lemburIndexUser') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Lembur</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIzin">
-									<a href="{{ route('izin.index') }}" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Izin</a>
+									<a href="{{ route('izin.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Izin</a>
 								</div>
 						</div>
 						<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
 							<div id="btnCP" 
-								class="w-full flex justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
+								class="w-full flex justify-center items-center text-slate-100/90 gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 transition-all ease-linear .2s">
 								<i class="ri-list-check-3"></i>
-								<button class="uppercase font-bold text-sm">
+								<button class="uppercase font-semibold text-slate-100/90 text-sm">
 									Kinerja harian
 								</button>
 							</div>
 							@if (Auth::user()->role_id == 2)
 							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIndex">
-								<a href="{{ route('admin.cp.index') }}" class="btn btn-info w-full">Index Check Point</a>
+								<a href="{{ route('admin.cp.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Index Check Point</a>
 							</div>
 							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="tambahCP">
-								<a href="{{ route('admin.cp.create') }}" class="btn btn-info w-full">Tambah Check Point</a>
+								<a href="{{ route('admin.cp.create') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Tambah Check Point</a>
 							</div>
 								
 							@else
 							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIndex">
-								<a href="{{ route('checkpoint-user.index') }}" class="btn btn-info w-full">Index Kinerja Harian</a>
+								<a href="{{ route('checkpoint-user.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Index Kinerja Harian</a>
 							</div>
 							@endif
 						</div>
 						<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
 							<div id="btnRating"
-								class=" w-full flex justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
+								class=" w-full flex justify-center items-center text-slate-100/90 gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 transition-all ease-linear .2s">
 								<i class="ri-user-star-line text-xl"></i>
-								<button class="uppercase font-bold text-sm">Rating</button>
+								<button class="uppercase font-semibold text-sm">Rating</button>
 							</div>
 							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekMe">
-								<a href="{{ url('rate/' . Auth::user()->id) }}" class="btn btn-info w-full">Check Rating Saya</a>
+								<a href="{{ url('rate/' . Auth::user()->id) }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Check Rating Saya</a>
 							</div>
 							@if (Auth::user()->role_id == 2)
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekRate">
-									<a href="{{ route('leader-rating.index') }}" class="btn btn-info w-full">Rating</a>
+									<a href="{{ route('leader-rating.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Rating</a>
 								</div>
 							@else
 							@endif
 						</div>
 						<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
 							<div id="btnLaporan"
-								class=" w-full flex justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
+								class=" w-full flex justify-center items-center text-slate-100/90 gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 transition-all ease-linear .2s">
 								<i class="ri-speak-line text-xl"></i>
-								<button class="uppercase font-bold text-sm">Laporan</button>
+								<button class="uppercase font-semibold text-sm">Laporan</button>
 							</div>
 							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="tambahLaporan">
-								<a href="{{ route('laporan.create') }}" class="btn btn-info w-full">Tambah Laporan</a>
+								<a href="{{ route('laporan.create') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Tambah Laporan</a>
 							</div>
 							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekLaporan">
-								<a href="{{ route('laporan.index') }}" class="btn btn-info w-full">Riwayat Laporan</a>
+								<a href="{{ route('laporan.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Laporan</a>
 							</div>
 							
 						</div>
@@ -308,7 +308,6 @@
 											class="bg-[#E55604] hidden justify-center shadow-md hover:bg-[#af4a0f] text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition-all ease-in-out duration-200 mt-5 mr-0 sm:mr-2 uppercase items-center"><i class="ri-sun-foggy-line"></i><span class="font-bold">Absen siang</span>
 										</button>
 									</div>
-									@endif
 									<div
 										class="fixed inset-0 modalSiang hidden bg-slate-500/10 backdrop-blur-sm transition-all duration-300 ease-in-out">
 										<div class="bg-slate-200 w-fit p-5 rounded-md shadow">
@@ -332,8 +331,8 @@
 											</form>
 										</div>
 									</div>
-
-
+									@endif
+									
 									<div>
 										<button id="modalPulangBtn"
 											class="bg-yellow-600 hidden justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
@@ -578,7 +577,7 @@
 				$('#isiLembur').toggle();
 				$('#ngIzin').toggle();
 				setTimeout(function() {
-					$("#ngIzin").toggleClass("mb-5");
+					$("#ngIzin").toggleClass("mb-5 transition-all ease-in-out duration-200");
 				}, 1);
 				$('#isiIzin').toggle();
 				$('#Luser').toggle();
@@ -829,37 +828,6 @@
 			var startDiffMinutes = startHours * 60 + startMinutes;
 			var nowDiffMinutes = h2 * 60 + m2;
 
-			// var jadi = nowDiffMinutes - startDiffMinutes;
-
-			// var kesimH = Math.floor(jadi / 60);
-			// var kesimM = Math.abs(jadi % 60);
-			// var kesimS = Math.abs(60 - s2);
-
-			// if (jadi >= -60) {
-			// 	btnAbsensi.removeAttr("disabled");
-			// 	btnAbsensi.removeClass('cursor-not-allowed');
-			// 	aAbsensi.removeClass('cursor-not-allowed');
-			// 	aAbsensi.css({ 'background-color': '', 'border': '' });
-			// 	aAbsensi.attr("href", "{{ route('absensi.index') }}");
-			// 	aAbsensi.text("Kehadiran");
-			// 	//   a2
-			// 	aAbsensi2.removeClass('cursor-not-allowed');
-			// 	aAbsensi2.css({ 'background-color': '', 'border': '' });
-			// 	aAbsensi2.attr("href", "{{ route('absensi.index') }}");
-			// } else {
-			// 	btnAbsensi.attr("disabled", true);
-			// 	btnAbsensi.addClass('cursor-not-allowed');
-			// 	aAbsensi.addClass('cursor-not-allowed');
-			// 	aAbsensi.css({ 'background-color': 'rgba(59, 130, 246, 0.5)', 'border': 'none' });
-			// 	aAbsensi.removeAttr("href");
-			// 	aAbsensi.text(set(kesimH) + ' jam ' + set(kesimM) + ' menit ' + kesimS + ' detik lagi');
-
-			// 	aAbsensi2.addClass('cursor-not-allowed');
-			// 	aAbsensi2.css({ 'background-color': 'rgba(59, 130, 246, 0.5)', 'border': 'none' });
-			// 	aAbsensi2.removeAttr("href");
-			// }
-
-
 			var endTimeParts = endTime.split(':');
 			var endHours = parseInt(endTimeParts[0]);
 			var endMinutes = parseInt(endTimeParts[1]);
@@ -900,11 +868,12 @@
 			var mulaiDiffMinutes = startHours * 60 + startMinutes;
 			var endDiffMinutes = endHours * 60 + endMinutes - 60;
 			var tengahHari = (endDiffMinutes - mulaiDiffMinutes) / 2;
-			var belumTengahHari = mulaiDiffMinutes + tengahHari - 60;
-			var sudahTengahHari = endDiffMinutes - tengahHari + 120;
+			var belumTengahHari = mulaiDiffMinutes + tengahHari - 30;
+			var sudahTengahHari = endDiffMinutes - tengahHari + 30;
 
 			if (nowDiffMinutes >= belumTengahHari && nowDiffMinutes <= sudahTengahHari) {
 				$('#modalSiangBtn').addClass('flex').removeClass('hidden');
+				btnPulang.addClass('hidden').removeClass('flex');
 				// console.log('ok bang');
 			}else{
 				$('#modalSiangBtn').addClass('hidden').removeClass('flex');
