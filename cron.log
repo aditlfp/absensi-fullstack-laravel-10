@@ -19414,3 +19414,615 @@
   2023-09-12 14:26:04 Running ['artisan' app:notification] ........ 266ms FAIL
   ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
 
+
+  2023-09-21 09:00:05 Running ['artisan' app:absen-update] ...... 1,486ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 09:00:07 Running ['artisan' app:point-update] ........ 682ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 09:00:07 Running ['artisan' app:notification] ........ 589ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 09:15:03 Running ['artisan' app:absen-update] ...... 1,902ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 09:30:05 Running ['artisan' app:absen-update] ...... 1,838ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 09:30:07 Running ['artisan' app:point-update] ........ 887ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 09:30:08 Running ['artisan' app:notification] ........ 579ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 09:45:04 Running ['artisan' app:absen-update] ...... 1,649ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 10:00:05 Running ['artisan' app:absen-update] ...... 2,572ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 10:00:08 Running ['artisan' app:point-update] ...... 1,856ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 10:00:09 Running ['artisan' app:notification] ...... 1,300ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 10:15:11 Running ['artisan' app:absen-update] ...... 3,553ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 10:30:04 Running ['artisan' app:absen-update] ...... 2,895ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 10:30:07 Running ['artisan' app:point-update] ...... 1,435ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 10:30:08 Running ['artisan' app:notification] ........ 893ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 10:45:04 Running ['artisan' app:absen-update] ...... 1,907ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 11:00:05 Running ['artisan' app:absen-update] ...... 1,954ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 11:00:07 Running ['artisan' app:point-update] ........ 825ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 11:00:08 Running ['artisan' app:notification] ........ 776ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 11:15:05 Running ['artisan' app:absen-update] ...... 1,729ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 11:30:05 Running ['artisan' app:absen-update] ...... 2,079ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 11:30:07 Running ['artisan' app:point-update] ...... 1,540ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 11:30:08 Running ['artisan' app:notification] ........ 723ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 11:45:03 Running ['artisan' app:absen-update] ...... 1,518ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 12:00:07 Running ['artisan' app:absen-update] ...... 2,182ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 12:00:09 Running ['artisan' app:point-update] ...... 2,471ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 12:00:11 Running ['artisan' app:notification] ........ 907ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 12:15:05 Running ['artisan' app:absen-update] ...... 2,141ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 12:30:05 Running ['artisan' app:absen-update] ...... 1,778ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 12:30:06 Running ['artisan' app:point-update] ........ 947ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 12:30:07 Running ['artisan' app:notification] ........ 517ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 12:45:04 Running ['artisan' app:absen-update] ........ 974ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 13:00:04 Running ['artisan' app:absen-update] ...... 1,578ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 13:00:06 Running ['artisan' app:point-update] ...... 1,157ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 13:00:07 Running ['artisan' app:notification] ........ 690ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 13:15:04 Running ['artisan' app:absen-update] ...... 1,078ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 13:30:03 Running ['artisan' app:absen-update] ........ 993ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 13:30:04 Running ['artisan' app:point-update] ........ 784ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 13:30:05 Running ['artisan' app:notification] ........ 649ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 13:45:03 Running ['artisan' app:absen-update] ...... 1,588ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 14:00:04 Running ['artisan' app:absen-update] ...... 1,297ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 14:00:05 Running ['artisan' app:point-update] ........ 643ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 14:00:06 Running ['artisan' app:notification] ........ 439ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 14:15:10 Running ['artisan' app:absen-update] ...... 2,967ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 14:30:05 Running ['artisan' app:absen-update] ...... 2,155ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 14:30:07 Running ['artisan' app:point-update] ...... 1,019ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 14:30:09 Running ['artisan' app:notification] ...... 1,100ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 14:45:04 Running ['artisan' app:absen-update] ...... 2,241ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 15:00:08 Running ['artisan' app:absen-update] ...... 2,182ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 15:00:10 Running ['artisan' app:point-update] ...... 1,262ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 15:00:11 Running ['artisan' app:notification] ........ 568ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 15:15:07 Running ['artisan' app:absen-update] ...... 3,263ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 15:30:06 Running ['artisan' app:absen-update] ...... 2,088ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 15:30:08 Running ['artisan' app:point-update] ........ 856ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 15:30:09 Running ['artisan' app:notification] ........ 853ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 15:45:04 Running ['artisan' app:absen-update] ...... 2,294ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 16:00:19 Running ['artisan' app:absen-update] ...... 3,363ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 16:00:22 Running ['artisan' app:point-update] ...... 2,089ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 16:00:25 Running ['artisan' app:notification] ...... 1,844ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 16:15:04 Running ['artisan' app:absen-update] ...... 1,544ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 16:30:03 Running ['artisan' app:absen-update] ...... 1,154ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 16:30:04 Running ['artisan' app:point-update] ........ 701ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 16:30:05 Running ['artisan' app:notification] ........ 772ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 16:45:02 Running ['artisan' app:absen-update] ........ 879ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 17:00:05 Running ['artisan' app:absen-update] ...... 3,910ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 17:00:08 Running ['artisan' app:point-update] ........ 705ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 17:00:09 Running ['artisan' app:notification] ........ 615ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 17:15:03 Running ['artisan' app:absen-update] ...... 1,036ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 17:30:05 Running ['artisan' app:absen-update] ...... 3,022ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 17:30:09 Running ['artisan' app:point-update] ...... 1,696ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 17:30:10 Running ['artisan' app:notification] ........ 680ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 17:45:04 Running ['artisan' app:absen-update] ...... 1,135ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 18:00:03 Running ['artisan' app:absen-update] ........ 814ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 18:00:04 Running ['artisan' app:point-update] ........ 591ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 18:00:04 Running ['artisan' app:notification] ........ 425ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 18:15:03 Running ['artisan' app:absen-update] ...... 1,085ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 18:30:03 Running ['artisan' app:absen-update] ...... 1,194ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 18:30:05 Running ['artisan' app:point-update] ........ 604ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 18:30:05 Running ['artisan' app:notification] ........ 451ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 18:45:03 Running ['artisan' app:absen-update] ........ 789ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 19:00:02 Running ['artisan' app:absen-update] ........ 787ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 19:00:03 Running ['artisan' app:point-update] ........ 590ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 19:00:04 Running ['artisan' app:notification] ........ 475ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 19:15:03 Running ['artisan' app:absen-update] ...... 1,129ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 19:30:03 Running ['artisan' app:absen-update] ...... 1,251ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 19:30:04 Running ['artisan' app:point-update] ........ 625ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 19:30:05 Running ['artisan' app:notification] ........ 436ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 19:45:05 Running ['artisan' app:absen-update] ...... 1,753ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 20:00:03 Running ['artisan' app:absen-update] ...... 1,418ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 20:00:05 Running ['artisan' app:point-update] ........ 755ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 20:00:05 Running ['artisan' app:notification] ........ 453ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 20:15:03 Running ['artisan' app:absen-update] ........ 733ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 20:30:08 Running ['artisan' app:absen-update] ...... 2,719ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 20:30:10 Running ['artisan' app:point-update] ...... 1,594ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 20:30:12 Running ['artisan' app:notification] ........ 677ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 20:45:03 Running ['artisan' app:absen-update] ...... 1,025ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 21:00:09 Running ['artisan' app:absen-update] ...... 2,636ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 21:00:11 Running ['artisan' app:point-update] ...... 1,708ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 21:00:13 Running ['artisan' app:notification] ...... 1,365ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 21:15:04 Running ['artisan' app:absen-update] ...... 1,020ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 21:30:05 Running ['artisan' app:absen-update] ...... 1,796ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 21:30:07 Running ['artisan' app:point-update] ........ 770ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 21:30:08 Running ['artisan' app:notification] ........ 496ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 21:45:03 Running ['artisan' app:absen-update] ...... 1,478ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 22:00:04 Running ['artisan' app:absen-update] ...... 1,552ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 22:00:05 Running ['artisan' app:point-update] ........ 704ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 22:00:06 Running ['artisan' app:notification] ........ 494ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 22:15:03 Running ['artisan' app:absen-update] ...... 1,081ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 22:30:06 Running ['artisan' app:absen-update] ...... 2,915ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 22:30:09 Running ['artisan' app:point-update] ...... 1,908ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 22:30:11 Running ['artisan' app:notification] ...... 1,354ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 22:45:03 Running ['artisan' app:absen-update] ........ 804ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 23:00:03 Running ['artisan' app:absen-update] ...... 1,160ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 23:00:04 Running ['artisan' app:point-update] ........ 681ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 23:00:05 Running ['artisan' app:notification] ........ 493ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 23:15:06 Running ['artisan' app:absen-update] ...... 2,056ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-21 23:30:04 Running ['artisan' app:absen-update] ...... 1,696ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-21 23:30:05 Running ['artisan' app:point-update] ........ 846ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-21 23:30:06 Running ['artisan' app:notification] ........ 741ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-21 23:45:03 Running ['artisan' app:absen-update] ........ 898ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 00:00:04 Running ['artisan' app:absen-update] ...... 1,385ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 00:00:05 Running ['artisan' app:point-update] ........ 725ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 00:00:06 Running ['artisan' app:notification] ........ 626ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 00:15:06 Running ['artisan' app:absen-update] ...... 2,369ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 00:30:04 Running ['artisan' app:absen-update] ...... 1,409ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 00:30:05 Running ['artisan' app:point-update] ........ 856ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 00:30:06 Running ['artisan' app:notification] ........ 629ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 00:45:03 Running ['artisan' app:absen-update] ...... 1,324ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 01:00:04 Running ['artisan' app:absen-update] ...... 1,482ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 01:00:06 Running ['artisan' app:point-update] ........ 922ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 01:00:07 Running ['artisan' app:notification] ........ 591ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 01:15:03 Running ['artisan' app:absen-update] ........ 990ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 01:30:03 Running ['artisan' app:absen-update] ...... 1,056ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 01:30:04 Running ['artisan' app:point-update] ........ 512ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 01:30:05 Running ['artisan' app:notification] ........ 431ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 01:45:03 Running ['artisan' app:absen-update] ...... 1,073ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 02:00:03 Running ['artisan' app:absen-update] ...... 1,345ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 02:00:05 Running ['artisan' app:point-update] ........ 685ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 02:00:05 Running ['artisan' app:notification] ........ 625ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 02:15:03 Running ['artisan' app:absen-update] ...... 1,084ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 02:30:03 Running ['artisan' app:absen-update] ........ 966ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 02:30:04 Running ['artisan' app:point-update] ........ 554ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 02:30:04 Running ['artisan' app:notification] ........ 364ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 02:45:03 Running ['artisan' app:absen-update] ........ 893ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 03:00:04 Running ['artisan' app:absen-update] ...... 1,131ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 03:00:05 Running ['artisan' app:point-update] ........ 632ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 03:00:06 Running ['artisan' app:notification] ........ 468ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 03:15:03 Running ['artisan' app:absen-update] ........ 780ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 03:30:03 Running ['artisan' app:absen-update] ...... 1,141ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 03:30:05 Running ['artisan' app:point-update] ........ 592ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 03:30:05 Running ['artisan' app:notification] ........ 473ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 03:45:02 Running ['artisan' app:absen-update] ........ 815ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 04:00:03 Running ['artisan' app:absen-update] ...... 1,268ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 04:00:04 Running ['artisan' app:point-update] ........ 686ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 04:00:05 Running ['artisan' app:notification] ........ 441ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 04:15:03 Running ['artisan' app:absen-update] ........ 899ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 04:30:03 Running ['artisan' app:absen-update] ...... 1,091ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 04:30:04 Running ['artisan' app:point-update] ........ 586ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 04:30:05 Running ['artisan' app:notification] ........ 486ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 04:45:02 Running ['artisan' app:absen-update] ........ 709ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 05:00:03 Running ['artisan' app:absen-update] ...... 1,288ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 05:00:05 Running ['artisan' app:point-update] ........ 772ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 05:00:06 Running ['artisan' app:notification] ........ 554ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 05:15:03 Running ['artisan' app:absen-update] ........ 832ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 05:30:04 Running ['artisan' app:absen-update] ...... 1,451ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 05:30:05 Running ['artisan' app:point-update] ........ 706ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 05:30:06 Running ['artisan' app:notification] ........ 512ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 05:45:03 Running ['artisan' app:absen-update] ........ 864ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 06:00:04 Running ['artisan' app:absen-update] ...... 1,284ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 06:00:05 Running ['artisan' app:point-update] ........ 782ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 06:00:06 Running ['artisan' app:notification] ........ 450ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 06:15:03 Running ['artisan' app:absen-update] ...... 1,193ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 06:30:03 Running ['artisan' app:absen-update] ...... 1,100ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 06:30:04 Running ['artisan' app:point-update] ........ 710ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 06:30:05 Running ['artisan' app:notification] ........ 484ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 06:45:02 Running ['artisan' app:absen-update] ........ 859ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 07:00:06 Running ['artisan' app:absen-update] ...... 1,383ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 07:00:07 Running ['artisan' app:point-update] ...... 1,001ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 07:00:08 Running ['artisan' app:notification] ........ 517ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 07:15:03 Running ['artisan' app:absen-update] ...... 1,165ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 07:30:04 Running ['artisan' app:absen-update] ........ 852ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 07:30:05 Running ['artisan' app:point-update] ...... 1,423ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 07:30:07 Running ['artisan' app:notification] ........ 448ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 07:45:03 Running ['artisan' app:absen-update] ...... 1,384ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 08:00:05 Running ['artisan' app:absen-update] ...... 2,045ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 08:00:07 Running ['artisan' app:point-update] ...... 1,220ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 08:00:08 Running ['artisan' app:notification] ........ 885ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 08:15:04 Running ['artisan' app:absen-update] ...... 1,563ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 08:30:04 Running ['artisan' app:absen-update] ........ 855ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 08:30:05 Running ['artisan' app:point-update] ........ 717ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 08:30:06 Running ['artisan' app:notification] ........ 522ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 08:45:03 Running ['artisan' app:absen-update] ...... 1,416ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 09:00:06 Running ['artisan' app:absen-update] ...... 2,335ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 09:00:08 Running ['artisan' app:point-update] ........ 895ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 09:00:09 Running ['artisan' app:notification] ........ 784ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 09:15:05 Running ['artisan' app:absen-update] ...... 2,725ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 09:30:09 Running ['artisan' app:absen-update] ...... 2,085ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 09:30:11 Running ['artisan' app:point-update] ........ 881ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 09:30:12 Running ['artisan' app:notification] ........ 543ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 09:45:05 Running ['artisan' app:absen-update] ...... 2,385ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+
+
+  2023-09-22 10:00:06 Running ['artisan' app:absen-update] ...... 2,183ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+  2023-09-22 10:00:09 Running ['artisan' app:point-update] ...... 1,356ms DONE
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:point-update > '/dev/null' 2>&1  
+  2023-09-22 10:00:10 Running ['artisan' app:notification] ........ 691ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:notification > '/dev/null' 2>&1  
+
+
+  2023-09-22 10:15:07 Running ['artisan' app:absen-update] ...... 3,921ms FAIL
+  ⇂ '/opt/alt/php82/usr/bin/php' 'artisan' app:absen-update > '/dev/null' 2>&1  
+

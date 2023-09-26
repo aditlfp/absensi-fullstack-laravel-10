@@ -22,28 +22,45 @@
                             @forelse ($laporan as $i)
                             <tr>
                                 <td class="p-1">{{ $n++ }}</td>
-                                @if ($i->image == 'no-image.jpg')
+                                @if ($i->image1 == 'no-image.jpg')
                                 <td>
                                     <x-no-img />
                                 </td>
+                                @elseif (Storage::disk('public')->exists('images/' . $i->image1))
+                                    <td><img src="{{ asset('storage/images/' . $i->image1) }}" alt="{{ asset('storage/images/' . $i->image1) }}" srcset="{{ asset('storage/images/' . $i->image1) }}" width="90px" class="rounded"></td>
                                 @else
-                                    <td><img src="{{ asset('storage/images/' . $i->image1) }}" alt="" srcset="" width="90px" class="rounded"></td>
+                                 <td>
+                                    <x-no-img />
+                                 </td>
                                 @endif
+                                
+                                
                                 @if ($i->image2 == 'no-image.jpg')
                                 <td>
                                     <x-no-img />
                                 </td>
+                                @elseif (Storage::disk('public')->exists('images/' . $i->image2))
+                                    <td><img src="{{ asset('storage/images/' . $i->image2) }}" alt="{{ asset('storage/images/' . $i->image2) }}" srcset="{{ asset('storage/images/' . $i->image2) }}" width="90px" class="rounded"></td>
                                 @else
-                                    <td><img src="{{ asset('storage/images/' . $i->image2) }}" alt="" srcset="" width="90px" class="rounded"></td>
+                                    <td>
+                                        <x-no-img />
+                                    </td>
                                 @endif
+                                
+                                
                                 @if ($i->image3 == 'no-image.jpg')
                                 <td>
                                     <x-no-img />
                                 </td>
+                                @elseif (Storage::disk('public')->exists('images/' . $i->image3))
+                                    <td><img src="{{ asset('storage/images/' . $i->image3) }}" alt="{{ asset('storage/images/' . $i->image3) }}" srcset="{{ asset('storage/images/' . $i->image3) }}" width="90px" class="rounded"></td>
                                 @else
-                                    <td><img src="{{ asset('storage/images/' . $i->image3) }}" alt="" srcset="" width="90px" class="rounded"></td>
+                                    <td>
+                                        <x-no-img />
+                                    </td>
                                 @endif
-                                <td>{{ $i->keterangan }} ~{{ $i->user->nama_lengkap }}</td>
+                                
+                                <td>{{ $i->keterangan }} <br>~{{ $i->user->nama_lengkap }}</td>
                             </tr>
                             @empty
                                 <tr>
@@ -59,7 +76,7 @@
                         {{ $laporan->links() }}
                     </div>
                     <div class="flex justify-center sm:justify-end w-full">
-		                <a href="{{ route('dashboard.index') }}" class="btn btn-error ">Back</a>
+		                <a href="{{ route('dashboard.index') }}" class="btn btn-error ">Kembali</a>
                     </div>
             </div>
         </div>

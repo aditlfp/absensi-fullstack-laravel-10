@@ -20,14 +20,14 @@
 
 <body class="font-sans text-gray-900 antialiased">
 
-	<div class="min-h-screen flex flex-col px-4 sm:px-0 pt-6 sm:pt-0 bg-[url('/public/logo/abs2.jpg')] sm:bg-[url('/public/logo/abs4.jpg')] bg-cover bg-top bg-fixed items-center justify-center">
+	<div class="min-h-screen flex flex-col px-4 pt-6 bg-gradient-to-b from-gray-100 to-gray-500/70 bg-cover items-center justify-center">
 		<div class="sm:flex sm:flex-col justify-center">
 			<a href="{{ url('https://sac-po.com') }}">
-			<div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-0 sm:bg-slate-400 sm:p-2 sm:py-4 rounded-md shadow-md">
-				<img src="{{ URL::asset('/logo/sac.png') }}" class="w-20 sm:relative -right-2 bg-white p-3 rounded-full shadow"
+			<div class="flex flex-col justify-center items-center gap-2 sm:p-4 sm:bg-gradient-to-tr sm:from-gray-400/20 sm:to-gray-500/20  sm:rounded-md sm:shadow-inner sm:shadow-gray-400/30">
+				<img src="{{ URL::asset('/logo/sac.png') }}" class="w-20  -right-2 bg-white p-3 rounded-full shadow"
 					alt="...">
 				<p
-					class="text-slate-800 font-black text-lg p-2 rounded-md sm:rounded-r-full sm:pl-4 text-center sm:pr-2  bg-white shadow">
+					class="text-slate-800 font-black text-lg p-2 rounded-md shadow sm:shadow-lg sm:pl-4 text-center sm:pr-2  bg-white">
 					PT. Surya Amanah Cendikia</p>
 			</div>
 		</a>

@@ -4,9 +4,7 @@
 		<div>
 			<p class="text-center text-lg sm:text-2xl font-bold py-10 uppercase">Index Laporan</p>
 		</div>
-		@if (Auth::user()->role_id == 2 ||
-		Auth::user()->divisi->jabatan->code_jabatan == 'LEADER' ||
-		Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
+		@if (Auth::user()->role_id == 2)
 		<div class="ml-5">
 			<form action="{{ route('export.laporans')}}" method="get">
 				<div class="flex flex-col">

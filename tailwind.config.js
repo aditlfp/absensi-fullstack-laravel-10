@@ -25,6 +25,11 @@ export default {
             animation: {
                 shadow: "shadow 5s ease infinite",
             },
+            backgroundImage: {
+                'guest-hp': "url('/public/logo/abs2.svg')",
+                'guest-pc': "url('/public/logo/abs4.svg')",
+                'guest-head': "url('/public/logo/abs1.svg')"
+            }
         },
     },
 

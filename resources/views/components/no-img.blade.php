@@ -1,2 +1,2 @@
 <img src="{{ URL::asset('logo/no-image.jpg') }}" alt="no-image" srcset="{{ URL::asset('logo/no-image.jpg') }}"
-	width="120px">
+	width="100px">

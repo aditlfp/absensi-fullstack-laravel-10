@@ -90,7 +90,7 @@
 								<select name="shift_id" id="shift_id" class="select select-bordered font-thin">
 									<option disabled selected>-- Pilih Shift --</option>
 									@forelse ($shift as $i)
-										@if (Auth::user()->kerjasama->client_id == $i->client_id && Auth::user()->divisi->jabatan_id == $i->jabatan_id)
+										@if (Auth::user()->kerjasama->client_id == $i->client_id && Auth::user()->divisi->jabatan->id == $i->jabatan->id)
 											<option value="{{ $i->id }}" data-shift="{{ $i->jam_start }}"> {{ $i->jabatan->name_jabatan }} |
 												{{ $i->shift_name }} |
 												{{ $i->jam_start }}</option>
@@ -172,7 +172,7 @@
 							$key = Auth::user()->id;
 						@endphp
 						<div class="flex flex-col justify-center sm:justify-end gap-3 mt-2 mr-2">
-							<span id="labelWaktuStart" class="text-center text-[10px] capitalize font-semibold hidden"></span>
+							<span id="labelWaktuStart" class="text-center text-[10px] capitalize font-semibold hidden py-2 px-4 rounded-md bg-slate-50"></span>
 							<span class="flex justify-center gap-3">
 								@forelse ($absensi as $abs)
 									{{-- sudah --}}
@@ -278,6 +278,7 @@
 	</script>
 	<script>
 		$(document).ready(function() {
+		    var debounceTimer;
 			function calculatedJamStart() {
 				// get jam
 				var currentDate = new Date();
@@ -302,12 +303,12 @@
 					var kesimM = Math.abs(jadi % 60);
 					var kesimS = Math.abs(60 - detikSaiki);
 
-					// console.log(jadi);
+				// 	console.log(kesimH, kesimM, kesimS);
 
-					if (jadi <= 60) {
+					if (jadi <= 120) {
 						$('#btnAbsen').removeClass('cursor-not-allowed bg-blue-400/50 hover:bg-blue-400/50');
 						$('#btnAbsen').prop('disabled', false);
-						$('#labelWaktuStart').addClass('hidden py-2 px-4 rounded-md bg-slate-50');
+						$('#labelWaktuStart').addClass('hidden');
 					} else {
 						$('#btnAbsen').addClass('cursor-not-allowed bg-blue-400/50 hover:bg-blue-400/50');
 						$('#labelWaktuStart').removeClass('hidden');
@@ -320,17 +321,14 @@
 							$('#labelWaktuStart').html(
 								`tunggu ${kesimH} jam ${kesimM} menit ${kesimS} detik lagi untuk absen`);
 					}
-					console.log();
 
 				} else {
-					console.log('kosong bg');
 				}
-				setTimeout(calculatedJamStart, 1000)
+				clearTimeout(debounceTimer);
+				debounceTimer = setTimeout(calculatedJamStart, 1000)
 			}
 
-			// Attach an event handler to the #shift_id change event
 			$('#shift_id').change(function() {
-				// This code runs when the #shift_id element changes
 				calculatedJamStart();
 			});
 		})

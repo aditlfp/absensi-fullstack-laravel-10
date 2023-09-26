@@ -59,7 +59,7 @@
                         {{ $user->links() }}
                     </div>
                     <div class="flex justify-center sm:justify-end w-full">
-		                <a href="{{ route('dashboard.index') }}" class="btn btn-error">Back</a>
+		                <a href="{{ route('dashboard.index') }}" class="btn btn-error">Kembali</a>
                     </div>
             </div>
         </div>

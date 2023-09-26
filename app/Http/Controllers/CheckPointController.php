@@ -10,7 +10,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use PhpParser\Node\Expr\AssignOp\Concat;
 
 class CheckPointController extends Controller
 {
@@ -174,7 +173,7 @@ class CheckPointController extends Controller
             ]);
 
             toastr()->success('Berhasil Menambahkan Check Point', 'success');
-            return to_route('dashboard.index');
+            return to_route('checkpoint-user.index');
         }
         toastr()->error('Tidak Ada Image Yang TerUpload', 'error');
         return redirect()->back();
