@@ -75,11 +75,11 @@
 						</div>
 					@endauth
 				@endif
-				<div class="sm:px-10 px-5 sm:mx-10 mx5 bg-[#F4FEFD]/70 rounded-md shadow-inner shadow-gray-900/60">
+				<div class="sm:px-10 px-5 sm:mx-10 mx5 bg-[#0EF6CC]/70 rounded-md shadow-inner shadow-gray-900/60">
 					<div class="py-5">
 						<div class="flex items-end justify-end mr-3">
 							<span
-								class="text-xs font-bold text-white sm:hidden bg-green-500 px-4 py-1 rounded-full shadow-md">{{ Carbon\Carbon::now()->isoFormat('dddd, D/MMMM/Y') }},
+								class="text-xs font-bold text-white sm:hidden bg-[#273c3d] px-4 py-1 rounded-full shadow-md">{{ Carbon\Carbon::now()->isoFormat('dddd, D/MMMM/Y') }},
 								<span id="jam"></span>
 							</span>
 						</div>
