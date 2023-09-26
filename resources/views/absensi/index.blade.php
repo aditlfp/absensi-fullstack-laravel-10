@@ -58,7 +58,7 @@
 		<div class="sm:mx-10 mx-5 bg-slate-500 rounded-md shadow-md">
 			<main>
 				<div class="px-5 py-5">
-					<form action="{{ route('absensi.store') }}" method="POST" enctype="multipart/form-data">
+					<form action="{{ route('absensi.store') }}" method="POST" enctype="multipart/form-data" id="form-absen">
 						@method('POST')
 						@csrf
 						<div class="flex flex-col sm:flex-row sm:m-0 items-center  justify-center gap-3 mb-3">
@@ -90,7 +90,7 @@
 								<select name="shift_id" id="shift_id" class="select select-bordered font-thin">
 									<option disabled selected>-- Pilih Shift --</option>
 									@forelse ($shift as $i)
-										@if (Auth::user()->kerjasama->client_id == $i->client_id && Auth::user()->divisi->jabatan->id == $i->jabatan->id)
+										@if (Auth::user()->kerjasama->client_id == $i->client_id && Auth::user()->divisi->jabatan_id == $i->jabatan_id)
 											<option value="{{ $i->id }}" data-shift="{{ $i->jam_start }}"> {{ $i->jabatan->name_jabatan }} |
 												{{ $i->shift_name }} |
 												{{ $i->jam_start }}</option>
@@ -100,6 +100,9 @@
 										<option>~ Tidak ad Shift ! ~</option>
 									@endforelse
 								</select>
+								@if(Auth::user()->kerjasama->client_id == 1)
+								    <span id="absen-kantor" data-absen-kantor="{{ Auth::user()->kerjasama->client_id }}" hidden></span>
+								@endif
 							</div>
 
 							<div>
@@ -165,7 +168,7 @@
 								@endif
 							</div>
 							<input type="text" id="image" name="image" class="image-tag" hidden>
-							<input type="text" name="keterangan" value="masuk" hidden>
+							<input type="text" id="keterangan" name="keterangan" value="masuk" hidden>
 						</div>
 						<input type="text" class="hidden" name="absensi_type_masuk" value="1">
 						@php
@@ -279,6 +282,7 @@
 	<script>
 		$(document).ready(function() {
 		    var debounceTimer;
+		    var keterangan = $('#keterangan');
 			function calculatedJamStart() {
 				// get jam
 				var currentDate = new Date();
@@ -289,6 +293,7 @@
 				// fungsi
 				var selectedOption = $('#shift_id').find(":selected");
 				var shiftStart = selectedOption.data('shift');
+				
 				if (typeof shiftStart !== 'undefined' && shiftStart !== '') {
 					var startTimeParts = shiftStart.split(':');
 					var startHours = parseInt(startTimeParts[0]);
@@ -299,13 +304,43 @@
 
 					var jadi = startDiffMinutes - nowDiffMinutes;
 
-					var kesimH = Math.floor(jadi / 60);
+					var kesimH = Math.floor(jadi / 60 - 1);
 					var kesimM = Math.abs(jadi % 60);
 					var kesimS = Math.abs(60 - detikSaiki);
-
-				// 	console.log(kesimH, kesimM, kesimS);
-
-					if (jadi <= 120) {
+					
+					if (kesimM < 0) {
+        				kesimH--;
+        				kesimM += 60;
+        			}
+        			
+                // kantor
+                var absenKantor = $('#absen-kantor').data('absen-kantor');
+				// console.log(absenKantor);
+				
+				// 	keterangan
+				if(absenKantor == 1)
+				{
+				    if(jadi < -31) {
+				        keterangan.val('telat');
+				        // console.log('telat', keterangan.val('telat'))
+				    }
+				    else {
+				        keterangan.val('masuk');
+				        // console.log('masuk', keterangan.val('masuk'))
+				    }
+				} else 
+				{
+				    if(jadi < 0) {
+				        keterangan.val('telat');
+				        // console.log('telat', keterangan.val('telat'))
+				    }
+				    else {
+				        keterangan.val('masuk');
+				        // console.log('masuk', keterangan.val('masuk'))
+				    }
+				}
+				    
+					if (jadi <= 90) {
 						$('#btnAbsen').removeClass('cursor-not-allowed bg-blue-400/50 hover:bg-blue-400/50');
 						$('#btnAbsen').prop('disabled', false);
 						$('#labelWaktuStart').addClass('hidden');
@@ -331,8 +366,14 @@
 			$('#shift_id').change(function() {
 				calculatedJamStart();
 			});
+			
+    		$('#btnAbsen').click(function(){
+    		    $(this).prop('disabled', true);
+    		    $(this).text('Tunggu..');
+    		    $(this).css('background-color: rgb(96 165 250 / 0.5);');
+    		    $('#form-absen').submit();
+    		})
 		})
 	</script>
 </body>
-
 </html>

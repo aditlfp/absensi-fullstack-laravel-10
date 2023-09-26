@@ -104,12 +104,12 @@
 								</div>
 								{{-- menu menu dashboard absensi --}}
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngabsen">
-									<a href="{{ route('absensi.index') }}" class="btn btn-info w-full" id="aAbsen">Kehadiran</a>
+									<a href="{{ route('absensi.index') }}" class="btn bg-green-500 hover:bg-green-400/70 border-none w-full" id="aAbsen">Kehadiran</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
 									<a href="{{ route('lembur.index') }}" class="btn btn-info w-full">Lembur</a>
 								</div>
-								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden  transition-all ease-in-out duration-200" id="ngIzin">
 									<a href="{{ route('izin.create') }}" class="btn btn-info w-full">Izin</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
@@ -529,6 +529,9 @@
 				$('#ngeLembur').toggle();
 				$('#isiLembur').toggle();
 				$('#ngIzin').toggle();
+				setTimeout(function() {
+					$("#ngIzin").toggleClass("mb-5");
+				}, 1);
 				$('#isiIzin').toggle();
 				$('#Luser').toggle();
 				$('#Ljadwal').toggle();
