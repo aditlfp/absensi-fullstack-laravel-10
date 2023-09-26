@@ -1,9 +1,9 @@
 <nav class="mx-5 sm:mx-5 mb-5 sm:mb-5 pt-5">
-	<div class="flex pt-1 pl-2 w-full h-auto bg-slate-500 shadow-md rounded-md justify-between">
+	<div class="flex pt-1 pb-2 pl-2 w-full h-auto bg-[#0EF6CC]/90 shadow-md rounded-md justify-between">
 		<a href="{{ route('profile.index') }}">
 			<div class="flex items-center justify-between gap-2">
 				<div
-					class="p-2 mx-2 my-2 overflow-hidden flex items-center bg-slate-300 rounded-full shadow-md shadow-slate-600 hover:shadow-none transition-all .2s w-10 h-10 ease-in-out">
+					class="p-2 mx-2 my-2 overflow-hidden flex items-center bg-[#273c3d]/40 rounded-full shadow-md shadow-slate-600 hover:shadow-none transition-all .2s w-10 h-10 ease-in-out">
 					@if (Route::has('login'))
 						@auth
 							@if (Auth::user()->image == 'no-image.jpg')
@@ -13,7 +13,7 @@
 								<img class=" rounded-full" src="{{ asset('storage/images/' . Auth::user()->image) }}" alt="profile-logo2.png"
 									srcset="{{ asset('storage/images/' . Auth::user()->image) }}">
 							@else
-								<img class=" rounded-full" src="{{ URL::asset('/logo/person.png') }}" alt="profile-logo.png"
+								<img class="rounded-full" src="{{ URL::asset('/logo/person.png') }}" alt="profile-logo.png"
 									srcset="{{ URL::asset('/logo/person.png') }}">
 							@endif
 						@endauth
@@ -23,7 +23,7 @@
 				@if (Route::has('login'))
 					@auth
 						<div class="flex justify-between flex-col gap-1">
-							<p class="font-semibold text-white text-sm line-clamp-1 break-words">{{ Auth::user()->nama_lengkap }}</p>
+							<p class="font-semibold text-sm uppercase line-clamp-1 break-words">{{ Auth::user()->nama_lengkap }}</p>
 						</div>
 					@else
 						<div>
@@ -59,7 +59,7 @@
 						@csrf
 						@method('POST')
 						<button type="submit"
-							class="inline-flex overflow-hidden items-center w-auto mt-4 h-3/6 px-2 font-semibold rounded-md text-slate-700 bg-yellow-300 hover:bg-yellow-400 hover:text-white hover:shadow-none shadow-md transition all ease-in-out .2s"
+							class="inline-flex overflow-hidden items-center w-auto mt-4 h-3/6 px-2 font-bold rounded-md text-slate-200 bg-red-500 hover:bg-red-700 hover:text-white hover:shadow-none shadow-md transition all ease-in-out .2s"
 							active>Logout</button>
 					</form>
 				@else
