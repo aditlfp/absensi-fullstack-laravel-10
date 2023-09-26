@@ -91,12 +91,6 @@ class AbsensiController extends Controller
         toastr()->success('Berhasil Absen Hari Ini', 'succes');
         
         $users = Auth::user();
-        
-        // // Mail::send('emails.test', [], function ($message) use ($users) {
-        // //     $message->to($users->email)
-        // //         ->subject('Notifikasi Berhasil Absensi');
-        // // });
-        
         Mail::to($users->email)->queue(new AbsensiNotification);
 
         return redirect()->to(route('dashboard.index'));            
@@ -140,19 +134,20 @@ class AbsensiController extends Controller
        
     }
 
-    public function updateAbsenPulang($id)
+    public function updateSiang($id)
     {
-        $currentTime = Carbon::now()->format('H:i:s');
-        $timeLimit = Carbon::parse('11:26:00'); // Waktu batas absen pulang
-        $absensi = Absensi::findOrFail($id);
-        $absensi->whereNull('absensi_type_pulang')->update(['absensi_type_pulang' => 'belum Absen Pulang']);
-        $absensi->save();
-        return response()->json(['success' => true]);
-
-        // if ($currentTime > $timeLimit) {
-        //     $absensi = Absensi::whereNull('absensi_type_pulang')->update(['absensi_type_pulang' => 'Tanpa Absen Pulang']);
-        //     $absensi->save();
-        // }
+        try {
+            $absensi = Absensi::find($id);
+            $clock = Carbon::now()->format('H:i:s');
+            $absensi->absensi_type_siang = $clock;
+            $absensi->save();
+            toastr()->success('Berhasil Absen Siang Jam : ' .$clock, 'succes');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            toastr()->error('Error Data Tidak Ditemukan', 'error');
+            return redirect()->back();
+        }
+        
     }
 
     public function historyAbsensi(Request $request)
