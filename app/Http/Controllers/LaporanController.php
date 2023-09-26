@@ -41,6 +41,8 @@ class LaporanController extends Controller
             }
         } catch (\Throwable $th) {
             //throw $th;
+            toastr()->error('Data error', 'error');
+            return redirect()->back();
         }
 
     }
