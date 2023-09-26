@@ -10,12 +10,14 @@ use App\Models\Lokasi;
 use App\Models\Point;
 use App\Models\Rating;
 use App\Models\Shift;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+
         $abs = Absensi::all();
         $lembur = Lembur::latest('jam_selesai')->get();
         $kerjasama = Kerjasama::all();

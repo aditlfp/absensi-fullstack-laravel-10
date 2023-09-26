@@ -33,7 +33,7 @@
 
 </head>
 
-<body class="font-sans antialiased  bg-slate-400">
+<body class="font-sans antialiased  bg-[#1B2223]">
 	<div class="min-h-screen pb-[12.5rem]">
 		@include('../layouts/navbar')
 		<div class="justify-start flex items-center">
@@ -63,8 +63,8 @@
 			@endforelse
 
 		</div>
-		<div class="sm:mx-10 mx-5 bg-slate-500 rounded-md shadow-md">
-			<main>
+		<div>
+			<main class="mx-10 sm:mx-0">
 				@if (
 					(Route::has('login') && Auth::user()->divisi->jabatan->code_jabatan == 'MITRA') ||
 						Auth::user()->divisi->jabatan->code_jabatan == 'LEADER')
@@ -75,7 +75,7 @@
 						</div>
 					@endauth
 				@endif
-				<div class="sm:mx-10 mx-5 bg-slate-500 rounded-md  ">
+				<div class="sm:px-10 px-5 sm:mx-10 mx5 bg-[#F4FEFD]/70 rounded-md shadow-inner shadow-gray-900/60">
 					<div class="py-5">
 						<div class="flex items-end justify-end mr-3">
 							<span
@@ -96,7 +96,7 @@
 
 								{{-- absensi --}}
 								<div id="btnAbsensi"
-									class=" w-full flex justify-center items-center gap-2 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
+									class=" w-full flex justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
 									<i class="ri-todo-line text-xl"></i>
 									<button class="uppercase font-bold text-sm">
 										Attendance( Kehadiran )
@@ -104,22 +104,22 @@
 								</div>
 								{{-- menu menu dashboard absensi --}}
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngabsen">
-									<a href="{{ route('absensi.index') }}" class="btn btn-info w-full" id="aAbsen">Kehadiran</a>
+									<a href="{{ route('absensi.index') }}" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200 " id="aAbsen">Kehadiran</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
-									<a href="{{ route('lembur.index') }}" class="btn btn-info w-full">Lembur</a>
+									<a href="{{ route('lembur.index') }}" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Lembur</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
-									<a href="{{ route('izin.create') }}" class="btn btn-info w-full">Izin</a>
+									<a href="{{ route('izin.create') }}" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Izin</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
-									<a href="historyAbsensi" class="btn btn-info w-full">Riwayat Kehadiran</a>
+									<a href="historyAbsensi" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Kehadiran</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiLembur">
-									<a href="{{ route('lemburIndexUser') }}" class="btn btn-info w-full">Riwayat Lembur</a>
+									<a href="{{ route('lemburIndexUser') }}" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Lembur</a>
 								</div>
 								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIzin">
-									<a href="{{ route('izin.index') }}" class="btn btn-info w-full">Riwayat Izin</a>
+									<a href="{{ route('izin.index') }}" class="btn bg-[#3A4F50]/40 hover:bg-[#3A4F50]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Izin</a>
 								</div>
 						</div>
 						<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
