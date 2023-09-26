@@ -28,6 +28,7 @@ class AbsensiRequest extends FormRequest
             'perlengkapan'  => 'required',
             'keterangan'    => 'required',
             'absensi_type_masuk'  => 'required',
+            'absensi_type_siang' => 'nullable',
             'absensi_type_pulang'  => 'nullable',
             'image'       => 'required',
             'deskripsi' => 'nullable',

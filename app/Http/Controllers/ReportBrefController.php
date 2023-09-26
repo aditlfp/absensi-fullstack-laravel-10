@@ -34,12 +34,7 @@ class ReportBrefController extends Controller
     public function store(RequestsReportBref $request)
     {
 
-        $briefId = $request->id;
-
-        $brief = ReportBref::updateOrCreate(
-        [
-            'id' => $briefId
-        ],
+        $brief = ReportBref::create(
         [
             'client_id' => $request->client_id,
             'tanggal' => $request->tanggal,
@@ -105,9 +100,11 @@ class ReportBrefController extends Controller
         $brief->deleteById($id);
 
         if ($brief) {
-            return response()->json($brief, 200);
+            toastr()->warning('Data Briefing Dihapus !', 'warning !');
+            return redirect()->back();
         }else {
-            return response()->json(  401);
+            toastr()->error('Data Tidak Ditemukan !', 'error !');
+            return redirect()->back(404);
         }
     }
 }

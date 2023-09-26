@@ -44,15 +44,13 @@ Route::get('/', function () {
 
 Route::view('/map', 'absensi.maps');
 Route::get('/get-uptime', [AdminController::class, 'getUpTime'])->name('uptime');
-Route::get('/send', [DashboardController::class, 'sendTestEmail']);
-Route::resource('brief', ReportBrefController::class);
+// Route::resource('brief', ReportBrefController::class);
 
-Route::get('/test', [LaporanController::class, 'test']);
 
 // Auth tok
 Route::middleware(['auth', 'apdt'])->group(function () {
-    Route::put('/data/{id}/updatePulang', [AbsensiController::class, 'updatePulang'])->name('data.update');
-    Route::post('/data/{id}/updateAbsenPulang', [AbsensiController::class, 'updateAbsenPulang'])->name('data-telat.update');
+    Route::patch('/data/{id}/updatePulang', [AbsensiController::class, 'updatePulang'])->name('data.update');
+    Route::patch('/data/{id}/updateSiang', [AbsensiController::class, 'updateSiang'])->name('data.update.siang');
     Route::resource('/dashboard', DashboardController::class);
     Route::resource('/absensi', AbsensiController::class);
     Route::get('/historyAbsensi', [AbsensiController::class, 'historyAbsensi']);

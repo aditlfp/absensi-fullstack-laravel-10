@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('deskripsi');
             $table->string('absensi_type_masuk');//pulang/masuk
             $table->string('tanggal_absen');
+            $table->string('absensi_type_siang')->nullable();
             $table->string('absensi_type_pulang')->nullable();//pulang/masuk
             $table->string('image');//foto
             $table->foreignIdFor(Point::class)->nullable();
