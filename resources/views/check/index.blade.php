@@ -16,8 +16,11 @@
                         <thead>
 							<tr>
 								<th class="bg-slate-300 rounded-tl-2xl">#</th>
-								<th class="bg-slate-300 px-10">Nama Lengkap</th>
-								<th class="bg-slate-300 px-10">Foto</th>
+								@if(Auth::user()->role_id == 2)
+								    <th class="bg-slate-300 px-10">Nama Lengkap</th>
+                                @endif
+								<th class="bg-slate-300 text-center" style="padding-right: 4rem; padding-left: 4rem;">Foto</th>
+								<th class="bg-slate-300 ">Keterangan</th>
 								<th class="bg-slate-300">Jumlah CP</th>
 								<th class="bg-slate-300 px-10">Mitra</th>
 								<th class="bg-slate-300 rounded-tr-2xl">Action</th>
@@ -30,37 +33,47 @@
                             @forelse ($cek as $c)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $c->user->nama_lengkap }} {{ $c->id}}</td>
-                                        @forelse($c->image as $img)
+                                    @if(Auth::user()->role_id == 2)
+                                        <td>{{ $c->user->nama_lengkap }}</td>
+                                    @endif
                                     <td>
-                                        @foreach($img->image as $i)
-                                                <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="" width="120px" class="rounded">
-                                            @endforeach
-                                        @forelse ($image as $i)
-                                            @php
-                                                $arrayImage = $i->image;
-                                                $jumlahImage = count($arrayImage);
-                                                // cek count & image
-                                            @endphp
-                                            @if ($c->id == $i->check_point_id && $jumlahImage != $c->check_count)
-                                            <form action="{{ route('editByAuth') }}" method="get">
-                                                <input name="id" type="text" value="{{ $c->id }}" class="hidden"/>
-                                                <button type="submit" class="btn btn-sm btn-info sm:mx-2 ">+ CP</button>
-                                                </form>
-                                            @endif
+                                        @forelse($c->image as $img)
+                                        <span>
+                                            <div class="grid justify-center items-center" style="grid-template-columns: repeat(3, minmax(0, 1fr)); justify-items: center; justify-content: center; align-items: center;">
+                                                @foreach($img->image as $i) 
+                                                    <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="" width="120px" class="rounded">
+                                                @endforeach
+                                                @forelse ($image as $i)
+                                                    @php
+                                                        $arrayImage = $i->image;
+                                                        $jumlahImage = count($arrayImage);
+                                                    @endphp
+                                                    @if ($c->id == $i->check_point_id && $jumlahImage != $c->check_count)
+                                                        <form action="{{ route('editByAuth') }}" method="get">
+                                                            <input name="id" type="text" value="{{ $c->id }}" hidden>
+                                                            <button type="submit" class="btn btn-sm btn-info sm:mx-2">+ CP</button>
+                                                        </form>
+                                                    @endif
+                                                @empty
+                                                    
+                                                @endforelse
+                                            </div>
+                                        </span>
                                         @empty
-                                            
+                                        <span class="flex justify-center">
+                                            <form action="{{ route('checkpoint-user.create') }}" method="get">
+                                            <input name="id" type="text" value="{{ $c->id }}" class="hidden"/>
+                                            <button type="submit" class="btn btn-sm btn-info sm:mx-2 ">+ CP</button>
+                                            </form>
+                                        </span>
                                         @endforelse
                                     </td>
+                                    <td>
+                                        @forelse($c->name as $imageName)
+                                            <span>{{ $imageName }}</span>
                                         @empty
-                                    <td class="flex justify-center">
-                                        <form action="{{ route('checkpoint-user.create') }}" method="get">
-                                        <input name="id" type="text" value="{{ $c->id }}" class="hidden"/>
-                                        <button type="submit" class="btn btn-sm btn-info sm:mx-2 ">+ CP</button>
-                                        </form>
-                                    </td>
                                         @endforelse
-                                    
+                                    </td>
                                     <td class="text-center">{{ $c->check_count }}</td>
                                     <td>{{ $c->client->name }}</td>
                                     <td></td>
