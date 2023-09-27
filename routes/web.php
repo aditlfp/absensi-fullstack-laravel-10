@@ -47,7 +47,7 @@ Route::get('/get-uptime', [AdminController::class, 'getUpTime'])->name('uptime')
 
 
 // Auth tok
-Route::middleware(['auth', 'apdt'])->group(function () {
+Route::middleware(['auth', 'apdt', 'check_role'])->group(function () {
     Route::put('/data/{id}/updatePulang', [AbsensiController::class, 'updatePulang'])->name('data.update');
     Route::put('/data/{id}/updateSiang', [AbsensiController::class, 'updateSiang'])->name('data.update.siang');
     Route::resource('/dashboard', DashboardController::class);

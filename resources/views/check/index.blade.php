@@ -30,7 +30,7 @@
                             @forelse ($cek as $c)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $c->user->nama_lengkap }} {{ $c->id}}</td>
+                                    <td>{{ $c->user->nama_lengkap }}</td>
                                         @forelse($c->image as $img)
                                     <td>
                                         @foreach($img->image as $i)
