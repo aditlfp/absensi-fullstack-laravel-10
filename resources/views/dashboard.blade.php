@@ -42,7 +42,7 @@
 						$arr->tanggal_absen == Carbon\Carbon::now()->format('Y-m-d') &&
 						$arr->absensi_type_pulang == null)
 					<div
-						class="text-center rounded-tr-lg rounded-bl-lg mb-5 w-fit text-md sm:text-xl font-semibold text-slate-300 bg-red-500 py-2 px-4 shadow-md ml-5 inset-0">
+						class="text-center rounded-tr-lg rounded-bl-lg mb-5 w-fit text-xs sm:text-lg font-semibold text-slate-300 bg-red-500 py-2 px-4 shadow-md ml-5 inset-0">
 						<p>Kamu Belum Absen Pulang !!</p>
 					</div>
 				@endif
@@ -64,7 +64,7 @@
 
 		</div>
 		<div>
-			<main class="mx-10 sm:mx-0">
+			<main class="mx-5 sm:mx-0">
 				@if (
 					(Route::has('login') && Auth::user()->divisi->jabatan->code_jabatan == 'MITRA') ||
 						Auth::user()->divisi->jabatan->code_jabatan == 'LEADER')
@@ -75,9 +75,9 @@
 						</div>
 					@endauth
 				@endif
-				<div class="sm:px-10 px-5 sm:mx-10 mx5 bg-[#0EF6CC]/70 rounded-md shadow-inner shadow-gray-900/60">
+				<div class="sm:px-10  px-4 sm:mx-10 bg-[#0EF6CC]/70 rounded-md shadow-inner shadow-gray-900/60">
 					<div class="py-5">
-						<div class="flex items-end justify-end mr-3">
+						<div class="flex items-end justify-end mr-3 sm:mr-0 mb-3">
 							<span
 								class="text-xs font-bold text-white sm:hidden bg-[#273C3D] px-4 py-1 rounded-full shadow-md">{{ Carbon\Carbon::now()->isoFormat('dddd, D/MMMM/Y') }},
 								<span id="jam"></span>
@@ -93,86 +93,163 @@
 
 							{{-- Handle Check Kode Jabatan --}}
 							@if (Auth::user()->divisi->jabatan->code_jabatan != 'MITRA' && Auth::user()->divisi->jabatan->code_jabatan != 'LEADER')
-
-								{{-- absensi --}}
-								<div id="btnAbsensi"
-									class=" w-full flex justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+								<div class="hidden">
+									{{-- absensi --}}
+									<div id="btnAbsensi"
+										class=" w-full flex justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+										<i class="ri-todo-line text-xl"></i>
+										<button class="uppercase font-semibold text-sm text-slate-100/90">
+											Attendance( Kehadiran )
+										</button>
+									</div>
+									{{-- menu menu dashboard absensi --}}
+									<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngabsen">
+										<a href="{{ route('absensi.index') }}"
+											class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-700 "
+											id="aAbsen">Kehadiran</a>
+									</div>
+									<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
+										<a href="{{ route('lembur.index') }}"
+											class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Lembur</a>
+									</div>
+									<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
+										<a href="{{ route('izin.create') }}"
+											class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-in-out duration-200 hover:text-slate-200">Izin</a>
+									</div>
+									<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
+										<a href="historyAbsensi"
+											class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat
+											Kehadiran</a>
+									</div>
+									<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiLembur">
+										<a href="{{ route('lemburIndexUser') }}"
+											class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat
+											Lembur</a>
+									</div>
+									<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIzin">
+										<a href="{{ route('izin.index') }}"
+											class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat
+											Izin</a>
+									</div>
+									<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
+										<div id="btnCP"
+											class="w-full flex justify-center items-center text-slate-100/90 gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 transition-all ease-linear .2s">
+											<i class="ri-list-check-3"></i>
+											<button class="uppercase font-semibold text-slate-100/90 text-sm">
+												Kinerja harian
+											</button>
+										</div>
+										@if (Auth::user()->role_id == 2)
+											<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIndex">
+												<a href="{{ route('admin.cp.index') }}"
+													class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Index
+													Check Point</a>
+											</div>
+											<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="tambahCP">
+												<a href="{{ route('admin.cp.create') }}"
+													class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Tambah
+													Check Point</a>
+											</div>
+										@else
+											<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIndex">
+												<a href="{{ route('checkpoint-user.index') }}"
+													class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Index
+													Kinerja Harian</a>
+											</div>
+										@endif
+									</div>
+									<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
+										<div id="btnRating"
+											class=" w-full flex justify-center items-center text-slate-100/90 gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 transition-all ease-linear .2s">
+											<i class="ri-user-star-line text-xl"></i>
+											<button class="uppercase font-semibold text-sm">Rating</button>
+										</div>
+										<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekMe">
+											<a href="{{ url('rate/' . Auth::user()->id) }}"
+												class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Check
+												Rating Saya</a>
+										</div>
+										@if (Auth::user()->role_id == 2)
+											<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekRate">
+												<a href="{{ route('leader-rating.index') }}"
+													class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Rating</a>
+											</div>
+										@else
+										@endif
+									</div>
+									<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
+										<div id="btnLaporan"
+											class=" w-full flex justify-center items-center text-slate-100/90 gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 transition-all ease-linear .2s">
+											<i class="ri-speak-line text-xl"></i>
+											<button class="uppercase font-semibold text-sm">Laporan</button>
+										</div>
+										<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="tambahLaporan">
+											<a href="{{ route('laporan.create') }}"
+												class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Tambah
+												Laporan</a>
+										</div>
+										<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekLaporan">
+											<a href="{{ route('laporan.index') }}"
+												class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat
+												Laporan</a>
+										</div>
+	
+									</div>
+								</div>
+						</div>
+						<div>
+							<div class="grid grid-cols-3 gap-2">
+								{{-- btn absen --}}
+								<div id="btnAbsensi" class="w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+										<i class="ri-todo-line text-xl"></i>
+										<a href="{{ route('absensi.index') }}" class="uppercase font-semibold text-[10px] text-slate-100/90">
+											Kehadiran
+										</a>
+								</div>
+								{{-- btn lembur --}}
+								<div class=" w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s" id="ngeLembur">
+									<i class="ri-moon-clear-line"></i>
+									<a href="{{ route('lembur.index') }}"
+									class="uppercase font-semibold text-[10px] text-slate-100/90">Lembur</a>
+								</div>
+								{{-- btn izin --}}
+								<div id="btnIzin" class=" w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
 									<i class="ri-todo-line text-xl"></i>
-									<button class="uppercase font-semibold text-sm text-slate-100/90">
-										Attendance( Kehadiran )
-									</button>
+									<a href="{{ route('izin.create') }}" class="uppercase font-semibold text-[10px] text-slate-100/90">
+										Izin
+									</a>
 								</div>
-								{{-- menu menu dashboard absensi --}}
-								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngabsen">
-									<a href="{{ route('absensi.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-700 " id="aAbsen">Kehadiran</a>
+								{{-- btn riwayat --}}
+								<div id="btnIzin" class="col-span-2 w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+									<i class="ri-todo-line text-xl"></i>
+									<a href="{{ url('riwayat') }}" class="uppercase font-semibold text-[10px] text-slate-100/90">
+										riwayat
+									</a>
 								</div>
-								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
-									<a href="{{ route('lembur.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Lembur</a>
+								{{-- btn rating --}}
+								<div class="flex flex-col items-center gap-2 justify-center overflow-hidden">
+									<div id="btnRating"
+									class="w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+										<i class="ri-user-star-line text-xl"></i>
+										<a href="{{ url('rate/' . Auth::user()->id) }}" class="uppercase font-semibold text-[10px]">Rating</a>
+									</div>
 								</div>
-								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
-									<a href="{{ route('izin.create') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-in-out duration-200 hover:text-slate-200">Izin</a>
+								{{-- btn laporan --}}
+								<div class="flex flex-col items-center gap-2 justify-center overflow-hidden">
+									<div id="btnLaporan"
+									class="w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+										<i class="ri-speak-line text-xl"></i>
+										<a href="{{ route('laporan.create') }}" class="uppercase font-semibold text-[10px]">Laporan</a>
+									</div>
 								</div>
-								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
-									<a href="historyAbsensi" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Kehadiran</a>
+								{{-- CP --}}
+								<div id="btnIzin" class="col-span-2 w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+									<i class="ri-todo-line text-xl"></i>
+									<a  href="{{ route('checkpoint-user.index') }}" class="uppercase font-semibold text-[10px] text-slate-100/90">
+										Check Point
+									</a>
 								</div>
-								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiLembur">
-									<a href="{{ route('lemburIndexUser') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Lembur</a>
-								</div>
-								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIzin">
-									<a href="{{ route('izin.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Izin</a>
-								</div>
-						</div>
-						<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
-							<div id="btnCP" 
-								class="w-full flex justify-center items-center text-slate-100/90 gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 transition-all ease-linear .2s">
-								<i class="ri-list-check-3"></i>
-								<button class="uppercase font-semibold text-slate-100/90 text-sm">
-									Kinerja harian
-								</button>
 							</div>
-							@if (Auth::user()->role_id == 2)
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIndex">
-								<a href="{{ route('admin.cp.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Index Check Point</a>
-							</div>
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="tambahCP">
-								<a href="{{ route('admin.cp.create') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Tambah Check Point</a>
-							</div>
-								
-							@else
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiIndex">
-								<a href="{{ route('checkpoint-user.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Index Kinerja Harian</a>
-							</div>
-							@endif
-						</div>
-						<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
-							<div id="btnRating"
-								class=" w-full flex justify-center items-center text-slate-100/90 gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 transition-all ease-linear .2s">
-								<i class="ri-user-star-line text-xl"></i>
-								<button class="uppercase font-semibold text-sm">Rating</button>
-							</div>
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekMe">
-								<a href="{{ url('rate/' . Auth::user()->id) }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Check Rating Saya</a>
-							</div>
-							@if (Auth::user()->role_id == 2)
-								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekRate">
-									<a href="{{ route('leader-rating.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Rating</a>
-								</div>
-							@else
-							@endif
-						</div>
-						<div class="flex flex-col items-center gap-2 justify-center pt-2 px-2 overflow-hidden">
-							<div id="btnLaporan"
-								class=" w-full flex justify-center items-center text-slate-100/90 gap-2 bg-[#3A4F50] rounded-md h-11 hover:bg-[#3A4F50]/80 transition-all ease-linear .2s">
-								<i class="ri-speak-line text-xl"></i>
-								<button class="uppercase font-semibold text-sm">Laporan</button>
-							</div>
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="tambahLaporan">
-								<a href="{{ route('laporan.create') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Tambah Laporan</a>
-							</div>
-							<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="cekLaporan">
-								<a href="{{ route('laporan.index') }}" class="btn bg-[#F4FEFD]/40 hover:bg-[#F4FEFD]/80 border-0 w-full transition-all ease-linear .2s hover:text-slate-200">Riwayat Laporan</a>
-							</div>
-							
 						</div>
 					@else
 						@if (Auth::user()->divisi->jabatan->code_jabatan == 'MITRA')
@@ -213,36 +290,35 @@
 										class="ri-sparkling-line text-xl"></i>Rating</a>
 							</div>
 						@elseif(Auth::user()->divisi->jabatan->code_jabatan == 'LEADER')
-						@if (Auth::user()->divisi->jabatan->code_jabatan == "CO-CS")
-							
-						{{-- absensi --}}
-						<div id="btnAbsensi"
-							class=" w-full flex justify-center items-center gap-2 mb-4 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
-							<i class="ri-todo-line text-xl"></i>
-							<button class="uppercase font-bold text-sm">
-								Attendance( Kehadiran )
-							</button>
-						</div>
-						{{-- menu menu dashboard absensi --}}
-						<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngabsen">
-							<a href="{{ route('absensi.index') }}" class="btn btn-info w-full" id="aAbsen">Kehadiran</a>
-						</div>
-						<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
-							<a href="{{ route('lembur.index') }}" class="btn btn-info w-full">Lembur</a>
-						</div>
-						<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
-							<a href="{{ route('izin.create') }}" class="btn btn-info w-full">Izin</a>
-						</div>
-						<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
-							<a href="historyAbsensi" class="btn btn-info w-full">Riwayat Kehadiran</a>
-						</div>
-						<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiLembur">
-							<a href="{{ route('lemburIndexUser') }}" class="btn btn-info w-full">Riwayat Lembur</a>
-						</div>
-						<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden mb-2" id="isiIzin">
-							<a href="{{ route('izin.index') }}" class="btn btn-info w-full">Riwayat Izin</a>
-						</div>
-						@endif
+							@if (Auth::user()->divisi->jabatan->code_jabatan == 'CO-CS')
+								{{-- absensi --}}
+								<div id="btnAbsensi"
+									class=" w-full flex justify-center items-center gap-2 mb-4 bg-amber-400 rounded-md h-11 hover:bg-amber-500 transition-all ease-linear .2s">
+									<i class="ri-todo-line text-xl"></i>
+									<button class="uppercase font-bold text-sm">
+										Attendance( Kehadiran )
+									</button>
+								</div>
+								{{-- menu menu dashboard absensi --}}
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngabsen">
+									<a href="{{ route('absensi.index') }}" class="btn btn-info w-full" id="aAbsen">Kehadiran</a>
+								</div>
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngeLembur">
+									<a href="{{ route('lembur.index') }}" class="btn btn-info w-full">Lembur</a>
+								</div>
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="ngIzin">
+									<a href="{{ route('izin.create') }}" class="btn btn-info w-full">Izin</a>
+								</div>
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiAbsen">
+									<a href="historyAbsensi" class="btn btn-info w-full">Riwayat Kehadiran</a>
+								</div>
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden" id="isiLembur">
+									<a href="{{ route('lemburIndexUser') }}" class="btn btn-info w-full">Riwayat Lembur</a>
+								</div>
+								<div class="hidden w-full space-y-4 px-2 sm:px-16 overflow-hidden mb-2" id="isiIzin">
+									<a href="{{ route('izin.index') }}" class="btn btn-info w-full">Riwayat Izin</a>
+								</div>
+							@endif
 
 							{{-- menu menu leader --}}
 							<div class="w-full space-y-4  sm:px-16 overflow-hidden flex items-center"id="Luser">
@@ -282,116 +358,119 @@
 							</div>
 						@endif
 						@endif
-						{{-- handle Pulang --}}
-						<div class="flex justify-center sm:justify-end">
-							@foreach ($absen as $arr)
-								@if (Auth::user()->id == $arr->user_id && $arr->absensi_type_pulang == null)
-									@php
-										$now = now();
-										$shiftEnd = \Carbon\Carbon::parse($arr->shift->jam_end);
-										$timeDifference = $now->diffInMinutes($shiftEnd, false);
-									@endphp
+					</div>
+				</div>
+				{{-- handle Pulang --}}
+				<div class="flex justify-center sm:justify-end">
+					@foreach ($absen as $arr)
+						@if (Auth::user()->id == $arr->user_id && $arr->absensi_type_pulang == null)
+							@php
+								$now = now();
+								$shiftEnd = \Carbon\Carbon::parse($arr->shift->jam_end);
+								$timeDifference = $now->diffInMinutes($shiftEnd, false);
+							@endphp
 
-									<span class="hidden">
-										<span id="userId" data-user-id="{{ $arr->user_id }}" data-auth-user="{{ Auth::user()->id }}"></span>
-										<span id="endTime" endTimer="{{ $arr->shift->jam_end }}"></span>
-										@foreach ($shift as $shif)
-											@if ($shif->client_id == Auth::user()->kerjasama->client_id && $arr->shift->jam_start == $shif->jam_start)
-												<span id="startTime" startTimer="{{ $shif->jam_start }}"></span>
-											@endif
-										@endforeach
-									</span>
-									@if ($arr->shift->jam_end >= '09:00' && $arr->shift->jam_end <= '18:00')
-									{{-- Absen siang --}}
-									<div>
-										<button id="modalSiangBtn"
-											class="bg-[#E55604] hidden justify-center shadow-md hover:bg-[#af4a0f] text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition-all ease-in-out duration-200 mt-5 mr-0 sm:mr-2 uppercase items-center"><i class="ri-sun-foggy-line"></i><span class="font-bold">Absen siang</span>
-										</button>
-									</div>
-									<div
-										class="fixed inset-0 modalSiang hidden bg-slate-500/10 backdrop-blur-sm transition-all duration-300 ease-in-out">
-										<div class="bg-slate-200 w-fit p-5 rounded-md shadow">
-											<div class="flex justify-end mb-3">
-												<button class="btn btn-error scale-90 close">&times;</button>
-											</div>
-											<form action="{{ route('data.update.siang', $arr->id) }}" method="POST"
-												class="flex justify-center items-center  ">
-												@csrf
-												@method('PUT')
-												<div class="flex justify-center flex-col ">
-													<div class="flex flex-col gap-2">
-														<p class="text-center text-lg font-semibold">Apakah Anda Yakin Ingin Absen Siang Sekarang?</p>
-													</div>
-													<div class="flex justify-center items-center">
-														<button type="submit"
-															class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i class="ri-sun-foggy-line"></i><span class="font-bold">Absen Siang</span>
-														</button>
-													</div>
-												</div>
-											</form>
-										</div>
-									</div>
+							<span class="hidden">
+								<span id="userId" data-user-id="{{ $arr->user_id }}" data-auth-user="{{ Auth::user()->id }}"></span>
+								<span id="endTime" endTimer="{{ $arr->shift->jam_end }}"></span>
+								@foreach ($shift as $shif)
+									@if ($shif->client_id == Auth::user()->kerjasama->client_id && $arr->shift->jam_start == $shif->jam_start)
+										<span id="startTime" startTimer="{{ $shif->jam_start }}"></span>
 									@endif
-									
-									<div>
-										<button id="modalPulangBtn"
-											class="bg-yellow-600 hidden justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
-												class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang</span>
-										</button>
-									</div>
-									<div
-										class="fixed inset-0 modalp hidden bg-slate-500/10 backdrop-blur-sm transition-all duration-300 ease-in-out">
-										<div class="bg-slate-200 w-fit p-5 rounded-md shadow">
-											<div class="flex justify-end mb-3">
-												<button class="btn btn-error scale-90 close">&times;</button>
-											</div>
-											<form action="{{ route('data.update', $arr->id) }}" method="POST"
-												class="flex justify-center items-center  ">
-												@csrf
-												@method('PUT')
-												<div class="flex justify-center flex-col ">
-
-													<div class="flex flex-col gap-2">
-														<p class="text-center text-lg font-semibold">Apakah Anda Yakin Ingin Pulang Sekarang?</p>
-														<span id="labelWaktu"></span>
-														<span class="flex justify-center">
-															<span id="jam2" class="badge badge-info underline font-semibold text-slate-800 text-sm"></span>
-														</span>
-													</div>
-													<div class="flex justify-center items-center">
-														<button type="submit"
-															class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
-																class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang Sekarang</span>
-														</button>
-														<input id="lat" name="lat_user" value="" class="hidden" />
-														<input id="long" name="long_user" value="" class="hidden" />
-														<div id="map" class="hidden"></div>
-													</div>
-												</div>
-											</form>
+								@endforeach
+							</span>
+							@if ($arr->shift->jam_end >= '09:00' && $arr->shift->jam_end <= '18:00')
+								{{-- Absen siang --}}
+								<div>
+									<button id="modalSiangBtn"
+										class="bg-[#E55604] hidden justify-center shadow-md hover:bg-[#af4a0f] text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition-all ease-in-out duration-200 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
+											class="ri-sun-foggy-line"></i><span class="font-bold">Absen siang</span>
+									</button>
+								</div>
+								<div
+									class="fixed inset-0 modalSiang hidden bg-slate-500/10 backdrop-blur-sm transition-all duration-300 ease-in-out">
+									<div class="bg-slate-200 w-fit p-5 rounded-md shadow">
+										<div class="flex justify-end mb-3">
+											<button class="btn btn-error scale-90 close">&times;</button>
 										</div>
+										<form action="{{ route('data.update.siang', $arr->id) }}" method="POST"
+											class="flex justify-center items-center  ">
+											@csrf
+											@method('PUT')
+											<div class="flex justify-center flex-col ">
+												<div class="flex flex-col gap-2">
+													<p class="text-center text-lg font-semibold">Apakah Anda Yakin Ingin Absen Siang Sekarang?</p>
+												</div>
+												<div class="flex justify-center items-center">
+													<button type="submit"
+														class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
+															class="ri-sun-foggy-line"></i><span class="font-bold">Absen Siang</span>
+													</button>
+												</div>
+											</div>
+										</form>
 									</div>
-								@else
-								@endif
-							@endforeach
-						</div>
-						{{-- handle akhiri lembur --}}
-						<div class="flex justify-center sm:justify-end">
-							@foreach ($lembur as $i)
-								@if (Auth::user()->id == $i->user_id && $i->jam_selesai == null)
-									<form action="{{ url('lembur/' . $i->id) }}" method="POST" class="tooltip">
+								</div>
+							@endif
+
+							<div>
+								<button id="modalPulangBtn"
+									class="bg-yellow-600 hidden flex-col rounded-full justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl  transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center">
+										<i class="ri-run-line font-sans text-2xl"></i>
+										<span class="font-semibold text-[10px]">Pulang</span>
+								</button>
+							</div>
+							<div
+								class="fixed inset-0 modalp hidden bg-slate-500/10 backdrop-blur-sm transition-all duration-300 ease-in-out">
+								<div class="bg-slate-200 w-fit p-5 rounded-md shadow">
+									<div class="flex justify-end mb-3">
+										<button class="btn btn-error scale-90 close">&times;</button>
+									</div>
+									<form action="{{ route('data.update', $arr->id) }}" method="POST"
+										class="flex justify-center items-center  ">
 										@csrf
 										@method('PUT')
-										<button type="submit"
-											class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
-												class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Selesaikan Lembur</span>
-										</button>
+										<div class="flex justify-center flex-col ">
+
+											<div class="flex flex-col gap-2">
+												<p class="text-center text-lg font-semibold">Apakah Anda Yakin Ingin Pulang Sekarang?</p>
+												<span id="labelWaktu"></span>
+												<span class="flex justify-center">
+													<span id="jam2" class="badge badge-info underline font-semibold text-slate-800 text-sm"></span>
+												</span>
+											</div>
+											<div class="flex justify-center items-center">
+												<button type="submit"
+													class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
+														class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Pulang Sekarang</span>
+												</button>
+												<input id="lat" name="lat_user" value="" class="hidden" />
+												<input id="long" name="long_user" value="" class="hidden" />
+												<div id="map" class="hidden"></div>
+											</div>
+										</div>
 									</form>
-								@else
-								@endif
-							@endforeach
-						</div>
-					</div>
+								</div>
+							</div>
+						@else
+						@endif
+					@endforeach
+				</div>
+				{{-- handle akhiri lembur --}}
+				<div class="flex justify-center sm:justify-end">
+					@foreach ($lembur as $i)
+						@if (Auth::user()->id == $i->user_id && $i->jam_selesai == null)
+							<form action="{{ url('lembur/' . $i->id) }}" method="POST" class="tooltip">
+								@csrf
+								@method('PUT')
+								<button type="submit"
+									class="bg-yellow-600 flex justify-center shadow-md hover:bg-yellow-700 text-white hover:shadow-none px-3 py-1 text-xl rounded-md transition all ease-out duration-100 mt-5 mr-0 sm:mr-2 uppercase items-center"><i
+										class="ri-run-line font-sans text-3xl"></i><span class="font-bold">Selesaikan Lembur</span>
+								</button>
+							</form>
+						@else
+						@endif
+					@endforeach
 				</div>
 
 				<div class="flex justify-center">
@@ -583,10 +662,10 @@
 				$('#Luser').toggle();
 				$('#Ljadwal').toggle();
 				$('#Labsensi').toggle();
-				$('#Lizin').toggle();	
-				$('#Llembur').toggle();	
-				$('#Llaporan').toggle();	
-				$('#Lrating').toggle();	
+				$('#Lizin').toggle();
+				$('#Llembur').toggle();
+				$('#Llaporan').toggle();
+				$('#Lrating').toggle();
 			});
 
 			btnRating.click(function() {
@@ -743,7 +822,7 @@
 
 		if (navigator.geolocation) {
 			navigator.geolocation.watchPosition(showPosition);
-		}else{
+		} else {
 			alert("Geolocation is Not Supported By This Browser");
 		}
 
@@ -751,8 +830,7 @@
 			try {
 				lat.value = position.coords.latitude;
 				long.value = position.coords.longitude;
-			} catch (error) {
-			}
+			} catch (error) {}
 
 			var lati = "{{ $harLok->latitude }}"
 			var longi = "{{ $harLok->longtitude }}"
@@ -809,7 +887,7 @@
 				m2 = set(d2.getMinutes()),
 				s2 = set(d2.getSeconds());
 
-			
+
 
 
 			var startTime = $('#startTime').attr('startTimer');
@@ -873,13 +951,13 @@
 
 			if (nowDiffMinutes >= belumTengahHari && nowDiffMinutes <= sudahTengahHari) {
 				$('#modalSiangBtn').addClass('flex').removeClass('hidden');
-				btnPulang.addClass('hidden').removeClass('flex');
+				// btnPulang.addClass('hidden').removeClass('flex');
 				// console.log('ok bang');
-			}else{
+			} else {
 				$('#modalSiangBtn').addClass('hidden').removeClass('flex');
 				// console.log('belum bang');
 			}
-			
+
 			setTimeout(jam2, 1000);
 		}
 

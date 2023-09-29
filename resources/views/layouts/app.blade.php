@@ -33,7 +33,7 @@
 
 </head>
 
-<body class="font-sans antialiased bg-slate-400">
+<body class="font-sans antialiased bg-[#1B2223]">
 	<div class="min-h-screen">
 		@include('layouts.navbar')
 

@@ -65,6 +65,8 @@ Route::middleware(['auth', 'apdt'])->group(function () {
     Route::get('/checkpoint-user-edit', [CheckPointController::class, 'editByAuth'])->name('editByAuth');
     Route::get('cp-photo/{id}', [CheckPointController::class, 'lihatFoto'])->name('lihatFotoCP');
     Route::get('/riwayat-kerja/{id}', [RatingController::class, 'rateKerja'])->name('rate.kerja');
+
+    Route::view('/riwayat', 'riwayat.riwayat');
 });
 
 // Untuk Mitra

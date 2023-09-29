@@ -1,5 +1,5 @@
 <nav class="mx-5 sm:mx-5 mb-5 sm:mb-5 pt-5">
-	<div class="flex pt-1 pb-2 pl-2 w-full h-auto bg-[#0EF6CC]/90 shadow-md rounded-md justify-between">
+	<div class="flex pt-1 pb-2 pl-2 w-full h-auto bg-[#0EF6CC]/70 shadow-md rounded-md justify-between">
 		<a href="{{ route('profile.index') }}">
 			<div class="flex items-center justify-between gap-2">
 				<div
