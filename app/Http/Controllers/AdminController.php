@@ -66,27 +66,24 @@ class AdminController extends Controller
     {
         
         $filter = $request->filterKerjasama;
+        $filterDivisi = $request->filterDevisi;
         
+        $absenSi = Kerjasama::all();
+        $point = Point::all();
         if($filter)
         {
-            $user = User::all();
-            $absenSi = Kerjasama::all();
-            $point = Point::all();
+
             $divisi = Divisi::all();
             $absen = Absensi::with(['User', 'Shift', 'Kerjasama'])->where('kerjasama_id', $filter)->orderBy('tanggal_absen', 'desc')->paginate(999999999);
         }
         else
         {
-            $user = User::all();
-            $absenSi = Kerjasama::all();
-            $point = Point::all();
             $divisi = Divisi::all();
-                    // user shift kerjasama
             $absen = Absensi::with(['User', 'Shift', 'Kerjasama'])->orderBy('tanggal_absen', 'desc')->paginate(25);
         }
         
        
-        return view('admin.absen.index',['absen' => $absen, 'absenSi' => $absenSi, 'point' => $point, 'divisi' => $divisi, 'filter' => $filter]);
+        return view('admin.absen.index',['absen' => $absen,'filterDevisi' => $filterDivisi, 'absenSi' => $absenSi, 'point' => $point, 'divisi' => $divisi, 'filter' => $filter]);
     }
 
     public function izin()
@@ -163,13 +160,14 @@ class AdminController extends Controller
         $mitra = $request->input('kerjasama_id');
         $divisiId = $request->input('divisi_id');
         $libur = $request->input('libur');
-        // dd($request->all());
+        $jdwl = $request->input('jadwal');
+        // dd($jdwl);
         
         $totalHari =  Carbon::parse($this->ended)->diffInDays(Carbon::parse($this->str));
         
         if($request->has(['kerjasama_id', 'libur', 'end1', 'str1'])) {
-            
-         $expPDF = User::with(['absensi' => function ($query) use ($str1, $end1) {
+        
+        $expPDF = User::with(['absensi' => function ($query) use ($str1, $end1) {
             return $query->whereBetween('created_at', [$str1, $end1]);
         }, 'jadwalUser' => function ($query) use ($str1, $end1) {
             return $query->whereBetween('created_at', [$str1, $end1]);
@@ -177,7 +175,10 @@ class AdminController extends Controller
             return $query->where('kerjasama_id', $mitra);
         })->when($divisiId, function($query) use ($divisiId) {
             return $query->where('devisi_id', $divisiId);
-        })->get();
+        })->orderBy('nama_lengkap', 'asc')->get();
+            
+            
+
 
 
         $path = 'logo/sac.png';
@@ -191,7 +192,7 @@ class AdminController extends Controller
         $options->set('defaultFont', 'Arial');
 
         $pdf = new Dompdf($options);
-        $html = view('admin.absen.exportV2', compact('expPDF', 'base64', 'totalHari', 'user', 'dataUser', 'currentYear', 'currentMonth', 'divisi', 'libur', 'str1', 'end1', 'mit', 'mitra'))->render();
+        $html = view('admin.absen.exportV2', compact('expPDF','divisiId', 'jdwl','base64', 'totalHari', 'user', 'dataUser', 'currentYear', 'currentMonth', 'divisi', 'libur', 'str1', 'end1', 'mit', 'mitra'))->render();
         $pdf->loadHtml($html);
 
         $pdf->setPaper('A4', 'landscape');

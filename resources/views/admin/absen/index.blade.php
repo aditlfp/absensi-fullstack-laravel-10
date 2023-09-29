@@ -6,12 +6,20 @@
 			    <div class="flex justify-between items-center w-full">
     			    <div>
     					<form id="filterForm" action="{{ route('admin.absen') }}" method="GET" class="p-1 flex">
-    						<select name="filterKerjasama" id="filterKerjasama" class="select select-bordered active:border-none border-none">
-    							<option selected disabled>~ Kerja Sama ~</option>
-    							@foreach ($absenSi as $i)
-    								<option value="{{ $i->id }}" {{ $filter == $i->id ? 'selected' : '' }}>{{ $i->client->name }}</option>
-    							@endforeach
-    						</select>
+							<span class="flex  gap-2">
+								<select name="filterKerjasama" id="filterKerjasama" class="select select-bordered active:border-none border-none">
+									<option selected disabled>~ Kerja Sama ~</option>
+									@foreach ($absenSi as $i)
+										<option value="{{ $i->id }}" {{ $filter == $i->id ? 'selected' : '' }}>{{ $i->client->name }}</option>
+									@endforeach
+								</select>
+								<select name="filterDevisi" id="filterDevisi" class="select select-bordered active:border-none border-none">
+									<option selected disabled>~ Devisi ~</option>
+									@foreach ($divisi as $i)
+										<option value="{{ $i->id }}" {{ $filterDevisi == $i->id ? 'selected' : '' }}>{{ $i->name }}</option>
+									@endforeach
+								</select>
+							</span>
     						<div>
     						<button type="submit"
     							class="bg-blue-500 px-5 py-2 rounded-md hover:bg-blue-600 transition-colors ease-in .2s font-bold uppercase ml-3">Filter</button>
@@ -80,6 +88,11 @@
             				    <div>
             				        <input type="text" name="libur" class="input input-bordered" placeholder="Masukkan hari libur"/>
             					</div>
+								{{-- + Jadwal --}}
+								<div class="flex flex-col justify-center items-center px-2 py-1 bg-slate-100 rounded mx-2">
+									<label for="jadwal" class="label label-text font-semibold text-xs text-slate-500">+ Jadwal</label>
+									<input type="checkbox" name="jadwal" id="jadwal" value="1" class="checkbox ">
+								</div>
         						<div class="flex mx-10 mb-2 ">
         						    <button type="submit" class="bg-yellow-400 px-3 py-2 shadow rounded-md text-2xl">
         								<i class="ri-file-download-line"></i>
@@ -112,8 +125,9 @@
 							$no = 1;
 						@endphp
 					@forelse ($absen as $arr)
+							@if ($filterDevisi && $arr->user->devisi_id === $filterDevisi)
 							<tr>
-								<td>{{ $no++ }}</td>
+								<td>{{ $no++ }} {{ $arr->user->devisi_id }} = {{ $filterDevisi }}</td>
 								<td><img class="lazy lazy-image" loading="lazy" src="{{asset('storage/images/'.$arr->image)}}" data-src="{{asset('storage/images/'.$arr->image)}}" alt="data-absensi-image" width="120px"/></td>
 								<td class="break-words whitespace-pre-line">{{ $arr->user?$arr->user->nama_lengkap : 'user_id'. ' : '. $arr->user_id . 'AKU KOSONG' }}</td>
 								<td>{{ $arr->tanggal_absen }}</td>
@@ -179,6 +193,9 @@
 									</td>
 
 							</tr>
+							@else
+								
+							@endif
 							@empty
 							<tr>
 								<td colspan="10" class="text-center">~ Kosong ~</td>

@@ -94,63 +94,63 @@
 						$previousUser = null;
 						$n = 1;
 					@endphp
-					@forelse ($sortedData as $data)
-						@if ($previousUser != $data->nama_lengkap)
-							<tr>
-								<!--Valid name cuy-->
-								@php
-									$previousUser = $data->nama_lengkap;
-									$userAbsensi = collect($expPDF)->where('user', $data->user);
-								@endphp
-								<td>{{ $n++ }}</td>
-								<td>{{ $data->nama_lengkap }}</td>
-								@for ($date = $starte->copy(); $date->lte($ende); $date->addDay())
+						@forelse ($sortedData as $data)
+							@if ($previousUser != $data->nama_lengkap)
+								<tr>
+									<!--Valid name cuy-->
 									@php
-										$absensi = $data->absensi->firstWhere('tanggal_absen', $date->format('Y-m-d'));
-										$keterangan = $absensi ? $absensi->keterangan : '-';
+										$previousUser = $data->nama_lengkap;
+										$userAbsensi = collect($expPDF)->where('user', $data->user);
 									@endphp
-									@if ($keterangan == 'masuk')
-										<td style="background-color: rgb(112, 226, 112)">M</td>
-									@elseif($keterangan == 'izin')
-										<td style="background-color: rgb(250, 114, 65)">I</td>
-									@elseif($keterangan == 'telat')
-										<td style="background-color:rgb(202, 5, 5)">T</td>
+									<td>{{ $n++ }}</td>
+									<td>{{ $data->nama_lengkap }}</td>
+									@for ($date = $starte->copy(); $date <= $ende; $date->addDay())
+										@php
+											$absensi = $data->absensi->firstWhere('tanggal_absen', $date->format('Y-m-d'));
+											$keterangan = $absensi ? $absensi->keterangan : '-';
+										@endphp
+										@if ($keterangan == 'masuk')
+											<td style="background-color: rgb(112, 226, 112)">M</td>
+										@elseif($keterangan == 'izin')
+											<td style="background-color: rgb(250, 114, 65)">I</td>
+										@elseif($keterangan == 'telat')
+											<td style="background-color:rgb(202, 5, 5)">T</td>
+										@else
+											<td>-{{ $absensi}}</td>
+										@endif
+									@endfor
+									@php
+										$startDate = $user->min('created_at')->startOfMonth();
+										$endDate = $user->max('created_at')->endOfMonth();
+										
+										$period = Carbon\CarbonPeriod::create($startDate, $endDate);
+										$numberOfDays = $period->count();
+										$m = $data->absensi->where('keterangan', 'masuk')->count();
+										$z = $data->absensi->where('keterangan', 'izin')->count();
+										$t = $data->absensi->where('keterangan', 'telat')->count();
+										$total = $m + $z + $t;
+										
+										if ($total != 0) {
+											$total = round((100 / 26) * $m, 1);
+										} else {
+											$total = '0';
+										}
+										
+									@endphp
+									<td id="masuk" style="background-color: #7dd3fc">{{ $m }}</td>
+									<td id="izin" style="background-color: #7dd3fc">{{ $z }}</td>
+									<td id="telat" style="background-color: #7dd3fc">{{ $t }}</td>
+									<td id="libur" style="background-color: #7dd3fc">{{ $libur }}</td>
+									@if ($total >= 80)
+										<td id="persen">{{ $total }}%</td>
 									@else
-										<td>-</td>
+										<td id="persen" style="background-color: rgb(250, 114, 65)">{{ $total }}%</td>
 									@endif
-								@endfor
-								@php
-									$startDate = $user->min('created_at')->startOfMonth();
-									$endDate = $user->max('created_at')->endOfMonth();
-									
-									$period = Carbon\CarbonPeriod::create($startDate, $endDate);
-									$numberOfDays = $period->count();
-									$m = $data->absensi->where('keterangan', 'masuk')->count();
-									$z = $data->absensi->where('keterangan', 'izin')->count();
-									$t = $data->absensi->where('keterangan', 'telat')->count();
-									$total = $m + $z + $t;
-									
-									if ($total != 0) {
-									    $total = round((100 / 26) * $m, 1);
-									} else {
-									    $total = '0';
-									}
-									
-								@endphp
-								<td id="masuk" style="background-color: #7dd3fc">{{ $m }}</td>
-								<td id="izin" style="background-color: #7dd3fc">{{ $z }}</td>
-								<td id="telat" style="background-color: #7dd3fc">{{ $t }}</td>
-								<td id="libur" style="background-color: #7dd3fc">{{ $libur }}</td>
-								@if ($total >= 80)
-									<td id="persen">{{ $total }}%</td>
-								@else
-									<td id="persen" style="background-color: rgb(250, 114, 65)">{{ $total }}%</td>
-								@endif
-							</tr>
-						@endif
-					@empty
-						<td colspan="31" class="text-center">Kosong</td>
-					@endforelse
+								</tr>
+							@endif
+						@empty
+							<td colspan="31" class="text-center">Kosong</td>
+						@endforelse
 				</tbody>
 			</table>
 		</div>
@@ -171,7 +171,8 @@
 		</div>
 		<span style="right: 0; bottom: 150px; position:absolute;">PT. Surya Amanah Cendekia</span>
 	</main>
-
+	@if ($jdwl)
+	
 	{{-- section jadwal user --}}
 	<section class="page-break">
 		<div class="title">
@@ -234,6 +235,7 @@
 			</table>
 		</div>
 	</section>
+	@endif
 </body>
 
 </html>
