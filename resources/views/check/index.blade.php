@@ -16,6 +16,7 @@
                         <thead>
 							<tr>
 								<th class="bg-slate-300 rounded-tl-2xl">#</th>
+								<th class="bg-slate-300 text-center">Check</th>
 								@if(Auth::user()->role_id == 2)
 								    <th class="bg-slate-300 px-10">Nama Lengkap</th>
                                 @endif
@@ -33,16 +34,10 @@
                             @forelse ($cek as $c)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    @if(Auth::user()->role_id == 2)
-                                        <td>{{ $c->user->nama_lengkap }}</td>
-                                    @endif
-                                    <td>
+                                    <td >
                                         @forelse($c->image as $img)
-                                        <span>
-                                            <div class="grid justify-center items-center" style="grid-template-columns: repeat(3, minmax(0, 1fr)); justify-items: center; justify-content: center; align-items: center;">
-                                                @foreach($img->image as $i) 
-                                                    <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="" width="120px" class="rounded">
-                                                @endforeach
+                                        <span class="flex justify-center items-center">
+                                            <div class="flex justify-center items-center">
                                                 @forelse ($image as $i)
                                                     @php
                                                         $arrayImage = $i->image;
@@ -55,7 +50,6 @@
                                                         </form>
                                                     @endif
                                                 @empty
-                                                    
                                                 @endforelse
                                             </div>
                                         </span>
@@ -68,6 +62,43 @@
                                         </span>
                                         @endforelse
                                     </td>
+                                    @if(Auth::user()->role_id == 2)
+                                        <td>{{ $c->user->nama_lengkap }}</td>
+                                    @endif
+                                    <td>
+                                        @forelse($c->image as $img)
+                                        <span>
+                                            <div class="grid justify-center items-center" style="grid-template-columns: repeat(3, minmax(0, 1fr)); justify-items: center; justify-content: center; align-items: center;">
+                                                @foreach($img->image as $i) 
+                                                    <img src="{{ asset('storage/images/' . $i)}}" alt="" srcset="" width="120px" class="rounded">
+                                                @endforeach
+                                                {{-- @forelse ($image as $i)
+                                                    @php
+                                                        $arrayImage = $i->image;
+                                                        $jumlahImage = count($arrayImage);
+                                                    @endphp
+                                                    @if ($c->id == $i->check_point_id && $jumlahImage != $c->check_count)
+                                                        <form action="{{ route('editByAuth') }}" method="get">
+                                                            <input name="id" type="text" value="{{ $c->id }}" hidden>
+                                                            <button type="submit" class="btn btn-sm btn-info sm:mx-2">+ CP</button>
+                                                        </form>
+                                                    @endif
+                                                @empty
+                                                @endforelse --}}
+                                            </div>
+                                        </span>
+                                        @empty
+                                        {{-- <span class="flex justify-center">
+                                            <form action="{{ route('checkpoint-user.create') }}" method="get">
+                                            <input name="id" type="text" value="{{ $c->id }}" class="hidden"/>
+                                            <button type="submit" class="btn btn-sm btn-info sm:mx-2 ">+ CP</button>
+                                            </form>
+                                        </span> --}}
+                                        <span class="flex justify-center">
+                                            <p>~ Kosong ~</p>
+                                        </span>
+                                        @endforelse
+                                    </td>
                                     <td>
                                         @forelse($c->name as $imageName)
                                             <span>{{ $imageName }}</span>
@@ -76,7 +107,9 @@
                                     </td>
                                     <td class="text-center">{{ $c->check_count }}</td>
                                     <td>{{ $c->client->name }}</td>
-                                    <td></td>
+                                    <td>
+                                       
+                                    </td>
                                 </tr>
                             @empty
                             <tr>

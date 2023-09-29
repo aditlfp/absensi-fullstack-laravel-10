@@ -33,6 +33,8 @@
 
 </head>
 
+{{-- bg-slate-400 --}}
+
 <body class="font-sans antialiased  bg-[#1B2223]">
 	<div class="min-h-screen pb-[12.5rem]">
 		@include('../layouts/navbar')
