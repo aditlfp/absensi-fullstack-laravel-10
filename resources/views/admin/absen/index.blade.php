@@ -6,8 +6,8 @@
 			    <div class="flex justify-between items-center w-full">
     			    <div>
     					<form id="filterForm" action="{{ route('admin.absen') }}" method="GET" class="p-1 flex">
-							<span class="flex  gap-2">
-								<select name="filterKerjasama" id="filterKerjasama" class="select select-bordered active:border-none border-none">
+							<span class="flex gap-2">
+								<select name="filterKerjasama" id="filterKerjasama" class="select select-sm select-bordered text-xs active:border-none border-none">
 									<option selected disabled>~ Kerja Sama ~</option>
 									@foreach ($absenSi as $i)
 										<option value="{{ $i->id }}" {{ $filter == $i->id ? 'selected' : '' }}>{{ $i->client->name }}</option>
@@ -15,7 +15,7 @@
 								</select>
 							</span>
 							<span class="flex mx-2 gap-2">
-								<select name="filterDevisi" id="filterDevisi" class="select select-bordered active:border-none border-none">
+								<select name="filterDevisi" id="filterDevisi" class="select select-bordered select-sm text-xs active:border-none border-none">
 									<option selected disabled>~ Devisi ~</option>
 									@foreach ($divisi as $i)
 										<option value="{{ $i->id }}" {{ $filterDivisi == $i->id ? 'selected' : '' }}>{{ $i->name }}</option>

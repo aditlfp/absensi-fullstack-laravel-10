@@ -47,11 +47,19 @@
 		@endif
 
 		<!-- Page Content -->
+		@if (Auth::user()->role_id == 2)
 		<main>
-
-			{{ $slot }}
-
+			<div class="flex">
+				<x-main-menu></x-main-menu>
+				{{ $slot }}
+			</div>
 		</main>
+			
+		@else
+		<main>
+			{{ $slot }}
+		</main>
+		@endif
 
 	</div>
 	<div class="flex justify-center">
