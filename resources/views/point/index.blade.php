@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-slate-500 mx-10 rounded">
+    <x-main-div>
         <div>
             <p class="text-center text-2xl font-bold py-10 uppercase">Index Point</p>
         </div>
@@ -56,5 +56,5 @@
 
             </div>
         </div>
-    </div>
+    </x-main-div>
 </x-app-layout>

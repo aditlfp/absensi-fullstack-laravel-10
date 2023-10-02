@@ -1,5 +1,5 @@
 <x-app-layout>
-	<div class="bg-slate-500 p-4 mx-36 shadow-md rounded-md">
+	<x-main-div>
 		<p class="text-center text-2xl uppercase font-bold">Tambah Divisi</p>
 		<form method="POST" action="{{ route('devisi.store') }}" class="mx-[25%] my-10" id="form">
 			@csrf
@@ -27,5 +27,5 @@
 				</div>
 			</div>
 		</form>
-	</div>
+	</x-main-div>
 </x-app-layout>
