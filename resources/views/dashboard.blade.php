@@ -202,55 +202,55 @@
 						<div>
 							<div class="grid grid-cols-3 gap-2">
 								{{-- btn absen --}}
-								<div id="btnAbsensi" class="w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
-										<i class="ri-todo-line text-xl"></i>
-										<a href="{{ route('absensi.index') }}" class="uppercase font-semibold text-[10px] text-slate-100/90">
-											Kehadiran
-										</a>
-								</div>
+								<a href="{{ route('absensi.index') }}" id="btnAbsensi" class="w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+									<i class="ri-todo-line text-xl"></i>
+									<span  class="uppercase font-semibold text-[10px] text-slate-100/90">
+										Kehadiran
+									</span>
+								</a>
 								{{-- btn lembur --}}
-								<div class=" w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s" id="ngeLembur">
+								<a href="{{ route('lembur.index') }}" class=" w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s" id="ngeLembur">
 									<i class="ri-moon-clear-line"></i>
-									<a href="{{ route('lembur.index') }}"
-									class="uppercase font-semibold text-[10px] text-slate-100/90">Lembur</a>
-								</div>
+									<span
+									class="uppercase font-semibold text-[10px] text-slate-100/90">Lembur</span>
+								</a>
 								{{-- btn izin --}}
-								<div id="btnIzin" class=" w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+								<a href="{{ route('izin.create') }}" id="btnIzin" class=" w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
 									<i class="ri-todo-line text-xl"></i>
-									<a href="{{ route('izin.create') }}" class="uppercase font-semibold text-[10px] text-slate-100/90">
+									<span  class="uppercase font-semibold text-[10px] text-slate-100/90">
 										Izin
-									</a>
-								</div>
+									</span>
+								</a>
 								{{-- btn riwayat --}}
-								<div id="btnIzin" class="col-span-2 w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+								<a href="{{ url('riwayat') }}" id="btnIzin" class="col-span-2 w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
 									<i class="ri-todo-line text-xl"></i>
-									<a href="{{ url('riwayat') }}" class="uppercase font-semibold text-[10px] text-slate-100/90">
+									<span  class="uppercase font-semibold text-[10px] text-slate-100/90">
 										riwayat
-									</a>
-								</div>
+									</span>
+								</a>
 								{{-- btn rating --}}
-								<div class="flex flex-col items-center gap-2 justify-center overflow-hidden">
+								<a href="{{ url('rate/' . Auth::user()->id) }}" class="flex flex-col items-center gap-2 justify-center overflow-hidden">
 									<div id="btnRating"
 									class="w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
 										<i class="ri-user-star-line text-xl"></i>
-										<a href="{{ url('rate/' . Auth::user()->id) }}" class="uppercase font-semibold text-[10px]">Rating</a>
+										<span class="uppercase font-semibold text-[10px]">Rating</span>
 									</div>
-								</div>
+								</a>
 								{{-- btn laporan --}}
-								<div class="flex flex-col items-center gap-2 justify-center overflow-hidden">
+								<a href="{{ route('laporan.create') }}" class="flex flex-col items-center gap-2 justify-center overflow-hidden">
 									<div id="btnLaporan"
 									class="w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
 										<i class="ri-speak-line text-xl"></i>
-										<a href="{{ route('laporan.create') }}" class="uppercase font-semibold text-[10px]">Laporan</a>
+										<span  class="uppercase font-semibold text-[10px]">Laporan</span>
 									</div>
-								</div>
+								</a>
 								{{-- CP --}}
-								<div id="btnIzin" class="col-span-2 w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+								<a href="{{ route('checkpoint-user.index') }}" id="btnIzin" class="col-span-2 w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
 									<i class="ri-todo-line text-xl"></i>
-									<a  href="{{ route('checkpoint-user.index') }}" class="uppercase font-semibold text-[10px] text-slate-100/90">
+									<span class="uppercase font-semibold text-[10px] text-slate-100/90">
 										Check Point
-									</a>
-								</div>
+									</span>
+								</a>
 							</div>
 						</div>
 					@else

@@ -13,10 +13,12 @@
 										<option value="{{ $i->id }}" {{ $filter == $i->id ? 'selected' : '' }}>{{ $i->client->name }}</option>
 									@endforeach
 								</select>
+							</span>
+							<span class="flex mx-2 gap-2">
 								<select name="filterDevisi" id="filterDevisi" class="select select-bordered active:border-none border-none">
 									<option selected disabled>~ Devisi ~</option>
 									@foreach ($divisi as $i)
-										<option value="{{ $i->id }}" {{ $filterDevisi == $i->id ? 'selected' : '' }}>{{ $i->name }}</option>
+										<option value="{{ $i->id }}" {{ $filterDivisi == $i->id ? 'selected' : '' }}>{{ $i->name }}</option>
 									@endforeach
 								</select>
 							</span>
@@ -125,9 +127,8 @@
 							$no = 1;
 						@endphp
 					@forelse ($absen as $arr)
-							@if ($filterDevisi && $arr->user->devisi_id === $filterDevisi)
 							<tr>
-								<td>{{ $no++ }} {{ $arr->user->devisi_id }} = {{ $filterDevisi }}</td>
+								<td>{{ $no++ }}</td>
 								<td><img class="lazy lazy-image" loading="lazy" src="{{asset('storage/images/'.$arr->image)}}" data-src="{{asset('storage/images/'.$arr->image)}}" alt="data-absensi-image" width="120px"/></td>
 								<td class="break-words whitespace-pre-line">{{ $arr->user?$arr->user->nama_lengkap : 'user_id'. ' : '. $arr->user_id . 'AKU KOSONG' }}</td>
 								<td>{{ $arr->tanggal_absen }}</td>
@@ -193,9 +194,6 @@
 									</td>
 
 							</tr>
-							@else
-								
-							@endif
 							@empty
 							<tr>
 								<td colspan="10" class="text-center">~ Kosong ~</td>

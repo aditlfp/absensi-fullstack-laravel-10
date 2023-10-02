@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Client;
+use App\Models\Divisi;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('check_points', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->integer('check_count')->nullable();
-            $table->string('name')->nullable();
-            $table->foreignIdFor(Client::class);
+            $table->foreignIdFor(Divisi::class);
+            $table->string('type_check');
+            $table->string('img');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }

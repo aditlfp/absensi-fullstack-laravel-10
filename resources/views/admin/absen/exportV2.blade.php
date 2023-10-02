@@ -49,13 +49,14 @@
 		@php
 			$starte = \Carbon\Carbon::createFromFormat('Y-m-d', $str1);
 			$ende = \Carbon\Carbon::createFromFormat('Y-m-d', $end1);
+			
 		@endphp
 		<div class="title">
 			<img class="hero" src="{{ $base64 }}" width="60px">
 			<span class="sub-title" style="vertical-align: 20px; font-weight: bolder; font-size: 25px;">Rekab Absensi PT. Surya
 				Amanah Cendekia</span>
 		</div>
-		<div style="text-align: center; margin: 16px auto 12px auto; font-size: 14px; ">
+		<div style="text-align: center; margin: 16px auto 12px auto; font-size: 14px;">
 			@foreach ($mit as $mitName)
 				<span style="display: inline-block; font-weight: bold;">
 					@if ($mitName->id == $mitra)

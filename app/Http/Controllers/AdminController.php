@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absensi;
+use App\Models\CheckPoint;
 use App\Models\Client;
 use App\Models\Divisi;
 use App\Models\Kerjasama;
@@ -13,6 +14,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -62,6 +64,34 @@ class AdminController extends Controller
 
     }
 
+    public function checkPoint()
+    {
+        $cek = CheckPoint::paginate(800000);
+        return view('admin.check.index', compact('cek'));
+    }
+
+    public function destroyCheck($id)
+    {
+ 
+     try {
+         $cek = CheckPoint::findOrFail($id);
+         if ($cek->img != null) {
+ 
+             Storage::disk('public')->delete('images/'.$cek->img);
+ 
+             $cek->delete();
+             toastr()->warning('Data Telah Dihapus', 'warning');
+             return redirect()->back();
+         }else{
+             toastr()->error('Foto Tidak Ditemukan', 'error');
+         }
+     } catch (\Illuminate\Database\QueryException $e) {
+         toastr()->error('Data Tidak Ditemukan', 'error');
+         return redirect()->back();
+     }
+ 
+    }
+
     public function absen(Request $request)
     {
         
@@ -70,20 +100,33 @@ class AdminController extends Controller
         
         $absenSi = Kerjasama::all();
         $point = Point::all();
-        if($filter)
+        $absen = Absensi::paginate(50);
+        $divisi = Divisi::all();
+        $dataArr = [];
+        
+        if($filter )
         {
-
-            $divisi = Divisi::all();
             $absen = Absensi::with(['User', 'Shift', 'Kerjasama'])->where('kerjasama_id', $filter)->orderBy('tanggal_absen', 'desc')->paginate(999999999);
         }
-        else
+        elseif($filterDivisi)
         {
-            $divisi = Divisi::all();
-            $absen = Absensi::with(['User', 'Shift', 'Kerjasama'])->orderBy('tanggal_absen', 'desc')->paginate(25);
+            $absen1 = Absensi::with(['User', 'Shift', 'Kerjasama'])->where('kerjasama_id', $filter)->orderBy('tanggal_absen', 'desc')->paginate(999999999);
+            foreach ($absen1 as $key) {
+                $dataDivisi = $key->user->where('devisi_id', $filterDivisi)->paginate(9999);
+                $dataArr[] = $dataDivisi;
+            }
+            return "WOY BERHASIL";
+        }
+        else {
+            return "AKU KENEK";
         }
         
-       
-        return view('admin.absen.index',['absen' => $absen,'filterDevisi' => $filterDivisi, 'absenSi' => $absenSi, 'point' => $point, 'divisi' => $divisi, 'filter' => $filter]);
+        return view('admin.absen.index',['absen' => $absen, 'filterDivisi' => $filterDivisi, 'absenSi' => $absenSi, 'point' => $point, 'divisi' => $divisi, 'filter' => $filter, 'dataArr' => $dataArr]);
+    }
+
+    public function filterDivisi(Request $request)
+    {
+
     }
 
     public function izin()

@@ -23,9 +23,10 @@ class CheckPointRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
-            'check-count' => 'nullable',
-            'client_id' => 'required',
-            'name' => 'nullable'
+            'divisi_id' => 'required',
+            'type_check' => 'nullable',
+            'img' => 'required',
+            'deskripsi' => 'required'
         ];
     }
 }

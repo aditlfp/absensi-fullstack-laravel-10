@@ -11,13 +11,10 @@ class CheckPoint extends Model
 
     protected $fillable = [
         'user_id',
-        'check_count',
-        'name',
-        'client_id'
-    ];
-
-    protected $casts = [
-        'name' => 'array',
+        'divisi_id',
+        'type_check',
+        'img',
+        'deskripsi'
     ];
 
     public function User()
@@ -25,13 +22,8 @@ class CheckPoint extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function Client()
+    public function Divisi()
     {
-        return $this->belongsTo(Client::class);
-    }
-
-    public function Image()
-    {
-        return $this->hasMany(Image::class);
+        return $this->belongsTo(Divisi::class);
     }
 }

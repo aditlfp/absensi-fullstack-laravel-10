@@ -62,8 +62,6 @@ Route::middleware(['auth', 'apdt', 'check_role'])->group(function () {
     Route::get('/mypoint/{id}', [PointController::class, 'myPoint'])->name('mypoint');
 
     Route::resource('checkpoint-user', CheckPointController::class);
-    Route::get('/checkpoint-user-edit', [CheckPointController::class, 'editByAuth'])->name('editByAuth');
-    Route::get('cp-photo/{id}', [CheckPointController::class, 'lihatFoto'])->name('lihatFotoCP');
     Route::get('/riwayat-kerja/{id}', [RatingController::class, 'rateKerja'])->name('rate.kerja');
 
     Route::view('/riwayat', 'riwayat.riwayat');
@@ -135,11 +133,9 @@ Route::middleware(['auth', 'admin', 'apdt'])->group(function () {
     Route::resource('/lokasi', LokasiController::class);
     Route::resource('/area', AreaController::class);
 
-    Route::get('/admin-checkpoint', [CheckPointController::class, 'indexAdmin'])->name('admin.cp.index');
-    Route::get('/admin-checkpoint/create', [CheckPointController::class, 'createAdmin'])->name('admin.cp.create');
-    Route::get('/admin-checkpoint/{id}/edit', [CheckPointController::class, 'editAdmin'])->name('admin.cp.edit');
-    Route::patch('/admin-checkpoint/{id}', [CheckPointController::class, 'updateAdmin'])->name('admin.cp.update');
-    Route::post('/admin-checkpoint/store', [CheckPointController::class, 'adminStore'])->name('admin.cp.store');
+    Route::get('/admin-checkpoint', [AdminController::class, 'checkPoint'])->name('admin.cp.index');
+    Route::delete('/admin-checkpoint-delete/{id}', [AdminController::class, 'destroyCheck'])->name('admin.cp.delete');
+ 
 
     Route::resource('admin-jadwal', JadwalUserController::class);
     Route::get('admin-jadwal-new', [JadwalUserController::class, 'processDate'])->name('store.processDate.admin');
