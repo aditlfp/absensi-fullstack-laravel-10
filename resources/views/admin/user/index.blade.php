@@ -1,5 +1,5 @@
 <x-app-layout>
-	<div class="bg-slate-500 mx-10 mb-10 shadow-md p-2 rounded-md">
+	<x-main-div>
 		<div>
 			<p class="text-center text-2xl font-bold py-10 uppercase">Data All User</p>
 		</div>
@@ -86,6 +86,7 @@
 			<a href="{{ route('admin.index') }}" class="btn btn-error">Back</a>
 			<button><a href="{{ route('users.create') }}" class="btn btn-primary">+ User</a></button>
 		</div>
+	</x-main-div>
 		<script>
 				$(document).ready(function () {
 				// Saat halaman dimuat, ambil semua elemen dengan class "lazy-image"

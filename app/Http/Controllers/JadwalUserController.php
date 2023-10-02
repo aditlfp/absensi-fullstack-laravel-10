@@ -67,7 +67,6 @@ class JadwalUserController extends Controller
             return redirect()->back();
         }
 
-
         // return redirect()->to(route('leader-jadwal.create')->with('totalHari', $totalHari));
     }
 

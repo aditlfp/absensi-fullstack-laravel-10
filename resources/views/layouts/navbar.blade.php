@@ -36,9 +36,11 @@
 		@if (Route::has('login'))
 			@auth
 				<div class="md:flex gap-3 mr-7 hidden overflow-hidden">
-					<x-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard.index')">
-						{{ __('Dashboard') }}
-					</x-nav-link>
+					@if (Auth::user()->role_id != 2)
+						<x-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard.index')">
+							{{ __('Dashboard') }}
+						</x-nav-link>
+					@endif
 
 					@if (Auth::user()->divisi->jabatan->code_jabatan == 'SPV-A')
 						@if (Auth::user()->role_id == 2)

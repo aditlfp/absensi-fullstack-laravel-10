@@ -1,5 +1,5 @@
 <x-app-layout>
-	<div class="bg-slate-500 mx-10 rounded">
+	<x-main-div>
 		<div>
 			<p class="text-center text-2xl font-bold py-10 uppercase">Index Devisi</p>
 		</div>
@@ -36,7 +36,7 @@
 							@else
 							<td>~ Jabatan Kosong ~</td>
 							@endif
-							<td>
+							<td class="overflow-hidden">
 								@forelse ($i->perlengkapan as $value)
 									<span class="capitalize break-words whitespace-pre-wrap">{{ $value->name }},</span>
 								@empty
@@ -45,7 +45,7 @@
 											class="ri-add-circle-fill"></i></a>
 								@endforelse
 							</td>
-							<td>
+							<td class="overflow-hidden">
 								<form action="{{ url('devisi/' . $i->id) }}" method="POST">
 									@csrf
 									@method('DELETE')
@@ -73,5 +73,6 @@
 			</div>
 
 		</div>
+	</x-main-div>
 
 </x-app-layout>
