@@ -66,39 +66,21 @@
 				</div>
 				</div>
 				@forelse ($lembur as $i)
-					@if (Auth::user()->id == $i->user_id && $i->created_at->format('Y-m-d') == Carbon\Carbon::now()->format('Y-m-d'))
-						@forelse ($absensi as $arr)
-							@if (Auth::user()->id == $arr->user_id && $arr->absensi_type_pulang != null)
-							<div class="flex justify-center sm:justify-end gap-2 mt-3">
-								<button type="submit" class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Mulai Lembur</button>
-								<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
-										Kembali
-									</a>
-							</div>
-							@else
-							<div class="flex justify-center sm:justify-end gap-2 mt-3">
-								<button type="submit" class="p-2 my-2 px-4 text-slate-200 bg-blue-300 rounded transition-all ease-linear .2s disabled" disabled>Belum Absen</button>
-								<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
-										Kembali
-									</a>
-							</div>
-							@endif
-						@empty
-							<div class="flex justify-center sm:justify-end gap-2 mt-3">
-								<button type="submit" class="p-2 my-2 px-4 text-slate-200 bg-blue-300 rounded transition-all ease-linear .2s disabled" disabled>Belum Absen</button>
-								<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
-										Kembali
-									</a>
-							</div>
-						@endforelse
-					@else
-					<div class="flex justify-center sm:justify-end gap-2 mt-3">
-						<button type="submit" class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Mulai Lembur</button>
-						<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
-								Kembali
-							</a>
-					</div>
-					@endif
+						@if (Auth::user()->id == $i->user_id && $i->created_at->format('Y-m-d') == Carbon\Carbon::now()->format('Y-m-d'))
+						<div class="flex justify-center sm:justify-end gap-2 mt-3">
+							<button class="p-2 my-2 px-4 text-white bg-blue-500 rounded disabled">Sudah Lembur</button>
+							<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
+									Kembali
+								</a>
+						</div>
+						@else
+						<div class="flex justify-center sm:justify-end gap-2 mt-3">
+							<button type="submit" class="p-2 my-2 px-4 text-white bg-blue-500 hover:bg-blue-600 rounded transition-all ease-linear .2s">Mulai Lembur</button>
+							<a href="{{ route('dashboard.index') }}" class="p-2 my-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded transition-all ease-linear .2s">
+									Kembali
+								</a>
+						</div>
+						@endif
 					@break
 				@empty
 				<div class="flex justify-center sm:justify-end gap-2 mt-3">

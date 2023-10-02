@@ -73,6 +73,7 @@ class AbsensiController extends Controller
         // dd($radius);
         if ($radius <= $harLok->radius) {
         $absensi = new Absensi();
+        $clock = Carbon::now()->format('H:i:s');
 
         $absensi = [
             'user_id' => $user_id,
@@ -80,7 +81,7 @@ class AbsensiController extends Controller
             'shift_id' => $shift_id,
             'perlengkapan' => $perlengkapan,
             'keterangan' => $keterangan,
-            'absensi_type_masuk' => Carbon::now()->format('H:i:s'),
+            'absensi_type_masuk' => $clock,
             'tanggal_absen' => Carbon::now()->format('Y-m-d'),
             'image' => $fileName,
             'deskripsi' => $deskripsi,
@@ -88,7 +89,7 @@ class AbsensiController extends Controller
         ];
 
         Absensi::create($absensi);
-        toastr()->success('Berhasil Absen Hari Ini', 'succes');
+        toastr()->success('Berhasil Absen Hari Ini Jam : '. $clock, 'success');
         
         $users = Auth::user();
         Mail::to($users->email)->queue(new AbsensiNotification);
@@ -186,7 +187,7 @@ class AbsensiController extends Controller
         $pointId = Point::all();
         $point = Absensi::whereNotNull('point_id')->where('user_id', $user)->whereMonth('created_at', $parse->month)->get();
         $absen = Absensi::query();
-       
+        
         return view('absensi.history', [
             'absen' => $absen,
             'abs' => $abs,
