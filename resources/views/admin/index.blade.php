@@ -286,43 +286,6 @@
 				{{-- End Menu --}}
 			</div>
 		</div>
-
-		<div>
-			@php
-				$mytime = Carbon\Carbon::now()->isoFormat('dddd, D/MMMM/Y');
-			@endphp
-			<div class="bg-lime-400 font-semibold shadow mt-5 rounded-tr-md" style="width: 29%;">
-				<div class="grid grid-cols py-1">
-				<span class="mx-3 pt-2">Status Website : <span class="badge badge-info overflow-hidden" id="uptime"></span></span>
-					<span class="mx-3">Jumlah Karyawan : {{ $user }}</span>
-					<span class="mx-3">Jumlah Mitra : {{ $client }}</span>
-					<span class="mx-3 flex flex-col items-center textarea textarea-bordered text-center">
-					    <span>Created And Development </span>
-					        <span>
-					            <span>
-    					            <a href="https://github.com/aditlfp" target="_blank">
-    					                <i class="ri-github-fill text-xl"></i>aditlfp</a>
-					            </span>
-					            <span>
-    					            <a href="https://github.com/syafi-M" target="_blank">
-    					                <i class="ri-github-fill text-xl"></i> syafi-M</a>
-					            </span>
-					        </span>
-					</span>
-				</div>
-			</div>
-		</div>
 	</x-main-div>
-	<script>
-		$(document).ready(function() {
-    		function updateUptime() {
-                $.get('/get-uptime', function(data) {
-                    $('#uptime').text("Running : " + data.uptime);
-                });
-            }
-        
-            // Mulai pembaruan secara berkala (misalnya, setiap 5 detik)
-            setInterval(updateUptime, 1000); // 5000 milidetik = 5 detik
-    		});
-	</script>
+	<x-footer-component/>
 </x-app-layout>

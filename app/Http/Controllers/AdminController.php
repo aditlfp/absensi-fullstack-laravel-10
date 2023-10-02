@@ -102,31 +102,25 @@ class AdminController extends Controller
         $point = Point::all();
         $absen = Absensi::paginate(50);
         $divisi = Divisi::all();
-        $dataArr = [];
         
-        if($filter )
+        if($filter && $filterDivisi)
         {
+            $absen = Absensi::with(['User', 'Shift', 'Kerjasama'])->where('kerjasama_id', $filter)->whereHas('user', function ($query) use ($filterDivisi) {
+                $query->where('devisi_id', $filterDivisi);
+            })->orderBy('tanggal_absen', 'desc')->paginate(999999999);
+        }
+        elseif($filterDivisi != null)
+        {
+            $absen = Absensi::with(['User', 'Shift', 'Kerjasama'])->whereHas('user', function ($query) use ($filterDivisi) {
+                $query->where('devisi_id', $filterDivisi);
+            })->orderBy('tanggal_absen', 'desc')->paginate(999999999);
+        }
+        elseif($filter) {
             $absen = Absensi::with(['User', 'Shift', 'Kerjasama'])->where('kerjasama_id', $filter)->orderBy('tanggal_absen', 'desc')->paginate(999999999);
-        }
-        elseif($filterDivisi)
-        {
-            $absen1 = Absensi::with(['User', 'Shift', 'Kerjasama'])->where('kerjasama_id', $filter)->orderBy('tanggal_absen', 'desc')->paginate(999999999);
-            foreach ($absen1 as $key) {
-                $dataDivisi = $key->user->where('devisi_id', $filterDivisi)->paginate(9999);
-                $dataArr[] = $dataDivisi;
-            }
-            return "WOY BERHASIL";
-        }
-        else {
-            return "AKU KENEK";
+
         }
         
-        return view('admin.absen.index',['absen' => $absen, 'filterDivisi' => $filterDivisi, 'absenSi' => $absenSi, 'point' => $point, 'divisi' => $divisi, 'filter' => $filter, 'dataArr' => $dataArr]);
-    }
-
-    public function filterDivisi(Request $request)
-    {
-
+        return view('admin.absen.index',['absen' => $absen, 'filterDivisi' => $filterDivisi, 'absenSi' => $absenSi, 'point' => $point, 'divisi' => $divisi, 'filter' => $filter]);
     }
 
     public function izin()

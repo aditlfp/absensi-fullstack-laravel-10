@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CheckPoint;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,8 +11,8 @@ class CheckPointController extends Controller
 {
    public function index()
    {
-
-    $cek = CheckPoint::paginate(909090);
+    $currentMonth = Carbon::now()->month;
+    $cek = CheckPoint::whereMonth('created_at', $currentMonth)->paginate(90);
     return view('check.index', compact('cek'));
 
    }
