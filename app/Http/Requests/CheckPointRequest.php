@@ -25,7 +25,7 @@ class CheckPointRequest extends FormRequest
             'user_id' => 'required',
             'divisi_id' => 'required',
             'type_check' => 'nullable',
-            'img' => 'required',
+            'img' => 'required|image|mimes:png,jpg,svg,gif,jpeg|max:3048',
             'deskripsi' => 'required'
         ];
     }

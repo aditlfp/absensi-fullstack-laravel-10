@@ -33,9 +33,9 @@ class CheckPointController extends Controller
             'divisi_id' => $request->divisi_id,
             'type_check' => $request->type_check,
             'img' => $request->img,
-            'deskripsi' => $request->deskripai
+            'deskripsi' => $request->deskripsi
         ];
-
+        
         if($request->hasFile('img'))
         {
             $cek['img'] = UploadImage($request, 'img');
@@ -71,7 +71,7 @@ class CheckPointController extends Controller
         'divisi_id' => $request->divisi_id,
         'type_check' => $request->type_check,
         'img' => $request->img,
-        'deskripsi' => $request->deskripai
+        'deskripsi' => $request->deskripsi
     ];
 
     if($request->hasFile('img'))
