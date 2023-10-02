@@ -37,6 +37,14 @@
 						Riwayat Laporan
 					</a>
 				</div>
+				{{-- CP --}}
+				<div id="btnIzin"
+					class="col-span-2 w-full flex justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-2 px-4 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+					<i class="ri-todo-line text-xl"></i>
+					<a href="{{ route('checkpoint-user.index') }}" class="uppercase font-semibold text-sm  text-slate-100/90">
+						Riwayat Check Point
+					</a>
+				</div>
 			</div>
             <div class="flex justify-center sm:justify-end mt-5">
 				<a href="{{ route('dashboard.index') }}" class="btn btn-error mx-2 sm:mx-10">Kembali</a>

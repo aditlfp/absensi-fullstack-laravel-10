@@ -245,7 +245,7 @@
 									</div>
 								</a>
 								{{-- CP --}}
-								<a href="{{ route('checkpoint-user.index') }}" id="btnIzin" class="col-span-2 w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
+								<a href="{{ route('checkpoint-user.create') }}" id="btnIzin" class="col-span-2 w-full flex flex-col justify-center text-white items-center gap-2 bg-[#3A4F50] rounded-md py-1 px-2 hover:bg-[#3A4F50]/80 hover:text-gray-800 transition-all ease-linear .2s">
 									<i class="ri-todo-line text-xl"></i>
 									<span class="uppercase font-semibold text-[10px] text-slate-100/90">
 										Check Point
